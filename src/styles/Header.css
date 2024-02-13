@@ -1,0 +1,85 @@
+/*#navbar-dark,#navbar-light{
+    width: 1439px; padding-bottom: 8px;
+}
+#252B42
+*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+#navbar-dark {
+  display: flex;
+  padding: 5px 17px 5px 38px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color:#252B42;
+    
+}
+#contact {
+  display: flex;
+  align-items: center;
+}
+#contact-span {
+  display: flex;
+  gap: 5px;
+  padding-right: 30px;
+}
+#contact-logo {
+  display: flex;
+  text-align: center;
+  gap: 5px;
+}
+#social-media {
+  display: flex;
+  height: 46px;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+}
+#social-media-logos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-top: 5px;
+}
+#navbar-light {
+  display: flex;
+  padding: 10px 38px 10px 38px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: white;
+  
+}
+h3 {
+  color: #252b42;
+  font-weight: bolder;
+  
+}
+#collapse {
+  display: flex;
+  padding: 2px 425px 0 0;
+  justify-content: flex-start;
+  gap: 10px;
+  color: #737373;
+}
+#collapse > div {
+  padding: 10px;
+}
+#navbar-nav {
+  display: flex;
+  align-items: center;
+  color: #23a6f0;
+  gap: 15px;
+}
+#navbar-nav-icons {
+  display: flex;
+  text-align: center;
+  gap: 5px;
+}
+#login-register {
+  display: flex;
+  text-align: center;
+}
+#carousel {
+  width: 100%;
+}
