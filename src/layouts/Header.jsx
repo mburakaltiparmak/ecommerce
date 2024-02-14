@@ -10,6 +10,8 @@ import searchIcon from "../assets/header/search.svg";
 import cartIcon from "../assets/header/cart.svg";
 import favIcon from "../assets/header/fav.svg";
 import { CarouselCustomNavigation } from "../components/CarouselCustomNavigation";
+import { Dropdown } from "../components/Dropdown";
+import { Dropdown2 } from "../components/Dropdown2";
 CarouselCustomNavigation;
 
 const Header = () => {
@@ -52,24 +54,32 @@ const Header = () => {
         </label>
       </div>
       <div id="navbar-light" className="flex flex-col items-start gap-12">
-        <h3 className="text-2xl font-bold leading-6 tracking-tighter">BrandName</h3>
+        <h3 className="text-2xl font-bold leading-6 tracking-tighter">
+          BrandName
+        </h3>
         <label id="collapse" htmlFor="">
-          <div>Home</div>
-          <div>Shop</div>
-          <div>About</div>
-          <div>Blog</div>
-          <div>Contact</div>
-          <div>Pages</div>
+          <Dropdown2 />
         </label>
         <label id="navbar-nav" htmlFor="">
-          <div id="navbar-nav-icons"><img src={userIcon}/>Login/Register</div>
-          <div id="navbar-nav-icons"><img src={searchIcon}/>Search</div>
-          <div id="navbar-nav-icons"><img src={cartIcon}/>Cart</div>
-          <div id="navbar-nav-icons"><img src={favIcon}/>Favorites</div>
+          <button id="navbar-nav-icons">
+            <img className="w-4 h-4" src={userIcon} />
+            Login/Register
+          </button>
+          <button id="navbar-nav-icons">
+            <img className="w-4 h-4" src={searchIcon} />
+          </button>
+          <button id="navbar-nav-icons">
+            <img className="w-4 h-4" src={cartIcon} />1
+          </button>
+          <button id="navbar-nav-icons">
+            <img className="w-4 h-4" src={favIcon} />2
+          </button>
         </label>
       </div>
       <hr />
-      <div><CarouselCustomNavigation /></div>
+      <div>
+        <CarouselCustomNavigation />
+      </div>
     </header>
   );
 };
