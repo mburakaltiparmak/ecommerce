@@ -1,4 +1,4 @@
-/*import "../styles/Header.css";*/
+import "../styles/Header.css";
 import phoneIcon from "../assets/header/phone.svg";
 import mailIcon from "../assets/header/navbarmail.svg";
 import instagramIcon from "../assets/header/instagram.svg";
@@ -29,10 +29,10 @@ const Header = () => {
             </p>
           </span>
           <span id="contact-span">
-            <p id="contact-logo">
+            <a href="" id="contact-logo">
               <img src={mailIcon} />
               {mailText}
-            </p>
+            </a>
           </span>
         </label>
         <p>Follow Us and get a chance to win 80% off</p>

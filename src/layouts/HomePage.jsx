@@ -1,11 +1,12 @@
+import { ShopCards } from "../components/ShopCards";
 import Header from "./Header";
-
 
 const HomePage = () => {
     return (
     <>
     <div>
-    <Header/>    
+    <Header/> 
+    <ShopCards/>   
     </div>    
     </>
     );
