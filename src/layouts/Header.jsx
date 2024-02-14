@@ -1,4 +1,4 @@
-import "../styles/Header.css";
+/*import "../styles/Header.css";*/
 import phoneIcon from "../assets/header/phone.svg";
 import mailIcon from "../assets/header/navbarmail.svg";
 import instagramIcon from "../assets/header/instagram.svg";
@@ -9,8 +9,9 @@ import userIcon from "../assets/header/user.svg";
 import searchIcon from "../assets/header/search.svg";
 import cartIcon from "../assets/header/cart.svg";
 import favIcon from "../assets/header/fav.svg";
-import { CarouselCustomNavigation } from "../components/CarouselCustomNavigation";
-import { Dropdown2 } from "../components/Dropdown2";
+
+import Dropdown from "../components/Dropdown";
+import Slider from "../components/Slider";
 
 const Header = () => {
   const phoneText = "(225) 555-0118";
@@ -19,17 +20,17 @@ const Header = () => {
     <header className="w-full text-white font-montserrat font-bold text-base leading-6 tracking-tighter">
       <div
         id="navbar-dark"
-        className="flex px-38 py-5 justify-between items-center bg-[#252b42]"
+        className="flex justify-between items-center bg-[#252b42] p-4 md:px-8"
       >
         <label id="contact" htmlFor="contact" className="flex items-center">
-          <span className="flex gap-5 pr-8" id="contact-span">
-            <p className="flex justify-center gap-5" id="contact-logo">
+          <span className="flex gap-2 pr-4" id="contact-span">
+            <p className="flex text-center gap-2" id="contact-logo">
               <img src={phoneIcon} />
               {phoneText}
             </p>
           </span>
-          <span id="contact-span">
-            <a href="" id="contact-logo">
+          <span className="flex gap-2 pr-4" id="contact-span">
+            <a className="flex text-center gap-2" href="" id="contact-logo">
               <img src={mailIcon} />
               {mailText}
             </a>
@@ -39,12 +40,12 @@ const Header = () => {
         <label
           id="social-media"
           htmlFor=""
-          className="flex items-center gap-10 h-16 pb-2"
+          className="flex h-20 pb-2 items-center gap-4 md:gap-8"
         >
           <p>Follow Us :</p>
           <span
             id="social-media-logos"
-            className="flex gap-10 items-center pb-1"
+            className="flex gap-4 items-center pb-1"
           >
             <a href="https://www.instagram.com/">
               <img src={instagramIcon} />
@@ -63,45 +64,53 @@ const Header = () => {
       </div>
       <div
         id="navbar-light"
-        className="flex w-full px-10 md:px-38 justify-between items-center bg-white gap-10 md:gap-20"
+        className="flex justify-between items-center bg-white p-2 md:p-4 gap-10"
       >
-        <h3 className="text-2xl font-bold leading-6 tracking-tighter text-[#252b42]">
-          BrandName
-        </h3>
+        <h3 className="font-bold pr-4 md:pr-8 text-[#252b42]">BrandName</h3>
         <label
           id="collapse"
           htmlFor=""
-          className="flex w-3/10 px-0 justify-center gap-2.5% text-[#737373]"
+          className="flex w-1/3 pb-1 justify-center gap-2 text-gray-400 md:justify-end md:pr-4"
         >
-          <Dropdown2 />
+          <Dropdown />
         </label>
         <label
           id="navbar-nav"
           htmlFor=""
-          className="flex items-center justify-between text-[#23a6f0]"
+          className="flex items-center justify-between gap-4 md:gap-8 text-[#23a6f0]"
         >
           <button
             id="navbar-nav-icons"
-            className="flex justify-center items-center gap-10"
+            className="flex text-center gap-2 items-center"
           >
             <img className="w-4 h-4" src={userIcon} />
             Login/Register
           </button>
-          <button id="navbar-nav-icons">
+          <button
+            className="flex text-center gap-2 items-center"
+            id="navbar-nav-icons"
+          >
             <img className="w-4 h-4" src={searchIcon} />
           </button>
-          <button id="navbar-nav-icons">
+          <button
+            className="flex text-center gap-2 items-center"
+            id="navbar-nav-icons"
+          >
             <img className="w-4 h-4" src={cartIcon} />1
           </button>
-          <button id="navbar-nav-icons">
+          <button
+            className="flex text-center gap-2 items-center"
+            id="navbar-nav-icons"
+          >
             <img className="w-4 h-4" src={favIcon} />2
           </button>
         </label>
       </div>
       <hr />
       <div>
-        <CarouselCustomNavigation />
+        <Slider className="bg-black" />
       </div>
+      <div></div>
     </header>
   );
 };

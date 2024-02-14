@@ -1,6 +1,6 @@
 import { Carousel } from "@material-tailwind/react";
 import carouselImg from "../assets/header/carouselImg.jpg";
-import "../styles/Carousel.css";
+/*import "../styles/Carousel.css";*/
 export function CarouselCustomNavigation() {
   return (
     <Carousel
@@ -23,11 +23,17 @@ export function CarouselCustomNavigation() {
       )}
     >
       <div className="relative">
-        <img src={carouselImg} className="h-full w-full object-cover" />
+        <img
+          src={carouselImg}
+          className="h-full w-full overflow-hidden object-cover"
+        />
       </div>
 
       <div className="relative">
-        <img src={carouselImg} className="h-full w-full object-cover" />
+        <img
+          src={carouselImg}
+          className="h-full w-full overflow-hidden object-cover"
+        />
       </div>
     </Carousel>
   );
