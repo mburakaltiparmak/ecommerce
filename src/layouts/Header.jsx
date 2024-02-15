@@ -17,7 +17,7 @@ const Header = () => {
   const phoneText = "(225) 555-0118";
   const mailText = "michelle.rivera@example.com";
   return (
-    <header className="w-full text-white font-montserrat">
+    <header className="w-full text-white font-Montserrat">
       <div
         id="navbar-dark"
         className="flex justify-between font-bold text-sm items-center bg-[#252b42] px-[38px]"
@@ -25,16 +25,16 @@ const Header = () => {
         <label
           id="contact"
           htmlFor="contact"
-          className="flex items-center gap-6"
+          className="flex items-center gap-8"
         >
           <span className="flex" id="contact-span">
-            <p className="flex text-center gap-4 " id="contact-logo">
+            <p className="flex text-center gap-2 " id="contact-logo">
               <img src={phoneIcon} />
               {phoneText}
             </p>
           </span>
           <span className="flex" id="contact-span">
-            <a className="flex text-center gap-4 " href="" id="contact-logo">
+            <a className="flex text-center gap-2 " href="" id="contact-logo">
               <img src={mailIcon} />
               {mailText}
             </a>
@@ -70,11 +70,11 @@ const Header = () => {
         id="navbar-light"
         className="flex justify-between items-center bg-white px-[38px] py-[17px] gap-10 "
       >
-        <span className="flex gap-12">
+        <span className="flex gap-14">
           <h3 className="font-bold text-lg pr-4 md:pr-8 text-[#252b42]">
             BrandName
           </h3>
-          <label className="font-bold items-start  text-sm gap-4 flex leading-6 px-[50px] text-[#252b42]">
+          <label className="font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42]">
             <button>Home</button>
             <Dropdown />
             <button>About</button>
@@ -119,9 +119,8 @@ const Header = () => {
       </div>
       <hr />
       <div>
-        <Slider className="bg-black" />
+        <Slider className="" />
       </div>
-      <div></div>
     </header>
   );
 };

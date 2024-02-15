@@ -1,0 +1,9 @@
+#slider-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+}
+#box-1 {
+}
+#box-2 {
+}

@@ -32,7 +32,7 @@ export const ShopCards = () => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center gap-4 font-montserrat"
+      className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full"
       id="shop-container"
     >
       <div

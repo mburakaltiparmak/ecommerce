@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import carouselImg from "../assets/header/carouselImg.jpg";
+import sliderImg from "../assets/shopcards/slider2.png";
+import "../styles/Slider.css";
 
 const ChevronLeft = () => (
   <svg
@@ -35,25 +36,27 @@ const ChevronRight = () => (
   </svg>
 );
 
-export default function Slider({
+export default function Slider2({
   autoSlide = false,
   autoSlideInterval = 3000,
 }) {
   const [curr, setCurr] = useState(0);
   const slides = [
     {
-      img: carouselImg,
+      img: sliderImg,
       dateHero: "SUMMER 2020",
-      title: "NEW COLLECTION",
+      title: "Vita Classic Product",
       description:
-        "We know how large objects will act, but things on a small scale.",
+        "We know how large objects will act, We know how are objects will act, We know",
+      price: "$16.48",
     },
     {
-      img: carouselImg,
+      img: sliderImg,
       dateHero: "SUMMER 2020",
-      title: "NEW COLLECTION",
+      title: "Vita Classic Product",
       description:
-        "We know how large objects will act, but things on a small scale.",
+        "We know how large objects will act, We know how are objects will act, We know",
+      price: "$16.48",
     },
   ];
 
@@ -69,26 +72,51 @@ export default function Slider({
   }, []);
 
   return (
-    <div className="overflow-hidden relative font-Montserrat">
+    <div className="overflow-hidden relative bg-[#23856D] font-Montserrat w-full pt-10">
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides.map((slide, index) => (
-          <div key={index} className="w-full flex-shrink-0 relative">
-            <img src={slide.img} alt={`Slide ${index}`} className="w-full " />
-            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start">
-              <div className="text-white  flex flex-col gap-8 px-40">
-                <h2 className="font-bold text-xl">{slide.dateHero}</h2>
-                <h1 className="font-bold text-[58px]">{slide.title}</h1>
-                <p className="font-normal text-[20px] w-3/5">
-                  {slide.description}
-                </p>
-                <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center bg-[#2DC071] text-lg font-bold tracking-normal">
-                  SHOP NOW
-                </button>
-              </div>
-            </div>
+          <div key={index} className="w-full flex-shrink-0 relative ">
+            <span
+              id="slider-container"
+              className="flex justify-around flex-row-reverse items-center"
+            >
+              <span
+                id="box-1"
+                className="px-40 pb-0 flex items-end min-h-1/2 min-w-1/2 object-contain resize-none"
+              >
+                <img
+                  src={slide.img}
+                  alt={`Slide ${index}`}
+                  className="min-w-full min-h-full object-contain resize-none"
+                  id="slider-img"
+                />
+              </span>
+              <span
+                id="box-2"
+                className="flex items-center justify-items-start "
+              >
+                <div className="">
+                  <div className="text-white font-montserrat flex flex-col gap-8 px-40 ">
+                    <h2 className="font-bold text-xl">{slide.dateHero}</h2>
+                    <h1 className="font-bold text-[58px] w-3/4">
+                      {slide.title}
+                    </h1>
+                    <p className="font-normal text-[20px] w-4/6">
+                      {slide.description}
+                    </p>
+                    <span className="flex flex-row gap-8 items-center">
+                      <p className="text-2xl font-bold">{slide.price}</p>
+                      <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center bg-[#2DC071] text-lg font-bold tracking-normal">
+                        ADD TO CART
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </span>
+            </span>
           </div>
         ))}
       </div>
