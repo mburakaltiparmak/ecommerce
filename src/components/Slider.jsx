@@ -84,7 +84,7 @@ export default function Slider({
                 <p className="font-normal text-[20px] w-3/5">
                   {slide.description}
                 </p>
-                <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center bg-[#2DC071] text-lg font-bold tracking-normal">
+                <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
                   SHOP NOW
                 </button>
               </div>

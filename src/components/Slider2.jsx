@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import sliderImg from "../assets/shopcards/slider2.png";
-import "../styles/Slider.css";
+/*import "../styles/Slider.css";*/
 
 const ChevronLeft = () => (
   <svg
@@ -109,7 +109,7 @@ export default function Slider2({
                     </p>
                     <span className="flex flex-row gap-8 items-center">
                       <p className="text-2xl font-bold">{slide.price}</p>
-                      <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center bg-[#2DC071] text-lg font-bold tracking-normal">
+                      <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
                         ADD TO CART
                       </button>
                     </span>

@@ -27,10 +27,10 @@ export const ShopCards2 = () => {
             We know how large objects will act, but things on a small scale.
           </h4>
           <span className="flex flex-row gap-2 items-center">
-            <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center bg-[#2DC071] text-lg text-white font-bold tracking-normal">
+            <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center  text-lg text-white font-bold tracking-normal">
               BUY NOW
             </button>
-            <button className="py-[15px] px-[10px] flex border-solid border-[1px] border-[#2DC071] bg-green rounded-md w-40 justify-center bg-white text-lg text-[#2DC071] font-bold tracking-normal">
+            <button className="py-[15px] px-[10px] flex border-solid border-[1px] border-green bg-white rounded-md w-40 justify-center text-lg text-green font-bold tracking-normal">
               READ MORE
             </button>
           </span>

@@ -1,3 +1,4 @@
+import { Blog } from "../components/Blog";
 import { ShopCards } from "../components/ShopCards";
 import { ShopCards2 } from "../components/ShopCards2";
 import Header from "./Header";
@@ -9,6 +10,7 @@ const HomePage = () => {
         <Header />
         <ShopCards />
         <ShopCards2 />
+        <Blog />
       </div>
     </>
   );

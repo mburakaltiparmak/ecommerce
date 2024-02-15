@@ -1,14 +1,19 @@
-/*import "../styles/Header.css";*/
-import phoneIcon from "../assets/header/phone.svg";
-import mailIcon from "../assets/header/navbarmail.svg";
-import instagramIcon from "../assets/header/instagram.svg";
-import youtubeIcon from "../assets/header/youtube.svg";
-import facebookIcon from "../assets/header/facebook.svg";
-import twitterIcon from "../assets/header/twitter.svg";
-import userIcon from "../assets/header/user.svg";
-import searchIcon from "../assets/header/search.svg";
-import cartIcon from "../assets/header/cart.svg";
-import favIcon from "../assets/header/fav.svg";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPhone,
+  faEnvelope,
+  faUser,
+  faMagnifyingGlass,
+  faCartShopping,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faInstagram,
+  faYoutube,
+  faFacebook,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 import Dropdown from "../components/Dropdown";
 import Slider from "../components/Slider";
@@ -29,13 +34,13 @@ const Header = () => {
         >
           <span className="flex" id="contact-span">
             <p className="flex text-center gap-2 " id="contact-logo">
-              <img src={phoneIcon} />
+              <FontAwesomeIcon icon={faPhone} />
               {phoneText}
             </p>
           </span>
           <span className="flex" id="contact-span">
             <a className="flex text-center gap-2 " href="" id="contact-logo">
-              <img src={mailIcon} />
+              <FontAwesomeIcon icon={faEnvelope} />
               {mailText}
             </a>
           </span>
@@ -52,16 +57,16 @@ const Header = () => {
             className="flex gap-4 items-center pb-1 "
           >
             <a href="https://www.instagram.com/">
-              <img src={instagramIcon} />
+              <FontAwesomeIcon icon={faInstagram} />
             </a>
             <a href="https://www.youtube.com/">
-              <img src={youtubeIcon} />
+              <FontAwesomeIcon icon={faYoutube} />
             </a>
             <a href="https://www.facebook.com/">
-              <img src={facebookIcon} />
+              <FontAwesomeIcon icon={faFacebook} />
             </a>
             <a href="https://www.twitter.com/">
-              <img src={twitterIcon} />
+              <FontAwesomeIcon icon={faTwitter} />
             </a>
           </span>
         </label>
@@ -93,26 +98,26 @@ const Header = () => {
               id="navbar-nav-icons"
               className="flex  text-sm text-center gap-1 items-center "
             >
-              <img className="w-4  h-4" src={userIcon} />
+              <FontAwesomeIcon icon={faUser} />
               Login/Register
             </button>
             <button
               className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"
             >
-              <img className="w-4 h-4" src={searchIcon} />
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
             <button
               className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"
             >
-              <img className="w-4 h-4" src={cartIcon} />1
+              <FontAwesomeIcon icon={faCartShopping} />1
             </button>
             <button
               className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"
             >
-              <img className="w-4 h-4" src={favIcon} />2
+              <FontAwesomeIcon icon={faHeart} />2
             </button>
           </label>
         </span>

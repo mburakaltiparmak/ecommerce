@@ -26,6 +26,15 @@ export default {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
       },
+      colors: {
+        blue1: "#23A6F0",
+        blue2: "#8EC2F2",
+
+        darkblue1: "#252B42",
+        gray: "#737373",
+        green: "#2DC071",
+        green2: "#23856D",
+      },
     },
   },
   plugins: [
