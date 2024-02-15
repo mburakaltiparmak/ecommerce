@@ -55,13 +55,6 @@ export default function Slider({
       description:
         "We know how large objects will act, but things on a small scale.",
     },
-    {
-      img: carouselImg,
-      dateHero: "SUMMER 2020",
-      title: "NEW COLLECTION",
-      description:
-        "We know how large objects will act, but things on a small scale.",
-    },
   ];
 
   const prev = () =>
@@ -83,12 +76,17 @@ export default function Slider({
       >
         {slides.map((slide, index) => (
           <div key={index} className="w-full flex-shrink-0 relative">
-            <img src={slide.img} alt={`Slide ${index}`} className="w-full" />
-            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-              <div className="text-white text-center">
+            <img src={slide.img} alt={`Slide ${index}`} className="w-full " />
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start">
+              <div className="text-white font-montserrat flex flex-col gap-8 px-40">
                 <h2 className="font-bold text-xl">{slide.dateHero}</h2>
                 <h1 className="font-bold text-[58px]">{slide.title}</h1>
-                <p className="font-normal text-lg">{slide.description}</p>
+                <p className="font-normal text-[20px] w-3/5">
+                  {slide.description}
+                </p>
+                <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center bg-[#2DC071] text-lg font-bold tracking-normal">
+                  SHOP NOW
+                </button>
               </div>
             </div>
           </div>
@@ -115,7 +113,7 @@ export default function Slider({
             <div
               key={i}
               className={`
-                transition-all w-3 h-3 bg-white rounded-full
+                transition-all w-20 h-3 bg-white 
                 ${curr === i ? "p-2" : "bg-opacity-50"}
               `}
             />

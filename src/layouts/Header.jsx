@@ -17,20 +17,24 @@ const Header = () => {
   const phoneText = "(225) 555-0118";
   const mailText = "michelle.rivera@example.com";
   return (
-    <header className="w-full text-white font-montserrat font-bold text-base leading-6 tracking-tighter">
+    <header className="w-full text-white font-montserrat">
       <div
         id="navbar-dark"
-        className="flex justify-between items-center bg-[#252b42] p-4 md:px-8"
+        className="flex justify-between font-bold text-sm items-center bg-[#252b42] px-[38px]"
       >
-        <label id="contact" htmlFor="contact" className="flex items-center">
-          <span className="flex gap-2 pr-4" id="contact-span">
-            <p className="flex text-center gap-2" id="contact-logo">
+        <label
+          id="contact"
+          htmlFor="contact"
+          className="flex items-center gap-6"
+        >
+          <span className="flex" id="contact-span">
+            <p className="flex text-center gap-4 " id="contact-logo">
               <img src={phoneIcon} />
               {phoneText}
             </p>
           </span>
-          <span className="flex gap-2 pr-4" id="contact-span">
-            <a className="flex text-center gap-2" href="" id="contact-logo">
+          <span className="flex" id="contact-span">
+            <a className="flex text-center gap-4 " href="" id="contact-logo">
               <img src={mailIcon} />
               {mailText}
             </a>
@@ -42,10 +46,10 @@ const Header = () => {
           htmlFor=""
           className="flex h-20 pb-2 items-center gap-4 md:gap-8"
         >
-          <p>Follow Us :</p>
+          <p className="">Follow Us :</p>
           <span
             id="social-media-logos"
-            className="flex gap-4 items-center pb-1"
+            className="flex gap-4 items-center pb-1 "
           >
             <a href="https://www.instagram.com/">
               <img src={instagramIcon} />
@@ -64,47 +68,54 @@ const Header = () => {
       </div>
       <div
         id="navbar-light"
-        className="flex justify-between items-center bg-white p-2 md:p-4 gap-10"
+        className="flex justify-between items-center bg-white px-[38px] py-[17px] gap-10 "
       >
-        <h3 className="font-bold pr-4 md:pr-8 text-[#252b42]">BrandName</h3>
-        <label
-          id="collapse"
-          htmlFor=""
-          className="flex w-1/3 pb-1 justify-center gap-2 text-gray-400 md:justify-end md:pr-4"
-        >
-          <Dropdown />
-        </label>
-        <label
-          id="navbar-nav"
-          htmlFor=""
-          className="flex items-center justify-between gap-4 md:gap-8 text-[#23a6f0]"
-        >
-          <button
-            id="navbar-nav-icons"
-            className="flex text-center gap-2 items-center"
+        <span className="flex gap-12">
+          <h3 className="font-bold text-lg pr-4 md:pr-8 text-[#252b42]">
+            BrandName
+          </h3>
+          <label className="font-bold items-start  text-sm gap-4 flex leading-6 px-[50px] text-[#252b42]">
+            <button>Home</button>
+            <Dropdown />
+            <button>About</button>
+            <button>Blog</button>
+            <button>Contact</button>
+            <button>Pages</button>
+          </label>
+        </span>
+        <span>
+          <label
+            id="navbar-nav"
+            htmlFor=""
+            className="flex items-center justify-between gap-8 md:gap-8 text-[#23a6f0]"
           >
-            <img className="w-4 h-4" src={userIcon} />
-            Login/Register
-          </button>
-          <button
-            className="flex text-center gap-2 items-center"
-            id="navbar-nav-icons"
-          >
-            <img className="w-4 h-4" src={searchIcon} />
-          </button>
-          <button
-            className="flex text-center gap-2 items-center"
-            id="navbar-nav-icons"
-          >
-            <img className="w-4 h-4" src={cartIcon} />1
-          </button>
-          <button
-            className="flex text-center gap-2 items-center"
-            id="navbar-nav-icons"
-          >
-            <img className="w-4 h-4" src={favIcon} />2
-          </button>
-        </label>
+            <button
+              id="navbar-nav-icons"
+              className="flex  text-sm text-center gap-1 items-center "
+            >
+              <img className="w-4  h-4" src={userIcon} />
+              Login/Register
+            </button>
+            <button
+              className="flex text-center gap-1 items-center"
+              id="navbar-nav-icons"
+            >
+              <img className="w-4 h-4" src={searchIcon} />
+            </button>
+            <button
+              className="flex text-center gap-1 items-center"
+              id="navbar-nav-icons"
+            >
+              <img className="w-4 h-4" src={cartIcon} />1
+            </button>
+            <button
+              className="flex text-center gap-1 items-center"
+              id="navbar-nav-icons"
+            >
+              <img className="w-4 h-4" src={favIcon} />2
+            </button>
+          </label>
+        </span>
       </div>
       <hr />
       <div>

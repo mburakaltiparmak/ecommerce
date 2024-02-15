@@ -23,6 +23,9 @@ export default {
       width: {
         1200: "1200px",
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
     },
   },
   plugins: [

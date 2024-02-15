@@ -32,7 +32,7 @@ export const ShopCards = () => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center gap-4"
+      className="flex flex-col justify-center items-center gap-4 font-montserrat"
       id="shop-container"
     >
       <div
@@ -44,12 +44,12 @@ export const ShopCards = () => {
           id="shop-text-container"
         >
           <h2
-            className="text-gray-700 font-bold text-2xl md:text-3xl leading-7 tracking-tighter"
+            className="text-gray-700  font-bold text-2xl md:text-3xl leading-7 tracking-tighter"
             id="h2-title"
           >
             EDITOR'S PICK
           </h2>
-          <p className="text-gray-500 text-center leading-5" id="paragraph">
+          <p className="text-gray-500  text-center leading-5" id="paragraph">
             Problems trying to resolve the conflict between
           </p>
         </div>
@@ -97,19 +97,25 @@ export const ShopCards = () => {
         id="main-content"
       >
         <div
-          className="flex flex-col justify-center items-center text-center gap-2"
+          className="flex flex-col justify-center items-center text-center gap-4 pb-12"
           id="shop-text-container"
         >
-          <h2 className="text-gray-500 text-center leading-5" id="h3-title">
+          <h2
+            className="text-gray-500 text-center leading-5 font-normal text-xl tracking-normal"
+            id="h3-title"
+          >
             Featured Products
           </h2>
           <p
-            className="text-gray-700 font-bold text-2xl md:text-3xl leading-7 tracking-tighter"
+            className="text-gray-700 font-bold  text-2xl md:text-3xl leading-7 tracking-tight"
             id="h2-title"
           >
             BESTSELLER PRODUCTS
           </p>
-          <h3 className="text-gray-500 text-center leading-5" id="paragraph">
+          <h3
+            className="text-gray-500 text-center leading-5 font-bold "
+            id="paragraph"
+          >
             Problems trying to resolve the conflict between{" "}
           </h3>
         </div>
@@ -123,14 +129,19 @@ export const ShopCards = () => {
                 <img src={photo[id]} alt="" />
               </span>
               <span
-                className="flex flex-col text-center gap-2"
+                className="flex flex-col text-center gap-2 py-8"
                 id="product-text-content"
               >
-                <h4>{productText.title}</h4>
-                <h5>{productText.link}</h5>
-                <h5>
-                  {productText.price1} {productText.price2}
+                <h4 className="text-base font-bold leading-7 tracking-normal">
+                  {productText.title}
+                </h4>
+                <h5 className="text-sm font-bold leading-7 tracking-wide text-[#737373]">
+                  {productText.link}
                 </h5>
+                <span className="flex flex-row items-center text-center justify-center gap-2 text-normal font-bold">
+                  <h5 className="text-[#737373]">{productText.price1}</h5>
+                  <h5 className="text-[#23856D]">{productText.price2}</h5>
+                </span>
                 <span id="colors">
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-4 h-4 rounded-full bg-red-500"></div>
