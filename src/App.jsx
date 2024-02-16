@@ -1,20 +1,24 @@
 /*import "./App.css";*/
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import HomePage from "./Layouts/HomePage";
-import { ProductListPages } from "./layouts/ProductListPages";
+import ProductListPages from "./layouts/ProductListPages";
+import Header from "./Layouts/Header";
+import Footer from "./Layouts/Footer";
 function App() {
   return (
     <div>
+      <Header />
       <Switch>
-        <Route path="/">
+        <Route exact path="/home">
           <HomePage />
         </Route>
-        <Route path="/ProductList">
+        <Route exact path="/ProductList">
           <ProductListPages />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

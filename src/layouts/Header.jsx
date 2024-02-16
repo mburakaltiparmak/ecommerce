@@ -82,7 +82,7 @@ const Header = () => {
             BrandName
           </h3>
           <label className="font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42]">
-            <button onClick={() => history.push("/")}>Home</button>
+            <button onClick={() => history.push("/home")}>Home</button>
             <Dropdown />
             <button>About</button>
             <button>Blog</button>
