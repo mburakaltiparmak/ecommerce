@@ -1,0 +1,8 @@
+#footer-container {
+  display: flex;
+  justify-content: center;
+}
+/*flex flex-col gap-8 font-montserrat */
+#footer-div {
+  width: 75%;
+}

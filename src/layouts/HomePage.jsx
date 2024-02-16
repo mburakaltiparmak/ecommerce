@@ -1,16 +1,14 @@
-import { Blog } from "../components/Blog";
-import { ShopCards } from "../components/ShopCards";
-import { ShopCards2 } from "../components/ShopCards2";
 import Header from "./Header";
+import Body from "./Body";
+import Footer from "./Footer";
 
 const HomePage = () => {
   return (
     <>
       <div className="flex flex-col gap-2">
         <Header />
-        <ShopCards />
-        <ShopCards2 />
-        <Blog />
+        <Body />
+        <Footer />
       </div>
     </>
   );

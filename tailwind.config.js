@@ -32,6 +32,7 @@ export default {
 
         darkblue1: "#252B42",
         gray: "#737373",
+        lightgray: "#FAFAFA",
         green: "#2DC071",
         green2: "#23856D",
       },
