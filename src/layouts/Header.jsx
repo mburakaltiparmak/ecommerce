@@ -17,10 +17,12 @@ import {
 
 import Dropdown from "../components/Dropdown";
 import Slider from "../components/Slider";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
   const phoneText = "(225) 555-0118";
   const mailText = "michelle.rivera@example.com";
+  const history = useHistory();
   return (
     <header className="w-full text-white font-Montserrat">
       <div
@@ -80,7 +82,7 @@ const Header = () => {
             BrandName
           </h3>
           <label className="font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42]">
-            <button>Home</button>
+            <button onClick={() => history.push("/")}>Home</button>
             <Dropdown />
             <button>About</button>
             <button>Blog</button>
@@ -123,9 +125,6 @@ const Header = () => {
         </span>
       </div>
       <hr />
-      <div>
-        <Slider className="" />
-      </div>
     </header>
   );
 };
