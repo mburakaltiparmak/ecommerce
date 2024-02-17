@@ -1,35 +1,11 @@
+import { data } from "../data";
 import menImg from "../assets/shopcards/men.png";
 import womenImg from "../assets/shopcards/women.png";
 import accessoriesImg from "../assets/shopcards/accessories.png";
 import kidsImg from "../assets/shopcards/kids.png";
-/*import "../styles/ShopCards.css";*/
-import img1 from "../assets/shopcards/product/1.png";
-import img2 from "../assets/shopcards/product/2.png";
-import img3 from "../assets/shopcards/product/3.png";
-import img4 from "../assets/shopcards/product/4.png";
-import img5 from "../assets/shopcards/product/5.png";
-import img6 from "../assets/shopcards/product/6.png";
-import img7 from "../assets/shopcards/product/7.png";
-import img8 from "../assets/shopcards/product/8.png";
 
 export const ShopCards = () => {
-  const photo = {
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-  };
-  const productText = {
-    title: "Graphic Design",
-    link: "English Department",
-    price1: "$16.48",
-    price2: "$6.48",
-  };
-
+  const { photo, productText } = data();
   return (
     <div
       className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full"
@@ -146,7 +122,7 @@ export const ShopCards = () => {
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-4 h-4 rounded-full bg-red-500"></div>
                     <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-                    <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                    <div className="w-4 h-4 rounded-full bg-green"></div>
                     <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
                   </div>
                 </span>

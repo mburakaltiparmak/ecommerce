@@ -1,7 +1,3 @@
-import "../styles/Blog.css";
-import blogimg1 from "../assets/shopcards/blog/blogimg1.png";
-import blogimg2 from "../assets/shopcards/blog/blogimg2.png";
-import blogimg3 from "../assets/shopcards/blog/blogimg3.png";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,33 +5,9 @@ import {
   faClock,
   faChartArea,
 } from "@fortawesome/free-solid-svg-icons";
+import { data } from "../data";
 export const Blog = () => {
-  const blogData = [
-    {
-      img: blogimg1,
-      title: "Loudest à la Madison #1 (L'integral)",
-      description:
-        "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
-      date: "22 April 2021",
-      commentNumber: "10",
-    },
-    {
-      img: blogimg2,
-      title: "Loudest à la Madison #1 (L'integral)",
-      description:
-        "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
-      date: "22 April 2021",
-      commentNumber: "10",
-    },
-    {
-      img: blogimg3,
-      title: "Loudest à la Madison #1 (L'integral)",
-      description:
-        "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
-      date: "22 April 2021",
-      commentNumber: "10",
-    },
-  ];
+  const { blogData } = data();
   return (
     <div
       className="flex flex-col font-Montserrat gap-8 py-28 items-center tracking-[0.2px] "

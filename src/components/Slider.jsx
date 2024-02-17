@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import carouselImg from "../assets/header/carouselImg.jpg";
+import { data } from "../data";
 
 const ChevronLeft = () => (
   <svg
@@ -40,22 +40,7 @@ export default function Slider({
   autoSlideInterval = 3000,
 }) {
   const [curr, setCurr] = useState(0);
-  const slides = [
-    {
-      img: carouselImg,
-      dateHero: "SUMMER 2020",
-      title: "NEW COLLECTION",
-      description:
-        "We know how large objects will act, but things on a small scale.",
-    },
-    {
-      img: carouselImg,
-      dateHero: "SUMMER 2020",
-      title: "NEW COLLECTION",
-      description:
-        "We know how large objects will act, but things on a small scale.",
-    },
-  ];
+  const { slides } = data();
 
   const prev = () =>
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
@@ -69,14 +54,14 @@ export default function Slider({
   }, []);
 
   return (
-    <div className="overflow-hidden relative font-Montserrat">
+    <div className="overflow-hidden relative font-Montserrat ">
       <div
-        className="flex transition-transform ease-out duration-500"
+        className="flex transition-transform ease-out duration-500 "
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides.map((slide, index) => (
-          <div key={index} className="w-full flex-shrink-0 relative">
-            <img src={slide.img} alt={`Slide ${index}`} className="w-full " />
+          <div key={index} className="w-full flex-shrink-0 relative ">
+            <img src={slide.img} alt={`Slide ${index}`} className="w-full  " />
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start">
               <div className="text-white  flex flex-col gap-8 px-40">
                 <h2 className="font-bold text-xl">{slide.dateHero}</h2>

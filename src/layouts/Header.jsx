@@ -34,14 +34,21 @@ const Header = () => {
           htmlFor="contact"
           className="flex items-center gap-8"
         >
-          <span className="flex" id="contact-span">
-            <p className="flex text-center gap-2 " id="contact-logo">
+          <span className="flex " id="contact-span">
+            <p
+              className="flex text-center items-center gap-2 "
+              id="contact-logo"
+            >
               <FontAwesomeIcon icon={faPhone} />
               {phoneText}
             </p>
           </span>
           <span className="flex" id="contact-span">
-            <a className="flex text-center gap-2 " href="" id="contact-logo">
+            <a
+              className="flex text-center gap-2 items-center "
+              href=""
+              id="contact-logo"
+            >
               <FontAwesomeIcon icon={faEnvelope} />
               {mailText}
             </a>
@@ -54,10 +61,7 @@ const Header = () => {
           className="flex h-20 pb-2 items-center gap-4 md:gap-8"
         >
           <p className="">Follow Us :</p>
-          <span
-            id="social-media-logos"
-            className="flex gap-4 items-center pb-1 "
-          >
+          <span id="social-media-logos" className="flex gap-4 items-center  ">
             <a href="https://www.instagram.com/">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
