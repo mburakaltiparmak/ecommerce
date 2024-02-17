@@ -1,9 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { data } from "../data";
-/*import {
- 
-  } from "@fortawesome/free-solid-svg-icons";*/
 import {
   faHooli,
   faLyft,
@@ -12,6 +9,7 @@ import {
   faAws,
   faRedditAlien,
 } from "@fortawesome/free-brands-svg-icons";
+import { Breadcrumb } from "./Breadcrumb";
 
 export const Shop = () => {
   const { boxData, productImgs } = data();
@@ -31,12 +29,14 @@ export const Shop = () => {
       id="shop-container"
     >
       <section
-        className="flex flex-col gap-12 bg-lightgray px-10"
+        className="flex flex-col gap-12 bg-lightgray px-10 pt-6 pb-10 content-center"
         id="top-level"
       >
-        <span className="flex flex-row justify-between">
+        <span className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-bold text-darkblue1">Shop</h2>
-          <span id="navbar"></span>
+          <span id="navbar">
+            <Breadcrumb />
+          </span>
         </span>
         <span className="flex flex-row justify-center gap-4" id="box-cards">
           {boxData.map((box, index) => (
@@ -84,15 +84,19 @@ export const Shop = () => {
             <div
               key={index}
               id="product-card"
-              className="flex flex-col items-center gap-4"
+              className="flex flex-col items-center gap-4 py-8"
             >
               <img src={product.image} alt={product.title} />
-              <h3>{product.title}</h3>
-              <p>{product.link}</p>
-              <div className="prices">
-                <p>{product.price1}</p>
-                <p>{product.price2}</p>
-              </div>
+              <h3 className="font-bold text-base text-darkblue1">
+                {product.title}
+              </h3>
+              <p className="text-sm font-bold text-gray">{product.link}</p>
+              <span id="prices" className="flex flex-row gap-4">
+                <p className="text-sm font-bold text-gray">{product.price1}</p>
+                <p className="text-sm font-bold text-green2">
+                  {product.price2}
+                </p>
+              </span>
               <span id="colors">
                 <div className="flex items-center justify-center space-x-2">
                   <div className="w-4 h-4 rounded-full bg-red-500"></div>
@@ -101,7 +105,11 @@ export const Shop = () => {
                   <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
                 </div>
               </span>
-              <button>Sepete Ekle</button>
+              <span id="button-span" className="flex flex-row gap-4">
+                <button className="py-[4px] px-[4px] flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-30 justify-center text-sm font-bold  tracking-normal">
+                  Add to Cart
+                </button>
+              </span>
             </div>
           ))}
         </span>
@@ -110,7 +118,7 @@ export const Shop = () => {
         </span>
       </section>
       <section
-        className="px-10 bg-lightgray flex flex-row justify-evenly"
+        className="px-10 py-10 bg-lightgray flex flex-row justify-evenly content-center text-7xl text-gray"
         id="logo-section"
       >
         <FontAwesomeIcon icon={faHooli} />
