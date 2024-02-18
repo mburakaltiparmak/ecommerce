@@ -82,16 +82,19 @@ const Header = () => {
         className="flex justify-between items-center bg-white px-[38px] py-[17px] gap-10 "
       >
         <span className="flex gap-14">
-          <h3 className="font-bold text-lg pr-4 md:pr-8 text-[#252b42]">
+          <button
+            onClick={() => history.push("/home")}
+            className="font-bold text-lg pr-4 md:pr-8 text-[#252b42]"
+          >
             BrandName
-          </h3>
+          </button>
           <label className="font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42]">
             <button onClick={() => history.push("/home")}>Home</button>
             <Dropdown />
-            <button>About</button>
-            <button>Blog</button>
-            <button>Contact</button>
-            <button>Pages</button>
+            <button onClick={() => history.push("/about")}>About</button>
+            <button onClick={() => history.push("/blog")}>Blog</button>
+            <button onClick={() => history.push("/contact")}>Contact</button>
+            <button onClick={() => history.push("/pages")}>Pages</button>
           </label>
         </span>
         <span>

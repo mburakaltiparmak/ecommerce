@@ -7,8 +7,10 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { MailForm } from "../components/MailForm";
+import { useHistory } from "react-router-dom";
 /*import "../styles/Footer.css";*/
 const Footer = () => {
+  const history = useHistory();
   return (
     <div
       className="flex justify-center  w-full font-montserrat"
@@ -20,7 +22,7 @@ const Footer = () => {
           id="top-container"
         >
           <label className="text-xl font-bold text-darkblue1" id="brand-name">
-            <h3>BrandName</h3>
+            <button onClick={() => history.push("/home")}>BrandName</button>
           </label>
           <label
             className="flex flex-row gap-4 text-lg text-blue1"
@@ -46,7 +48,7 @@ const Footer = () => {
             id="col-1"
           >
             <h5 className="text-lg text-darkblue1 font-bold">Company Info</h5>
-            <a className="" href="">
+            <a className="" href="/about">
               About Us
             </a>
             <a href="">Carrier</a>

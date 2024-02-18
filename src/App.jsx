@@ -6,16 +6,23 @@ import HomePage from "./pages/HomePage";
 import ProductListPages from "./pages/ProductListPages";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
+import About from "./pages/About";
+import { useLocation } from "react-router-dom";
 function App() {
+  const { pathname } = useLocation();
   return (
     <div>
-      <Header />
+      {pathname !== "/about" && <Header />}
+
       <Switch>
         <Route exact path="/home">
           <HomePage />
         </Route>
         <Route exact path="/shop">
           <ProductListPages />
+        </Route>
+        <Route exact path="/about">
+          <About />
         </Route>
       </Switch>
       <Footer />
