@@ -2,10 +2,10 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-import HomePage from "./Layouts/HomePage";
-import ProductListPages from "./layouts/ProductListPages";
-import Header from "./Layouts/Header";
-import Footer from "./Layouts/Footer";
+import HomePage from "./pages/HomePage";
+import ProductListPages from "./pages/ProductListPages";
+import Header from "./layouts/Header";
+import Footer from "./layouts/Footer";
 function App() {
   return (
     <div>
