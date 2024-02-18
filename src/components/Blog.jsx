@@ -35,8 +35,18 @@ export const Blog = () => {
             className="flex flex-col gap-4 justify-between shadow-md border border-black"
             id="content-card"
           >
-            <span id="img-content">
-              <img className="w-full" src={blogItem.img} alt="" />
+            <span
+              className="relative flex items-start justify-start"
+              id="img-content"
+            >
+              <img
+                className="w-full h-auto object-cover"
+                src={blogItem.img}
+                alt=""
+              />
+              <h5 className="absolute border border-gray rounded-md w-16 py-1 mt-8 ml-8  text-center text-base text-white font-bold  bg-[#E74040]">
+                NEW
+              </h5>
             </span>
             <span
               id="content-text-container"

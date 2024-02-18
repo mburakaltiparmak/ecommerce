@@ -30,40 +30,62 @@ export const ShopCards = () => {
           </p>
         </div>
         <div
-          className="flex flex-row flex-wrap gap-3 content-center items-center  "
+          className="flex flex-row flex-wrap gap-3 content-center items-center font-montserrat font-bold  "
           id="shop-img-container"
         >
-          <span className="flex-grow-0" id="first-img-box">
+          <span
+            className="relative flex items-end justify-start"
+            id="first-img-box"
+          >
             <img
               className="w-full h-auto object-cover"
               id="men-img"
               src={menImg}
               alt=""
             />
+            <button className="absolute border border-gray w-40 py-2 mb-8 ml-8  text-center text-base  bg-lightgray">
+              MEN
+            </button>
           </span>
           <span
             className="flex flex-row gap-3 items-center"
             id="second-img-box"
           >
-            <span id="second-img-box1">
+            <span
+              id="second-img-box1"
+              className="relative flex items-end justify-start"
+            >
               <img
                 className="w-full h-auto object-cover"
                 id="women-img"
                 src={womenImg}
                 alt=""
               />
+              <button className="absolute border border-gray w-32 py-2 mb-8 ml-8  text-center text-base  bg-lightgray">
+                WOMEN
+              </button>
             </span>
             <span
               className="flex flex-col gap-3 items-center"
               id="second-img-box2"
             >
-              <img
-                className="w-full h-auto object-cover"
-                id="tiny-img"
-                src={accessoriesImg}
-                alt=""
-              />
-              <img id="tiny-img" src={kidsImg} alt="" />
+              <span className="relative flex items-end justify-start">
+                <img
+                  className="w-full h-auto object-cover"
+                  id="tiny-img"
+                  src={accessoriesImg}
+                  alt=""
+                />
+                <button className="absolute border border-gray w-36 py-2 mb-8 ml-8  text-center text-base  bg-lightgray">
+                  ACCESSORIES
+                </button>
+              </span>
+              <span className="relative flex items-end justify-start">
+                <img id="tiny-img" src={kidsImg} alt="" />
+                <button className="absolute border border-gray w-28 py-2 mb-8 ml-8  text-center text-base  bg-lightgray">
+                  KIDS
+                </button>
+              </span>
             </span>
           </span>
         </div>
