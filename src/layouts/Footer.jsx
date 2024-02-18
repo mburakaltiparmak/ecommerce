@@ -7,10 +7,11 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { MailForm } from "../components/MailForm";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 /*import "../styles/Footer.css";*/
 const Footer = () => {
   const history = useHistory();
+  const pathname = useLocation();
   return (
     <div
       className="flex justify-center  w-full font-montserrat"
@@ -18,7 +19,9 @@ const Footer = () => {
     >
       <div id="footer-div" className=" flex flex-col gap-16 w-full ">
         <section
-          className="flex justify-between flex-row bg-lightgray py-12 px-40"
+          className={`flex justify-between flex-row ${
+            pathname !== "/shop" ? "bg-lightgray" : ""
+          } py-12 px-40`}
           id="top-container"
         >
           <label className="text-xl font-bold text-darkblue1" id="brand-name">
