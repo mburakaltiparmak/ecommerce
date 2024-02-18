@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { data } from "../data";
+import icon from "../assets/icon.png";
 import {
   faHooli,
   faLyft,
@@ -9,8 +10,12 @@ import {
   faAws,
   faRedditAlien,
 } from "@fortawesome/free-brands-svg-icons";
+import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { Breadcrumb } from "./Breadcrumb";
 
+import { Pagination } from "./Pagination";
+
+/* Responsive tasarım için bakman gereken yer product-container */
 export const Shop = () => {
   const { boxData, productImgs } = data();
   const productData = productImgs.map((img, index) => ({
@@ -63,21 +68,40 @@ export const Shop = () => {
         id="shop-section"
       >
         <span
-          className="flex flex-row justify-between w-full font-bold text-sm text-gray"
+          className="flex flex-row justify-between items-center w-full font-bold text-sm text-gray"
           id="filter-container"
         >
           <p>Showing all {productCount} results</p>
-          <span id="views">
-            <button id="1">buton1</button>
-            <button id="2">buton2</button>
+          <span id="views" className="flex flex-row gap-2 text-gray">
+            <button className="border border-gray rounded-lg p-3" id="1">
+              <img src={icon} className="w-[16px] h-[16px]" />
+            </button>
+            <button className="border border-gray rounded-lg p-3" id="2">
+              <FontAwesomeIcon icon={faListUl} className="w-[16px] h-[16px]" />
+            </button>
           </span>
-          <span id="filter-order">
-            <button id="1">order</button>
-            <button id="2">filter</button>
+          <span className="flex flex-row gap-2" id="filter-order">
+            <label className="flex items-center justify-center" id="1">
+              <select
+                id="dropdown"
+                className="flex border border-gray rounded-lg py-4 px-4 w-full bg-lightgray"
+              >
+                <option selected>Popularity</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </label>
+            <button
+              className="border border-gray rounded-lg py-3 px-5 bg-blue1 text-white"
+              id="2"
+            >
+              Filter
+            </button>
           </span>
         </span>
         <span
-          className="flex w-4/5 justify-center flex-row flex-wrap gap-4"
+          className="flex w-4/6 justify-center flex-row flex-wrap gap-4 px-12"
           id="product-container"
         >
           {productData.map((product, index) => (
@@ -114,7 +138,7 @@ export const Shop = () => {
           ))}
         </span>
         <span id="pagination">
-          <button>1234</button>
+          <Pagination />
         </span>
       </section>
       <section
