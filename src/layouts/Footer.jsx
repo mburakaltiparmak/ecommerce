@@ -25,7 +25,7 @@ const Footer = () => {
           id="top-container"
         >
           <label className="text-xl font-bold text-darkblue1" id="brand-name">
-            <button onClick={() => history.push("/home")}>BrandName</button>
+            <h2>BrandName</h2>
           </label>
           <label
             className="flex flex-row gap-4 text-lg text-blue1"

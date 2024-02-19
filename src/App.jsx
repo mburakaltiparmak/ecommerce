@@ -12,8 +12,7 @@ function App() {
   const { pathname } = useLocation();
   return (
     <div>
-      {pathname !== "/about" && pathname !== "/contact" && <Header />}
-
+      <Header />
       <Switch>
         <Route exact path="/home">
           <HomePage />
