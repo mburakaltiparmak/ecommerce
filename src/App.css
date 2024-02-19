@@ -4,6 +4,9 @@
 .p-styles {
   @apply text-gray font-semibold text-sm w-2/5;
 }
+.p-styles2 {
+  @apply text-gray font-semibold text-sm;
+}
 .span-styles {
   @apply flex flex-col gap-3;
 }

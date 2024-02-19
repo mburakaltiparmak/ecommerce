@@ -48,7 +48,10 @@ const About = () => {
           </span>
         </div>
       </section>
-      <section id="problems" className="flex flex-col gap-5 px-40">
+      <section
+        id="problems"
+        className="flex flex-col gap-5 px-40 justify-between w-full py-10"
+      >
         <span id="1" className="flex items-start">
           <h5 className="text-red text-sm font-bold">Problems trying</h5>
         </span>
@@ -62,22 +65,22 @@ const About = () => {
           </p>
         </span>
       </section>
-      <section id="stats" className="section-class flex-row">
+      <section id="stats" className="section-class flex-row text-center">
         <span className="span-styles">
           <h2 className="h2-styles">15K</h2>
-          <p className="p-styles">Happy Customers</p>
+          <p className="p-styles2">Happy Customers</p>
         </span>
         <span className="span-styles">
           <h2 className="h2-styles">150K</h2>
-          <p className="p-styles">Monthly Visitors</p>
+          <p className="p-styles2">Monthly Visitors</p>
         </span>
         <span className="span-styles">
           <h2 className="h2-styles">15</h2>
-          <p className="p-styles">Countries Worldwide</p>
+          <p className="p-styles2">Countries Worldwide</p>
         </span>
         <span className="span-styles">
           <h2 className="h2-styles">100+</h2>
-          <p className="p-styles">Top Partners</p>
+          <p className="p-styles2">Top Partners</p>
         </span>
       </section>
       <section
