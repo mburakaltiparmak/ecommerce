@@ -14,7 +14,7 @@ const NavbarDark = () => {
   return (
     <div
       id="navbar-dark"
-      className="flex justify-between font-bold text-sm items-center px-[38px] bg-darkblue1"
+      className="flex justify-between font-bold text-sm items-center px-40 py-4 bg-darkblue1"
     >
       <label id="contact" htmlFor="contact" className="flex items-center gap-8">
         <span className="flex " id="contact-span">
@@ -38,7 +38,7 @@ const NavbarDark = () => {
       <label
         id="social-media"
         htmlFor=""
-        className="flex h-20 pb-2 items-center gap-4 md:gap-8"
+        className="flex pb-2 items-center gap-4 md:gap-8"
       >
         <p className="">Follow Us :</p>
         <span id="social-media-logos" className="flex gap-4 items-center  ">

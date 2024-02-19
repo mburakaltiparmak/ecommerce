@@ -29,12 +29,9 @@ export const Shop = () => {
   const productCount = productData.length;
 
   return (
-    <div
-      className="font-montserrat py-10 flex flex-col gap-16"
-      id="shop-container"
-    >
+    <div className="font-montserrat flex flex-col gap-8 " id="shop-container">
       <section
-        className="flex flex-col gap-12 bg-lightgray px-10 pt-6 pb-10 content-center"
+        className="flex flex-col gap-12 bg-lightgray px-40 py-10 content-center"
         id="top-level"
       >
         <span className="flex flex-row justify-between items-center">
@@ -64,7 +61,7 @@ export const Shop = () => {
       </section>
 
       <section
-        className="flex flex-col justify-between items-center gap-16 px-10"
+        className="flex flex-col justify-between items-center gap-12 px-40"
         id="shop-section"
       >
         <span
@@ -101,7 +98,7 @@ export const Shop = () => {
           </span>
         </span>
         <span
-          className="flex w-4/6 justify-center flex-row flex-wrap gap-4 px-12"
+          className="flex w-5/6 justify-center flex-row flex-wrap gap-4 px-12"
           id="product-container"
         >
           {productData.map((product, index) => (
@@ -142,7 +139,7 @@ export const Shop = () => {
         </span>
       </section>
       <section
-        className="px-10 py-10 bg-lightgray flex flex-row justify-evenly content-center text-7xl text-gray"
+        className="px-40 py-10 bg-lightgray flex flex-row justify-between content-center text-7xl text-gray"
         id="logo-section"
       >
         <FontAwesomeIcon icon={faHooli} />

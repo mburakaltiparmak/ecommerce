@@ -3,7 +3,7 @@ import { ShopCards } from "../components/ShopCards";
 import { ShopCards2 } from "../components/ShopCards2";
 const Body = () => {
   return (
-    <div id="body-container">
+    <div id="body">
       <ShopCards />
       <ShopCards2 />
       <Blog />

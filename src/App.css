@@ -1,6 +1,15 @@
 .h2-styles {
   @apply text-5xl text-darkblue1;
 }
+.h3-styles {
+  @apply text-3xl text-darkblue1;
+}
+.h4-styles {
+  @apply text-base text-darkblue1;
+}
+.h5-styles {
+  @apply text-sm text-gray;
+}
 .p-styles {
   @apply text-gray font-semibold text-sm w-2/5;
 }
@@ -25,4 +34,7 @@
 }
 .social-media {
   @apply flex flex-row gap-2 text-blue1;
+}
+.main-class {
+  @apply flex flex-col items-center text-center;
 }

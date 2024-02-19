@@ -8,19 +8,19 @@ export const ShopCards = () => {
   const { photo, productText } = data();
   return (
     <div
-      className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full"
+      className="flex flex-col justify-center items-center gap-4 font-montserrat w-full  "
       id="shop-container"
     >
       <div
-        className="w-1200 flex flex-col gap-10 px-4 py-20 items-center content-center"
+        className="w-1200 flex flex-col gap-10 py-20  items-center content-center"
         id="shop-main-container"
       >
         <div
-          className="flex flex-col justify-center items-center text-center gap-2"
+          className="flex flex-col justify-center items-center text-center gap-2 "
           id="shop-text-container"
         >
           <h2
-            className="text-gray-700  font-bold text-2xl md:text-3xl leading-7 tracking-tighter"
+            className="text-gray-700  font-bold text-2xl md:text-3xl leading-7 tracking-tighter "
             id="h2-title"
           >
             EDITOR'S PICK

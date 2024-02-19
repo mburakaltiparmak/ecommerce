@@ -17,7 +17,7 @@ const Footer = () => {
       className="flex justify-center  w-full font-montserrat"
       id="footer-container"
     >
-      <div id="footer-div" className=" flex flex-col gap-16 w-full ">
+      <div id="footer-div" className=" flex flex-col gap-16 w-full">
         <section
           className={`flex justify-between flex-row ${
             pathname !== "/shop" ? "bg-lightgray" : "bg-white"

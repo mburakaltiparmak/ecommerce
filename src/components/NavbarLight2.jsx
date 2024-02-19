@@ -10,7 +10,7 @@ const NavbarLight2 = () => {
   return (
     <div
       id="navbar-light"
-      className="flex justify-between items-center bg-white px-[38px] py-[17px] gap-10 "
+      className="flex justify-between items-center bg-white px-40 py-3 gap-10 "
     >
       <span className="flex gap-14">
         <button
