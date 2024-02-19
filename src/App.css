@@ -1,0 +1,25 @@
+.h2-styles {
+  @apply text-5xl text-darkblue1;
+}
+.p-styles {
+  @apply text-gray font-semibold text-sm w-2/5;
+}
+.span-styles {
+  @apply flex flex-col gap-3;
+}
+.box-outside {
+  @apply relative;
+}
+
+.box-img {
+  @apply w-full h-auto;
+}
+.section-class {
+  @apply flex items-center text-center justify-between w-full font-bold px-40 py-20;
+}
+.team-span {
+  @apply flex flex-col items-center gap-4;
+}
+.social-media {
+  @apply flex flex-row gap-2 text-blue1;
+}

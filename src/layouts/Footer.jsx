@@ -20,7 +20,7 @@ const Footer = () => {
       <div id="footer-div" className=" flex flex-col gap-16 w-full ">
         <section
           className={`flex justify-between flex-row ${
-            pathname !== "/shop" ? "bg-lightgray" : ""
+            pathname !== "/shop" ? "bg-lightgray" : "bg-white"
           } py-12 px-40`}
           id="top-container"
         >

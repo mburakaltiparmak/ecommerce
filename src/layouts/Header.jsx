@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 const Header = () => {
   const { pathname } = useLocation();
   return (
-    <header className="w-full  font-Montserrat text-white">
+    <header className="w-full  font-montserrat text-white">
       {pathname !== "/about" && pathname !== "/contact" ? <NavbarDark /> : ""}
       {pathname !== "/about" && pathname !== "/contact" ? (
         <NavbarLight />

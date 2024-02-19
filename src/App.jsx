@@ -8,6 +8,7 @@ import Footer from "./layouts/Footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { useLocation } from "react-router-dom";
+import "./App.css";
 function App() {
   const { pathname } = useLocation();
   return (
