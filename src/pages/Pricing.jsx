@@ -1,6 +1,20 @@
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Breadcrumb2 } from "../components/Breadcrumb2";
-import PricePlans from "../components/PricePlans";
 import SwitchButton from "../components/SwitchButton";
+import { faCircleCheck, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInstagram,
+  faFacebook,
+  faTwitter,
+  faLinkedin,
+  faHooli,
+  faLyft,
+  faPiedPiperHat,
+  faStripe,
+  faAws,
+  faRedditAlien,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Pricing = () => {
   return (
@@ -37,14 +51,11 @@ const Pricing = () => {
         </span>
         <span
           id="box-span"
-          className="flex flex-row w-full items-center justify-center"
+          className="flex flex-row w-full items-end justify-center"
         >
-          <span
-            id="box-1"
-            className="border border-blue1 text-center font-bold items-center rounded-lg flex flex-col w-full gap-5"
-          >
+          <span id="box-1" className="box-style">
             <h3 className="h3-styles">FREE</h3>
-            <p className="p-styles">Organize across al apps by hand</p>
+            <p className="p-styles w-[35%]">Organize across all apps by hand</p>
             <span className="flex flex-row text-blue1 gap-2 items-center">
               <h3 className="text-3xl">0</h3>
               <span className="flex flex-col items-start gap-2">
@@ -52,15 +63,320 @@ const Pricing = () => {
                 <p>Per Month</p>
               </span>
             </span>
-            <span id="tick-rows"></span>
+            <span
+              id="tick-rows"
+              className="flex flex-col gap-4 text-sm items-start"
+            >
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#737373" }}
+                />{" "}
+                1GB Cloud Storage
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#737373" }}
+                />{" "}
+                Email and community support
+              </p>
+              <button className="w-full border border-darkblue1 rounded-md bg-darkblue1 text-white text-sm py-3">
+                Try for free
+              </button>
+            </span>
           </span>
-          <span id="box-2"></span>
-          <span id="box-3"></span>
+          <span id="box-2" className="box-style bg-darkblue1 text-white py-20">
+            <h3 className="h3-styles text-white">STANDARD</h3>
+            <p className="p-styles w-[35%] text-white">
+              Organize across all apps by hand
+            </p>
+            <span className="flex flex-row text-blue1 gap-2 items-center">
+              <h3 className="text-3xl">9.99</h3>
+              <span className="flex flex-col items-start gap-2">
+                <h5 className="text-base">$</h5>
+                <p>Per Month</p>
+              </span>
+            </span>
+            <span
+              id="tick-rows"
+              className="flex flex-col gap-4 text-sm items-start"
+            >
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#737373" }}
+                />{" "}
+                1GB Cloud Storage
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#737373" }}
+                />{" "}
+                Email and community support
+              </p>
+              <button className="w-full border border-blue1 rounded-md bg-blue1 text-white text-sm py-3">
+                Try for free
+              </button>
+            </span>
+          </span>
+          <span id="box-3" className="box-style">
+            <h3 className="h3-styles">PREMIUM</h3>
+            <p className="p-styles w-[35%]">Organize across all apps by hand</p>
+            <span className="flex flex-row text-blue1 gap-2 items-center">
+              <h3 className="text-3xl">19.99</h3>
+              <span className="flex flex-col items-start gap-2">
+                <h5 className="text-base">$</h5>
+                <p>Per Month</p>
+              </span>
+            </span>
+            <span
+              id="tick-rows"
+              className="flex flex-col gap-4 text-sm items-start"
+            >
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#2DC071" }}
+                />{" "}
+                Unlimited product updates
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#737373" }}
+                />{" "}
+                1GB Cloud Storage
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={faCircleCheck}
+                  style={{ color: "#737373" }}
+                />{" "}
+                Email and community support
+              </p>
+              <button className="w-full border border-blue1 rounded-md bg-blue1 text-white text-sm py-3">
+                Try for free
+              </button>
+            </span>
+          </span>
         </span>
       </section>
-      <section id="compaines"></section>
-      <section id="FAQ"></section>
-      <section id="trial"></section>
+      <section
+        id="companies"
+        className="section-class flex-col bg-lightgray gap-10"
+      >
+        <span id="companies-text" className="flex flex-col items-center gap-5">
+          <p className="p-styles w-full text-base">
+            Trusted By Over 4000 Big Companies
+          </p>
+        </span>
+        <span
+          className="flex items-center text-center justify-between w-full font-bold text-7xl text-gray"
+          id="logo-section"
+        >
+          <FontAwesomeIcon icon={faHooli} />
+          <FontAwesomeIcon icon={faLyft} />
+          <FontAwesomeIcon icon={faPiedPiperHat} />
+          <FontAwesomeIcon icon={faStripe} />
+          <FontAwesomeIcon icon={faAws} />
+          <FontAwesomeIcon icon={faRedditAlien} />
+        </span>
+      </section>
+      <section
+        id="FAQ"
+        className="flex items-center justify-between w-full flex-col gap-8 px-40 py-10"
+      >
+        <span
+          id="text-faq"
+          className="flex flex-col gap-3 items-center justify-around"
+        >
+          <h3 className="h3-styles font-bold text-4xl">Pricing FAQs</h3>
+          <p className="p-styles w-1/2">
+            Problems trying to resolve the conflict between the two major realms
+            of Classical physics: Newtonian mechanics
+          </p>
+        </span>
+        <span
+          id="questions"
+          className="flex flex-row justify-around items-center"
+        >
+          <span id="col-1" className="col-style gap-12">
+            <span className="flex flex-col gap-3 text-start">
+              <span className="flex flex-row items-center gap-3">
+                <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
+                <p className="p-styles text-darkblue1 text-base w-full ">
+                  the quick fox jumps over the lazy dog
+                </p>
+              </span>
+
+              <p className="text-sm text-gray font-semibold">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </span>
+            <span className="flex flex-col gap-3 text-start">
+              <span className="flex flex-row items-center gap-3">
+                <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
+                <p className="p-styles text-darkblue1 text-base w-full ">
+                  the quick fox jumps over the lazy dog
+                </p>
+              </span>
+
+              <p className="text-sm text-gray font-semibold">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </span>
+            <span className="flex flex-col gap-3 text-start">
+              <span className="flex flex-row items-center gap-3">
+                <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
+                <p className="p-styles text-darkblue1 text-base w-full ">
+                  the quick fox jumps over the lazy dog
+                </p>
+              </span>
+
+              <p className="text-sm text-gray font-semibold">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </span>
+          </span>
+          <span id="col-2" className="col-style gap-12">
+            <span className="flex flex-col gap-3 text-start">
+              <span className="flex flex-row items-center gap-3">
+                <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
+                <p className="p-styles text-darkblue1 text-base w-full ">
+                  the quick fox jumps over the lazy dog
+                </p>
+              </span>
+
+              <p className="text-sm text-gray font-semibold">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </span>
+            <span className="flex flex-col gap-3 text-start">
+              <span className="flex flex-row items-center gap-3">
+                <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
+                <p className="p-styles text-darkblue1 text-base w-full ">
+                  the quick fox jumps over the lazy dog
+                </p>
+              </span>
+
+              <p className="text-sm text-gray font-semibold">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </span>
+            <span className="flex flex-col gap-3 text-start">
+              <span className="flex flex-row items-center gap-3">
+                <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
+                <p className="p-styles text-darkblue1 text-base w-full ">
+                  the quick fox jumps over the lazy dog
+                </p>
+              </span>
+
+              <p className="text-sm text-gray font-semibold">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </p>
+            </span>
+          </span>
+        </span>
+        <span>
+          <h5 className="h5-styles">
+            Haven’t got your answer? Contact our support
+          </h5>
+        </span>
+      </section>
+      <section id="trial" className="section-class flex-col gap-8">
+        <h3 className="h3-styles">Start your 14 days free trial</h3>
+        <p className="p-styles w-1/3">
+          Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
+          RELIT official consequent.
+        </p>
+        <button className="text-center border border-blue1 rounded-lg px-5 py-3 bg-blue1 text-white font-bold text-sm">
+          Try it free now
+        </button>
+        <span id="social-media" className="social-media text-2xl gap-8">
+          <a href="https://www.instagram.com/">
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+          <a href="https://www.facebook.com/">
+            <FontAwesomeIcon icon={faFacebook} />
+          </a>
+          <a href="https://www.twitter.com/">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+          <a href="https://www.linkedin.com/">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+        </span>
+      </section>
     </div>
   );
 };
