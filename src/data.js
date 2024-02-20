@@ -42,6 +42,14 @@ import memberImg8 from "./assets/team/members/8.png";
 import memberImg9 from "./assets/team/members/9.png";
 import sliderImg1 from "./assets/product/productImg.jpeg";
 import sliderImg2 from "./assets/product/productImg2.jpeg";
+import productContainer1 from "./assets/product/img1.png";
+import productContainer2 from "./assets/product/img2.png";
+import productContainer3 from "./assets/product/img3.png";
+import productContainer4 from "./assets/product/img4.png";
+import productContainer5 from "./assets/product/img5.png";
+import productContainer6 from "./assets/product/img6.png";
+import productContainer7 from "./assets/product/img7.png";
+import productContainer8 from "./assets/product/img8.png";
 
 export const data = () => {
   const slides = [
@@ -192,6 +200,16 @@ export const data = () => {
     },
   ];
   const miniSlider = [sliderImg1, sliderImg2];
+  const productContainerImgs = [
+    productContainer1,
+    productContainer2,
+    productContainer3,
+    productContainer4,
+    productContainer5,
+    productContainer6,
+    productContainer7,
+    productContainer8,
+  ];
 
   return {
     slides,
@@ -203,5 +221,6 @@ export const data = () => {
     boxGroup,
     member,
     miniSlider,
+    productContainerImgs,
   };
 };
