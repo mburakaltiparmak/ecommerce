@@ -44,3 +44,6 @@
 .col-style {
   @apply flex flex-col items-center w-[35%] gap-5;
 }
+.round-button {
+  @apply border border-gray rounded-full text-gray text-sm p-2;
+}
