@@ -27,6 +27,19 @@ import productImg9 from "./assets/productlistpage/products/9.png";
 import productImg10 from "./assets/productlistpage/products/10.png";
 import productImg11 from "./assets/productlistpage/products/11.png";
 import productImg12 from "./assets/productlistpage/products/12.png";
+import boxGroupImg1 from "./assets/team/box/2.png";
+import boxGroupImg2 from "./assets/team/box/3.png";
+import boxGroupImg3 from "./assets/team/box/4.png";
+import boxGroupImg4 from "./assets/team/box/5.png";
+import memberImg1 from "./assets/team/members/1.png";
+import memberImg2 from "./assets/team/members/2.png";
+import memberImg3 from "./assets/team/members/3.png";
+import memberImg4 from "./assets/team/members/4.png";
+import memberImg5 from "./assets/team/members/5.png";
+import memberImg6 from "./assets/team/members/6.png";
+import memberImg7 from "./assets/team/members/7.png";
+import memberImg8 from "./assets/team/members/8.png";
+import memberImg9 from "./assets/team/members/9.png";
 
 export const data = () => {
   const slides = [
@@ -128,6 +141,63 @@ export const data = () => {
     productImg11,
     productImg12,
   ];
+  const boxGroup = [boxGroupImg1, boxGroupImg2, boxGroupImg3, boxGroupImg4];
+  const member = [
+    {
+      img: memberImg1,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg2,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg3,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg4,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg5,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg6,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg7,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg8,
+      username: "username",
+      job: "profession",
+    },
+    {
+      img: memberImg9,
+      username: "username",
+      job: "profession",
+    },
+  ];
 
-  return { slides, photo, productText, blogData, boxData, productImgs };
+  return {
+    slides,
+    photo,
+    productText,
+    blogData,
+    boxData,
+    productImgs,
+    boxGroup,
+    member,
+  };
 };
