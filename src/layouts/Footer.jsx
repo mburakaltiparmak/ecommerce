@@ -19,9 +19,7 @@ const Footer = () => {
     >
       <div id="footer-div" className=" flex flex-col gap-16 w-full">
         <section
-          className={`flex justify-between flex-row ${
-            pathname !== "/shop" ? "bg-lightgray" : "bg-white"
-          } py-12 px-40`}
+          className="flex justify-between flex-row bg-white py-12 px-40"
           id="top-container"
         >
           <label className="text-xl font-bold text-darkblue1" id="brand-name">
@@ -55,7 +53,7 @@ const Footer = () => {
               About Us
             </a>
             <a href="">Carrier</a>
-            <a href="">We are hiring</a>
+            <a href="/team">We are hiring</a>
             <a href="">Blog</a>
           </span>
           <span
@@ -65,7 +63,7 @@ const Footer = () => {
             <h5 className="text-lg text-darkblue1 font-bold">Legal</h5>
             <a href="">About Us</a>
             <a href="">Carrier</a>
-            <a href="">We are hiring</a>
+            <a href="/team">We are hiring</a>
             <a href="">Blog</a>
           </span>
           <span

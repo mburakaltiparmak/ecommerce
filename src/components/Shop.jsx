@@ -120,7 +120,7 @@ export const Shop = () => {
               </span>
               <span id="colors">
                 <div className="flex items-center justify-center space-x-2">
-                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-red"></div>
                   <div className="w-4 h-4 rounded-full bg-blue-500"></div>
                   <div className="w-4 h-4 rounded-full bg-green"></div>
                   <div className="w-4 h-4 rounded-full bg-yellow-500"></div>

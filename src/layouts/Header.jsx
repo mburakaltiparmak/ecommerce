@@ -9,14 +9,16 @@ const Header = () => {
     <header className="w-full  font-montserrat text-white">
       {pathname !== "/about" &&
       pathname !== "/contact" &&
-      pathname !== "/pricing" ? (
+      pathname !== "/pricing" &&
+      pathname !== "/team" ? (
         <NavbarDark />
       ) : (
         ""
       )}
       {pathname !== "/about" &&
       pathname !== "/contact" &&
-      pathname !== "/pricing" ? (
+      pathname !== "/pricing" &&
+      pathname !== "/team" ? (
         <NavbarLight />
       ) : (
         <NavbarLight2 />
