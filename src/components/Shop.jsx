@@ -11,7 +11,7 @@ import {
   faRedditAlien,
 } from "@fortawesome/free-brands-svg-icons";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
-import { Breadcrumb } from "./Breadcrumb";
+import Breadcrumb from "./Breadcrumb";
 
 import { Pagination } from "./Pagination";
 

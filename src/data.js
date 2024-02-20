@@ -40,6 +40,8 @@ import memberImg6 from "./assets/team/members/6.png";
 import memberImg7 from "./assets/team/members/7.png";
 import memberImg8 from "./assets/team/members/8.png";
 import memberImg9 from "./assets/team/members/9.png";
+import sliderImg1 from "./assets/product/productImg.jpeg";
+import sliderImg2 from "./assets/product/productImg2.jpeg";
 
 export const data = () => {
   const slides = [
@@ -189,6 +191,7 @@ export const data = () => {
       job: "profession",
     },
   ];
+  const miniSlider = [sliderImg1, sliderImg2];
 
   return {
     slides,
@@ -199,5 +202,6 @@ export const data = () => {
     productImgs,
     boxGroup,
     member,
+    miniSlider,
   };
 };

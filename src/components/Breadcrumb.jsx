@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-export const Breadcrumb = () => {
+const Breadcrumb = () => {
   return (
     <div className="flex font-montserrat font-bold justify-center items-center bg-gray-100">
       <nav className="text-sm sm:text-base">
@@ -29,3 +29,4 @@ export const Breadcrumb = () => {
     </div>
   );
 };
+export default Breadcrumb;

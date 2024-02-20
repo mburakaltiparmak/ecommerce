@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import Team from "./pages/Team";
+import Product from "./pages/Product";
 import { useLocation } from "react-router-dom";
 import "./App.css";
 function App() {
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route exact path="/team">
           <Team />
+        </Route>
+        <Route exact path="/product">
+          <Product />
         </Route>
       </Switch>
       <Footer />
