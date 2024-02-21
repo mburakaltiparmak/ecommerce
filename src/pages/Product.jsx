@@ -192,7 +192,7 @@ const Product = () => {
       </section>
       <section id="companies">
         <span
-          className="flex items-center text-center justify-between w-full font-bold text-7xl text-gray sm:flex-col"
+          className="flex items-center text-center justify-between w-full font-bold text-7xl text-gray sm:flex-col sm:gap-8"
           id="logo-section"
         >
           <FontAwesomeIcon icon={faHooli} />

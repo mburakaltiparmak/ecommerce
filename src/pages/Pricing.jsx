@@ -19,7 +19,7 @@ import {
 const Pricing = () => {
   return (
     <div id="pricing" className="main-class">
-      <section id="title" className="section-class flex-col gap-8">
+      <section id="title" className="section-class flex-col gap-8 sm:w-full">
         <h5 className="h5-styles">PRICING</h5>
         <h2 className="h2-styles">Simple Pricing</h2>
         <Breadcrumb2 />
@@ -30,10 +30,10 @@ const Pricing = () => {
       >
         <span
           id="text-span"
-          className="flex flex-col gap-5 items-center text-center"
+          className="flex flex-col gap-5 items-center text-center sm:gap-8"
         >
           <h3 className="h3-styles">Pricing</h3>
-          <p className="p-styles w-1/2">
+          <p className="p-styles w-1/2 sm:w-full">
             Problems trying to resolve the conflict between the two major realms
             of Classical physics: Newtonian mechanics{" "}
           </p>
@@ -51,7 +51,7 @@ const Pricing = () => {
         </span>
         <span
           id="box-span"
-          className="flex flex-row w-full items-end justify-center"
+          className="flex flex-row sm:flex-col sm:gap-8 w-full items-end justify-center"
         >
           <span id="box-1" className="box-style">
             <h3 className="h3-styles">FREE</h3>
@@ -229,7 +229,7 @@ const Pricing = () => {
           </p>
         </span>
         <span
-          className="flex items-center text-center justify-between w-full font-bold text-7xl text-gray"
+          className="flex sm:flex-col sm:gap-8 items-center text-center justify-between w-full font-bold text-7xl text-gray"
           id="logo-section"
         >
           <FontAwesomeIcon icon={faHooli} />
@@ -242,23 +242,23 @@ const Pricing = () => {
       </section>
       <section
         id="FAQ"
-        className="flex items-center justify-between w-full flex-col gap-8 px-40 py-10"
+        className="flex items-center justify-between w-full flex-col gap-8 px-40 py-10 sm:px-10"
       >
         <span
           id="text-faq"
           className="flex flex-col gap-3 items-center justify-around"
         >
           <h3 className="h3-styles font-bold text-4xl">Pricing FAQs</h3>
-          <p className="p-styles w-1/2">
+          <p className="p-styles w-1/2 sm:w-full">
             Problems trying to resolve the conflict between the two major realms
             of Classical physics: Newtonian mechanics
           </p>
         </span>
         <span
           id="questions"
-          className="flex flex-row justify-around items-center"
+          className="flex flex-row sm:flex-col sm:gap-8 sm:w-full sm:items-start justify-around items-center"
         >
-          <span id="col-1" className="col-style gap-12">
+          <span id="col-1" className="col-style gap-12 sm:w-full">
             <span className="flex flex-col gap-3 text-start">
               <span className="flex flex-row items-center gap-3">
                 <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
@@ -302,7 +302,7 @@ const Pricing = () => {
               </p>
             </span>
           </span>
-          <span id="col-2" className="col-style gap-12">
+          <span id="col-2" className="col-style gap-12 sm:w-full">
             <span className="flex flex-col gap-3 text-start">
               <span className="flex flex-row items-center gap-3">
                 <FontAwesomeIcon icon={faAngleRight} className="text-blue1" />
@@ -347,15 +347,15 @@ const Pricing = () => {
             </span>
           </span>
         </span>
-        <span>
-          <h5 className="h5-styles">
-            Haven’t got your answer? Contact our support
+        <span className="sm:flex sm:items-center sm:justify-center sm:py-10">
+          <h5 className="h5-styles sm:font-bold sm:w-full">
+            Haven’t got your answer? <p>Contact our support</p>
           </h5>
         </span>
       </section>
       <section id="trial" className="section-class flex-col gap-8">
         <h3 className="h3-styles">Start your 14 days free trial</h3>
-        <p className="p-styles w-1/3">
+        <p className="p-styles w-1/3 sm:w-full">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>

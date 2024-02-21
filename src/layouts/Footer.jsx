@@ -99,10 +99,8 @@ const Footer = () => {
           className="px-40 py-10 bg-lightgray sm:px-0 sm:text-center sm:items-center font-bold text-sm text-gray"
           id="bottom-container"
         >
-          <p>
-            Made With By Burak Altıparmak All Rights Reserved to Erhan Fırat &
-            Gökhan Özdemir
-          </p>
+          <p>Made With By Burak Altıparmak</p>
+          <p>All Rights Reserved to Erhan Fırat & Gökhan Özdemir</p>
         </section>
       </div>
     </div>
