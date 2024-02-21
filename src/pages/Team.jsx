@@ -13,28 +13,33 @@ import { data } from "../data.js";
 const Team = () => {
   const { member, boxGroup } = data();
   return (
-    <div className="flex justify-center flex-col px-40">
+    <div className="flex justify-center flex-col px-40 sm:px-0">
       <section id="top-section" className="section-class flex-col gap-8">
         <h5 className="h5-styles">WHAT WE DO</h5>
-        <h2 className="h2-styles">Innovation tailored for you</h2>
+        <h2 className="h2-styles sm:w-full sm:flex sm:items-center sm:text-4xl">
+          Innovation tailored for you
+        </h2>
         <Breadcrumb3 />
       </section>
-      <section id="box-section" className="flex flex-row gap-3 px-20">
+      <section
+        id="box-section"
+        className="flex flex-row sm:flex-col gap-3 sm:gap-1 px-20 sm:px-0"
+      >
         <span id="main-box" className="w-full ">
           <img className="w-[730px] h-[530px] object-fit" src={mainImg} />
         </span>
         <span
           id="img-box"
-          className="flex flex-row flex-wrap gap-3 items-center"
+          className="flex flex-row flex-wrap gap-3 sm:gap-1 items-center"
         >
-          <span id="box-1" className="flex flex-row gap-3 ">
+          <span id="box-1" className="flex flex-row gap-3 sm:gap-1 ">
             {boxGroup.slice(0, 2).map((img, index) => (
               <span key={index} id="box-group" className="">
                 <img src={img} className="w-[360px] h-[260px]" alt="" />
               </span>
             ))}
           </span>
-          <span id="box-2" className="flex flex-row gap-3">
+          <span id="box-2" className="flex flex-row gap-3 sm:gap-1">
             {boxGroup.slice(2).map((img, index) => (
               <span key={index + 2} id="box-group" className="">
                 <img src={img} className="w-[360px] h-[260px]" alt="" />
@@ -47,7 +52,7 @@ const Team = () => {
         <h3 className="h3-styles">Meet Our Team</h3>
         <span
           id="team"
-          className="flex flex-row flex-wrap gap-5 justify-center "
+          className="flex flex-row flex-wrap gap-5 sm:gap-8 justify-center "
         >
           {member.map((member, index) => (
             <span key={index} id="member-1" className="team-span">
@@ -70,8 +75,8 @@ const Team = () => {
         </span>
       </section>
       <section id="trial-section" className="section-class flex-col gap-8">
-        <h3 className="h3-styles">Start your 14 days free trial</h3>
-        <p className="p-styles w-1/3">
+        <h3 className="h3-styles sm:w-full">Start your 14 days free trial</h3>
+        <p className="p-styles w-1/3 sm:w-full">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>
