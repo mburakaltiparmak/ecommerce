@@ -21,17 +21,20 @@ export const ShopCards = () => {
           id="shop-text-container"
         >
           <h2
-            className="text-gray-700  font-bold text-2xl md:text-3xl leading-7 tracking-tighter "
+            className="text-darkblue1  font-bold text-2xl md:text-3xl  tracking-tighter "
             id="h2-title"
           >
             EDITOR'S PICK
           </h2>
-          <p className="text-gray-500  text-center leading-5" id="paragraph">
+          <p
+            className="text-gray font-bold text-center sm:w-2/3 "
+            id="paragraph"
+          >
             Problems trying to resolve the conflict between
           </p>
         </div>
         <div
-          className="flex flex-row flex-wrap gap-3 content-center items-center font-montserrat font-bold sm:px-4 "
+          className="flex flex-row flex-wrap gap-3 content-center items-center font-montserrat font-bold sm:px-10 "
           id="shop-img-container"
         >
           <span
@@ -100,19 +103,19 @@ export const ShopCards = () => {
           id="shop-text-container"
         >
           <h2
-            className="text-gray-500 text-center leading-5 font-normal text-xl tracking-normal"
+            className="text-gray text-center leading-5 font-normal text-xl "
             id="h3-title"
           >
             Featured Products
           </h2>
           <p
-            className="text-gray-700 font-bold  text-2xl md:text-3xl leading-7 tracking-tight"
+            className="text-darkblue1 font-bold  text-2xl md:text-3xl   sm:w-1/2"
             id="h2-title"
           >
             BESTSELLER PRODUCTS
           </p>
           <h3
-            className="text-gray-500 text-center leading-5 font-bold "
+            className="text-gray text-center  font-bold sm:w-2/3"
             id="paragraph"
           >
             Problems trying to resolve the conflict between{" "}
@@ -123,9 +126,13 @@ export const ShopCards = () => {
           id="content-img-container"
         >
           {Object.keys(photo).map((id, index) => (
-            <div className="p-3 flex flex-col" key={index} id="product-content">
-              <span id="product-img-content">
-                <img src={photo[id]} alt="" />
+            <div
+              className="p-3 sm:px-10 sm:w-full sm:items-center  flex flex-col"
+              key={index}
+              id="product-content"
+            >
+              <span id="product-img-content" className="sm:w-full">
+                <img src={photo[id]} alt="" className="sm:w-full" />
               </span>
               <span
                 className="flex flex-col text-center gap-2 py-8"

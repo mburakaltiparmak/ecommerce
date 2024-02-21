@@ -17,14 +17,14 @@ const NavbarLight2 = () => {
       id="navbar-light"
       className="flex sm:w-full sm:flex-col justify-between items-center bg-white xl:px-40 py-3 sm:px-0 sm:pb-12 xl:gap-10 "
     >
-      <span className="flex sm:flex-col xl:gap-14 sm:justify-between sm:px-5 sm:w-full">
+      <span className="flex sm:flex-col xl:gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full">
         <span
           id="top-bar"
           className="flex flex-row justify-between text-darkblue1 sm:w-full"
         >
           <button
             onClick={() => history.push("/home")}
-            className="font-bold text-lg sm:text-base 2xl:pr-4 md:pr-8 text-[#252b42]"
+            className="font-bold text-lg sm:text-xl pr-4 md:pr-8 text-[#252b42]"
           >
             BrandName
           </button>
@@ -49,7 +49,7 @@ const NavbarLight2 = () => {
             </button>
           </span>
         </span>
-        <label className="sm:flex-col font-bold items-start sm:items-center sm:text-2xl sm:font-normal  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42] sm:w-full">
+        <label className="sm:flex-col font-bold items-start sm:items-center sm:text-2xl sm:font-bold  text-sm gap-5 flex leading-6 px-[50px] text-darkblue1 sm:text-gray sm:w-full">
           <button onClick={() => history.push("/home")}>Home</button>
           <button onClick={() => history.push("/product")}>Product</button>
           <button onClick={() => history.push("/pricing")}>Pricing</button>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { data } from "../data";
+import sliderImg from "../assets/shopcards/slider2.png";
 
 const ChevronLeft = () => (
   <svg
@@ -40,7 +41,24 @@ export default function Slider3({
   autoSlideInterval = 3000,
 }) {
   const [curr, setCurr] = useState(0);
-  const { slides } = data();
+  const slides = [
+    {
+      img: sliderImg,
+      dateHero: "SUMMER 2020",
+      title: "Vita Classic Product",
+      description:
+        "We know how large objects will act, We know how are objects will act, We know",
+      price: "$16.48",
+    },
+    {
+      img: sliderImg,
+      dateHero: "SUMMER 2020",
+      title: "Vita Classic Product",
+      description:
+        "We know how large objects will act, We know how are objects will act, We know",
+      price: "$16.48",
+    },
+  ];
 
   const prev = () =>
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
@@ -54,39 +72,48 @@ export default function Slider3({
   }, []);
 
   return (
-    <div className="overflow-hidden relative font-Montserrat bg-[#01B6DD]  ">
+    <div className="overflow-hidden relative font-montserrat bg-green2 h-full  ">
       <div
-        className="flex transition-transform ease-out duration-500 h-[640px]   "
+        id="slider-box"
+        className="flex  duration-500"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="w-full flex justify-center flex-shrink-0 relative "
+            className="w-full flex justify-between flex-shrink-0 relative h-full "
           >
-            <img
-              src={slide.img}
-              alt={`Slide ${index}`}
-              className="w-lvh object-fit sm:object-cover sm:w-fit  "
-            />
-            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start sm:justify-center sm:items-center pl-16 sm:pl-0 ">
-              <div className="text-white sm:items-center  flex flex-col gap-8 sm:px-0 px-40">
-                <h2 className="font-bold text-xl">{slide.dateHero}</h2>
-                <h1 className="font-bold sm:text-center text-[58px]">
-                  {slide.title}
-                </h1>
-                <p className="font-normal text-[20px] w-3/5 sm:w-4/6 sm:text-center">
-                  {slide.description}
-                </p>
-                <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
-                  SHOP NOW
-                </button>
+            <span className="h-full" id="text-box">
+              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-between sm:justify-center sm:items-center ">
+                <div className="text-white sm:items-center h-full flex flex-col gap-8 sm:px-0 px-40">
+                  <h2 className="font-bold text-xl">{slide.dateHero}</h2>
+                  <h1 className="font-bold sm:text-center text-[58px]">
+                    {slide.title}
+                  </h1>
+                  <p className="font-normal text-[20px] w-3/5 sm:w-4/6 sm:text-center">
+                    {slide.description}
+                  </p>
+                  <span className="flex flex-row items-center gap-8 h-full">
+                    <p className="font-bold text-xl">{slide.price}</p>
+                    <button className="py-[10px] px-[10px] flex border border-green bg-green rounded-md w-40 justify-center text-base font-bold tracking-normal">
+                      ADD TO CART
+                    </button>
+                  </span>
+                </div>
               </div>
-            </div>
+            </span>
+
+            <span id="img-box" className="px-40 h-full">
+              <img
+                src={slide.img}
+                alt={`Slide ${index}`}
+                className="w-full object-cover h-auto sm:object-fit sm:w-full  "
+              />
+            </span>
           </div>
         ))}
       </div>
-      <div className="absolute inset-0 flex items-center justify-between p-4">
+      <div className="absolute inset-0 flex items-center justify-between p-4 h-full">
         <button
           onClick={prev}
           className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
