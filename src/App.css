@@ -50,3 +50,18 @@
 .hide {
   @apply sm:hidden;
 }
+/* Ana stil dosyası */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* md ekranlarda gizle */
+  #mobile-bar {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* lg ve daha büyük ekranlarda gizle */
+  #mobile-bar {
+    display: none !important;
+  }
+}

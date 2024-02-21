@@ -76,7 +76,7 @@ export const Shop = () => {
             id="views"
             className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
           >
-            <p className="min-lg:hidden">Views:</p>
+            <p className="flex items-center">Views:</p>
             <button className="border border-gray rounded-lg p-3" id="1">
               <img src={icon} className="w-[16px] h-[16px]" />
             </button>
@@ -88,9 +88,10 @@ export const Shop = () => {
             <label className="flex items-center justify-center" id="1">
               <select
                 id="dropdown"
+                defaultValue="Popularity"
                 className="flex border border-gray rounded-lg py-4 px-4 w-full bg-lightgray"
               >
-                <option selected>Popularity</option>
+                <option>Popularity</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>

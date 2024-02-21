@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { data } from "../data";
+import { useHistory } from "react-router-dom";
 
 const ChevronLeft = () => (
   <svg
@@ -41,6 +42,7 @@ export default function Slider({
 }) {
   const [curr, setCurr] = useState(0);
   const { slides } = data();
+  const history = useHistory();
 
   const prev = () =>
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
@@ -78,7 +80,10 @@ export default function Slider({
                 <p className="font-normal text-[20px] w-3/5 sm:w-4/6 sm:text-center">
                   {slide.description}
                 </p>
-                <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
+                <button
+                  onClick={() => history.push("/shop")}
+                  className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal"
+                >
                   SHOP NOW
                 </button>
               </div>

@@ -10,10 +10,8 @@ import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import Team from "./pages/Team";
 import Product from "./pages/Product";
-import { useLocation } from "react-router-dom";
 import "./App.css";
 function App() {
-  const { pathname } = useLocation();
   return (
     <div id="main" className="w-full">
       <Header />

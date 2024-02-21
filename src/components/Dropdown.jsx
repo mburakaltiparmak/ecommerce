@@ -10,7 +10,7 @@ export default function Dropdown() {
   return (
     <Menu as="div" className="relative inline-block text-left font-Montserrat">
       <div>
-        <Menu.Button className="inline-flex w-full font-montserrat justify-center gap-x-1.5  bg-white text-sm font-semibold text-gray-900">
+        <Menu.Button className="inline-flex w-full font-montserrat justify-center gap-x-1.5  bg-white text-sm sm:text-2xl font-semibold text-gray-900">
           Shop
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"

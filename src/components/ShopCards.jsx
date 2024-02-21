@@ -21,7 +21,7 @@ export const ShopCards = () => {
           id="shop-text-container"
         >
           <h2
-            className="text-darkblue1  font-bold text-2xl md:text-3xl  tracking-tighter "
+            className="text-darkblue1  font-bold text-2xl sm:text-3xl  tracking-tighter "
             id="h2-title"
           >
             EDITOR'S PICK

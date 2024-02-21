@@ -17,7 +17,7 @@ const NavbarLight2 = () => {
       id="navbar-light"
       className="flex sm:w-full sm:flex-col justify-between items-center bg-white px-40 py-3 sm:px-0 sm:pb-12 gap-10 "
     >
-      <span className="flex sm:flex-col xl:gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full">
+      <span className="flex sm:flex-col gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full">
         <span
           id="top-bar"
           className="flex flex-row justify-between text-darkblue1 sm:w-full"
@@ -31,10 +31,10 @@ const NavbarLight2 = () => {
 
           <span
             id="mobile-bar"
-            className="lg:hidden sm:flex flex-row gap-4 justify-end sm:w-full"
+            className="sm:flex flex-row gap-4 justify-end sm:w-full"
           >
             <button
-              className="flex text-center gap-1 lg:hidden items-center"
+              className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
