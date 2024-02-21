@@ -27,7 +27,7 @@
   @apply w-full h-auto;
 }
 .section-class {
-  @apply flex items-center text-center justify-between w-full font-bold px-40 py-20 font-montserrat;
+  @apply flex items-center text-center justify-between w-full font-bold px-40 py-20 font-montserrat sm:px-10 sm:py-20 sm:gap-12 sm:w-full;
 }
 .team-span {
   @apply flex flex-col items-center gap-4;

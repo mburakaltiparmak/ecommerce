@@ -22,15 +22,21 @@ import member3 from "../assets/about/member3.png";
 const About = () => {
   return (
     <div id="about" className="flex flex-col items-center font-montserrat">
-      <section id="about-us" className="w-full flex justify-between px-40">
+      <section
+        id="about-us"
+        className="w-full flex justify-between px-40 sm:px-10"
+      >
         <div
           id="container-fluid"
-          className="flex flex-row-reverse items-center justify-between w-full"
+          className="flex flex-row-reverse sm:flex-col-reverse items-center justify-between sm:justify-center  w-full"
         >
           <span id="img-container" className="">
             <img src={containerImg} alt="" />
           </span>
-          <span id="text-container" className="flex flex-col gap-6  ">
+          <span
+            id="text-container"
+            className="flex flex-col gap-6   sm:items-center sm:text-center"
+          >
             <h5 className="text-base text-darkblue1 font-bold tracking-[0.2px]">
               ABOUT COMPANY
             </h5>
@@ -50,42 +56,52 @@ const About = () => {
       </section>
       <section
         id="problems"
-        className="flex flex-col gap-5 px-40 justify-between w-full py-10"
+        className="flex flex-col gap-5 px-40 sm:text-center justify-between sm:justify-center w-full py-10 sm:px-10"
       >
-        <span id="1" className="flex items-start">
+        <span id="1" className="flex items-start sm:justify-center">
           <h5 className="text-red text-sm font-bold">Problems trying</h5>
         </span>
-        <span id="2" className="flex flex-row justify-between items-start">
-          <h3 className="text-darkblue1 font-bold text-base w-1/5">
+        <span
+          id="2"
+          className="flex flex-row justify-between items-start sm:items-center sm:flex-col sm:gap-8"
+        >
+          <h3 className="text-darkblue1 font-bold text-base w-1/5 sm:w-4/5  sm:items-center">
             Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           </h3>
-          <p className="text-gray font-semibold text-sm w-2/5">
+          <p className="text-gray font-semibold text-sm w-2/5 sm:w-full sm:text-start">
             Problems trying to resolve the conflict between the two major realms
             of Classical physics: Newtonian mechanics{" "}
           </p>
         </span>
       </section>
-      <section id="stats" className="section-class flex-row text-center">
-        <span className="span-styles">
-          <h2 className="h2-styles">15K</h2>
-          <p className="p-styles2">Happy Customers</p>
+      <section
+        id="stats"
+        className="section-class flex-row sm:flex-col text-center"
+      >
+        <span className="span-styles sm:w-full sm:items-center ">
+          <h2 className="h2-styles sm:w-full sm:items-center">15K</h2>
+          <p className="p-styles2 sm:w-full">Happy Customers</p>
         </span>
-        <span className="span-styles">
-          <h2 className="h2-styles">150K</h2>
-          <p className="p-styles2">Monthly Visitors</p>
+        <span className="span-styles sm:w-full sm:items-center">
+          <h2 className="h2-styles sm:w-full sm:items-center">150K</h2>
+          <p className="p-styles2 sm:w-full sm:items-center">
+            Monthly Visitors
+          </p>
         </span>
-        <span className="span-styles">
-          <h2 className="h2-styles">15</h2>
-          <p className="p-styles2">Countries Worldwide</p>
+        <span className="span-styles sm:w-full sm:items-center">
+          <h2 className="h2-styles sm:w-full sm:items-center">15</h2>
+          <p className="p-styles2 sm:w-full sm:items-center">
+            Countries Worldwide
+          </p>
         </span>
-        <span className="span-styles">
-          <h2 className="h2-styles">100+</h2>
-          <p className="p-styles2">Top Partners</p>
+        <span className="span-styles sm:w-full sm:items-center">
+          <h2 className="h2-styles sm:w-full sm:items-center">100+</h2>
+          <p className="p-styles2 sm:w-full sm:items-center">Top Partners</p>
         </span>
       </section>
       <section
         id="video"
-        className="relative flex justify-center items-center w-full px-40 "
+        className="relative flex justify-center items-center w-full px-40 sm:px-10 "
       >
         <img src={videoImg} className="w-full h-auto rounded-lg" />
         <button className="absolute t-1/2 w-full text-center ">
@@ -99,14 +115,14 @@ const About = () => {
       <section id="team" className="section-class flex-col gap-10">
         <span id="text-span" className="flex flex-col items-center gap-5">
           <h2 className="h2-styles">Meet Our Team</h2>
-          <p className="p-styles w-3/5">
+          <p className="p-styles w-3/5 sm:w-full">
             Problems trying to resolve the conflict between the two major realms
             of Classical physics: Newtonian mechanics{" "}
           </p>
         </span>
         <span
           id="team-span"
-          className="flex flex-row justify-between items-center w-full"
+          className="flex flex-row sm:flex-col sm:gap-16 justify-between items-center w-full"
         >
           <span id="member-1" className="team-span">
             <img src={member1} />
@@ -160,17 +176,17 @@ const About = () => {
       </section>
       <section
         id="companies"
-        className="section-class flex-col bg-lightgray gap-10"
+        className="section-class flex-col bg-lightgray gap-10 sm:pt-40"
       >
         <span id="companies-text" className="flex flex-col items-center gap-5">
           <h2 className="h2-styles">Big Companies Are Here</h2>
-          <p className="p-styles w-3/5">
+          <p className="p-styles w-3/5 sm:w-full">
             Problems trying to resolve the conflict between the two major realms
             of Classical physics: Newtonian mechanics{" "}
           </p>
         </span>
         <span
-          className="flex items-center text-center justify-between w-full font-bold text-7xl text-gray"
+          className="flex sm:flex-col sm:gap-8 items-center text-center justify-between w-full font-bold text-7xl text-gray"
           id="logo-section"
         >
           <FontAwesomeIcon icon={faHooli} />
@@ -188,27 +204,27 @@ const About = () => {
       >
         <div
           id="container-fluid"
-          className="flex flex-row-reverse items-center justify-between w-full"
+          className="flex flex-row-reverse sm:flex-col-reverse sm:py-20 items-center justify-between w-full"
         >
-          <span id="img-container" className="">
+          <span id="img-container" className="sm:hidden">
             <img src={containerImg2} alt="" />
           </span>
           <span
             id="text-container"
-            className="flex flex-col gap-6 px-40 text-white"
+            className="flex flex-col gap-6 px-40 sm:px-10 sm:items-center sm:text-center  text-white"
           >
             <h5 className="text-base font-bold tracking-[0.2px]">
               WORK WITH US{" "}
             </h5>
-            <h1 className="text-5xl font-bold  tracking-[0.2px] w-3/4 ">
+            <h1 className="text-5xl font-bold  tracking-[0.2px] w-3/4 sm:w-full ">
               Now Let’s grow Yours{" "}
             </h1>
-            <h4 className="text-lg  w-4/6 font-normal tracking-[0.2px]">
+            <h4 className="text-lg  w-4/6 sm:w-full font-normal tracking-[0.2px]">
               The gradual accumulation of information about atomic and
               small-scale behavior during the first quarter of the 20th{" "}
             </h4>
             <span className="flex flex-row gap-2 items-center">
-              <button className="p-3 flex border-solid border-[1px] bg-blue1 rounded-md w-40 justify-center  text-sm text-white font-bold tracking-normal">
+              <button className="p-3 flex border-solid border-[1px] bg-blue1 sm:bg-blue3 rounded-md w-40 justify-center  text-sm text-white font-bold tracking-normal">
                 Button{" "}
               </button>
             </span>
