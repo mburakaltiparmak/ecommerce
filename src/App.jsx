@@ -15,7 +15,7 @@ import "./App.css";
 function App() {
   const { pathname } = useLocation();
   return (
-    <div className="main">
+    <div id="main" className="w-full">
       <Header />
       <Switch>
         <Route exact path="/home">

@@ -35,7 +35,7 @@ const ChevronRight = () => (
   </svg>
 );
 
-export default function Slider({
+export default function Slider3({
   autoSlide = false,
   autoSlideInterval = 3000,
 }) {

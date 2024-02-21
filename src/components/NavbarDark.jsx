@@ -14,7 +14,7 @@ const NavbarDark = () => {
   return (
     <div
       id="navbar-dark"
-      className="flex justify-between font-bold text-sm items-center px-40 py-4 bg-darkblue1"
+      className="flex sm:hidden justify-between font-bold text-sm items-center px-40 py-4 bg-darkblue1 "
     >
       <label id="contact" htmlFor="contact" className="flex items-center gap-8">
         <span className="flex " id="contact-span">

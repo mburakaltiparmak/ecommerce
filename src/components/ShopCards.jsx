@@ -3,6 +3,7 @@ import menImg from "../assets/shopcards/men.png";
 import womenImg from "../assets/shopcards/women.png";
 import accessoriesImg from "../assets/shopcards/accessories.png";
 import kidsImg from "../assets/shopcards/kids.png";
+import womenImg2 from "../assets/shopcards/women2.png";
 
 export const ShopCards = () => {
   const { photo, productText } = data();
@@ -12,7 +13,7 @@ export const ShopCards = () => {
       id="shop-container"
     >
       <div
-        className="w-1200 flex flex-col gap-10 py-20  items-center content-center"
+        className="w-1200 sm:w-full flex flex-col gap-10 py-20  items-center content-center"
         id="shop-main-container"
       >
         <div
@@ -30,7 +31,7 @@ export const ShopCards = () => {
           </p>
         </div>
         <div
-          className="flex flex-row flex-wrap gap-3 content-center items-center font-montserrat font-bold  "
+          className="flex flex-row flex-wrap gap-3 content-center items-center font-montserrat font-bold sm:px-4 "
           id="shop-img-container"
         >
           <span
@@ -48,17 +49,17 @@ export const ShopCards = () => {
             </button>
           </span>
           <span
-            className="flex flex-row gap-3 items-center"
+            className="flex flex-row gap-3 items-center sm:flex-col sm:w-full"
             id="second-img-box"
           >
             <span
               id="second-img-box1"
-              className="relative flex items-end justify-start"
+              className="relative flex items-end justify-start sm:items-end  sm:object-fit sm:w-full"
             >
               <img
-                className="w-full h-auto object-cover"
+                className="w-auto h-auto object-fit sm:h-full sm:w-full "
                 id="women-img"
-                src={womenImg}
+                src={womenImg2}
                 alt=""
               />
               <button className="absolute border border-gray w-32 py-2 mb-8 ml-8  text-center text-base  bg-lightgray">
@@ -66,10 +67,10 @@ export const ShopCards = () => {
               </button>
             </span>
             <span
-              className="flex flex-col gap-3 items-center"
+              className="flex flex-col gap-3 items-center sm:w-full"
               id="second-img-box2"
             >
-              <span className="relative flex items-end justify-start">
+              <span className="relative flex items-end justify-start sm:w-full">
                 <img
                   className="w-full h-auto object-cover"
                   id="tiny-img"
@@ -80,8 +81,8 @@ export const ShopCards = () => {
                   ACCESSORIES
                 </button>
               </span>
-              <span className="relative flex items-end justify-start">
-                <img id="tiny-img" src={kidsImg} alt="" />
+              <span className="relative flex items-end justify-start sm:w-full">
+                <img id="tiny-img" src={kidsImg} alt="" className="sm:w-full" />
                 <button className="absolute border border-gray w-28 py-2 mb-8 ml-8  text-center text-base  bg-lightgray">
                   KIDS
                 </button>
@@ -91,7 +92,7 @@ export const ShopCards = () => {
         </div>
       </div>
       <div
-        className="flex flex-col justify-center items-center w-4/5 "
+        className="flex flex-col sm:w-full justify-center items-center w-4/5 "
         id="main-content"
       >
         <div
@@ -118,7 +119,7 @@ export const ShopCards = () => {
           </h3>
         </div>
         <div
-          className="w-1200 flex flex-wrap justify-center gap-8"
+          className="w-1200 sm:w-full flex flex-wrap justify-center gap-8"
           id="content-img-container"
         >
           {Object.keys(photo).map((id, index) => (

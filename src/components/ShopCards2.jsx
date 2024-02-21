@@ -1,5 +1,6 @@
 import Slider2 from "./Slider2";
 import fluidImg from "../assets/shopcards/container-img.png";
+import Slider3 from "./Slider3";
 export const ShopCards2 = () => {
   return (
     <div
@@ -7,7 +8,7 @@ export const ShopCards2 = () => {
       className="w-full font-Montserrat items-center "
     >
       <div id="slider-container">
-        <Slider2 />
+        <Slider3 />
       </div>
       <div
         id="container-fluid"

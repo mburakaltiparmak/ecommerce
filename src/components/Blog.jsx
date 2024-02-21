@@ -25,7 +25,7 @@ export const Blog = () => {
         </p>
       </section>
       <label
-        className="flex flex-row gap-2 w-4/5 justify-between items-center"
+        className="flex flex-row gap-2 w-4/5 sm:w-full sm:flex-col justify-between items-center"
         htmlFor="blog"
         id="blog-content"
       >

@@ -72,20 +72,20 @@ export default function Slider2({
   }, []);
 
   return (
-    <div className="overflow-hidden relative bg-[#23856D] font-Montserrat w-full pt-10">
+    <div className="overflow-hidden relative bg-[#23856D] font-montserrat w-full pt-10 sm:pt-0">
       <div
-        className="flex transition-transform ease-out duration-500"
+        className="flex transition-transform ease-out duration-500 w-full"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides.map((slide, index) => (
           <div key={index} className="w-full flex-shrink-0 relative ">
             <span
               id="slider-container"
-              className="flex justify-around flex-row-reverse items-center"
+              className="flex justify-around sm:justify-center flex-row-reverse items-center"
             >
               <span
                 id="box-1"
-                className="px-40 pb-0 flex items-end min-h-1/2 min-w-1/2 object-contain resize-none"
+                className="px-40 sm:px-0 pb-0 flex items-end min-h-1/2 min-w-1/2 object-contain resize-none"
               >
                 <img
                   src={slide.img}
@@ -98,18 +98,16 @@ export default function Slider2({
                 id="box-2"
                 className="flex items-center justify-items-start "
               >
-                <div className="">
-                  <div className="text-white font-montserrat flex flex-col gap-8 px-40 ">
+                <div className="sm:w-full">
+                  <div className="text-white font-montserrat flex flex-col gap-8 px-40 sm:px-0 ">
                     <h2 className="font-bold text-xl">{slide.dateHero}</h2>
-                    <h1 className="font-bold text-[58px] w-3/4">
-                      {slide.title}
-                    </h1>
-                    <p className="font-normal text-[20px] w-4/6">
+                    <h1 className="font-bold text-3xl w-3/4">{slide.title}</h1>
+                    <p className="font-normal text-lg w-4/6">
                       {slide.description}
                     </p>
                     <span className="flex flex-row gap-8 items-center">
                       <p className="text-2xl font-bold">{slide.price}</p>
-                      <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
+                      <button className="py-[15px] px-[10px] sm:hidden flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
                         ADD TO CART
                       </button>
                     </span>
@@ -135,7 +133,7 @@ export default function Slider2({
         </button>
       </div>
 
-      <div className="absolute bottom-4 right-0 left-0">
+      <div className="absolute bottom-4 right-0 left-0 sm:hidden">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div

@@ -19,7 +19,7 @@ const Footer = () => {
     >
       <div id="footer-div" className=" flex flex-col gap-16 w-full">
         <section
-          className="flex justify-between flex-row bg-white py-12 px-40"
+          className="flex justify-between flex-row bg-white py-12 px-40 sm:px-0"
           id="top-container"
         >
           <label className="text-xl font-bold text-darkblue1" id="brand-name">
@@ -41,7 +41,7 @@ const Footer = () => {
           </label>
         </section>
         <section
-          className="flex flex-row justify-between px-40"
+          className="flex flex-row justify-between px-40 sm:px-0"
           id="middle-container"
         >
           <span
@@ -95,7 +95,10 @@ const Footer = () => {
             <p className="text-sm">Lorem ipsum</p>
           </span>
         </section>
-        <section className="px-40 py-10 bg-lightgray" id="bottom-container">
+        <section
+          className="px-40 py-10 bg-lightgray sm:px-0"
+          id="bottom-container"
+        >
           <p>
             Made With My Own Sweat By Burak Altıparmak All Rights Reserved to
             Erhan Fırat & Gökhan Özdemir
