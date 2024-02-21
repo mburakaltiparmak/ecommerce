@@ -31,16 +31,19 @@ export const Shop = () => {
   return (
     <div className="font-montserrat flex flex-col gap-8 " id="shop-container">
       <section
-        className="flex flex-col gap-12 bg-lightgray px-40 py-10 content-center"
+        className="flex flex-col gap-12 bg-lightgray px-40 py-10 sm:py-10 sm:px-10 sm:w-full content-center"
         id="top-level"
       >
-        <span className="flex flex-row justify-between items-center">
+        <span className="flex flex-row justify-between items-center sm:flex-col sm:gap-8">
           <h2 className="text-xl font-bold text-darkblue1">Shop</h2>
           <span id="navbar">
             <Breadcrumb />
           </span>
         </span>
-        <span className="flex flex-row justify-center gap-4" id="box-cards">
+        <span
+          className="flex flex-row justify-center gap-4 sm:flex-col"
+          id="box-cards"
+        >
           {boxData.map((box, index) => (
             <div
               key={index}
@@ -61,15 +64,19 @@ export const Shop = () => {
       </section>
 
       <section
-        className="flex flex-col justify-between items-center gap-12 px-40"
+        className="flex flex-col justify-between items-center gap-12 px-40 sm:px-0"
         id="shop-section"
       >
         <span
-          className="flex flex-row justify-between items-center w-full font-bold text-sm text-gray"
+          className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm text-gray"
           id="filter-container"
         >
           <p>Showing all {productCount} results</p>
-          <span id="views" className="flex flex-row gap-2 text-gray">
+          <span
+            id="views"
+            className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
+          >
+            <p className="min-lg:hidden">Views:</p>
             <button className="border border-gray rounded-lg p-3" id="1">
               <img src={icon} className="w-[16px] h-[16px]" />
             </button>
@@ -77,7 +84,7 @@ export const Shop = () => {
               <FontAwesomeIcon icon={faListUl} className="w-[16px] h-[16px]" />
             </button>
           </span>
-          <span className="flex flex-row gap-2" id="filter-order">
+          <span className="flex flex-row gap-2 sm:gap-4" id="filter-order">
             <label className="flex items-center justify-center" id="1">
               <select
                 id="dropdown"
@@ -98,16 +105,20 @@ export const Shop = () => {
           </span>
         </span>
         <span
-          className="flex w-5/6 justify-center flex-row flex-wrap gap-4 px-12"
+          className="flex w-5/6 justify-center flex-row flex-wrap gap-4 px-12 sm:w-full sm:flex-col sm:px-10 sm:gap-16 sm:py-10"
           id="product-container"
         >
           {productData.map((product, index) => (
             <div
               key={index}
               id="product-card"
-              className="flex flex-col items-center gap-4 py-8"
+              className="flex flex-col items-center gap-4 py-8 "
             >
-              <img src={product.image} alt={product.title} />
+              <img
+                src={product.image}
+                alt={product.title}
+                className="sm:w-full"
+              />
               <h3 className="font-bold text-base text-darkblue1">
                 {product.title}
               </h3>
@@ -134,12 +145,12 @@ export const Shop = () => {
             </div>
           ))}
         </span>
-        <span id="pagination">
+        <span id="pagination" className="sm:py-10">
           <Pagination />
         </span>
       </section>
       <section
-        className="px-40 py-10 bg-lightgray flex flex-row justify-between content-center text-7xl text-gray"
+        className="px-40 sm:px-10 py-10 bg-lightgray flex flex-row sm:flex-col sm:gap-8 justify-between content-center text-7xl text-gray"
         id="logo-section"
       >
         <FontAwesomeIcon icon={faHooli} />
