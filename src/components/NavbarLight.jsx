@@ -111,6 +111,7 @@ const NavbarLight = () => {
         >
           <button
             id="navbar-nav-icons"
+            onClick={() => history.push("/login")}
             className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
           >
             <FontAwesomeIcon icon={faUser} />
