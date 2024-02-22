@@ -1,4 +1,4 @@
-import carouselImg from "./assets/header/carouselImg.jpg";
+import carouselImg from "./assets/header/card-cover-6.png";
 import img1 from "./assets/shopcards/product/1.png";
 import img2 from "./assets/shopcards/product/2.png";
 import img3 from "./assets/shopcards/product/3.png";
