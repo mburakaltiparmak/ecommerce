@@ -1,5 +1,5 @@
 /*import "./App.css";*/
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import HomePage from "./pages/HomePage";
 import ProductListPages from "./pages/ProductListPages";
@@ -15,6 +15,7 @@ function App() {
   return (
     <div id="main" className="w-full">
       <Header />
+      <Redirect from="/" to="/home" exact />
       <Switch>
         <Route exact path="/home">
           <HomePage />
