@@ -72,7 +72,7 @@ export default function Slider2({
   }, []);
 
   return (
-    <div className="overflow-hidden relative sm:flex sm:flex-col bg-[#23856D] font-montserrat w-full pt-10 sm:pt-0">
+    <div className="overflow-hidden relative sm:flex sm:flex-col bg-[#23856D] font-Montserrat w-full pt-10 sm:pt-0">
       <div
         className="flex transition-transform ease-out duration-500 w-full "
         style={{ transform: `translateX(-${curr * 100}%)` }}
@@ -102,7 +102,7 @@ export default function Slider2({
                 className="flex items-center justify-items-start sm:justify-center sm:py-10"
               >
                 <div className="sm:w-full">
-                  <div className="text-white font-montserrat flex flex-col gap-8 px-40 sm:px-0  sm:text-center sm:items-center">
+                  <div className="text-white font-Montserrat flex flex-col gap-8 px-40 sm:px-0  sm:text-center sm:items-center">
                     <h2 className="font-bold text-xl">{slide.dateHero}</h2>
                     <h1 className="font-bold text-3xl w-3/4 sm:text-5xl">
                       {slide.title}

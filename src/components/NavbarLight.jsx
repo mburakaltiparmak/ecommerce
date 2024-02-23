@@ -109,14 +109,25 @@ const NavbarLight = () => {
           htmlFor=""
           className="flex items-center justify-between gap-8 md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl"
         >
-          <button
-            id="navbar-nav-icons"
-            onClick={() => history.push("/login")}
-            className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
-          >
-            <FontAwesomeIcon icon={faUser} />
-            Login/Register
-          </button>
+          <span className="flex flex-row gap-2">
+            <button
+              id="navbar-nav-icons"
+              onClick={() => history.push("/login")}
+              className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
+            >
+              <FontAwesomeIcon icon={faUser} />
+              Login
+            </button>
+            <p>/</p>
+            <button
+              id="navbar-nav-icons"
+              onClick={() => history.push("/signup")}
+              className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
+            >
+              <FontAwesomeIcon icon={faUser} />
+              Register
+            </button>
+          </span>
           <button
             className="flex text-center gap-1 items-center"
             id="navbar-nav-icons"

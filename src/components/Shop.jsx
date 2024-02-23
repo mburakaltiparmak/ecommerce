@@ -29,7 +29,7 @@ export const Shop = () => {
   const productCount = productData.length;
 
   return (
-    <div className="font-montserrat flex flex-col gap-8 " id="shop-container">
+    <div className="font-Montserrat flex flex-col gap-8 " id="shop-container">
       <section
         className="flex flex-col gap-12 bg-lightgray px-40 py-10 sm:py-10 sm:px-10 sm:w-full content-center"
         id="top-level"
@@ -48,15 +48,15 @@ export const Shop = () => {
             <div
               key={index}
               id="container"
-              className="relative flex items-center"
+              className="relative shadow-lg shadow-gray flex items-center"
             >
               <img className="w-full h-auto" src={box.img} />
               <button
                 id="center"
-                className="absolute t-1/2 w-full text-center text-base text-white font-bold"
+                className="absolute t-1/2 w-full text-center text-lg sm:text-xl text-white font-bold"
               >
-                <p>{box.title}</p>
-                <p>{box.count} items</p>
+                <p className="drop-shadow-lg">{box.title}</p>
+                <p className="drop-shadow-lg">{box.count} items</p>
               </button>
             </div>
           ))}
@@ -106,40 +106,44 @@ export const Shop = () => {
           </span>
         </span>
         <span
-          className="flex w-5/6 justify-center flex-row flex-wrap gap-4 px-12 sm:w-full sm:flex-col sm:px-10 sm:gap-16 sm:py-10"
+          className="flex w-full justify-between flex-row flex-wrap gap-4 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
         >
           {productData.map((product, index) => (
             <div
               key={index}
               id="product-card"
-              className="flex flex-col items-center gap-4 py-8 "
+              className="flex flex-col border rounded-md shadow-lg shadow-gray items-center gap-8 pb-16 "
             >
               <img
                 src={product.image}
                 alt={product.title}
-                className="sm:w-full"
+                className="sm:w-full rounded-md shadow-md shadow-gray object-cover"
               />
-              <h3 className="font-bold text-base text-darkblue1">
+              <h3 className="font-bold text-lg sm:text-2xl text-darkblue1">
                 {product.title}
               </h3>
-              <p className="text-sm font-bold text-gray">{product.link}</p>
+              <p className="text-base sm:text-xl font-bold text-gray">
+                {product.link}
+              </p>
               <span id="prices" className="flex flex-row gap-4">
-                <p className="text-sm font-bold text-gray">{product.price1}</p>
-                <p className="text-sm font-bold text-green2">
+                <p className="text-base sm:text-xl font-bold text-gray">
+                  {product.price1}
+                </p>
+                <p className="text-base sm:text-xl font-bold text-green2">
                   {product.price2}
                 </p>
               </span>
               <span id="colors">
                 <div className="flex items-center justify-center space-x-2">
-                  <div className="w-4 h-4 rounded-full bg-red"></div>
-                  <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-                  <div className="w-4 h-4 rounded-full bg-green"></div>
-                  <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
                 </div>
               </span>
               <span id="button-span" className="flex flex-row gap-4">
-                <button className="py-[4px] px-[4px] flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-30 justify-center text-sm font-bold  tracking-normal">
+                <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
                   Add to Cart
                 </button>
               </span>

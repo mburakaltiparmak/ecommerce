@@ -23,7 +23,7 @@ import { data } from "../data";
 const Product = () => {
   const { miniSlider, productText, productContainerImgs } = data();
   return (
-    <div className="px-40 py-10 flex flex-col font-montserrat font-bold gap-12 sm:px-10 sm:py-5">
+    <div className="px-40 py-10 flex flex-col font-Montserrat font-bold gap-12 sm:px-10 sm:py-5">
       <section className="flex flex-row sm:items-center sm:justify-center">
         <Breadcrumb />
       </section>
@@ -32,7 +32,7 @@ const Product = () => {
           <MiniSlider />
           <span className="flex flex-row items-start gap-4">
             {miniSlider.map((img, index) => (
-              <button className="" key={index}>
+              <button className="shadow-lg shadow-gray" key={index}>
                 <img className="w-[96px] h-[96px]" src={img} alt="" />
               </button>
             ))}
@@ -99,8 +99,15 @@ const Product = () => {
           id="product-description"
           className="flex flex-row justify-between sm:flex-col sm:gap-8"
         >
-          <span id="description-img">
-            <img src={descriptionImg} alt="" />
+          <span
+            className="shadow-lg shadow-gray rounded-md flex "
+            id="description-img"
+          >
+            <img
+              src={descriptionImg}
+              alt=""
+              className="sm:w-full object-cover"
+            />
           </span>
           <span
             id="text-box-1"
@@ -172,18 +179,50 @@ const Product = () => {
 
         <span
           id="product-container"
-          className="flex flex-row flex-wrap justify-center w-3/4 items-center gap-8"
+          className="flex w-full justify-between  flex-row flex-wrap gap-4 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-16"
         >
           {productContainerImgs.map((item, index) => (
-            <span key={index} id="product" className="flex flex-col gap-4">
-              <img src={item} alt="" />
+            <span
+              key={index}
+              id="product"
+              className="flex flex-col border   border-gray rounded-md shadow-lg shadow-gray items-center gap-8 pb-16 "
+            >
+              <img
+                src={item}
+                alt=""
+                className="rounded-md shadow-md shadow-gray object-cover sm:w-full"
+              />
 
-              <span key={index} className="flex flex-col gap-2 text-start pl-4">
-                <h4 className="h4-styles">{productText.title}</h4>
-                <h5 className="h5-styles">{productText.link}</h5>
-                <span className="flex flex-row gap-2 p-styles">
-                  <p className="text-gray">{productText.price1}</p>
-                  <p className="text-green2">{productText.price1}</p>
+              <span
+                key={index}
+                className="flex flex-col sm:content-between gap-8  text-center items-center "
+              >
+                <h4 className="font-bold text-lg sm:text-2xl text-darkblue1">
+                  {productText.title}
+                </h4>
+                <h5 className="text-base sm:text-xl font-bold text-gray">
+                  {productText.link}
+                </h5>
+                <span className="flex flex-row items-center gap-2">
+                  <p className="text-base sm:text-xl font-bold text-gray">
+                    {productText.price1}
+                  </p>
+                  <p className="text-base sm:text-xl font-bold text-green2">
+                    {productText.price1}
+                  </p>
+                </span>
+                <span id="colors">
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
+                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
+                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
+                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                  </div>
+                </span>
+                <span id="button-span" className="flex flex-row gap-4">
+                  <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                    Add to Cart
+                  </button>
                 </span>
               </span>
             </span>

@@ -19,7 +19,7 @@ export const Blog = () => {
       >
         <h6 className="text-blue1 text-lg font-bold">Practice Advice</h6>
         <h3 className="text-darkblue1 text-4xl font-bold ">Featured Posts</h3>
-        <p id="paragraph" className="text-gray text-lg w-3/5">
+        <p id="paragraph" className="text-gray text-lg">
           Problems trying to resolve the conflict between the two major realms
           of Classical physics: Newtonian mechanics
         </p>
@@ -32,7 +32,7 @@ export const Blog = () => {
         {blogData.map((blogItem, index) => (
           <section
             key={index}
-            className="flex flex-col gap-4 justify-between shadow-md border border-black"
+            className="flex flex-col gap-4 justify-between shadow-lg shadow-gray border border-gray rounded-md "
             id="content-card"
           >
             <span
@@ -64,13 +64,13 @@ export const Blog = () => {
                 </a>
               </span>
               <span
-                className="text-darkblue1 text-xl font-normal w-3/4"
+                className="text-darkblue1 text-xl sm:text-2xl font-bold w-3/4 sm:w-full"
                 id="title-content"
               >
                 <h4>{blogItem.title}</h4>
               </span>
               <span
-                className="text-gray text-base font-normal w-3/4 tracking-[0.2px]"
+                className="text-gray text-base sm:text-xl font-normal w-3/4 sm:w-full tracking-[0.2px]"
                 id="paragraph-content"
               >
                 <p>{blogItem.description}</p>

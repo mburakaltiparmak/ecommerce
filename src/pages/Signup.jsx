@@ -1,6 +1,6 @@
 const Signup = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 sm:px-10 font-montserrat font-bold">
+    <section className="bg-white dark:bg-gray-900 sm:px-10 font-Montserrat font-bold">
       <div className="flex justify-center">
         <div className="flex items-center w-full max-w-3xl p-8 mx-auto sm:px-0 sm:w-full  ">
           <div className="w-full flex flex-col gap-6">

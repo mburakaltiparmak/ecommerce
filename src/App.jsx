@@ -17,7 +17,7 @@ function App() {
   return (
     <div id="main" className="w-full">
       <Header />
-      <Redirect from="/" to="/home" exact />
+
       <Switch>
         <Route exact path="/home">
           <HomePage />

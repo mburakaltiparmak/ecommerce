@@ -21,7 +21,7 @@ import member3 from "../assets/about/member3.png";
 
 const About = () => {
   return (
-    <div id="about" className="flex flex-col items-center font-montserrat">
+    <div id="about" className="flex flex-col items-center font-Montserrat">
       <section
         id="about-us"
         className="w-full flex justify-between px-40 sm:px-10"

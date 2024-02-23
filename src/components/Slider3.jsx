@@ -72,7 +72,7 @@ export default function Slider3({
   }, []);
 
   return (
-    <div className="overflow-hidden relative font-montserrat bg-green2 h-full  ">
+    <div className="overflow-hidden relative font-Montserrat bg-green2 h-full  ">
       <div
         id="slider-box"
         className="flex  duration-500"
@@ -107,7 +107,7 @@ export default function Slider3({
               <img
                 src={slide.img}
                 alt={`Slide ${index}`}
-                className="w-full object-cover h-auto sm:object-fit sm:w-full  "
+                className="w-full object-cover h-auto sm:object-cover sm:w-full  "
               />
             </span>
           </div>

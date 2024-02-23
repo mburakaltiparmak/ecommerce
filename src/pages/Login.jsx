@@ -9,7 +9,7 @@ const Login = () => {
           <div className="flex-1">
             <div className="text-center">
               <div className="flex justify-center mx-auto">
-                <h3 className="h3-styles font-bold font-montserrat">
+                <h3 className="h3-styles font-bold font-Montserrat">
                   Brand Logo
                 </h3>
               </div>

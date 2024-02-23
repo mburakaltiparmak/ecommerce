@@ -54,7 +54,7 @@ export default function MiniSlider({
   }, []);
 
   return (
-    <div className="overflow-hidden relative font-Montserrat   ">
+    <div className="overflow-hidden relative font-Montserrat shadow-lg shadow-gray  ">
       <div
         className="flex transition-transform ease-out duration-500  h-[450px]   "
         style={{ transform: `translateX(-${curr * 100}%)` }}
@@ -64,7 +64,7 @@ export default function MiniSlider({
             key={index}
             className="w-full flex justify-center flex-shrink-0 relative "
           >
-            <img src={slide} className="w-full object-fit  " />
+            <img src={slide} className="w-full object-cover  " />
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start pl-16 "></div>
           </div>
         ))}

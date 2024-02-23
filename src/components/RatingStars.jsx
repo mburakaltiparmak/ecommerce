@@ -41,7 +41,7 @@ const RatingStars = () => {
         </svg>
       </div>
 
-      <span className="text-gray font-montserrat font-bold text-sm">
+      <span className="text-gray font-Montserrat font-bold text-sm">
         10 Reviews
       </span>
     </div>

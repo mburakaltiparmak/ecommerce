@@ -10,10 +10,10 @@ export default function Dropdown() {
   return (
     <Menu as="div" className="relative inline-block text-left font-Montserrat">
       <div>
-        <Menu.Button className="inline-flex w-full font-montserrat justify-center gap-x-1.5  bg-white text-sm sm:text-2xl font-semibold text-gray-900">
+        <Menu.Button className="inline-flex w-full font-Montserrat justify-center gap-x-1.5  bg-white text-sm sm:text-2xl font-bold sm:text-gray px-2">
           Shop
           <ChevronDownIcon
-            className="-mr-1 h-5 w-5 text-gray-400"
+            className="-mr-6 h-5 w-5 sm:text-gray  "
             aria-hidden="true"
           />
         </Menu.Button>
@@ -36,7 +36,7 @@ export default function Dropdown() {
                   href="/shop"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
+                    "block px-4 py-2 text-sm sm:text-lg"
                   )}
                 >
                   Product List
@@ -49,7 +49,7 @@ export default function Dropdown() {
                   href="#"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
+                    "block px-4 py-2 text-sm sm:text-lg"
                   )}
                 >
                   Support
@@ -62,7 +62,7 @@ export default function Dropdown() {
                   href="#"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
+                    "block px-4 py-2 text-sm sm:text-lg"
                   )}
                 >
                   License
@@ -76,7 +76,7 @@ export default function Dropdown() {
                     type="submit"
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm"
+                      "block w-full px-4 py-2 text-left text-sm sm:text-lg"
                     )}
                   >
                     Sign out

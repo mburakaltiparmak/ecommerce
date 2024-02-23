@@ -26,7 +26,7 @@ const Team = () => {
         className="flex flex-row sm:flex-col gap-3 sm:gap-1 px-20 sm:px-0"
       >
         <span id="main-box" className="w-full ">
-          <img className="w-[730px] h-[530px] object-fit" src={mainImg} />
+          <img className="w-[730px] h-[530px] object-cover" src={mainImg} />
         </span>
         <span
           id="img-box"
