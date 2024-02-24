@@ -7,22 +7,8 @@ const Header = () => {
   const { pathname } = useLocation();
   return (
     <header className="w-full  font-Montserrat text-white">
-      {pathname !== "/about" &&
-      pathname !== "/contact" &&
-      pathname !== "/pricing" &&
-      pathname !== "/team" ? (
-        <NavbarDark />
-      ) : (
-        ""
-      )}
-      {pathname !== "/about" &&
-      pathname !== "/contact" &&
-      pathname !== "/pricing" &&
-      pathname !== "/team" ? (
-        <NavbarLight />
-      ) : (
-        <NavbarLight2 />
-      )}
+      <NavbarDark />
+      <NavbarLight />
 
       <hr />
     </header>

@@ -14,10 +14,14 @@ const NavbarDark = () => {
   return (
     <div
       id="navbar-dark"
-      className="flex sm:hidden justify-between font-bold text-sm items-center px-40 py-4 bg-darkblue1 "
+      className="flex sm:flex-col sm:gap-8 justify-between font-bold text-sm items-center px-40 py-4 bg-darkblue1 sm:px-10"
     >
-      <label id="contact" htmlFor="contact" className="flex items-center gap-8">
-        <span className="flex " id="contact-span">
+      <label
+        id="contact"
+        htmlFor="contact"
+        className="flex sm:flex-col items-center  gap-8 sm:gap-4"
+      >
+        <span className="flex flex-row" id="contact-span">
           <p className="flex text-center items-center gap-2 " id="contact-logo">
             <FontAwesomeIcon icon={faPhone} />
             {phoneText}
@@ -34,26 +38,30 @@ const NavbarDark = () => {
           </a>
         </span>
       </label>
-      <p>Follow Us and get a chance to win 80% off</p>
+      <span className="flex flex-row">
+        <p>Follow Us and get a chance to win 80% off</p>
+      </span>
       <label
         id="social-media"
         htmlFor=""
-        className="flex pb-2 items-center gap-4 md:gap-8"
+        className="flex pb-2 items-center justify-between gap-4 md:gap-8"
       >
-        <p className="">Follow Us :</p>
-        <span id="social-media-logos" className="flex gap-4 items-center  ">
-          <a href="https://www.instagram.com/">
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-          <a href="https://www.youtube.com/">
-            <FontAwesomeIcon icon={faYoutube} />
-          </a>
-          <a href="https://www.facebook.com/">
-            <FontAwesomeIcon icon={faFacebook} />
-          </a>
-          <a href="https://www.twitter.com/">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
+        <span className="flex flex-row gap-4">
+          <p className="">Follow Us :</p>
+          <span id="social-media-logos" className="flex gap-4 items-center  ">
+            <a href="https://www.instagram.com/">
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+            <a href="https://www.youtube.com/">
+              <FontAwesomeIcon icon={faYoutube} />
+            </a>
+            <a href="https://www.facebook.com/">
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+            <a href="https://www.twitter.com/">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+          </span>
         </span>
       </label>
     </div>
