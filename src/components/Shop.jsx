@@ -17,16 +17,7 @@ import { Pagination } from "./Pagination";
 
 /* Responsive tasarım için bakman gereken yer product-container */
 export const Shop = () => {
-  const { boxData, productImgs } = data();
-  const productData = productImgs.map((img, index) => ({
-    id: index + 1,
-    image: img,
-    title: "Graphic Design",
-    link: "English Department",
-    price1: "$16.48",
-    price2: "$6.48",
-  }));
-  const productCount = productData.length;
+  const { boxData, shopData } = data();
 
   return (
     <div className="font-Montserrat flex flex-col gap-8 " id="shop-container">
@@ -71,7 +62,7 @@ export const Shop = () => {
           className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm text-gray"
           id="filter-container"
         >
-          <p>Showing all {productCount} results</p>
+          <p>Showing all {shopData.length} results</p>
           <span
             id="views"
             className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
@@ -106,33 +97,24 @@ export const Shop = () => {
           </span>
         </span>
         <span
-          className="flex w-full justify-between flex-row flex-wrap gap-4 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
+          className="flex w-full justify-between flex-row flex-wrap gap-32 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
         >
-          {productData.map((product, index) => (
-            <div
-              key={index}
-              id="product-card"
-              className="flex flex-col border rounded-md shadow-lg shadow-gray items-center gap-8 pb-16 "
-            >
-              <img
-                src={product.image}
-                alt={product.title}
-                className="sm:w-full rounded-md shadow-md shadow-gray object-cover"
-              />
-              <h3 className="font-bold text-lg sm:text-2xl text-darkblue1">
-                {product.title}
-              </h3>
-              <p className="text-base sm:text-xl font-bold text-gray">
-                {product.link}
-              </p>
-              <span id="prices" className="flex flex-row gap-4">
-                <p className="text-base sm:text-xl font-bold text-gray">
-                  {product.price1}
-                </p>
-                <p className="text-base sm:text-xl font-bold text-green2">
-                  {product.price2}
-                </p>
+          {shopData.map((id, index) => (
+            <div className="shop" key={index} id="product-content">
+              <span id="product-img-content" className="sm:w-full">
+                <img src={id.img} alt="" className="sm:w-full rounded-md" />
+              </span>
+
+              <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                {id.title}
+              </h4>
+              <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                {id.link}
+              </h5>
+              <span className="flex flex-row sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
+                <h5 className="text-[#737373]">{id.price1}</h5>
+                <h5 className="text-[#23856D]">{id.price2}</h5>
               </span>
               <span id="colors">
                 <div className="flex items-center justify-center space-x-2">

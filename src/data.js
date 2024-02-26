@@ -61,7 +61,6 @@ export const data = () => {
         "We know how large objects will act, but things on a small scale.",
     },
     {
-      //yorum
       img: carouselImg,
       dateHero: "SUMMER 2020",
       title: "NEW COLLECTION",
@@ -69,22 +68,65 @@ export const data = () => {
         "We know how large objects will act, but things on a small scale.",
     },
   ];
-  const photo = {
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-  };
-  const productText = {
-    title: "Graphic Design",
-    link: "English Department",
-    price1: "$16.48",
-    price2: "$6.48",
-  };
+  const dataHomePage = [
+    {
+      img: img1,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img2,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img3,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img4,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img5,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img6,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img7,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: img8,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+  ];
+
   const blogData = [
     {
       img: blogimg1,
@@ -138,22 +180,8 @@ export const data = () => {
       count: 5,
     },
   ];
-  const productImgs = [
-    productImg1,
-    productImg2,
-    productImg3,
-    productImg4,
-    productImg5,
-    productImg6,
-    productImg7,
-    productImg8,
-    productImg9,
-    productImg10,
-    productImg11,
-    productImg12,
-  ];
-  const boxGroup = [boxGroupImg1, boxGroupImg2, boxGroupImg3, boxGroupImg4];
-  const member = [
+
+  const memberData = [
     {
       img: memberImg1,
       username: "username",
@@ -200,28 +228,104 @@ export const data = () => {
       job: "profession",
     },
   ];
-  const miniSlider = [sliderImg1, sliderImg2];
-  const productContainerImgs = [
-    productContainer1,
-    productContainer2,
-    productContainer3,
-    productContainer4,
-    productContainer5,
-    productContainer6,
-    productContainer7,
-    productContainer8,
+
+  const shopData = [
+    {
+      img: productImg1,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg2,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg3,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg4,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg5,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg6,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg7,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg8,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg9,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg10,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg11,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
+    {
+      img: productImg12,
+      title: "Graphic Design",
+      link: "English Department",
+      price1: "$16.48",
+      price2: "$6.48",
+    },
   ];
+  const miniSlider = [sliderImg1, sliderImg2];
+  const boxGroup = [boxGroupImg1, boxGroupImg2, boxGroupImg3, boxGroupImg4];
 
   return {
     slides,
-    photo,
-    productText,
     blogData,
     boxData,
-    productImgs,
     boxGroup,
-    member,
+    memberData,
     miniSlider,
-    productContainerImgs,
+    dataHomePage,
+    shopData,
   };
 };

@@ -6,7 +6,7 @@ import kidsImg from "../assets/shopcards/kids.png";
 import womenImg2 from "../assets/shopcards/women2.png";
 
 export const ShopCards = () => {
-  const { photo, productText } = data();
+  const { dataHomePage } = data();
   return (
     <div
       className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full  "
@@ -124,28 +124,24 @@ export const ShopCards = () => {
           </h3>
         </div>
         <div
-          className="w-full sm:w-full flex flex-wrap justify-between gap-8 py-4 sm:px-10"
+          className="w-full sm:w-full flex flex-wrap justify-between gap-32 lg:gap-16 px-40 py-4 sm:px-10"
           id="content-img-container"
         >
-          {Object.keys(photo).map((id, index) => (
-            <div
-              className="border rounded-md shadow-lg shadow-gray pb-16 gap-8 sm:w-full items-center  flex flex-col"
-              key={index}
-              id="product-content"
-            >
+          {dataHomePage.map((id, index) => (
+            <div className="shop" key={index} id="product-content">
               <span id="product-img-content" className="sm:w-full">
-                <img src={photo[id]} alt="" className="sm:w-full rounded-md" />
+                <img src={id.img} alt="" className="sm:w-full rounded-md" />
               </span>
 
               <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
-                {productText.title}
+                {id.title}
               </h4>
               <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
-                {productText.link}
+                {id.link}
               </h5>
               <span className="flex flex-row sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                <h5 className="text-[#737373]">{productText.price1}</h5>
-                <h5 className="text-[#23856D]">{productText.price2}</h5>
+                <h5 className="text-[#737373]">{id.price1}</h5>
+                <h5 className="text-[#23856D]">{id.price2}</h5>
               </span>
               <span id="colors">
                 <div className="flex items-center justify-center space-x-2">

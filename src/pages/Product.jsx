@@ -21,7 +21,7 @@ import descriptionImg from "../assets/product/productImg3.png";
 import { data } from "../data";
 
 const Product = () => {
-  const { miniSlider, productText, productContainerImgs } = data();
+  const { miniSlider, dataHomePage } = data();
   return (
     <div className="px-40 py-10 flex flex-col font-Montserrat font-bold gap-12 sm:px-10 sm:py-5">
       <section className="flex flex-row sm:items-center sm:justify-center">
@@ -179,53 +179,38 @@ const Product = () => {
 
         <span
           id="product-container"
-          className="flex w-full justify-between  flex-row flex-wrap gap-4 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-16"
+          className="flex w-full justify-between  flex-row flex-wrap gap-24 sm:w-full sm:flex-col sm:px-0 sm:gap-32 sm:py-16"
         >
-          {productContainerImgs.map((item, index) => (
-            <span
-              key={index}
-              id="product"
-              className="flex flex-col border   border-gray rounded-md shadow-lg shadow-gray items-center gap-8 pb-16 "
-            >
-              <img
-                src={item}
-                alt=""
-                className="rounded-md shadow-md shadow-gray object-cover sm:w-full"
-              />
-
-              <span
-                key={index}
-                className="flex flex-col sm:content-between gap-8  text-center items-center "
-              >
-                <h4 className="font-bold text-lg sm:text-2xl text-darkblue1">
-                  {productText.title}
-                </h4>
-                <h5 className="text-base sm:text-xl font-bold text-gray">
-                  {productText.link}
-                </h5>
-                <span className="flex flex-row items-center gap-2">
-                  <p className="text-base sm:text-xl font-bold text-gray">
-                    {productText.price1}
-                  </p>
-                  <p className="text-base sm:text-xl font-bold text-green2">
-                    {productText.price1}
-                  </p>
-                </span>
-                <span id="colors">
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
-                  </div>
-                </span>
-                <span id="button-span" className="flex flex-row gap-4">
-                  <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
-                    Add to Cart
-                  </button>
-                </span>
+          {dataHomePage.map((id, index) => (
+            <div className="shop" key={index} id="product-content">
+              <span id="product-img-content" className="sm:w-full">
+                <img src={id.img} alt="" className="sm:w-full rounded-md" />
               </span>
-            </span>
+
+              <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                {id.title}
+              </h4>
+              <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                {id.link}
+              </h5>
+              <span className="flex flex-row sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
+                <h5 className="text-[#737373]">{id.price1}</h5>
+                <h5 className="text-[#23856D]">{id.price2}</h5>
+              </span>
+              <span id="colors">
+                <div className="flex items-center justify-center space-x-2">
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
+                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                </div>
+              </span>
+              <span id="button-span" className="flex flex-row gap-4">
+                <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                  Add to Cart
+                </button>
+              </span>
+            </div>
           ))}
         </span>
       </section>

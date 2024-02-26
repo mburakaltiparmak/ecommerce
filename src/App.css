@@ -50,6 +50,9 @@
 .hide {
   @apply sm:hidden;
 }
+.shop {
+  @apply border rounded-md shadow-lg shadow-gray pb-16 gap-8 sm:w-full items-center  flex flex-col;
+}
 /* Ana stil dosyası */
 
 @media (min-width: 768px) and (max-width: 1199px) {

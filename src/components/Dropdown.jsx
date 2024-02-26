@@ -46,26 +46,26 @@ export default function Dropdown() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="#"
+                  href="/product"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm sm:text-lg"
                   )}
                 >
-                  Support
+                  Product
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="#"
+                  href="/team"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm sm:text-lg"
                   )}
                 >
-                  License
+                  Team
                 </a>
               )}
             </Menu.Item>

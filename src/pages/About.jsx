@@ -18,8 +18,10 @@ import videoImg from "../assets/about/videoImg.png";
 import member1 from "../assets/about/member1.png";
 import member2 from "../assets/about/member2.png";
 import member3 from "../assets/about/member3.png";
+import { data } from "../data";
 
 const About = () => {
+  const { memberData } = data();
   return (
     <div id="about" className="flex flex-col items-center font-Montserrat">
       <section
@@ -124,54 +126,24 @@ const About = () => {
           id="team-span"
           className="flex flex-row sm:flex-col sm:gap-16 justify-between items-center w-full"
         >
-          <span id="member-1" className="team-span">
-            <img src={member1} />
-            <h5>Username</h5>
-            <p className="p-styles">Profession</p>
-            <span id="social-media" className="social-media">
-              <a href="https://www.instagram.com/">
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a href="https://www.facebook.com/">
-                <FontAwesomeIcon icon={faFacebook} />
-              </a>
-              <a href="https://www.twitter.com/">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
+          {memberData.slice(0, 3).map((member, index) => (
+            <span key={index} id="member-box" className="team-span">
+              <img src={member.img} />
+              <h5>{member.username}</h5>
+              <p className="p-styles">{member.job}</p>
+              <span id="social-media" className="social-media">
+                <a href="https://www.instagram.com/">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+                <a href="https://www.facebook.com/">
+                  <FontAwesomeIcon icon={faFacebook} />
+                </a>
+                <a href="https://www.twitter.com/">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+              </span>
             </span>
-          </span>
-          <span id="member-2" className="team-span">
-            <img src={member2} />
-            <h5>Username</h5>
-            <p className="p-styles">Profession</p>
-            <span id="social-media" className="social-media">
-              <a href="https://www.instagram.com/">
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a href="https://www.facebook.com/">
-                <FontAwesomeIcon icon={faFacebook} />
-              </a>
-              <a href="https://www.twitter.com/">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-            </span>
-          </span>
-          <span id="member-3" className="team-span">
-            <img src={member3} />
-            <h5>Username</h5>
-            <p className="p-styles">Profession</p>
-            <span id="social-media" className="social-media">
-              <a href="https://www.instagram.com/">
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a href="https://www.facebook.com/">
-                <FontAwesomeIcon icon={faFacebook} />
-              </a>
-              <a href="https://www.twitter.com/">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-            </span>
-          </span>
+          ))}
         </span>
       </section>
       <section
@@ -207,7 +179,7 @@ const About = () => {
           className="flex flex-row-reverse sm:flex-col-reverse sm:py-20 items-center justify-between w-full"
         >
           <span id="img-container" className="sm:hidden">
-            <img src={containerImg2} alt="" />
+            <img src={containerImg2} className="object-cover" />
           </span>
           <span
             id="text-container"

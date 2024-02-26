@@ -10,17 +10,19 @@ import {
 
 import Dropdown from "../components/Dropdown";
 import { useHistory, useLocation } from "react-router-dom";
-const NavbarLight = () => {
+const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
+  /* const { collapse, setCollapse, userCollapse, setUserCollapse } = props;*/
   const [collapse, setCollapse] = useState(true);
   const [userCollapse, setUserCollapse] = useState(true);
+
   return (
     <div
       id="navbar-light"
       className={`${
         !collapse && !userCollapse && "sm:pb-0"
-      } flex font-bold justify-between items-center bg-white px-40 py-3 gap-10 sm:px-0 sm:pb-12 sm:flex-col`}
+      } flex font-bold justify-between items-center bg-white px-40 lg:px-32 py-3 gap-10 sm:px-0 sm:pb-12 sm:flex-col`}
     >
       <span className="flex sm:flex-col gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full">
         <span className="sm:flex sm:flex-row" id="top-bar">

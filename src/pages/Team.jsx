@@ -11,7 +11,7 @@ import mainImg from "../assets/team/box/1.png";
 import { data } from "../data.js";
 
 const Team = () => {
-  const { member, boxGroup } = data();
+  const { memberData, boxGroup } = data();
   return (
     <div className="flex justify-center flex-col px-40 sm:px-0">
       <section id="top-section" className="section-class flex-col gap-8">
@@ -35,27 +35,38 @@ const Team = () => {
           <span id="box-1" className="flex flex-row gap-3 sm:gap-1 ">
             {boxGroup.slice(0, 2).map((img, index) => (
               <span key={index} id="box-group" className="">
-                <img src={img} className="w-[360px] h-[260px]" alt="" />
+                <img
+                  src={img}
+                  className="w-[360px] h-[260px] object-cover"
+                  alt=""
+                />
               </span>
             ))}
           </span>
           <span id="box-2" className="flex flex-row gap-3 sm:gap-1">
             {boxGroup.slice(2).map((img, index) => (
               <span key={index + 2} id="box-group" className="">
-                <img src={img} className="w-[360px] h-[260px]" alt="" />
+                <img
+                  src={img}
+                  className="w-[360px] h-[260px] object-cover"
+                  alt=""
+                />
               </span>
             ))}
           </span>
         </span>
       </section>
-      <section id="team-section" className="section-class flex-col gap-12">
+      <section
+        id="team-section"
+        className="flex items-center py-10 font-bold text-center flex-col gap-12 "
+      >
         <h3 className="h3-styles">Meet Our Team</h3>
         <span
           id="team"
           className="flex flex-row flex-wrap gap-5 sm:gap-8 justify-center "
         >
-          {member.map((member, index) => (
-            <span key={index} id="member-1" className="team-span">
+          {memberData.map((member, index) => (
+            <span key={index} id={`member-${index + 1}`} className="team-span">
               <img src={member.img} />
               <h5>{member.username}</h5>
               <p className="p-styles">{member.job}</p>
