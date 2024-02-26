@@ -15,7 +15,7 @@ const Team = () => {
   return (
     <div className="flex justify-center flex-col px-40 sm:px-0">
       <section id="top-section" className="section-class flex-col gap-8">
-        <h5 className="h5-styles">WHAT WE DO</h5>
+        <h5 className="h5-styles sm:text-lg">WHAT WE DO</h5>
         <h2 className="h2-styles sm:w-full sm:flex sm:items-center sm:text-4xl">
           Innovation tailored for you
         </h2>
@@ -60,16 +60,20 @@ const Team = () => {
         id="team-section"
         className="flex items-center py-10 font-bold text-center flex-col gap-12 "
       >
-        <h3 className="h3-styles">Meet Our Team</h3>
+        <h3 className="h3-styles sm:text-4xl">Meet Our Team</h3>
         <span
           id="team"
           className="flex flex-row flex-wrap gap-5 sm:gap-8 justify-center "
         >
           {memberData.map((member, index) => (
-            <span key={index} id={`member-${index + 1}`} className="team-span">
+            <span
+              key={index}
+              id={`member-${index + 1}`}
+              className="team-span sm:text-xl"
+            >
               <img src={member.img} />
-              <h5>{member.username}</h5>
-              <p className="p-styles">{member.job}</p>
+              <h5 className="sm:text-lg">{member.username}</h5>
+              <p className="p-styles sm:text-lg">{member.job}</p>
               <span id="social-media" className="social-media">
                 <a href="https://www.instagram.com/">
                   <FontAwesomeIcon icon={faInstagram} />
@@ -86,15 +90,20 @@ const Team = () => {
         </span>
       </section>
       <section id="trial-section" className="section-class flex-col gap-8">
-        <h3 className="h3-styles sm:w-full">Start your 14 days free trial</h3>
-        <p className="p-styles w-1/3 sm:w-full">
+        <h3 className="h3-styles sm:w-full sm:text-5xl">
+          Start your 14 days free trial
+        </h3>
+        <p className="p-styles w-1/3 sm:w-full sm:text-lg">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>
-        <button className="text-center border border-blue1 rounded-lg px-5 py-3 bg-blue1 text-white font-bold text-sm">
+        <button className="text-center border border-blue1 rounded-lg px-5 py-3 bg-blue1 text-white font-bold text-sm sm:text-lg">
           Try it free now
         </button>
-        <span id="social-media" className="social-media text-2xl gap-8">
+        <span
+          id="social-media"
+          className="social-media text-2xl sm:text-3xl gap-8"
+        >
           <a href="https://www.instagram.com/">
             <FontAwesomeIcon icon={faInstagram} />
           </a>

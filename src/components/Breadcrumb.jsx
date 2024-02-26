@@ -8,7 +8,7 @@ const Breadcrumb = () => {
           <li className="flex items-center">
             <a
               href="/home"
-              className="text-gray-600 hover:text-blue-500 transition-colors duration-300"
+              className="text-gray hover:text-blue-500 transition-colors duration-300"
             >
               Home
             </a>

@@ -42,19 +42,19 @@ const Product = () => {
           id="explanation"
           className="flex flex-col gap-8 sm:gap-6 items-start"
         >
-          <h4 className="h4-styles">Floating Phone</h4>
+          <h4 className="h4-styles sm:text-xl">Floating Phone</h4>
           <RatingStars />
           <h3 className="h3-styles">$1,139.33</h3>
-          <span className="flex flex-row sm:w-full gap-2 p-styles">
+          <span className="flex flex-row sm:w-full gap-2 p-styles sm:text-base">
             <p>Availability :</p>
             <p>In Stock </p>
           </span>
-          <p className="p-styles w-4/5">
+          <p className="p-styles w-4/5 sm:w-full sm:text-lg">
             Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
             RELIT official consequent door ENIM RELIT Mollie. Excitation venial
             consequent sent nostrum met.
           </p>
-          <hr className="w-4/5" />
+          <hr className="w-4/5 sm:w-full" />
           <span id="colors">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-red"></div>
@@ -86,7 +86,7 @@ const Product = () => {
       >
         <span
           id="description-bar"
-          className="flex flex-row gap-12 sm:gap-4 sm:items-center sm:w-full sm:text-sm"
+          className="flex flex-row gap-12 sm:gap-4 sm:items-center sm:w-full sm:text-base"
         >
           <button>Description</button>
           <button>Additional Information</button>
@@ -113,54 +113,56 @@ const Product = () => {
             id="text-box-1"
             className="flex flex-col gap-4 w-1/3 items-start sm:w-full"
           >
-            <h4 className="h4-styles">the quick fox jumps over </h4>
-            <p className="p-styles w-[90%] sm:w-full">
+            <h4 className="h4-styles sm:text-lg">the quick fox jumps over </h4>
+            <p className="p-styles w-[90%] sm:w-full sm:text-base">
               Met minim Mollie non desert Alamo est sit cliquey dolor do met
               sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
               venial consequent sent nostrum met.
             </p>
-            <p className="p-styles w-[90%] sm:w-full">
+            <p className="p-styles w-[90%] sm:w-full sm:text-base">
               Met minim Mollie non desert Alamo est sit cliquey dolor do met
               sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
               venial consequent sent nostrum met.
             </p>
-            <p className="p-styles w-[90%] sm:w-full">
+            <p className="p-styles w-[90%] sm:w-full sm:text-base">
               Met minim Mollie non desert Alamo est sit cliquey dolor do met
               sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
               venial consequent sent nostrum met.
             </p>
           </span>
           <span id="text-box-2" className="flex flex-col gap-4">
-            <span id="text-1" className="flex flex-col gap-4">
-              <h4 className="h4-styles">the quick fox jumps over </h4>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+            <span id="text-1" className="flex flex-col gap-4 ">
+              <h4 className="h4-styles sm:text-lg">
+                the quick fox jumps over{" "}
+              </h4>
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
             </span>
-            <span id="text-2" className="flex flex-col gap-4">
+            <span id="text-2" className="flex flex-col gap-4 sm:text-lg">
               <h3>the quick fox jumps over </h3>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
-              <p className="p-styles w-full flex flex-row gap-2 items-center">
+              <p className="p-styles w-full flex flex-row gap-2 items-center sm:text-base">
                 <FontAwesomeIcon icon={faAngleRight} />
                 the quick fox jumps over the lazy dog
               </p>
@@ -173,7 +175,7 @@ const Product = () => {
         className="flex flex-col gap-8 pb-12 items-center"
       >
         <span className="flex flex-col gap-4 w-full">
-          <h4 className="h4-styles">BESTSELLER PRODUCTS</h4>
+          <h4 className="h4-styles sm:text-xl">BESTSELLER PRODUCTS</h4>
           <hr className="text-gray" />
         </span>
 

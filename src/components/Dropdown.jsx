@@ -48,8 +48,8 @@ export default function Dropdown() {
                 <a
                   href="/product"
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm sm:text-lg"
+                    active ? " bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm sm:text-lg sm:hidden"
                   )}
                 >
                   Product
@@ -72,15 +72,15 @@ export default function Dropdown() {
             <form method="POST" action="#">
               <Menu.Item>
                 {({ active }) => (
-                  <button
-                    type="submit"
+                  <a
+                    href="/pricing"
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm sm:text-lg"
+                      "block w-full px-4 py-2 text-left text-sm sm:text-lg sm:hidden"
                     )}
                   >
-                    Sign out
-                  </button>
+                    Pricing
+                  </a>
                 )}
               </Menu.Item>
             </form>

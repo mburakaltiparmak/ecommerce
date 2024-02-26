@@ -26,7 +26,7 @@ export const Shop = () => {
         id="top-level"
       >
         <span className="flex flex-row justify-between items-center sm:flex-col sm:gap-8">
-          <h2 className="text-xl font-bold text-darkblue1">Shop</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-darkblue1">Shop</h2>
           <span id="navbar">
             <Breadcrumb />
           </span>
@@ -59,20 +59,29 @@ export const Shop = () => {
         id="shop-section"
       >
         <span
-          className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm text-gray"
+          className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm  text-gray"
           id="filter-container"
         >
-          <p>Showing all {shopData.length} results</p>
+          <p className="sm:text-base">Showing all {shopData.length} results</p>
           <span
             id="views"
             className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
           >
-            <p className="flex items-center">Views:</p>
-            <button className="border border-gray rounded-lg p-3" id="1">
-              <img src={icon} className="w-[16px] h-[16px]" />
+            <p className="flex items-center sm:text-base">Views:</p>
+            <button
+              className="border border-gray rounded-lg p-3 text-base"
+              id="1"
+            >
+              <img src={icon} className="w-4 h-4 object-cover" />
             </button>
-            <button className="border border-gray rounded-lg p-3" id="2">
-              <FontAwesomeIcon icon={faListUl} className="w-[16px] h-[16px]" />
+            <button
+              className="border border-gray rounded-lg text-base px-3 py-2"
+              id="2"
+            >
+              <FontAwesomeIcon
+                icon={faListUl}
+                className="w-4 h-4 object-cover"
+              />
             </button>
           </span>
           <span className="flex flex-row gap-2 sm:gap-4" id="filter-order">
@@ -80,7 +89,7 @@ export const Shop = () => {
               <select
                 id="dropdown"
                 defaultValue="Popularity"
-                className="flex border border-gray rounded-lg py-4 px-4 w-full bg-lightgray"
+                className="flex border border-gray rounded-lg py-4 px-4 w-full sm:text-base bg-lightgray"
               >
                 <option>Popularity</option>
                 <option>1</option>
@@ -89,7 +98,7 @@ export const Shop = () => {
               </select>
             </label>
             <button
-              className="border border-gray rounded-lg py-3 px-5 bg-blue1 text-white"
+              className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
               id="2"
             >
               Filter

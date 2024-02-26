@@ -14,15 +14,19 @@ const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
   /* const { collapse, setCollapse, userCollapse, setUserCollapse } = props;*/
-  const [collapse, setCollapse] = useState(true);
-  const [userCollapse, setUserCollapse] = useState(true);
+  const [collapse, setCollapse] = useState(
+    window.matchMedia("(max-width: 640px)").matches
+  );
+  const [userCollapse, setUserCollapse] = useState(
+    window.matchMedia("(max-width: 640px)").matches
+  );
 
   return (
     <div
       id="navbar-light"
-      className={`${
+      className={`flex font-bold justify-between items-center lg:px-32 py-3 gap-10  bg-white px-40 ${
         !collapse && !userCollapse && "sm:pb-0"
-      } flex font-bold justify-between items-center bg-white px-40 lg:px-32 py-3 gap-10 sm:px-0 sm:pb-12 sm:flex-col`}
+      }  sm:px-0 sm:pb-12 sm:flex-col`}
     >
       <span className="flex sm:flex-col gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full">
         <span className="sm:flex sm:flex-row" id="top-bar">
@@ -59,14 +63,15 @@ const NavbarLight = (props) => {
               }}
             >
               <FontAwesomeIcon icon={faBars} />
+              <p className={`${collapse && "hidden"}`}>Menu</p>
             </button>
           </span>
         </span>
 
         <label
-          className={`${
+          className={`font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42] ${
             !collapse && "sm:hidden"
-          } font-bold items-start sm:flex-col sm:items-center sm:text-2xl sm:text-gray  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42]`}
+          } sm:flex-col sm:items-center sm:text-2xl sm:text-gray`}
         >
           <button className="" onClick={() => history.push("/home")}>
             Home
@@ -128,13 +133,14 @@ const NavbarLight = (props) => {
             </button>
           </span>
           <button
-            className="flex text-center gap-1 items-center"
+            className="flex text-center gap-1 sm:gap-2 items-center sm:hidden"
             id="navbar-nav-icons"
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
+            <p className="lg:hidden sm:flex">Search</p>
           </button>
           <button
-            className="flex text-center gap-1 items-center"
+            className="flex text-center gap-1 items-center sm:hidden"
             id="navbar-nav-icons"
           >
             <FontAwesomeIcon icon={faCartShopping} />1
