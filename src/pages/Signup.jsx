@@ -1,11 +1,17 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+
 const Signup = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    watch,
   } = useForm({ mode: "onChange" });
   const onSubmit = (data) => console.log(data);
+
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
 
   return (
     <section className="bg-white dark:bg-gray-900 sm:px-10 font-Montserrat font-bold">
@@ -53,11 +59,11 @@ const Signup = () => {
                   id="email"
                   type="email"
                   placeholder="johnsnow@example.com"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   {...register("email", {
                     required: "You must enter email",
                     pattern: /^\S+@\S+$/i,
                   })}
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 {errors.email && errors.email.type === "required" && (
                   <span className="text-red">This field is required</span>
@@ -74,26 +80,21 @@ const Signup = () => {
                 <input
                   type="password"
                   placeholder="Enter your password"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   {...register("password", {
-                    required: true,
-                    minLength: 8,
-                    pattern: /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[\W_]).{8,}$/,
+                    required: "You must enter a password",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/,
+                      message: "Password must meet complexity requirements",
+                    },
                   })}
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
-                {errors.password && errors.password.type === "required" && (
-                  <span className="text-red">This field is required</span>
-                )}
-                {errors.password && errors.password.type === "minLength" && (
-                  <span className="text-red">
-                    Password must be at least 8 characters long
-                  </span>
-                )}
-                {errors.password && errors.password.type === "pattern" && (
-                  <span className="text-red">
-                    Password must include at least one number, one lowercase
-                    letter, one uppercase letter, and one special character
-                  </span>
+                {errors.password && (
+                  <span className="text-red">{errors.password.message}</span>
                 )}
               </div>
 
@@ -104,20 +105,44 @@ const Signup = () => {
                 <input
                   type="password"
                   placeholder="Re-enter your password"
+                  {...register("confirmPassword", {
+                    validate: (value) =>
+                      value === password || "Passwords do not match",
+                  })}
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-
-                  /* {...register("confirmPassword", {
-                    validate: (value) => value === data.password,
-                  })}*/
                 />
                 {errors.confirmPassword && (
-                  <span className="text-red">Passwords do not match</span>
+                  <span className="text-red">
+                    {errors.confirmPassword.message}
+                  </span>
                 )}
               </div>
-
-              <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                <span>Sign Up </span>
-              </button>
+              <div id="role-field" className="">
+                <select
+                  className="border border-black rounded-md bg-white text-black p-2"
+                  name="role_id"
+                  id="role"
+                  {...register("role_id")}
+                >
+                  <option value={1}>admin</option>
+                  <option value={2}>customer</option>
+                  <option value={3}>xyz</option>
+                </select>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  disabled={!isValid}
+                  className={`${
+                    isValid
+                      ? "bg-blue-500 hover:bg-blue-400 focus:ring-blue-300 "
+                      : "bg-red hover:bg-orange-500 focus:ring-orange-300"
+                  } flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform  rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-50"`}
+                >
+                  <span>Sign Up </span>
+                </button>
+              </div>
+              {!isValid && <p className="text-red">Fill the form correctly</p>}
             </form>
           </div>
         </div>
@@ -125,4 +150,5 @@ const Signup = () => {
     </section>
   );
 };
+
 export default Signup;
