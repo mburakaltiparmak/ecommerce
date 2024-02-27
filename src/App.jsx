@@ -12,6 +12,7 @@ import Team from "./pages/Team";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+
 import "./App.css";
 function App() {
   return (

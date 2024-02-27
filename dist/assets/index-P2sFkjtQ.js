@@ -922,7 +922,7 @@ var eu = /[\-:]([a-z])/g;
 function tu(e) {
   return e[1].toUpperCase();
 }
-"accent-height alignment-baseline arabic-form baseline-shift cap-height clip-path clip-rule color-interpolation color-interpolation-filters color-profile color-rendering dominant-baseline enable-background fill-opacity fill-rule flood-color flood-opacity font-family font-size font-size-adjust font-stretch font-style font-variant font-weight glyph-name glyph-orientation-horizontal glyph-orientation-vertical horiz-adv-x horiz-origin-x image-rendering letter-spacing lighting-color marker-end marker-mid marker-start overline-position overline-thickness paint-order panose-1 pointer-events rendering-intent shape-rendering stop-color stop-opacity strikethrough-position strikethrough-thickness stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-miterlimit stroke-opacity stroke-width text-anchor text-decoration text-rendering underline-position underline-thickness unicode-bidi unicode-range units-per-em v-alphabetic v-hanging v-ideographic v-mathematical vector-effect vert-adv-y vert-origin-x vert-origin-y word-spacing writing-mode xmlns:xlink x-height"
+"accent-height alignment-baseline arabic-form baseline-shift cap-height clip-path clipRule color-interpolation color-interpolation-filters color-profile color-rendering dominant-baseline enable-background fill-opacity fillRule flood-color flood-opacity font-family font-size font-size-adjust font-stretch font-style font-variant font-weight glyph-name glyph-orientation-horizontal glyph-orientation-vertical horiz-adv-x horiz-origin-x image-rendering letter-spacing lighting-color marker-end marker-mid marker-start overline-position overline-thickness paint-order panose-1 pointer-events rendering-intent shape-rendering stop-color stop-opacity strikethrough-position strikethrough-thickness stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-miterlimit stroke-opacity stroke-width text-anchor text-decoration text-rendering underline-position underline-thickness unicode-bidi unicode-range units-per-em v-alphabetic v-hanging v-ideographic v-mathematical vector-effect vert-adv-y vert-origin-x vert-origin-y word-spacing writing-mode xmlns:xlink x-height"
   .split(" ")
   .forEach(function (e) {
     var t = e.replace(eu, tu);
@@ -19421,44 +19421,40 @@ const u3 = () => {
                 s.jsx("span", {
                   id: "box-1",
                   className: "flex flex-row gap-3 sm:gap-1 ",
-                  children: t
-                    .slice(0, 2)
-                    .map((n, r) =>
-                      s.jsx(
-                        "span",
-                        {
-                          id: "box-group",
-                          className: "",
-                          children: s.jsx("img", {
-                            src: n,
-                            className: "w-[360px] h-[260px]",
-                            alt: "",
-                          }),
-                        },
-                        r
-                      )
-                    ),
+                  children: t.slice(0, 2).map((n, r) =>
+                    s.jsx(
+                      "span",
+                      {
+                        id: "box-group",
+                        className: "",
+                        children: s.jsx("img", {
+                          src: n,
+                          className: "w-[360px] h-[260px]",
+                          alt: "",
+                        }),
+                      },
+                      r
+                    )
+                  ),
                 }),
                 s.jsx("span", {
                   id: "box-2",
                   className: "flex flex-row gap-3 sm:gap-1",
-                  children: t
-                    .slice(2)
-                    .map((n, r) =>
-                      s.jsx(
-                        "span",
-                        {
-                          id: "box-group",
-                          className: "",
-                          children: s.jsx("img", {
-                            src: n,
-                            className: "w-[360px] h-[260px]",
-                            alt: "",
-                          }),
-                        },
-                        r + 2
-                      )
-                    ),
+                  children: t.slice(2).map((n, r) =>
+                    s.jsx(
+                      "span",
+                      {
+                        id: "box-group",
+                        className: "",
+                        children: s.jsx("img", {
+                          src: n,
+                          className: "w-[360px] h-[260px]",
+                          alt: "",
+                        }),
+                      },
+                      r + 2
+                    )
+                  ),
                 }),
               ],
             }),
@@ -20276,9 +20272,9 @@ const A3 = () =>
                         viewBox: "0 0 20 20",
                         fill: "currentColor",
                         children: s.jsx("path", {
-                          "fill-rule": "evenodd",
+                          fillRule: "evenodd",
                           d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
-                          "clip-rule": "evenodd",
+                          clipRule: "evenodd",
                         }),
                       }),
                     ],
