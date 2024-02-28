@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
   const {
@@ -12,7 +13,55 @@ const Signup = () => {
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
-
+  const oldData = [""];
+  const dummyData = [
+    {
+      id: 1,
+      name: "Yönetici",
+      code: "admin",
+    },
+    {
+      id: 2,
+      name: "Mağaza",
+      code: "store",
+    },
+    {
+      id: 3,
+      name: "Müşteri",
+      code: "customer",
+    },
+  ];
+  const [roles, setRoles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      axios
+        .get("https://workintech-fe-ecommerce.onrender.com/roles")
+        .then((res) => {
+          const newData = { ...res.data };
+          setRoles(res.data);
+          const roleData = { roles };
+          console.log("newData", newData);
+          console.log("roles", roles);
+          console.log("roleData", roleData);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("hata", err);
+          setLoading(false);
+        });
+    }, 4000);
+    return () => clearTimeout(timeout);
+  }, []);
+  const [defaultValue, setDefaultValue] = useState("");
+  useEffect(() => {
+    if (roles.length > 0) {
+      setDefaultValue(roles[2].code);
+    }
+  }, [roles]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <section className="bg-white dark:bg-gray-900 sm:px-10 font-Montserrat font-bold">
       <div className="flex justify-center">
@@ -122,11 +171,14 @@ const Signup = () => {
                   className="border border-black rounded-md bg-white text-black p-2"
                   name="role_id"
                   id="role"
-                  {...register("role_id")}
+                  defaultValue={defaultValue}
+                  {...register("role_id", { required: true })}
                 >
-                  <option value={1}>admin</option>
-                  <option value={2}>customer</option>
-                  <option value={3}>xyz</option>
+                  {roles.map((role) => (
+                    <option key={role.id} value={role.id}>
+                      {role.code}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
