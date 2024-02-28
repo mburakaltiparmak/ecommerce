@@ -11,9 +11,12 @@ const Signup = () => {
   } = useForm({ mode: "onChange" });
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedRole, setSelectedRole] = useState("");
 
   const onSubmit = (data) => console.log(data);
-
+  const handleRoleChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
   const initialData = {
@@ -22,7 +25,7 @@ const Signup = () => {
     password: "",
     role_id: "",
     store: {
-      name: "",
+      store_name: "",
       phone: "",
       tax_no: "",
       bank_account: "",
@@ -194,15 +197,126 @@ const Signup = () => {
                   name="role_id"
                   id="role"
                   defaultValue={roles[2].id}
+                  onChange={handleRoleChange}
                   {...register("role_id", { required: true })}
                 >
-                  {roles.map((role) => (
-                    <option key={role.id} value={role.id}>
-                      {role.code}
-                    </option>
-                  ))}
+                  <option value={roles[0].id}>{roles[0].code}</option>
+                  <option value={roles[1].id}>{roles[1].code}</option>
+                  <option value={roles[2].id}>{roles[2].code}</option>
                 </select>
               </div>
+              {roles[1].id && (
+                <div id="store" className="flex flex-col gap-4">
+                  <div id="store-name-field">
+                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                      Store Name
+                    </label>
+                    <input
+                      id="store-name"
+                      type="text"
+                      placeholder="ABCD LTD"
+                      {...register("store_name", {
+                        required: "You must enter store name",
+                        minLength: {
+                          value: 3,
+                          message: "Min 3 characters",
+                        },
+                      })}
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    {errors.store_name && (
+                      <p className="text-red" id="store-name-error">
+                        {errors.store_name.message}
+                      </p>
+                    )}
+                  </div>
+                  <div id="phone-field">
+                    <label
+                      htmlFor="phone"
+                      className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >
+                      Phone
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      placeholder="0532 123 45 67"
+                      {...register("phone", {
+                        required: "You must enter a phone number",
+                        minLength: {
+                          value: 11,
+                          message: "Phone number must be at 11 characters long",
+                        },
+                        pattern: {
+                          value:
+                            /(^[0\s]?[\s]?)([(]?)([5])([0-9]{2})([)]?)([\s]?)([0-9]{3})([\s]?)([0-9]{2})([\s]?)([0-9]{2})$/g,
+                          message:
+                            "Phone number must meet complexity requirements",
+                        },
+                      })}
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    {errors.phone && (
+                      <span className="text-red">{errors.phone.message}</span>
+                    )}
+                  </div>
+                  <div id="taxID-field">
+                    <label
+                      htmlFor="taxID"
+                      className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >
+                      Tax ID
+                    </label>
+                    <input
+                      type="text"
+                      id="taxID"
+                      placeholder="Enter your TaxID"
+                      {...register("tax_no", {
+                        required: "You must enter tax ID",
+                        pattern: {
+                          value: /^T\d{4}V\d{6}$/,
+                          message: "Tax ID must match the pattern TXXXXVXXXXXX",
+                        },
+                      })}
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    {errors.tax_no && (
+                      <span className="text-red">{errors.tax_no.message}</span>
+                    )}
+                  </div>
+                  <div id="iban-field">
+                    <label
+                      htmlFor="iban"
+                      className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >
+                      IBAN
+                    </label>
+                    <input
+                      type="text"
+                      id="iban"
+                      placeholder="Enter your IBAN number"
+                      {...register("bank_account", {
+                        required: "You must enter a IBAN number",
+                        minLength: {
+                          value: 33,
+                          message: "IBAN must be at  33 characters long",
+                        },
+                        pattern: {
+                          value:
+                            /TR[a-zA-Z0-9]{2}\s?([0-9]{4}\s?){1}([0-9]{1})([a-zA-Z0-9]{3}\s?)([a-zA-Z0-9]{4}\s?){3}([a-zA-Z0-9]{2})\s?/,
+                          message: "IBAN must meet complexity requirements",
+                        },
+                      })}
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    {errors.bank_account && (
+                      <span className="text-red">
+                        {errors.bank_account.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
               <div>
                 <button
                   type="submit"
