@@ -9,59 +9,81 @@ const Signup = () => {
     formState: { errors, isValid },
     watch,
   } = useForm({ mode: "onChange" });
+  const [roles, setRoles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const onSubmit = (data) => console.log(data);
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
-  const oldData = [""];
-  const dummyData = [
-    {
-      id: 1,
-      name: "Yönetici",
-      code: "admin",
+  const initialData = {
+    name: "",
+    email: "",
+    password: "",
+    role_id: "",
+    store: {
+      name: "",
+      phone: "",
+      tax_no: "",
+      bank_account: "",
     },
-    {
-      id: 2,
-      name: "Mağaza",
-      code: "store",
-    },
-    {
-      id: 3,
-      name: "Müşteri",
-      code: "customer",
-    },
-  ];
-  const [roles, setRoles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  };
+
+  //axios
   useEffect(() => {
     const timeout = setTimeout(() => {
       axios
         .get("https://workintech-fe-ecommerce.onrender.com/roles")
         .then((res) => {
-          const newData = { ...res.data };
+          /*const newData = { ...res.data };*/
           setRoles(res.data);
-          const roleData = { roles };
-          console.log("newData", newData);
+
+          /*console.log("newData", newData);*/
           console.log("roles", roles);
-          console.log("roleData", roleData);
+
           setLoading(false);
         })
         .catch((err) => {
           console.error("hata", err);
           setLoading(false);
         });
-    }, 4000);
+    }, 1500);
     return () => clearTimeout(timeout);
   }, []);
-  const [defaultValue, setDefaultValue] = useState("");
-  useEffect(() => {
-    if (roles.length > 0) {
-      setDefaultValue(roles[2].code);
-    }
-  }, [roles]);
+
+  //SPINNER
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="relative">
+        <div className="absolute bg-white bg-opacity-60 z-10 h-full w-full top-24 flex items-center justify-center">
+          <div className="flex items-center">
+            <span className="text-3xl mr-4 ">Loading</span>
+            <svg
+              className="animate-spin h-8 w-8 text-gray-800"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    );
   }
+  //JSX
   return (
     <section className="bg-white dark:bg-gray-900 sm:px-10 font-Montserrat font-bold">
       <div className="flex justify-center">
@@ -171,7 +193,7 @@ const Signup = () => {
                   className="border border-black rounded-md bg-white text-black p-2"
                   name="role_id"
                   id="role"
-                  defaultValue={defaultValue}
+                  defaultValue={roles[2].id}
                   {...register("role_id", { required: true })}
                 >
                   {roles.map((role) => (
