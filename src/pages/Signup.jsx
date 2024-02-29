@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
 const Signup = () => {
   const {
     register,
@@ -10,11 +11,14 @@ const Signup = () => {
     formState: { errors, isValid },
     watch,
   } = useForm({ mode: "onChange" });
+  const history = useHistory();
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const password = watch("password");
+  const baseURL = "https://workintech-fe-ecommerce.onrender.com";
+  const instance = axios.create({ baseURL });
   const initialData = {
     name: "",
     email: "",
@@ -42,14 +46,12 @@ TR690006255762462438939879
     console.log("giden data", formDataToSend);
 
     setLoading(true);
-    axios
-      .post(
-        "https://workintech-fe-ecommerce.onrender.com/signup",
-        formDataToSend
-      )
+    instance
+      .post("/signup", formDataToSend)
       .then((res) => {
         console.log("response", res.data);
         setLoading(false);
+        history.push("/login");
         toast.success(
           `You need to click link in email to activate your account!`
         );
@@ -68,8 +70,8 @@ TR690006255762462438939879
   //axios
   useEffect(() => {
     const timeout = setTimeout(() => {
-      axios
-        .get("https://workintech-fe-ecommerce.onrender.com/roles")
+      instance
+        .get("/roles")
         .then((res) => {
           setRoles(res.data);
           console.log("roles", roles);
