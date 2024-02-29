@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Signup = () => {
   const {
     register,
@@ -11,26 +12,75 @@ const Signup = () => {
   } = useForm({ mode: "onChange" });
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedRole, setSelectedRole] = useState("");
+  const [selectedRole, setSelectedRole] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  /*
+  test data :
+Workintech
+05423649605
+T1234V567890
+TR690006255762462438939879
+  */
+  const onSubmit = (formData) => {
+    console.log("giden data", formData);
+    const initialData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      role_id: formData.role_id,
+      store: [
+        {
+          name: formData.store.name,
+          phone: formData.store.phone,
+          tax_no: formData.store.tax_no,
+          bank_account: formData.store.bank_account,
+        },
+      ],
+    };
+    const formDataToSend = new FormData();
+    Object.keys(initialData).forEach((key) => {
+      if (key === "store") {
+        const storeData = initialData[key];
+        Object.keys(storeData).forEach((storeKey) => {
+          formDataToSend.append(`store[${storeKey}]`, storeData[storeKey]);
+        });
+      } else {
+        formDataToSend.append(key, initialData[key]);
+      }
+    });
 
-  const onSubmit = (data) => console.log(data);
+    setLoading(true);
+    axios
+      .post(
+        "https://workintech-fe-ecommerce.onrender.com/signup",
+        formDataToSend
+      )
+      .then((res) => {
+        console.log("response", res.data);
+        setLoading(false);
+        toast.success(
+          `You need to click link in email to activate your account!`
+        );
+      })
+      .catch((err) => {
+        console.log("hata", err);
+        setLoading(false);
+        toast.error("Error.");
+      });
+  };
   const handleRoleChange = (e) => {
     setSelectedRole(e.target.value);
+    console.log("handle change", selectedRole);
   };
+
+  /*
+  useEffect(() => {
+    console.log("seçili rol", selectedRole);
+  }, [handleRoleChange]);
+  */
+
   const password = watch("password");
-  const confirmPassword = watch("confirmPassword");
-  const initialData = {
-    name: "",
-    email: "",
-    password: "",
-    role_id: "",
-    store: {
-      store_name: "",
-      phone: "",
-      tax_no: "",
-      bank_account: "",
-    },
-  };
+  /* const confirmPassword = watch("confirmPassword");*/
 
   //axios
   useEffect(() => {
@@ -179,33 +229,30 @@ const Signup = () => {
                 <input
                   type="password"
                   placeholder="Re-enter your password"
-                  {...register("confirmPassword", {
-                    validate: (value) =>
-                      value === password || "Passwords do not match",
-                  })}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
-                {errors.confirmPassword && (
-                  <span className="text-red">
-                    {errors.confirmPassword.message}
-                  </span>
-                )}
+                {!password
+                  ? null
+                  : password !== confirmPassword && (
+                      <p className="text-red">Passwords do not match</p>
+                    )}
               </div>
               <div id="role-field" className="">
                 <select
                   className="border border-black rounded-md bg-white text-black p-2"
                   name="role_id"
                   id="role"
-                  defaultValue={roles[2].id}
+                  value={selectedRole}
                   onChange={handleRoleChange}
                   {...register("role_id", { required: true })}
                 >
-                  <option value={roles[0].id}>{roles[0].code}</option>
-                  <option value={roles[1].id}>{roles[1].code}</option>
-                  <option value={roles[2].id}>{roles[2].code}</option>
+                  <option value={roles[0].id}>{roles[0].name}</option>
+                  <option value={roles[1].id}>{roles[1].name}</option>
+                  <option value={roles[2].id}>{roles[2].name}</option>
                 </select>
               </div>
-              {roles[1].id && (
+              {watch("role_id") === "2" && (
                 <div id="store" className="flex flex-col gap-4">
                   <div id="store-name-field">
                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -215,7 +262,7 @@ const Signup = () => {
                       id="store-name"
                       type="text"
                       placeholder="ABCD LTD"
-                      {...register("store_name", {
+                      {...register("store.name", {
                         required: "You must enter store name",
                         minLength: {
                           value: 3,
@@ -224,9 +271,9 @@ const Signup = () => {
                       })}
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
-                    {errors.store_name && (
+                    {errors.store?.name && (
                       <p className="text-red" id="store-name-error">
-                        {errors.store_name.message}
+                        {errors.store?.name.message}
                       </p>
                     )}
                   </div>
@@ -241,7 +288,7 @@ const Signup = () => {
                       type="tel"
                       id="phone"
                       placeholder="0532 123 45 67"
-                      {...register("phone", {
+                      {...register("store.phone", {
                         required: "You must enter a phone number",
                         minLength: {
                           value: 11,
@@ -256,8 +303,10 @@ const Signup = () => {
                       })}
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
-                    {errors.phone && (
-                      <span className="text-red">{errors.phone.message}</span>
+                    {errors.store?.phone && (
+                      <span className="text-red">
+                        {errors.store?.phone.message}
+                      </span>
                     )}
                   </div>
                   <div id="taxID-field">
@@ -271,7 +320,7 @@ const Signup = () => {
                       type="text"
                       id="taxID"
                       placeholder="Enter your TaxID"
-                      {...register("tax_no", {
+                      {...register("store.tax_no", {
                         required: "You must enter tax ID",
                         pattern: {
                           value: /^T\d{4}V\d{6}$/,
@@ -280,8 +329,10 @@ const Signup = () => {
                       })}
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
-                    {errors.tax_no && (
-                      <span className="text-red">{errors.tax_no.message}</span>
+                    {errors.store?.tax_no && (
+                      <span className="text-red">
+                        {errors.store?.tax_no.message}
+                      </span>
                     )}
                   </div>
                   <div id="iban-field">
@@ -295,11 +346,11 @@ const Signup = () => {
                       type="text"
                       id="iban"
                       placeholder="Enter your IBAN number"
-                      {...register("bank_account", {
+                      {...register("store.bank_account", {
                         required: "You must enter a IBAN number",
                         minLength: {
-                          value: 33,
-                          message: "IBAN must be at  33 characters long",
+                          value: 26,
+                          message: "IBAN must be at  26 characters long",
                         },
                         pattern: {
                           value:
@@ -309,9 +360,9 @@ const Signup = () => {
                       })}
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
-                    {errors.bank_account && (
+                    {errors.store?.bank_account && (
                       <span className="text-red">
-                        {errors.bank_account.message}
+                        {errors.store?.bank_account.message}
                       </span>
                     )}
                   </div>
