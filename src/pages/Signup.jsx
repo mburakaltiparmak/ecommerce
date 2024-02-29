@@ -220,18 +220,20 @@ TR690006255762462438939879
                     )}
               </div>
               <div id="role-field" className="">
-                <select
-                  className="border border-black rounded-md bg-white text-black p-2"
-                  name="role_id"
-                  id="role"
-                  value={selectedRole}
-                  onChange={handleRoleChange}
-                  {...register("role_id", { required: true })}
-                >
-                  <option value={roles[0].id}>{roles[0].name}</option>
-                  <option value={roles[1].id}>{roles[1].name}</option>
-                  <option value={roles[2].id}>{roles[2].name}</option>
-                </select>
+                {roles.length > 0 && (
+                  <select
+                    className="border border-black rounded-md bg-white text-black p-2"
+                    name="role_id"
+                    id="role"
+                    defaultValue={roles[2].id}
+                    onChange={handleRoleChange}
+                    {...register("role_id", { required: true })}
+                  >
+                    <option value={roles[0].id}>{roles[0].name}</option>
+                    <option value={roles[1].id}>{roles[1].name}</option>
+                    <option value={roles[2].id}>{roles[2].name}</option>
+                  </select>
+                )}
               </div>
               {watch("role_id") === "2" && (
                 <div id="store" className="flex flex-col gap-4">
