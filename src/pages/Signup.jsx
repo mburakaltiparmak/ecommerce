@@ -14,6 +14,19 @@ const Signup = () => {
   const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+  const password = watch("password");
+  const initialData = {
+    name: "",
+    email: "",
+    password: "",
+    role_id: "",
+    store: {
+      name: "",
+      phone: "",
+      tax_no: "",
+      bank_account: "",
+    },
+  };
   /*
   test data :
 Workintech
@@ -21,33 +34,12 @@ Workintech
 T1234V567890
 TR690006255762462438939879
   */
+
+  //Helper Functions
+
   const onSubmit = (formData) => {
-    console.log("giden data", formData);
-    const initialData = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-      role_id: formData.role_id,
-      store: [
-        {
-          name: formData.store.name,
-          phone: formData.store.phone,
-          tax_no: formData.store.tax_no,
-          bank_account: formData.store.bank_account,
-        },
-      ],
-    };
-    const formDataToSend = new FormData();
-    Object.keys(initialData).forEach((key) => {
-      if (key === "store") {
-        const storeData = initialData[key];
-        Object.keys(storeData).forEach((storeKey) => {
-          formDataToSend.append(`store[${storeKey}]`, storeData[storeKey]);
-        });
-      } else {
-        formDataToSend.append(key, initialData[key]);
-      }
-    });
+    const formDataToSend = formData;
+    console.log("giden data", formDataToSend);
 
     setLoading(true);
     axios
@@ -65,7 +57,7 @@ TR690006255762462438939879
       .catch((err) => {
         console.log("hata", err);
         setLoading(false);
-        toast.error("Error.");
+        toast.error("Form posting has been failed.");
       });
   };
   const handleRoleChange = (e) => {
@@ -73,34 +65,21 @@ TR690006255762462438939879
     console.log("handle change", selectedRole);
   };
 
-  /*
-  useEffect(() => {
-    console.log("seçili rol", selectedRole);
-  }, [handleRoleChange]);
-  */
-
-  const password = watch("password");
-  /* const confirmPassword = watch("confirmPassword");*/
-
   //axios
   useEffect(() => {
     const timeout = setTimeout(() => {
       axios
         .get("https://workintech-fe-ecommerce.onrender.com/roles")
         .then((res) => {
-          /*const newData = { ...res.data };*/
           setRoles(res.data);
-
-          /*console.log("newData", newData);*/
           console.log("roles", roles);
-
           setLoading(false);
         })
         .catch((err) => {
           console.error("hata", err);
           setLoading(false);
         });
-    }, 1500);
+    }, 1000);
     return () => clearTimeout(timeout);
   }, []);
 

@@ -17,6 +17,7 @@ import "./App.css";
 function App() {
   return (
     <div id="main" className="w-full">
+      <ToastContainer />
       <Header />
 
       <Switch>
