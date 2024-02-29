@@ -4,7 +4,7 @@ const initialState = {
   theme: "",
   language: "",
 };
-const globalActions = {
+export const globalActions = {
   setRoles: "SET_ROLES",
   setCategories: "SET_CATEGORIES",
   setTheme: "SET_THEME",
