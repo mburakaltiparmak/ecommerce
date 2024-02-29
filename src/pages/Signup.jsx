@@ -11,40 +11,22 @@ const Signup = () => {
     formState: { errors, isValid },
     watch,
   } = useForm({ mode: "onChange" });
-  const history = useHistory();
+  //stateler
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+
+  //
+  const history = useHistory();
   const password = watch("password");
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
-  const initialData = {
-    name: "",
-    email: "",
-    password: "",
-    role_id: "",
-    store: {
-      name: "",
-      phone: "",
-      tax_no: "",
-      bank_account: "",
-    },
-  };
-  /*
-  test data :
-Workintech
-05423649605
-T1234V567890
-TR690006255762462438939879
-  */
 
   //Helper Functions
-
   const onSubmit = (formData) => {
     const formDataToSend = formData;
     console.log("giden data", formDataToSend);
-
     setLoading(true);
     instance
       .post("/signup", formDataToSend)
