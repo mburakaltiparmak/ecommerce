@@ -1,10 +1,13 @@
 const initialState = {
-  cart: {
-    count: 0,
-    product: {
-      id: "",
+  cart: [
+    {
+      count: 0,
+
+      product: {
+        id: null,
+      },
     },
-  },
+  ],
   payment: {},
   address: {},
 };
