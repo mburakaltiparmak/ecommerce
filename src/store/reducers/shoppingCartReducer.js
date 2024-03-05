@@ -11,7 +11,7 @@ const initialState = {
   payment: {},
   address: {},
 };
-export const actions = {
+export const shoppingCartActions = {
   setAddCart: "SET_ADD_CART",
   setAddPayment: "SET_ADD_PAYMENT",
   setAddAddress: "SET_ADD_ADDRESS",

@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-export const actions = {
+export const userActions = {
   setUserName: "SET_USER_NAME",
   setUserEmail: "SET_USER_EMAIL",
   setUserId: "SET_USER_ID",

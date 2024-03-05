@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-export const actions = {
+export const storeActions = {
   setStore: "SET_STORE",
 };
 

@@ -1,19 +1,19 @@
 import axios from "axios";
 
-import { actions } from "../reducers/userReducer";
+import { userActions } from "../reducers/userReducer";
 
-export const setUserName = (name) => ({
-  type: actions.SET_USER_NAME,
+export const userName = (name) => ({
+  type: userActions.setUserName,
   payload: name,
 });
 
-export const setUserEmail = (email) => ({
-  type: actions.SET_USER_EMAIL,
+export const userEmail = (email) => ({
+  type: userActions.setUserEmail,
   payload: email,
 });
 
-export const setUserId = (role_id) => ({
-  type: actions.SET_USER_ID,
+export const userId = (role_id) => ({
+  type: userActions.setUserId,
   payload: role_id,
 });
 

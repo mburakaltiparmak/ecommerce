@@ -1,14 +1,14 @@
-import { actions } from "../reducers/shoppingCartReducer";
+import { shoppingCartActions } from "../reducers/shoppingCartReducer";
 
-export const setAddCart = (cart) => ({
-  type: actions.SET_ADD_CART,
+export const AddCart = (cart) => ({
+  type: shoppingCartActions.setAddCart,
   payload: cart,
 });
-export const setAddPayment = (payment) => ({
-  type: actions.SET_ADD_PAYMENT,
+export const AddPayment = (payment) => ({
+  type: shoppingCartActions.setAddPayment,
   payload: payment,
 });
-export const setAddAddress = (address) => ({
-  type: actions.SET_ADD_ADDRESS,
+export const AddAddress = (address) => ({
+  type: shoppingCartActions.setAddAddress,
   payload: address,
 });

@@ -1,18 +1,18 @@
 import { globalActions } from "../reducers/globalReducer";
 
-export const setRoles = (roles) => ({
-  type: globalActions.SET_ROLES,
+export const rolesSetter = (roles) => ({
+  type: globalActions.setRoles,
   payload: roles,
 });
-export const setCategories = (categories) => ({
-  type: globalActions.SET_CATEGORIES,
+export const categoriesSetter = (categories) => ({
+  type: globalActions.setCategories,
   payload: categories,
 });
-export const setTheme = (theme) => ({
-  type: globalActions.SET_THEME,
+export const themeSetter = (theme) => ({
+  type: globalActions.setTheme,
   payload: theme,
 });
-export const setLanguage = (language) => ({
-  type: globalActions.SET_LANGUAGE,
+export const languageSetter = (language) => ({
+  type: globalActions.setLanguage,
   payload: language,
 });

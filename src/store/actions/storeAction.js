@@ -1,6 +1,6 @@
-import { actions } from "../reducers/storeReducer";
+import { storeActions } from "../reducers/storeReducer";
 
-export const setStore = (store) => ({
-  type: actions.SET_STORE,
+export const setStoreCreator = (store) => ({
+  type: storeActions.setStore,
   payload: store,
 });

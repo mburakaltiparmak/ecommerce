@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { actions } from "../reducers/productReducer";
+import { productActions } from "../reducers/productReducer";
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
@@ -25,27 +25,27 @@ useEffect(() => {
   }, []);
   */
 
-export const setProductList = (products) => ({
-  type: actions.SET_PRODUCT_LIST,
+export const productListSetter = (products) => ({
+  type: productActions.setProductList,
   payload: products,
 });
 
-export const setFetchState = (fetchState) => ({
-  type: actions.SET_FETCH_STATE,
+export const fetchStateSetter = (fetchState) => ({
+  type: productActions.setFetchState,
   payload: fetchState,
 });
 
-export const setProductCount = (productCount) => ({
-  type: actions.SET_PRODUCT_COUNT,
+export const productCountSetter = (productCount) => ({
+  type: productActions.setProductCount,
   payload: productCount,
 });
 
-export const setPageCount = (pageCount) => ({
-  type: actions.SET_PAGE_COUNT,
+export const pageCountSetter = (pageCount) => ({
+  type: productActions.setPageCount,
   payload: pageCount,
 });
 
-export const setActivePage = (activePage) => ({
-  type: actions.SET_ACTIVE_PAGE,
+export const activePageSetter = (activePage) => ({
+  type: productActions.setActivePage,
   payload: activePage,
 });

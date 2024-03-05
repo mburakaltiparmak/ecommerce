@@ -14,37 +14,37 @@ export const fetchStates = {
   FAILED: "FAILED",
 };
 
-export const actions = {
-  SET_PRODUCT_LIST: "SET_PRODUCT_LIST",
-  SET_PRODUCT_COUNT: "SET_PRODUCT_COUNT",
-  SET_PAGE_COUNT: "SET_PAGE_COUNT",
-  SET_ACTIVE_PAGE: "SET_ACTIVE_PAGE",
-  SET_FETCH_STATE: "SET_FETCH_STATE",
+export const productActions = {
+  setProductList: "SET_PRODUCT_LIST",
+  setProductCount: "SET_PRODUCT_COUNT",
+  setPageCount: "SET_PAGE_COUNT",
+  setActivePage: "SET_ACTIVE_PAGE",
+  setFetchState: "SET_FETCH_STATE",
 };
 
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.SET_PRODUCT_LIST:
+    case actions.setProductList:
       return {
         ...state,
         productList: action.payload,
       };
-    case actions.SET_PRODUCT_COUNT:
+    case actions.setProductCount:
       return {
         ...state,
         totalProductCount: action.payload,
       };
-    case actions.SET_PAGE_COUNT:
+    case actions.setPageCount:
       return {
         ...state,
         pageCount: action.payload,
       };
-    case actions.SET_ACTIVE_PAGE:
+    case actions.setActivePage:
       return {
         ...state,
         activePage: action.payload,
       };
-    case actions.SET_FETCH_STATE:
+    case actions.setFetchState:
       return {
         ...state,
         fetchState: action.payload,
