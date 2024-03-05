@@ -4,7 +4,7 @@ import {
   applyMiddleware,
 } from "redux";
 import logger from "redux-logger";
-import thunk from "redux-logger";
+import { thunk } from "redux-thunk";
 import globalReducer from "./reducers/globalReducer";
 
 const reducers = combineReducers({

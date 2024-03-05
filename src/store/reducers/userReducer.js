@@ -7,15 +7,27 @@ const initialState = {
   },
 };
 
-export const userAction = {
-  setUser: "SET_USER",
+export const actions = {
+  setUserName: "SET_USER_NAME",
+  setUserEmail: "SET_USER_EMAIL",
+  setUserId: "SET_USER_ID",
 };
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case userAction.setUser:
+    case userAction.setUserName:
       return {
         ...state,
-        user: action.payload,
+        name: action.payload,
+      };
+    case userAction.setUserEmail:
+      return {
+        ...state,
+        email: action.payload,
+      };
+    case userAction.setUserId:
+      return {
+        ...state,
+        role_id: action.payload,
       };
     default:
       return state;
