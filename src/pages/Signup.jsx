@@ -4,6 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getRoles } from "../store/actions/userAction";
 const Signup = () => {
   const {
     register,
@@ -22,7 +24,7 @@ const Signup = () => {
   const password = watch("password");
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
-
+  const dispatch = useDispatch();
   //Helper Functions
   const onSubmit = (formData) => {
     const formDataToSend = formData;
@@ -48,7 +50,7 @@ const Signup = () => {
     setSelectedRole(e.target.value);
     console.log("handle change", selectedRole);
   };
-
+  /*
   //axios
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -63,6 +65,14 @@ const Signup = () => {
           console.error("hata", err);
           setLoading(false);
         });
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+*/
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      dispatch(getRoles());
+      setLoading(false);
     }, 1000);
     return () => clearTimeout(timeout);
   }, []);
