@@ -1,3 +1,4 @@
+import axios from "axios";
 import { globalActions } from "../reducers/globalReducer";
 
 export const rolesSetter = (roles) => ({
@@ -16,3 +17,18 @@ export const languageSetter = (language) => ({
   type: globalActions.setLanguage,
   payload: language,
 });
+
+//THUNK ACTIONS EKLENECEK
+const baseURL = "https://workintech-fe-ecommerce.onrender.com";
+const instance = axios.create({ baseURL });
+export const getRoles = () => (dispatch, getState) => {
+  instance
+    .get("/roles")
+    .then((res) => {
+      console.log("gelen data", res.data);
+      dispatch(rolesSetter(res.data));
+    })
+    .catch((err) => {
+      console.log("hata", err);
+    });
+};

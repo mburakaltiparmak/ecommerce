@@ -4,8 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getRoles } from "../store/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { getRoles } from "../store/actions/globalAction";
 const Signup = () => {
   const {
     register,
@@ -14,7 +14,8 @@ const Signup = () => {
     watch,
   } = useForm({ mode: "onChange" });
   //stateler
-  const [roles, setRoles] = useState([]);
+
+  /*const [roles, setRoles] = useState([]);*/
   const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -25,6 +26,8 @@ const Signup = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
+  const roles = useSelector((store) => store.roles);
+
   //Helper Functions
   const onSubmit = (formData) => {
     const formDataToSend = formData;
@@ -212,20 +215,20 @@ const Signup = () => {
                     )}
               </div>
               <div id="role-field" className="">
-                {roles.length > 0 && (
-                  <select
-                    className="border border-black rounded-md bg-white text-black p-2"
-                    name="role_id"
-                    id="role"
-                    defaultValue={roles[2].id}
-                    onChange={handleRoleChange}
-                    {...register("role_id", { required: true })}
-                  >
-                    <option value={roles[0].id}>{roles[0].name}</option>
-                    <option value={roles[1].id}>{roles[1].name}</option>
-                    <option value={roles[2].id}>{roles[2].name}</option>
-                  </select>
-                )}
+                <select
+                  className="border border-black rounded-md bg-white text-black p-2"
+                  name="role_id"
+                  id="role"
+                  onChange={handleRoleChange}
+                  {...register("role_id", { required: true })}
+                >
+                  {roles &&
+                    roles.map((role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.name}
+                      </option>
+                    ))}
+                </select>
               </div>
               {watch("role_id") === "2" && (
                 <div id="store" className="flex flex-col gap-4">

@@ -1,5 +1,5 @@
 const initialState = {
-  roles: [],
+  roles: [""],
   categories: [],
   theme: "",
   language: "",
