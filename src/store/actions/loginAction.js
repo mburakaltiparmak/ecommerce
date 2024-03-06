@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { userEmailSetter, userIdSetter, userNameSetter } from "./userAction";
 
 export const emailPoster = (email) => ({
   type: loginActions.postEmail,
@@ -31,6 +32,9 @@ export const postLoginData =
         }
         dispatch(emailPoster(res.data.email));
         dispatch(rememberMePoster(res.data.rememberMe));
+        dispatch(userNameSetter(res.data.name));
+        dispatch(userEmailSetter(res.data.email));
+        dispatch(userIdSetter(res.data.role_id));
         setLoading(false);
         history.push("/home");
         toast.success(`You have been successfully logged in!`);
@@ -41,5 +45,3 @@ export const postLoginData =
         toast.error("Login process has been failed!");
       });
   };
-
-/*setEmail(res.data.email);*/
