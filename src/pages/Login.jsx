@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { postLoginData } from "../store/actions/loginAction";
+import { useDispatch } from "react-redux";
 const Login = () => {
   const {
     register,
@@ -21,7 +23,11 @@ const Login = () => {
   const instance = axios.create({ baseURL });
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
   const onSubmit = (formData) => {
+    dispatch(postLoginData(formData, history, setLoading));
+
+    /*
     const formDataToSend = formData;
     console.log("giden data", formDataToSend);
     setLoading(true);
@@ -34,7 +40,7 @@ const Login = () => {
           localStorage.setItem("email", res.data.email);
           setLoading(false);
         }
-        /*setEmail(res.data.email);*/
+       
         history.push("/home");
         setLoading(false);
         toast.success(`You have been successfully logged in!`);
@@ -44,6 +50,7 @@ const Login = () => {
         setLoading(false);
         toast.error("Login process has been failed!");
       });
+      */
   };
   //SPINNER
   if (loading) {
