@@ -18,7 +18,7 @@ export const languageSetter = (language) => ({
   payload: language,
 });
 
-//THUNK ACTIONS EKLENECEK
+//THUNK
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";
 const instance = axios.create({ baseURL });
 export const getRoles = () => (dispatch, getState) => {
