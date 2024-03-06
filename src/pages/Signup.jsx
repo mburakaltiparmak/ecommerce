@@ -26,7 +26,7 @@ const Signup = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
-  const roles = useSelector((store) => store.roles);
+  const roles = useSelector((store) => store.globalReducer.roles);
 
   //Helper Functions
   const onSubmit = (formData) => {
@@ -37,6 +37,7 @@ const Signup = () => {
       .post("/signup", formDataToSend)
       .then((res) => {
         console.log("response", res.data);
+
         setLoading(false);
         history.push("/login");
         toast.success(

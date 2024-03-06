@@ -1,7 +1,78 @@
-import { useHistory } from "react-router-dom";
-
+import { useHistory, useLocation } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      email: localStorage.getItem("email") || "",
+      password: "",
+      rememberMe: false,
+    },
+  });
+  const [loading, setLoading] = useState(false);
+  const baseURL = "https://workintech-fe-ecommerce.onrender.com";
+  const instance = axios.create({ baseURL });
   const history = useHistory();
+  const location = useLocation();
+  const onSubmit = (formData) => {
+    const formDataToSend = formData;
+    console.log("giden data", formDataToSend);
+    setLoading(true);
+    instance
+      .post("/login", formDataToSend)
+      .then((res) => {
+        console.log("Login oldu: ", res.data);
+        if (formData.rememberMe) {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("email", res.data.email);
+          setLoading(false);
+        }
+        /*setEmail(res.data.email);*/
+        history.push("/home");
+        setLoading(false);
+        toast.success(`You have been successfully logged in!`);
+      })
+      .catch((err) => {
+        console.log("hata", err);
+        setLoading(false);
+        toast.error("Login process has been failed!");
+      });
+  };
+  //SPINNER
+  if (loading) {
+    return (
+      <div className="relative">
+        <div className="absolute bg-white bg-opacity-60 z-10 h-full w-full top-24 flex items-center justify-center">
+          <div className="flex items-center">
+            <span className="text-3xl mr-4 ">Loading</span>
+            <svg
+              className="animate-spin h-8 w-8 text-gray-800"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="bg-white dark:bg-gray-900 py-10">
       <div className="flex justify-center ">
@@ -20,7 +91,7 @@ const Login = () => {
             </div>
 
             <div className="mt-8">
-              <form>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <label
                     htmlFor="email"
@@ -34,6 +105,7 @@ const Login = () => {
                     id="email"
                     placeholder="example@example.com"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    {...register("email")}
                   />
                 </div>
 
@@ -59,7 +131,20 @@ const Login = () => {
                     id="password"
                     placeholder="Your Password"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    {...register("password")}
                   />
+                </div>
+                <div className="mt-6 flex flex-row gap-1">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="rememberMe"
+                    data-testid="remember-input"
+                    {...register("rememberMe")}
+                  />
+                  <label className="form-check-label" htmlFor="rememberMe">
+                    Remember me!
+                  </label>
                 </div>
 
                 <div className="mt-6">
