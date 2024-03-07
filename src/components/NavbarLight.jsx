@@ -10,6 +10,7 @@ import {
 
 import Dropdown from "../components/Dropdown";
 import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
@@ -20,6 +21,9 @@ const NavbarLight = (props) => {
   const [userCollapse, setUserCollapse] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
+
+  const userData = useSelector((store) => store.userRed);
+  console.log("userData", userData);
 
   return (
     <div
@@ -109,29 +113,52 @@ const NavbarLight = (props) => {
           htmlFor=""
           className={`${
             !userCollapse && "sm:hidden"
-          } flex items-center justify-between gap-8 md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl`}
+          } flex flex-row items-center justify-between gap-8 md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl`}
         >
-          <span
-            id="user-login"
-            className="flex flex-row gap-2 sm:gap-4 sm:flex-col"
-          >
-            <button
-              id="navbar-nav-icons"
-              onClick={() => history.push("/login")}
-              className="flex  text-sm font-bold sm:text-xl text-center gap-1 sm:gap-2 items-center "
+          {userData.name ? (
+            <span
+              id="user-login"
+              className="flex flex-row gap-1 items-center text-center sm:gap-4 sm:flex-col"
             >
-              <FontAwesomeIcon icon={faUser} />
-              Login
-            </button>
-            <p className="sm:hidden">/</p>
-            <button
-              id="navbar-nav-icons"
-              onClick={() => history.push("/signup")}
-              className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
+              <button
+                id="navbar-nav-icons"
+                className="flex flex-row text-sm font-bold sm:text-xl text-center gap-1 sm:gap-2 items-center  "
+              >
+                <FontAwesomeIcon icon={faUser} />
+                {userData.name}
+              </button>
+              <p className="sm:hidden">/</p>
+              <button
+                id="navbar-nav-icons"
+                className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
+              >
+                {userData.email}
+              </button>
+            </span>
+          ) : (
+            <span
+              id="user-login"
+              className="flex flex-row gap-2 sm:gap-4 sm:flex-col"
             >
-              Register
-            </button>
-          </span>
+              <button
+                id="navbar-nav-icons"
+                onClick={() => history.push("/login")}
+                className="flex  text-sm font-bold sm:text-xl text-center gap-1 sm:gap-2 items-center "
+              >
+                <FontAwesomeIcon icon={faUser} />
+                Login
+              </button>
+              <p className="sm:hidden">/</p>
+              <button
+                id="navbar-nav-icons"
+                onClick={() => history.push("/signup")}
+                className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
+              >
+                Register
+              </button>
+            </span>
+          )}
+
           <button
             className="flex text-center gap-1 sm:gap-2 items-center sm:hidden"
             id="navbar-nav-icons"

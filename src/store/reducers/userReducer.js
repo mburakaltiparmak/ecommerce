@@ -14,17 +14,17 @@ export const userActions = {
 };
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.setUserName:
+    case userActions.setUserName:
       return {
         ...state,
         name: action.payload,
       };
-    case actions.setUserEmail:
+    case userActions.setUserEmail:
       return {
         ...state,
         email: action.payload,
       };
-    case actions.setUserId:
+    case userActions.setUserId:
       return {
         ...state,
         role_id: action.payload,

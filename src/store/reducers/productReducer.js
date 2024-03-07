@@ -1,17 +1,17 @@
+export const fetchStates = {
+  NOT_FETCHED: "NOT_FETCHED",
+  FETCHING: "FETCHING",
+  FETCHED: "FETCHED",
+  FAILED: "FAILED",
+};
 const initialState = {
   product: {
     productList: {},
     totalProductCount: 0,
     pageCount: 1,
     activePage: 1,
-    fetchState: fetchState.NOT_FETCHED,
+    fetchState: fetchStates.NOT_FETCHED,
   },
-};
-export const fetchStates = {
-  NOT_FETCHED: "NOT_FETCHED",
-  FETCHING: "FETCHING",
-  FETCHED: "FETCHED",
-  FAILED: "FAILED",
 };
 
 export const productActions = {
@@ -24,27 +24,27 @@ export const productActions = {
 
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.setProductList:
+    case productActions.setProductList:
       return {
         ...state,
         productList: action.payload,
       };
-    case actions.setProductCount:
+    case productActions.setProductCount:
       return {
         ...state,
         totalProductCount: action.payload,
       };
-    case actions.setPageCount:
+    case productActions.setPageCount:
       return {
         ...state,
         pageCount: action.payload,
       };
-    case actions.setActivePage:
+    case productActions.setActivePage:
       return {
         ...state,
         activePage: action.payload,
       };
-    case actions.setFetchState:
+    case productActions.setFetchState:
       return {
         ...state,
         fetchState: action.payload,
