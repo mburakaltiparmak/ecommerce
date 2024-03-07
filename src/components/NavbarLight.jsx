@@ -7,10 +7,10 @@ import {
   faHeart,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-
 import Dropdown from "../components/Dropdown";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useGravatar } from "use-gravatar";
 const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
@@ -24,15 +24,19 @@ const NavbarLight = (props) => {
 
   const userData = useSelector((store) => store.userRed);
   console.log("userData", userData);
+  const gravatar = useGravatar(userData.email);
 
   return (
     <div
       id="navbar-light"
-      className={`flex font-bold justify-between items-center lg:px-32 md:px-10 py-3 gap-10  bg-white px-40 ${
+      className={`flex font-bold justify-between items-center lg:px-32 md:px-10 py-3 gap-10 lg:gap-6 bg-white px-40 ${
         !collapse && !userCollapse && "sm:pb-0"
       }  sm:px-0 sm:pb-12 sm:flex-col`}
     >
-      <span className="flex sm:flex-col gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full">
+      <span
+        id="main-1"
+        className="flex sm:flex-col gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full"
+      >
         <span className="sm:flex sm:flex-row" id="top-bar">
           <button
             onClick={() => history.push("/home")}
@@ -73,6 +77,7 @@ const NavbarLight = (props) => {
         </span>
 
         <label
+          id=""
           className={`font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42] ${
             !collapse && "sm:hidden"
           } sm:flex-col sm:items-center sm:text-2xl sm:text-gray`}
@@ -107,32 +112,30 @@ const NavbarLight = (props) => {
         </label>
       </span>
 
-      <span className={`${!collapse && !userCollapse && "sm:hidden"}`}>
+      <span
+        id="main-2"
+        className={`${
+          !collapse && !userCollapse && "sm:hidden"
+        } flex flex-row w-full px-1 justify-end sm:justify-center`}
+      >
         <label
           id="navbar-nav"
           htmlFor=""
           className={`${
             !userCollapse && "sm:hidden"
-          } flex flex-row items-center justify-between gap-8 md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl`}
+          } flex flex-row items-center justify-between text-center gap-8  md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl`}
         >
           {userData.name ? (
             <span
               id="user-login"
-              className="flex flex-row gap-1 items-center text-center sm:gap-4 sm:flex-col"
+              className="flex flex-row gap-2 lg:gap-4 items-center text-center lg:justify-between w-full  sm:gap-4 sm:flex-col"
             >
               <button
                 id="navbar-nav-icons"
-                className="flex flex-row text-sm font-bold sm:text-xl text-center gap-1 sm:gap-2 items-center  "
+                className="flex flex-row text-sm font-bold sm:text-xl text-center gap-2 sm:gap-2 items-center  "
               >
-                <FontAwesomeIcon icon={faUser} />
+                <img src={gravatar} alt="" className="w-8 h-8" />
                 {userData.name}
-              </button>
-              <p className="sm:hidden">/</p>
-              <button
-                id="navbar-nav-icons"
-                className="flex  text-sm font-bold sm:text-xl text-center gap-1 items-center "
-              >
-                {userData.email}
               </button>
             </span>
           ) : (
@@ -158,26 +161,27 @@ const NavbarLight = (props) => {
               </button>
             </span>
           )}
-
-          <button
-            className="flex text-center gap-1 sm:gap-2 items-center sm:hidden"
-            id="navbar-nav-icons"
-          >
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-            <p className="lg:hidden sm:flex">Search</p>
-          </button>
-          <button
-            className="flex text-center gap-1 items-center sm:hidden"
-            id="navbar-nav-icons"
-          >
-            <FontAwesomeIcon icon={faCartShopping} />1
-          </button>
-          <button
-            className="flex text-center gap-1 items-center"
-            id="navbar-nav-icons"
-          >
-            <FontAwesomeIcon icon={faHeart} />2
-          </button>
+          <span className="flex flex-row gap-2">
+            <button
+              className="flex text-center gap-1 sm:gap-2 items-center sm:hidden"
+              id="navbar-nav-icons"
+            >
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <p className="lg:hidden sm:flex">Search</p>
+            </button>
+            <button
+              className="flex text-center gap-1 items-center sm:hidden"
+              id="navbar-nav-icons"
+            >
+              <FontAwesomeIcon icon={faCartShopping} />1
+            </button>
+            <button
+              className="flex text-center gap-1 items-center"
+              id="navbar-nav-icons"
+            >
+              <FontAwesomeIcon icon={faHeart} />2
+            </button>
+          </span>
         </label>
       </span>
     </div>
