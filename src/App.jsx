@@ -21,6 +21,9 @@ function App() {
       <Header />
 
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
         <Route exact path="/home">
           <HomePage />
         </Route>
