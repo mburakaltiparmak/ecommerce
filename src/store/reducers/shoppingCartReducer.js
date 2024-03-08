@@ -18,7 +18,7 @@ export const shoppingCartActions = {
 };
 export const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.setAddCart:
+    case shoppingCartActions.setAddCart:
       const isThatAddedCart = state.cart.find(
         (item) => item.product.id === action.payload.id
       );
@@ -38,12 +38,12 @@ export const shoppingCartReducer = (state = initialState, action) => {
           cart: [...state.cart, { count: 1, product: action.payload }],
         };
       }
-    case actions.setAddPayment:
+    case shoppingCartActions.setAddPayment:
       return {
         ...state,
         payment: action.payload,
       };
-    case actions.setAddAddress:
+    case shoppingCartActions.setAddAddress:
       return {
         ...state,
         address: action.payload,

@@ -13,7 +13,7 @@ export const storeActions = {
 
 export const storeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.setStore:
+    case storeActions.setStore:
       return {
         ...state,
         store: action.payload,

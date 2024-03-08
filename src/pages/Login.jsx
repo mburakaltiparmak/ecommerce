@@ -4,8 +4,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { postLoginData } from "../store/actions/loginAction";
+import { useDispatch } from "react-redux";
 const Login = () => {
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
     defaultValues: {
       email: localStorage.getItem("email") || "",
       password: "",
@@ -17,7 +23,11 @@ const Login = () => {
   const instance = axios.create({ baseURL });
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
   const onSubmit = (formData) => {
+    dispatch(postLoginData(formData, history, setLoading));
+
+    /*
     const formDataToSend = formData;
     console.log("giden data", formDataToSend);
     setLoading(true);
@@ -30,7 +40,7 @@ const Login = () => {
           localStorage.setItem("email", res.data.email);
           setLoading(false);
         }
-        /*setEmail(res.data.email);*/
+       
         history.push("/home");
         setLoading(false);
         toast.success(`You have been successfully logged in!`);
@@ -40,6 +50,7 @@ const Login = () => {
         setLoading(false);
         toast.error("Login process has been failed!");
       });
+      */
   };
   //SPINNER
   if (loading) {
@@ -105,8 +116,18 @@ const Login = () => {
                     id="email"
                     placeholder="example@example.com"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                    {...register("email")}
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                        message: "Invalid email address",
+                      },
+                    })}
                   />
+                  {errors.email && (
+                    <span className="text-red">{errors.email.message}</span>
+                  )}
                 </div>
 
                 <div className="mt-6">
