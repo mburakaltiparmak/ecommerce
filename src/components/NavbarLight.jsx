@@ -11,6 +11,7 @@ import Dropdown from "../components/Dropdown";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGravatar } from "use-gravatar";
+import UserDdown from "./UserDdown";
 const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
@@ -130,13 +131,8 @@ const NavbarLight = (props) => {
               id="user-login"
               className="flex flex-row gap-2 lg:gap-4 items-center text-center lg:justify-between w-full  sm:gap-4 sm:flex-col"
             >
-              <button
-                id="navbar-nav-icons"
-                className="flex flex-row text-sm font-bold sm:text-xl text-center gap-2 sm:gap-2 items-center  "
-              >
-                <img src={gravatar} alt="" className="w-8 h-8" />
-                {userData.name}
-              </button>
+              <img src={gravatar} alt="" className="w-8 h-8" />
+              <UserDdown />
             </span>
           ) : (
             <span
