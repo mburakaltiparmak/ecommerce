@@ -28,7 +28,9 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userName = localStorage.getItem("userName");
-    toast.success(`${userName} Welcome!`);
+    if (userName) {
+      toast.success(`${userName} Welcome!`);
+    }
     if (token) {
       instance
         .get("/verify", {
