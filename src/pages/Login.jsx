@@ -5,7 +5,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postLoginData } from "../store/actions/loginAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userNameSetter } from "../store/actions/userAction";
 const Login = () => {
   const {
     register,
@@ -24,33 +25,10 @@ const Login = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const userData = useSelector((store) => store.userRed);
+
   const onSubmit = (formData) => {
     dispatch(postLoginData(formData, history, setLoading));
-
-    /*
-    const formDataToSend = formData;
-    console.log("giden data", formDataToSend);
-    setLoading(true);
-    instance
-      .post("/login", formDataToSend)
-      .then((res) => {
-        console.log("Login oldu: ", res.data);
-        if (formData.rememberMe) {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("email", res.data.email);
-          setLoading(false);
-        }
-       
-        history.push("/home");
-        setLoading(false);
-        toast.success(`You have been successfully logged in!`);
-      })
-      .catch((err) => {
-        console.log("hata", err);
-        setLoading(false);
-        toast.error("Login process has been failed!");
-      });
-      */
   };
   //SPINNER
   if (loading) {

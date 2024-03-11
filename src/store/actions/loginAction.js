@@ -37,7 +37,7 @@ export const postLoginData =
         dispatch(userIdSetter(res.data.role_id));
         setLoading(false);
         history.push("/home");
-        toast.success(`You have been successfully logged in!`);
+        toast.success(`${res.data.name} you have been successfully logged in!`);
       })
       .catch((err) => {
         console.log("hata", err);

@@ -1,6 +1,11 @@
 /*import "./App.css";*/
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import HomePage from "./pages/HomePage";
 import ProductListPages from "./pages/ProductListPages";
 import Header from "./layouts/Header";
@@ -15,12 +20,43 @@ import Signup from "./pages/Signup";
 
 import "./App.css";
 function App() {
+  const baseURL = "https://workintech-fe-ecommerce.onrender.com";
+  const instance = axios.create({ baseURL });
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const userReducerData = useSelector((store) => store.userRed);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("userName");
+    toast.success(`${userName} Welcome!`);
+    if (token) {
+      instance
+        .get("/verify", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          console.log("Auto login", res.data);
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userName", res.data.name);
+          dispatch(userNameSetter(res.data.name));
+        })
+        .catch((err) => {
+          console.error("login hata", err);
+          localStorage.removeItem("token");
+        });
+    }
+  }, []);
+
   return (
     <div id="main" className="w-full">
       <ToastContainer />
       <Header />
-
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
         <Route exact path="/home">
           <HomePage />
         </Route>

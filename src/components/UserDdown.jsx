@@ -19,11 +19,14 @@ export default function UserDdown() {
   const userData = useSelector((store) => store.userRed);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const nameAtStorage = localStorage.getItem("userName");
   const logoutHandler = () => {
     dispatch(userEmailSetter(""));
     dispatch(userNameSetter(""));
     dispatch(userIdSetter(""));
+    localStorage.removeItem("userName");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
     toast.info("You have been successfully logged out!");
     history.push("/home");
   };
@@ -32,7 +35,7 @@ export default function UserDdown() {
     <Menu as="div" className="relative inline-block text-left font-Montserrat">
       <div>
         <Menu.Button className="inline-flex w-full font-Montserrat justify-center gap-x-1.5  bg-white text-sm sm:text-2xl font-bold sm:text-gray px-2">
-          {userData.name}
+          {userData.name || nameAtStorage}
           <ChevronDownIcon
             className="-mr-6 h-5 w-5 sm:text-gray  "
             aria-hidden="true"

@@ -26,7 +26,8 @@ const Signup = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
-  const roles = useSelector((store) => store.globalReducer.roles);
+
+  const roles = useSelector((store) => store.global.roles);
 
   //Helper Functions
   const onSubmit = (formData) => {

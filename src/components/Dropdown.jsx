@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-
+import { Link } from "react-router-dom";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -32,55 +32,59 @@ export default function Dropdown() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/shop"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm sm:text-lg"
-                  )}
-                >
-                  Product List
-                </a>
+                <Link to="/shop">
+                  <button
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm sm:text-lg"
+                    )}
+                  >
+                    Product List
+                  </button>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/product"
-                  className={classNames(
-                    active ? " bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm sm:text-lg sm:hidden"
-                  )}
-                >
-                  Product
-                </a>
+                <Link to="/product">
+                  <button
+                    className={classNames(
+                      active ? " bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm sm:text-lg sm:hidden"
+                    )}
+                  >
+                    Product
+                  </button>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/team"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm sm:text-lg"
-                  )}
-                >
-                  Team
-                </a>
+                <Link to="/team">
+                  <button
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm sm:text-lg"
+                    )}
+                  >
+                    Team
+                  </button>
+                </Link>
               )}
             </Menu.Item>
             <form method="POST" action="#">
               <Menu.Item>
                 {({ active }) => (
-                  <a
-                    href="/pricing"
-                    className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm sm:text-lg sm:hidden"
-                    )}
-                  >
-                    Pricing
-                  </a>
+                  <Link to="/pricing">
+                    <button
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block w-full px-4 py-2 text-left text-sm sm:text-lg sm:hidden"
+                      )}
+                    >
+                      Pricing
+                    </button>
+                  </Link>
                 )}
               </Menu.Item>
             </form>
