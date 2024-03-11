@@ -24,9 +24,9 @@ const NavbarLight = (props) => {
   );
 
   const userData = useSelector((store) => store.userRed);
-  console.log("userData", userData);
   const gravatar = useGravatar(userData.email);
-
+  const nameAtStorage = localStorage.getItem("userName");
+  console.log("local storage name", nameAtStorage);
   return (
     <div
       id="navbar-light"
@@ -126,7 +126,7 @@ const NavbarLight = (props) => {
             !userCollapse && "sm:hidden"
           } flex flex-row items-center justify-between text-center gap-8  md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl`}
         >
-          {userData.name ? (
+          {userData.name || nameAtStorage ? (
             <span
               id="user-login"
               className="flex flex-row gap-2 lg:gap-4 items-center text-center lg:justify-between w-full  sm:gap-4 sm:flex-col"
