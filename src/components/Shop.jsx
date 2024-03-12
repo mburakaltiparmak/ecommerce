@@ -15,6 +15,7 @@ import Breadcrumb from "./Breadcrumb";
 import { Pagination } from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../store/actions/globalAction";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 /* Responsive tasarım için bakman gereken yer product-container */
 export const Shop = () => {
@@ -25,11 +26,12 @@ export const Shop = () => {
   useEffect(() => {
     dispatch(getCategories());
   }, []);
+  const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
 
   return (
     <div className="font-Montserrat flex flex-col gap-8 " id="shop-container">
       <section
-        className="flex flex-col gap-12 bg-lightgray px-40 py-10 sm:py-10 sm:px-10 sm:w-full content-center"
+        className="flex flex-col gap-12 bg-lightgray px-40 py-10 sm:py-10 sm:px-10 sm:w-full content-center "
         id="top-level"
       >
         <span className="flex flex-row justify-between items-center sm:flex-col sm:gap-8">
@@ -38,25 +40,38 @@ export const Shop = () => {
             <Breadcrumb />
           </span>
         </span>
+
         <span
-          className="flex flex-row justify-center gap-4 sm:flex-col"
+          className="flex flex-row justify-center gap-4 sm:flex-col sm:items-center"
           id="box-cards"
         >
-          {boxData.map((box, index) => (
-            <div
+          {sortByRating.slice(0, 5).map((box, index) => (
+            <Link
               key={index}
-              id="container"
-              className="relative shadow-lg shadow-gray flex items-center"
+              to={`/shop/${
+                box.gender === "e" ? "erkek" : "kadin"
+              }/${box.title.toLowerCase()}`}
             >
-              <img className="w-full h-auto" src={box.img} />
-              <button
-                id="center"
-                className="absolute t-1/2 w-full text-center text-lg sm:text-xl text-white font-bold"
+              <div
+                id="container"
+                className="relative shadow-lg sm:justify-center shadow-gray flex items-center sm:flex-col sm:w-fit  "
               >
-                <p className="drop-shadow-lg">{box.title}</p>
-                <p className="drop-shadow-lg">{box.count} items</p>
-              </button>
-            </div>
+                <img
+                  className="object-cover w-[250px] h-[250px]"
+                  src={box.img}
+                />
+                <button
+                  id="center"
+                  className="absolute t-1/2 w-full text-center text-lg sm:text-xl text-white font-bold"
+                >
+                  <p className="drop-shadow-4xl">{box.title}</p>
+                  <p className="drop-shadow-4xl">Rating : {box.rating}</p>
+                  <p className="drop-shadow-4xl">
+                    {box.gender === "e" ? "Erkek" : "Kadın"}
+                  </p>
+                </button>
+              </div>
+            </Link>
           ))}
         </span>
       </section>

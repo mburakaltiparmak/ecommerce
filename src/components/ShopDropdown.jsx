@@ -49,7 +49,7 @@ export default function ShopDropdown() {
               <Menu.Item key={index}>
                 {({ active }) => (
                   <Link
-                    to={`/shopping/${
+                    to={`/shop/${
                       item.gender === "e" ? "erkek" : "kadin"
                     }/${item.title.toLowerCase("")}`}
                   >
