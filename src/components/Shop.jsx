@@ -20,7 +20,7 @@ import { getCategories } from "../store/actions/globalAction";
 export const Shop = () => {
   const { boxData, shopData } = data();
   const dispatch = useDispatch();
-  const categoriesData = useSelector((store) => store.global);
+  const categoriesData = useSelector((store) => store.global.categories);
   console.log("categories data", categoriesData);
   useEffect(() => {
     dispatch(getCategories());
