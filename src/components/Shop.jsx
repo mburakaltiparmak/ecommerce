@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { data } from "../data";
 import icon from "../assets/icon.png";
@@ -12,12 +12,19 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "./Breadcrumb";
-
 import { Pagination } from "./Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../store/actions/globalAction";
 
 /* Responsive tasarım için bakman gereken yer product-container */
 export const Shop = () => {
   const { boxData, shopData } = data();
+  const dispatch = useDispatch();
+  const categoriesData = useSelector((store) => store.global);
+  console.log("categories data", categoriesData);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
   return (
     <div className="font-Montserrat flex flex-col gap-8 " id="shop-container">

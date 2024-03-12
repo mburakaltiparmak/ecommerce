@@ -18,7 +18,9 @@ export const languageSetter = (language) => ({
   payload: language,
 });
 
-//THUNK
+//THUNKS
+
+//ROLES
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";
 const instance = axios.create({ baseURL });
 export const getRoles = () => (dispatch, getState) => {
@@ -30,5 +32,17 @@ export const getRoles = () => (dispatch, getState) => {
     })
     .catch((err) => {
       console.log("hata", err);
+    });
+};
+//CATEGORIES
+export const getCategories = () => (dispatch, getState) => {
+  instance
+    .get("/categories")
+    .then((res) => {
+      console.log("kategoriler", res.data);
+      dispatch(categoriesSetter(res.data));
+    })
+    .catch((err) => {
+      console.log("categories hata", err);
     });
 };
