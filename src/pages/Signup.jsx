@@ -78,7 +78,7 @@ const Signup = () => {
     const timeout = setTimeout(() => {
       dispatch(getRoles());
       setLoading(false);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
 

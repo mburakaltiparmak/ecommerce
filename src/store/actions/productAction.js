@@ -1,30 +1,28 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { productActions } from "../reducers/productReducer";
+import { fetchStates, productActions } from "../reducers/productReducer";
+import { useDispatch } from "react-redux";
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
 
 //THUNK KULLANILACAK
-/*
-useEffect(() => {
-    const timeout = setTimeout(() => {
-      instance
-        .get("/ürün fetch endpointi")
-        .then((res) => {
-            res.data'dan gelen ürünler buraya setProductList(res.data);
-          // loading action ve reducer'ı oluşturulacak
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("hata", err);
-          setLoading(false);
-        });
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, []);
-  */
+export const getProducts = () => (dispatch, getState) => {
+  dispatch(fetchStateSetter(fetchStates.FETCHING));
+  instance
+    .get("/products")
+    .then((res) => {
+      dispatch(productListSetter(res.data.products));
+      dispatch(fetchStateSetter(fetchStates.FETCHED));
+      dispatch(productCountSetter(res.data.total));
+      //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
+    })
+    .catch((err) => {
+      console.error("hata", err);
 
+      dispatch(fetchStateSetter(fetchStates.FAILED));
+    });
+};
 export const productListSetter = (products) => ({
   type: productActions.setProductList,
   payload: products,
