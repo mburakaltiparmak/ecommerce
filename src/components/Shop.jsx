@@ -171,11 +171,15 @@ export const Shop = () => {
           </span>
         </span>
         <span
-          className="flex w-full justify-between flex-row flex-wrap gap-32 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
+          className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
         >
           {productData.map((id, index) => (
-            <div className="shop" key={index} id="product-content">
+            <div
+              className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+              key={index}
+              id="product-content"
+            >
               <span id="product-img-content" className="sm:w-full">
                 <img
                   src={id.images[0].url}
@@ -183,12 +187,17 @@ export const Shop = () => {
                   className="sm:w-full rounded-md"
                 />
               </span>
-              <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
-                {id.name}
-              </h4>
-              <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
-                {id.description}
-              </h5>
+              <span
+                id="product-text"
+                className="flex flex-col items-center gap-2 text-center "
+              >
+                <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                  {id.name}
+                </h4>
+                <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                  {id.description}
+                </h5>
+              </span>
               {/*span içini flex-row yap */}
               <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
                 <h5 className="text-[#737373]">{id.price}</h5>
