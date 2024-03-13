@@ -34,9 +34,9 @@ export const Shop = () => {
     }, 1000);
     return () => clearTimeout(timeout);
   }, []);
-  const productData = useSelector((store) => store.product);
+  const productData = useSelector((store) => store.product.productList);
+  const productCount = useSelector((store) => store.product.totalProductCount);
   console.log("productData", productData);
-
   const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
   if (loading) {
     return (
@@ -126,7 +126,9 @@ export const Shop = () => {
           className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm  text-gray"
           id="filter-container"
         >
-          <p className="sm:text-base">Showing all {shopData.length} results</p>
+          <p className="sm:text-base">
+            Showing all {productData.length} results
+          </p>
           <span
             id="views"
             className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
@@ -173,21 +175,26 @@ export const Shop = () => {
           className="flex w-full justify-between flex-row flex-wrap gap-32 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
         >
-          {shopData.map((id, index) => (
+          {productData.map((id, index) => (
             <div className="shop" key={index} id="product-content">
               <span id="product-img-content" className="sm:w-full">
-                <img src={id.img} alt="" className="sm:w-full rounded-md" />
+                <img
+                  src={id.images[0].url}
+                  alt=""
+                  className="sm:w-full rounded-md"
+                />
               </span>
 
               <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
-                {id.title}
+                {id.name}
               </h4>
               <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
-                {id.link}
+                {id.description}
               </h5>
-              <span className="flex flex-row sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                <h5 className="text-[#737373]">{id.price1}</h5>
-                <h5 className="text-[#23856D]">{id.price2}</h5>
+              {/*span içini flex-row yap */}
+              <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
+                <h5 className="text-[#737373]">{id.price}</h5>
+                <h5 className="text-[#23856D]">{id.rating}</h5>
               </span>
               <span id="colors">
                 <div className="flex items-center justify-center space-x-2">
