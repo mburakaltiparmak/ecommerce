@@ -12,9 +12,12 @@ export const getProducts = () => (dispatch, getState) => {
   instance
     .get("/products")
     .then((res) => {
+      console.log("gelen product", res.data);
+
       dispatch(productListSetter(res.data.products));
       dispatch(fetchStateSetter(fetchStates.FETCHED));
       dispatch(productCountSetter(res.data.total));
+
       //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
     })
     .catch((err) => {
