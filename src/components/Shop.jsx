@@ -17,8 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../store/actions/globalAction";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getProducts } from "../store/actions/productAction";
-
-/* Responsive tasarım için bakman gereken yer product-container */
+/* Responsive tasarım için bakman gereken yer product-container .*/
 export const Shop = () => {
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
@@ -184,7 +183,6 @@ export const Shop = () => {
                   className="sm:w-full rounded-md"
                 />
               </span>
-
               <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
                 {id.name}
               </h4>
