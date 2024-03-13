@@ -221,12 +221,13 @@ const Signup = () => {
                   className="border border-black rounded-md bg-white text-black p-2"
                   name="role_id"
                   id="role"
+                  defaultValue={roles ? (roles[2] ? roles[2].id : "") : ""}
                   onChange={handleRoleChange}
                   {...register("role_id", { required: true })}
                 >
                   {roles &&
-                    roles.map((role) => (
-                      <option key={role.id} value={role.id}>
+                    roles.map((role, index) => (
+                      <option key={index} value={role.id}>
                         {role.name}
                       </option>
                     ))}

@@ -39,7 +39,6 @@ export const getCategories = () => (dispatch, getState) => {
   instance
     .get("/categories")
     .then((res) => {
-      console.log("kategoriler", res.data);
       dispatch(categoriesSetter(res.data));
     })
     .catch((err) => {

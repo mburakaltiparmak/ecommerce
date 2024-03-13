@@ -12,7 +12,6 @@ export default function ShopDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-  console.log("categories data", categoriesData);
   useEffect(() => {
     dispatch(getCategories());
   }, []);

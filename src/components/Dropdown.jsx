@@ -11,7 +11,6 @@ function classNames(...classes) {
 export default function Dropdown() {
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-  console.log("categories data", categoriesData);
   useEffect(() => {
     dispatch(getCategories());
   }, []);
