@@ -21,6 +21,8 @@ import { getProducts } from "../store/actions/productAction";
 export const Shop = () => {
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const limit = 10;
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
 
@@ -28,7 +30,7 @@ export const Shop = () => {
     setLoading(true);
     const timeout = setTimeout(() => {
       dispatch(getCategories());
-      dispatch(getProducts());
+      dispatch(getProducts(page, limit));
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timeout);
