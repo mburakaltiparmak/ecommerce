@@ -7,13 +7,13 @@ const instance = axios.create({
 });
 
 //THUNK KULLANILACAK
-export const getProducts = () => (dispatch, getState) => {
+export const getProducts = (page, limit) => (dispatch, getState) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
-  instance
-    .get("/products")
+  const offset = page * limit;
+  return instance
+    .get("/products", { params: { offset, limit } })
     .then((res) => {
       console.log("gelen product", res.data);
-
       dispatch(productListSetter(res.data.products));
       dispatch(fetchStateSetter(fetchStates.FETCHED));
       dispatch(productCountSetter(res.data.total));

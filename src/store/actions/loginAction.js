@@ -14,6 +14,33 @@ export const rememberMePoster = (rememberMe) => ({
   type: loginActions.postRememberMe,
   payload: rememberMe,
 });
+export const autoLogin = (instance, dispatch) => {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("userName");
+    if (userName) {
+      toast.success(`${userName} Welcome!`);
+    }
+    if (token) {
+      instance
+        .get("/verify", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          console.log("Auto login", res.data);
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userName", res.data.name);
+          dispatch(userNameSetter(res.data.name));
+        })
+        .catch((err) => {
+          console.error("login hata", err);
+          localStorage.removeItem("token");
+        });
+    }
+  }, []);
+};
 
 //THUNK
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";

@@ -17,39 +17,15 @@ import Team from "./pages/Team";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-
 import "./App.css";
+import { autoLogin } from "./store/actions/loginAction";
 function App() {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const history = useHistory();
   const dispatch = useDispatch();
   const userReducerData = useSelector((store) => store.userRed);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const userName = localStorage.getItem("userName");
-    if (userName) {
-      toast.success(`${userName} Welcome!`);
-    }
-    if (token) {
-      instance
-        .get("/verify", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          console.log("Auto login", res.data);
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("userName", res.data.name);
-          dispatch(userNameSetter(res.data.name));
-        })
-        .catch((err) => {
-          console.error("login hata", err);
-          localStorage.removeItem("token");
-        });
-    }
-  }, []);
+  autoLogin(instance, dispatch);
 
   return (
     <div id="main" className="w-full">
