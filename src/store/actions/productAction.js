@@ -6,26 +6,6 @@ const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
 
-//THUNK KULLANILACAK
-export const getProducts = (page, limit) => (dispatch, getState) => {
-  dispatch(fetchStateSetter(fetchStates.FETCHING));
-  const offset = page * limit;
-  return instance
-    .get("/products", { params: { offset, limit } })
-    .then((res) => {
-      console.log("gelen product", res.data);
-      dispatch(productListSetter(res.data.products));
-      dispatch(fetchStateSetter(fetchStates.FETCHED));
-      dispatch(productCountSetter(res.data.total));
-
-      //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
-    })
-    .catch((err) => {
-      console.error("hata", err);
-
-      dispatch(fetchStateSetter(fetchStates.FAILED));
-    });
-};
 export const productListSetter = (products) => ({
   type: productActions.setProductList,
   payload: products,
@@ -50,3 +30,24 @@ export const activePageSetter = (activePage) => ({
   type: productActions.setActivePage,
   payload: activePage,
 });
+
+//THUNK
+export const getProducts = () => (dispatch, getState) => {
+  dispatch(fetchStateSetter(fetchStates.FETCHING));
+  return instance
+    .get("/products")
+    .then((res) => {
+      console.log("gelen product", res.data);
+      dispatch(productListSetter(res.data.products));
+      dispatch(fetchStateSetter(fetchStates.FETCHED));
+      dispatch(productCountSetter(res.data.total));
+      /*dispatch(pageCountSetter())*/
+
+      //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
+    })
+    .catch((err) => {
+      console.error("hata", err);
+
+      dispatch(fetchStateSetter(fetchStates.FAILED));
+    });
+};

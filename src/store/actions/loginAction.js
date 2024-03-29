@@ -14,6 +14,8 @@ export const rememberMePoster = (rememberMe) => ({
   type: loginActions.postRememberMe,
   payload: rememberMe,
 });
+
+//AUTO LOGIN
 export const autoLogin = (instance, dispatch) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,7 +44,7 @@ export const autoLogin = (instance, dispatch) => {
   }, []);
 };
 
-//THUNK
+//THUNK LOGIN
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";
 const instance = axios.create({ baseURL });
 export const postLoginData =

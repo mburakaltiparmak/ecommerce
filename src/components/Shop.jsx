@@ -21,24 +21,35 @@ import { getProducts } from "../store/actions/productAction";
 export const Shop = () => {
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
+  /*
   const [page, setPage] = useState(0);
   const limit = 10;
+  */
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  const handlePagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     setLoading(true);
     const timeout = setTimeout(() => {
       dispatch(getCategories());
-      dispatch(getProducts(page, limit));
+      dispatch(getProducts());
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timeout);
   }, []);
+
   const productData = useSelector((store) => store.product.productList);
   const productCount = useSelector((store) => store.product.totalProductCount);
   console.log("productData", productData);
   const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentProducts = productData.slice(indexOfFirstPost, indexOfLastPost);
   if (loading) {
     return (
       <div className="relative">
@@ -177,7 +188,7 @@ export const Shop = () => {
           id="product-container"
         >
           {productData &&
-            productData.map((id, index) => (
+            currentProducts.map((id, index) => (
               <div
                 className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
                 key={index}
@@ -203,8 +214,8 @@ export const Shop = () => {
                 </span>
                 {/*span içini flex-row yap */}
                 <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                  <h5 className="text-[#737373]">{id.price}</h5>
-                  <h5 className="text-[#23856D]">{id.rating}</h5>
+                  <h5 className="text-[#23856D]">{id.price} ₺</h5>
+                  <h5 className="text-red">Rating : {id.rating}</h5>
                 </span>
                 <span id="colors">
                   <div className="flex items-center justify-center space-x-2">
@@ -223,7 +234,12 @@ export const Shop = () => {
             ))}
         </span>
         <span id="pagination" className="sm:py-10">
-          <Pagination />
+          <Pagination
+            length={productData ? productData.length : 10}
+            postsPerPage={postsPerPage}
+            handlePagination={handlePagination}
+            currentPage={currentPage}
+          />
         </span>
       </section>
       <section

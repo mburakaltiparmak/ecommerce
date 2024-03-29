@@ -1,12 +1,9 @@
 import { useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { postLoginData } from "../store/actions/loginAction";
 import { useDispatch, useSelector } from "react-redux";
-import { userNameSetter } from "../store/actions/userAction";
+
 const Login = () => {
   const {
     register,
@@ -20,13 +17,8 @@ const Login = () => {
     },
   });
   const [loading, setLoading] = useState(false);
-  const baseURL = "https://workintech-fe-ecommerce.onrender.com";
-  const instance = axios.create({ baseURL });
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const userData = useSelector((store) => store.userRed);
-
   const onSubmit = (formData) => {
     dispatch(postLoginData(formData, history, setLoading));
   };
