@@ -3,6 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { data } from "../data";
 import icon from "../assets/icon.png";
 import {
+  useQuery,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import {
   faHooli,
   faLyft,
   faPiedPiperHat,
@@ -19,38 +25,52 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { getProducts } from "../store/actions/productAction";
 /* Responsive tasarım için bakman gereken yer product-container .*/
 export const Shop = () => {
+  /*
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
+  */
   /*
   const [page, setPage] = useState(0);
   const limit = 10;
   */
+  const queryClient = useQueryClient();
+  const [page, setPage] = React.useState(0);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
-  const handlePagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
+  const { status, error, isFetching, isPreviousData } = useQuery({
+    queryKey: ["projects", page],
+    queryFn: () => fetchProjects(page),
+    keepPreviousData: true,
+    staleTime: 5000,
+  });
   useEffect(() => {
+    /*
     setLoading(true);
+*/
     const timeout = setTimeout(() => {
       dispatch(getCategories());
       dispatch(getProducts());
+      /*
       setLoading(false);
+      */
     }, 1000);
     return () => clearTimeout(timeout);
   }, []);
+  useEffect(() => {
+    if (!isPreviousData && productData?.hasMore) {
+      queryClient.prefetchQuery({
+        queryKey: ["projects", page + 1],
+        queryFn: () => dispatch(getProducts(page + 1)),
+      });
+    }
+  }, [isPreviousData, page, queryClient]);
 
   const productData = useSelector((store) => store.product.productList);
-  const productCount = useSelector((store) => store.product.totalProductCount);
+
   console.log("productData", productData);
   const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentProducts = productData.slice(indexOfFirstPost, indexOfLastPost);
-  if (loading) {
+
+  if (!productData) {
     return (
       <div className="relative">
         <div className="absolute bg-white bg-opacity-60 z-10 h-full w-full top-24 flex items-center justify-center">
@@ -188,7 +208,7 @@ export const Shop = () => {
           id="product-container"
         >
           {productData &&
-            currentProducts.map((id, index) => (
+            productData.map((id, index) => (
               <div
                 className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
                 key={index}
@@ -235,10 +255,10 @@ export const Shop = () => {
         </span>
         <span id="pagination" className="sm:py-10">
           <Pagination
-            length={productData ? productData.length : 10}
-            postsPerPage={postsPerPage}
-            handlePagination={handlePagination}
-            currentPage={currentPage}
+            page={page}
+            setPage={setPage}
+            data={productData}
+            isPreviousData={isPreviousData}
           />
         </span>
       </section>
