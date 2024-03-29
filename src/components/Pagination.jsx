@@ -11,6 +11,8 @@ export const Pagination = ({ data, setPage, isPreviousData, page }) => {
       </button>
 
       <button className="pagination-btn">{page + 1}</button>
+      <button className="pagination-btn">{page + 2}</button>
+      <button className="pagination-btn">{page + 3}</button>
 
       <button
         type="button"

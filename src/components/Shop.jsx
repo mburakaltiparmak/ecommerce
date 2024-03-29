@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { data } from "../data";
 import icon from "../assets/icon.png";
+
 import {
   useQuery,
   useQueryClient,
@@ -29,20 +30,22 @@ export const Shop = () => {
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
   */
-  /*
+
+  const queryClient = useQueryClient();
   const [page, setPage] = useState(0);
   const limit = 10;
-  */
-  const queryClient = useQueryClient();
-  const [page, setPage] = React.useState(0);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-  const { status, error, isFetching, isPreviousData } = useQuery({
+  const { status, error, isPreviousData } = useQuery({
     queryKey: ["projects", page],
-    queryFn: () => fetchProjects(page),
+    queryFn: () => getProducts(page),
     keepPreviousData: true,
     staleTime: 5000,
   });
+  const isFetching = useSelector(
+    (store) => store.product.fetchState === "FETCHING"
+  );
+
   useEffect(() => {
     /*
     setLoading(true);
@@ -55,7 +58,7 @@ export const Shop = () => {
       */
     }, 1000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [dispatch, page, limit]);
   useEffect(() => {
     if (!isPreviousData && productData?.hasMore) {
       queryClient.prefetchQuery({
@@ -66,11 +69,20 @@ export const Shop = () => {
   }, [isPreviousData, page, queryClient]);
 
   const productData = useSelector((store) => store.product.productList);
+  const { data: { products, total } = { products: [], total: 0 } } = useQuery({
+    queryKey: ["products", page, limit],
+    queryFn: () => dispatch(getProducts(page, limit)),
+  });
+  useEffect(() => {
+    if (total > 0 && limit > 0) {
+      const newPage = Array.from(Array(Math.ceil(total / limit)).keys());
+    }
+  }, [total, limit]);
 
   console.log("productData", productData);
   const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
 
-  if (!productData) {
+  if (isFetching) {
     return (
       <div className="relative">
         <div className="absolute bg-white bg-opacity-60 z-10 h-full w-full top-24 flex items-center justify-center">
@@ -207,8 +219,8 @@ export const Shop = () => {
           className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
         >
-          {productData &&
-            productData.map((id, index) => (
+          {products &&
+            products.map((id, index) => (
               <div
                 className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
                 key={index}

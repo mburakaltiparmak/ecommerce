@@ -32,25 +32,23 @@ export const activePageSetter = (activePage) => ({
 });
 
 //THUNK
-export const getProducts =
-  (page = 0, limit) =>
-  (dispatch, getState) => {
-    const offset = page * limit;
-    dispatch(fetchStateSetter(fetchStates.FETCHING));
-    return instance
-      .get("/products?page=" + page)
-      .then((res) => {
-        console.log("gelen product", res.data);
-        dispatch(productListSetter(res.data.products));
-        dispatch(fetchStateSetter(fetchStates.FETCHED));
-        dispatch(productCountSetter(res.data.total));
-        /*dispatch(pageCountSetter())*/
+export const getProducts = (page, limit) => (dispatch, getState) => {
+  const offset = page * limit;
+  dispatch(fetchStateSetter(fetchStates.FETCHING));
+  return instance
+    .get("/products", { params: { offset, limit } })
+    .then((res) => {
+      console.log("gelen product", res.data);
+      dispatch(productListSetter(res.data.products));
+      dispatch(fetchStateSetter(fetchStates.FETCHED));
+      dispatch(productCountSetter(res.data.total));
+      /*dispatch(pageCountSetter())*/
 
-        //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
-      })
-      .catch((err) => {
-        console.error("hata", err);
+      //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
+    })
+    .catch((err) => {
+      console.error("hata", err);
 
-        dispatch(fetchStateSetter(fetchStates.FAILED));
-      });
-  };
+      dispatch(fetchStateSetter(fetchStates.FAILED));
+    });
+};
