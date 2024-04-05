@@ -1,4 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
+
 export const Pagination = () => {
+  const dispatch = useDispatch();
+
   return (
     <nav className="flex items-center font-Montserrat font-bold -space-x-px">
       <button

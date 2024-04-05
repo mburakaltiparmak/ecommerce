@@ -23,8 +23,22 @@ export const Shop = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
+  const productData = useSelector((store) => store.product.productList);
+  const productCount = useSelector((store) => store.product.totalProductCount);
+  console.log("productData", productData);
+  const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
   //
+  const productPerPage = useSelector((store) => store.product.productPerPage);
+  const totalPages = Math.ceil(productData?.length / productPerPage);
+  const activePage = useSelector((store) => store.product.activePage);
 
+  const indexOfFirstProduct = (activePage - 1) * productPerPage;
+  const indexOfLastProduct = indexOfFirstProduct + productPerPage;
+
+  console.log("index first", indexOfFirstProduct);
+  console.log("index last", indexOfLastProduct);
+  console.log("prod per page", productPerPage);
+  console.log("total page", totalPages);
   //
 
   useEffect(() => {
@@ -32,14 +46,12 @@ export const Shop = () => {
     const timeout = setTimeout(() => {
       dispatch(getCategories());
       dispatch(getProducts());
+
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timeout);
-  }, []);
-  const productData = useSelector((store) => store.product.productList);
-  const productCount = useSelector((store) => store.product.totalProductCount);
-  console.log("productData", productData);
-  const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
+  }, [dispatch]);
+
   if (loading) {
     return (
       <div className="relative">
@@ -178,50 +190,52 @@ export const Shop = () => {
           id="product-container"
         >
           {productData &&
-            productData.map((id, index) => (
-              <div
-                className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
-                key={index}
-                id="product-content"
-              >
-                <span id="product-img-content" className="sm:w-full">
-                  <img
-                    src={id.images[0].url}
-                    alt=""
-                    className="sm:w-full rounded-md"
-                  />
-                </span>
-                <span
-                  id="product-text"
-                  className="flex flex-col items-center gap-2 text-center "
+            productData
+              .slice(indexOfFirstProduct, indexOfLastProduct)
+              .map((id, index) => (
+                <div
+                  className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+                  key={index}
+                  id="product-content"
                 >
-                  <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
-                    {id.name}
-                  </h4>
-                  <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
-                    {id.description}
-                  </h5>
-                </span>
-                {/*span içini flex-row yap */}
-                <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                  <h5 className="text-[#737373]">{id.price}</h5>
-                  <h5 className="text-[#23856D]">{id.rating}</h5>
-                </span>
-                <span id="colors">
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                    <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
-                  </div>
-                </span>
-                <span id="button-span" className="flex flex-row gap-4">
-                  <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
-                    Add to Cart
-                  </button>
-                </span>
-              </div>
-            ))}
+                  <span id="product-img-content" className="sm:w-full">
+                    <img
+                      src={id.images[0].url}
+                      alt=""
+                      className="sm:w-full rounded-md"
+                    />
+                  </span>
+                  <span
+                    id="product-text"
+                    className="flex flex-col items-center gap-2 text-center "
+                  >
+                    <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                      {id.name}
+                    </h4>
+                    <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                      {id.description}
+                    </h5>
+                  </span>
+                  {/*span içini flex-row yap */}
+                  <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
+                    <h5 className="text-[#737373]">{id.price}</h5>
+                    <h5 className="text-[#23856D]">{id.rating}</h5>
+                  </span>
+                  <span id="colors">
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                    </div>
+                  </span>
+                  <span id="button-span" className="flex flex-row gap-4">
+                    <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                      Add to Cart
+                    </button>
+                  </span>
+                </div>
+              ))}
         </span>
         <span id="pagination" className="sm:py-10">
           <Pagination />
