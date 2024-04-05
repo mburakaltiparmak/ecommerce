@@ -20,7 +20,7 @@ export const Pagination = ({ totalPages, currentPage, onPageChange }) => {
           onClick={() => handlePageChange(index + 1)}
           type="button"
           className={`min-h-14 min-w-14 font-bold focus:text-white hover:text-white hover:bg-blue1 focus:bg-darkblue1 border border-gray text-blue1 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm first:rounded-s-lg last:rounded-e-lg  focus:outline-none   disabled:opacity-50 disabled:pointer-events-none ${
-            index + 1 === currentPage ? "bg-blue1" : ""
+            index + 1 === currentPage ? "bg-blue1 text-white" : ""
           }`}
           aria-current={index + 1 === currentPage ? "page" : undefined}
         >
