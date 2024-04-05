@@ -50,3 +50,24 @@ export const activePageSetter = (activePage) => ({
   type: productActions.setActivePage,
   payload: activePage,
 });
+export const productPerPageSetter = (productPerPage) => ({
+  type: productActions.setProductPerPage,
+  payload: productPerPage,
+});
+export const onNavigateNext = () => ({
+  type: productActions.onNavigateNext,
+});
+
+export const onNavigatePrevious = () => ({
+  type: productActions.onNavigatePrevious,
+});
+
+export const onChangeProductPerPage = (perPage) => ({
+  type: productActions.onChangeProductPerPage,
+  payload: perPage,
+});
+
+export const onClickCurrentPage = (pageNumber) => ({
+  type: productActions.onClickCurrentPage,
+  payload: pageNumber,
+});

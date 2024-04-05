@@ -23,6 +23,9 @@ export const Shop = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
+  //
+
+  //
 
   useEffect(() => {
     setLoading(true);
