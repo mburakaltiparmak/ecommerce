@@ -16,7 +16,7 @@ import { Pagination } from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../store/actions/globalAction";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { getProducts } from "../store/actions/productAction";
+import { activePageSetter, getProducts } from "../store/actions/productAction";
 /* Responsive tasarım için bakman gereken yer product-container .*/
 export const Shop = () => {
   const { boxData, shopData } = data();
@@ -34,7 +34,9 @@ export const Shop = () => {
 
   const indexOfFirstProduct = (activePage - 1) * productPerPage;
   const indexOfLastProduct = indexOfFirstProduct + productPerPage;
-
+  const onPageChange = (page) => {
+    dispatch(activePageSetter(page));
+  };
   console.log("index first", indexOfFirstProduct);
   console.log("index last", indexOfLastProduct);
   console.log("prod per page", productPerPage);
@@ -238,7 +240,11 @@ export const Shop = () => {
               ))}
         </span>
         <span id="pagination" className="sm:py-10">
-          <Pagination />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={activePage}
+            onPageChange={onPageChange}
+          />
         </span>
       </section>
       <section
