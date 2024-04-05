@@ -8,6 +8,7 @@ const initialState = {
   product: {
     productList: {},
     totalProductCount: 0,
+    productPerPage: 10,
     pageCount: 1,
     activePage: 1,
     fetchState: fetchStates.NOT_FETCHED,
@@ -20,6 +21,11 @@ export const productActions = {
   setPageCount: "SET_PAGE_COUNT",
   setActivePage: "SET_ACTIVE_PAGE",
   setFetchState: "SET_FETCH_STATE",
+  setProductPerPage: "SET_PRODUCT_PER_PAGE",
+  onNavigateNext: "ON_NAVIGATE_NEXT",
+  onNavigatePrevious: "ON_NAVIGATE_PREVIOUS",
+  onChangeProductPerPage: "ON_CHANGE_PRODUCT_PER_PAGE",
+  onClickCurrentPage: "ON_CLICK_CURRENT_PAGE",
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -44,10 +50,43 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         activePage: action.payload,
       };
+
     case productActions.setFetchState:
       return {
         ...state,
         fetchState: action.payload,
+      };
+    case productActions.setProductPerPage:
+      return {
+        ...state,
+        productPerPage: action.payload,
+      };
+    case productActions.onNavigateNext:
+      return {
+        ...state,
+        activePage: activePage + 1,
+      };
+    case productActions.onNavigatePrevious:
+      if (state.activePage === 1) {
+        return {
+          ...state,
+          activePage: 1,
+        };
+      } else {
+        return {
+          ...state,
+          activePage: state.activePage - 1,
+        };
+      }
+    case productActions.onChangeProductPerPage:
+      return {
+        ...state,
+        productPerPage: action.payload,
+      };
+    case productActions.onClickCurrentPage:
+      return {
+        ...state,
+        activePage: action.payload,
       };
     default:
       return state;
