@@ -28,7 +28,7 @@ export const postLoginData =
 
         if (formData.rememberMe) {
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("email", res.data.email);
+          // localStorage.setItem("email", res.data.email);
         }
         dispatch(emailPoster(res.data.email));
         dispatch(rememberMePoster(res.data.rememberMe));
