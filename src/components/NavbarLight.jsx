@@ -13,6 +13,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGravatar } from "use-gravatar";
 import UserDdown from "./UserDdown";
+import TestDropdown from "./TestDropdown";
 const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
@@ -87,8 +88,12 @@ const NavbarLight = (props) => {
           <button className="" onClick={() => history.push("/home")}>
             Home
           </button>
+          {/*
           <span className="">
             <ShopDropdown />
+        </span>*/}
+          <span>
+            <TestDropdown />
           </span>
 
           <button className="" onClick={() => history.push("/about")}>
