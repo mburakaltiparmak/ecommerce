@@ -7,14 +7,29 @@ const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
+
   useEffect(() => {
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
+
+  const handleMouseOver = () => {
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
+
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div
       className="relative flex gap-3 sm:flex-col"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="relative flex text-left">
         <div>
@@ -23,6 +38,7 @@ const TestDropdown = () => {
             id="menu-button"
             aria-expanded={isOpen}
             aria-haspopup="true"
+            onClick={toggleMenu}
           >
             Shop
             <svg
@@ -48,8 +64,9 @@ const TestDropdown = () => {
             tabIndex="-1"
           >
             <div className="flex">
-              <div className="WOMEN flex flex-col px-2">
+              <div className="flex flex-col px-2">
                 <Link
+                  onClick={toggleMenu}
                   to="/shop/kadin"
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
@@ -63,6 +80,7 @@ const TestDropdown = () => {
                   (item, index) =>
                     item.gender === "k" && (
                       <Link
+                        onClick={toggleMenu}
                         key={index}
                         to={`/shop/kadin/${item.title.toLowerCase()}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
@@ -77,6 +95,7 @@ const TestDropdown = () => {
               </div>
               <div className="MEN flex flex-col">
                 <Link
+                  onClick={toggleMenu}
                   to="/shop/erkek"
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
@@ -90,6 +109,7 @@ const TestDropdown = () => {
                   (item, index) =>
                     item.gender === "e" && (
                       <Link
+                        onClick={toggleMenu}
                         key={index}
                         to={`/shop/erkek/${item.title.toLowerCase()}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
@@ -109,4 +129,5 @@ const TestDropdown = () => {
     </div>
   );
 };
+
 export default TestDropdown;
