@@ -2,36 +2,39 @@ import axios from "axios";
 import { useEffect } from "react";
 import { fetchStates, productActions } from "../reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
-/*
-//THUNK KULLANILACAK
-export const getProducts = () => (dispatch, getState) => {
+//const location = useLocation();
+export const getProductsToQuery = (categoryId) => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
-  instance
-    .get("/products")
-    .then((res) => {
-      console.log("gelen product", res.data);
+  try {
+    const res = await instance.get(`/products?category=${categoryId}`);
+    console.log("gelen product", res.data);
 
-      dispatch(productListSetter(res.data.products));
-      dispatch(fetchStateSetter(fetchStates.FETCHED));
-      dispatch(productCountSetter(res.data.total));
+    dispatch(productListSetter(res.data.products));
+    dispatch(fetchStateSetter(fetchStates.FETCHED));
+    dispatch(productCountSetter(res.data.total));
 
-      //PAGE COUNT VE ACTIVE PAGE COUNT EKLENECEK
-    })
-    .catch((err) => {
-      console.error("hata", err);
+    // Sayfa sayısını hesapla
 
-      dispatch(fetchStateSetter(fetchStates.FAILED));
-    });
+    dispatch(productPerPageSetter(10));
+    const productPerPage = 10;
+    dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
+
+    dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
+  } catch (err) {
+    console.error("hata", err);
+    dispatch(fetchStateSetter(fetchStates.FAILED));
+  }
 };
-*/
-export const getProducts = () => async (dispatch, getState) => {
+
+export const getProducts = (queryParams) => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
 
   try {
-    const res = await instance.get("/products");
+    const res = await instance.get("/products", { params: queryParams });
     console.log("gelen product", res.data);
 
     dispatch(productListSetter(res.data.products));

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCategories } from "../store/actions/globalAction";
+import { getProductsToQuery } from "../store/actions/productAction";
 
 const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,10 @@ const TestDropdown = () => {
   const toggleMenu = (e) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
+  };
+  const categoryHandleClick = (categoryId) => {
+    console.log("category id", categoryId);
+    dispatch(getProductsToQuery(categoryId));
   };
 
   return (
@@ -82,9 +87,9 @@ const TestDropdown = () => {
                   (item, index) =>
                     item.gender === "k" && (
                       <Link
-                        onClick={toggleMenu}
+                        onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/kadin/${item.title.toLowerCase()}`}
+                        to={`/shop/${item.gender}/${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"
@@ -111,9 +116,9 @@ const TestDropdown = () => {
                   (item, index) =>
                     item.gender === "e" && (
                       <Link
-                        onClick={toggleMenu}
+                        onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/erkek/${item.title.toLowerCase()}`}
+                        to={`/shop/${item.gender}/${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"
