@@ -96,6 +96,9 @@ function App() {
         <Route exact path="/signup">
           <Signup />
         </Route>
+        <Route path="/shop/:gender/:categoryId">
+          <ProductListPages />
+        </Route>
       </Switch>
       <Footer />
     </div>
