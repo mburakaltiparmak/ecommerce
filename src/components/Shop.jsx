@@ -16,7 +16,11 @@ import { Pagination } from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../store/actions/globalAction";
 import { Link, useLocation } from "react-router-dom";
-import { activePageSetter, getProducts } from "../store/actions/productAction";
+import {
+  activePageSetter,
+  getProducts,
+  getProductsToSort,
+} from "../store/actions/productAction";
 import Loading from "./Loading";
 /* Responsive tasarım için bakman gereken yer product-container .*/
 export const Shop = () => {
@@ -49,12 +53,15 @@ export const Shop = () => {
     setLoading(true);
     const timeout = setTimeout(() => {
       dispatch(getCategories());
-      //      dispatch(getProducts());
+      dispatch(getProducts());
 
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timeout);
   }, [dispatch]);
+  const handleSortChange = (sortParam) => {
+    dispatch(getProductsToSort(sortParam));
+  };
 
   if (loading) {
     <Loading />;
@@ -145,12 +152,14 @@ export const Shop = () => {
               <select
                 id="dropdown"
                 defaultValue="Popularity"
+                onChange={(e) => handleSortChange(e.target.value)}
                 className="flex border border-gray rounded-lg py-4 px-4 w-full sm:text-base bg-lightgray"
               >
                 <option>Popularity</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                <option value="price:asc">Price Ascending</option>
+                <option value="price:desc">Price Descending</option>
+                <option value="rating:asc">Rating Ascending</option>
+                <option value="rating:desc">Rating Descending</option>
               </select>
             </label>
             <button

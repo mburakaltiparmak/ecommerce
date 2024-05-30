@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCategories } from "../store/actions/globalAction";
-import { getProductsToQuery } from "../store/actions/productAction";
+import { getProductsToCategory } from "../store/actions/productAction";
 
 const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ const TestDropdown = () => {
   };
   const categoryHandleClick = (categoryId) => {
     console.log("category id", categoryId);
-    dispatch(getProductsToQuery(categoryId));
+    dispatch(getProductsToCategory(categoryId));
   };
 
   return (
