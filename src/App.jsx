@@ -105,6 +105,9 @@ function App() {
         <Route path="/shop/:sort">
           <ProductListPages />
         </Route>
+        <Route path="/:category/:productId/:productNameSlug">
+          <Product />
+        </Route>
       </Switch>
       <Footer />
     </div>

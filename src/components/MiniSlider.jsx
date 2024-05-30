@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { data } from "../data";
+import { useSelector } from "react-redux";
 
 const ChevronLeft = () => (
   <svg
@@ -41,31 +42,44 @@ export default function MiniSlider({
 }) {
   const [curr, setCurr] = useState(0);
   const { miniSlider } = data();
+  const productDataObject = useSelector(
+    (store) => store.product.productDataObject
+  );
+
+  // Check if productDataObject is available and has images before accessing them
+  const productImages =
+    productDataObject && productDataObject.images
+      ? productDataObject.images
+      : [];
 
   const prev = () =>
-    setCurr((curr) => (curr === 0 ? miniSlider.length - 1 : curr - 1));
+    setCurr((curr) => (curr === 0 ? productImages.length - 1 : curr - 1));
   const next = () =>
-    setCurr((curr) => (curr === miniSlider.length - 1 ? 0 : curr + 1));
+    setCurr((curr) => (curr === productImages.length - 1 ? 0 : curr + 1));
 
   useEffect(() => {
     if (!autoSlide) return;
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
-  }, []);
+  }, [autoSlide, autoSlideInterval]);
+
+  if (!productImages.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="overflow-hidden relative font-Montserrat shadow-lg shadow-gray  ">
+    <div className="overflow-hidden relative font-Montserrat shadow-lg shadow-gray">
       <div
-        className="flex transition-transform ease-out duration-500  h-[450px]   "
+        className="flex transition-transform ease-out duration-500 h-[450px]"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
-        {miniSlider.map((slide, index) => (
+        {productImages.map((slide, index) => (
           <div
             key={index}
-            className="w-full flex justify-center flex-shrink-0 relative "
+            className="w-full flex justify-center flex-shrink-0 relative"
           >
-            <img src={slide} className="w-full object-cover  " />
-            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start pl-16 "></div>
+            <img src={slide.url} className="w-full object-cover" />
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start pl-16"></div>
           </div>
         ))}
       </div>
@@ -86,7 +100,7 @@ export default function MiniSlider({
 
       <div className="absolute bottom-4 right-0 left-0 sm:hidden">
         <div className="flex items-center justify-center gap-2">
-          {miniSlider.map((_, i) => (
+          {productImages.map((_, i) => (
             <div
               key={i}
               className={`

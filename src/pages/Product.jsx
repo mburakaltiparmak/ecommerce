@@ -19,9 +19,18 @@ import MiniSlider from "../components/MiniSlider";
 import RatingStars from "../components/RatingStars";
 import descriptionImg from "../assets/product/productImg3.png";
 import { data } from "../data";
+import { useSelector } from "react-redux";
 
 const Product = () => {
+  const productDataObject = useSelector(
+    (store) => store.product.productDataObject
+  );
+  const sliderImages =
+    productDataObject && productDataObject.images
+      ? productDataObject.images
+      : [];
   const { miniSlider, dataHomePage } = data();
+
   return (
     <div className="px-40 py-10 flex flex-col font-Montserrat font-bold gap-12 sm:px-10 sm:py-5">
       <section className="flex flex-row sm:items-center sm:justify-center">
@@ -31,9 +40,9 @@ const Product = () => {
         <span id="slider" className="flex flex-col gap-4">
           <MiniSlider />
           <span className="flex flex-row items-start gap-4">
-            {miniSlider.map((img, index) => (
+            {sliderImages.map((img, index) => (
               <button className="shadow-lg shadow-gray" key={index}>
-                <img className="w-[96px] h-[96px]" src={img} alt="" />
+                <img className="w-[96px] h-[96px]" src={img.url} alt="" />
               </button>
             ))}
           </span>
@@ -42,17 +51,15 @@ const Product = () => {
           id="explanation"
           className="flex flex-col gap-8 sm:gap-6 items-start"
         >
-          <h4 className="h4-styles sm:text-xl">Floating Phone</h4>
+          <h4 className="h4-styles sm:text-xl">{productDataObject.name}</h4>
           <RatingStars />
-          <h3 className="h3-styles">$1,139.33</h3>
+          <h3 className="h3-styles">{productDataObject.price}₺</h3>
           <span className="flex flex-row sm:w-full gap-2 p-styles sm:text-base">
-            <p>Availability :</p>
-            <p>In Stock </p>
+            <p>Availability :{productDataObject ? "Yes" : "No"}</p>
+            <p>In Stock : {productDataObject.stock} </p>
           </span>
           <p className="p-styles w-4/5 sm:w-full sm:text-lg">
-            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-            RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-            consequent sent nostrum met.
+            {productDataObject.description}
           </p>
           <hr className="w-4/5 sm:w-full" />
           <span id="colors">

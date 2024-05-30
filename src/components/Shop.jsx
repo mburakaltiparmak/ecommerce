@@ -83,6 +83,17 @@ export const Shop = () => {
   const handleFilterChange = (filterParam) => {
     dispatch(getProductsToFilter(filterParam));
   };
+  const handleProductClick = (productDataObject) => {
+    //console.log(`categoryId : ${categoryId}`, `productId : ${productId}`);
+    /*
+    const productDataObject = {
+      categoryId,
+      productId,
+    };
+    */
+    console.log("object", productDataObject);
+    dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
+  };
   /*
   if (loading) {
     <Loading />;
@@ -186,9 +197,8 @@ export const Shop = () => {
               <input
                 type="text"
                 className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded"
-                defaultValue="Please enter the item you want to search for."
-                onChange={(e) => handleFilterChange(e.target.value)}
                 placeholder="Search"
+                onChange={(e) => handleFilterChange(e.target.value)}
               />
               <button
                 className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
@@ -206,10 +216,12 @@ export const Shop = () => {
               productData
                 .slice(indexOfFirstProduct, indexOfLastProduct)
                 .map((id, index) => (
-                  <div
+                  <Link
                     className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
                     key={index}
                     id="product-content"
+                    to={`/${id.category_id}/${id.id}/${id.name}`}
+                    onClick={() => handleProductClick(id)}
                   >
                     <span id="product-img-content" className="sm:w-full">
                       <img
@@ -247,7 +259,7 @@ export const Shop = () => {
                         Add to Cart
                       </button>
                     </span>
-                  </div>
+                  </Link>
                 ))}
           </span>
           <span id="pagination" className="sm:py-10">
