@@ -6,35 +6,52 @@ import { useLocation } from "react-router-dom";
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
+
 //const location = useLocation();
-export const getProductsToQuery = (categoryId) => async (dispatch) => {
+export const getProductsToQuery =
+  (categoryId, filterParam, sortParam) => async (dispatch) => {
+    dispatch(fetchStateSetter(fetchStates.FETCHING));
+    let getURL = "/products";
+
+    const queryParams = [];
+    if (categoryId != null) {
+      queryParams.push(`category=${categoryId}`);
+    }
+    if (sortParam != null) {
+      queryParams.push(`sort=${sortParam}`);
+    }
+    if (filterParam != null) {
+      queryParams.push(`filter=${filterParam}`);
+    }
+    if (queryParams.length > 0) {
+      getURL = getURL + `?${queryParams.join("&")}`;
+    }
+    try {
+      const res = await instance.get(getURL);
+      console.log("query ile gelen product", res.data);
+
+      dispatch(productListSetter(res.data.products));
+      dispatch(fetchStateSetter(fetchStates.FETCHED));
+      dispatch(productCountSetter(res.data.total));
+
+      // Sayfa sayısını hesapla
+
+      dispatch(productPerPageSetter(10));
+      const productPerPage = 10;
+      dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
+
+      dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
+    } catch (err) {
+      console.error("hata", err);
+      dispatch(fetchStateSetter(fetchStates.FAILED));
+    }
+  };
+
+export const getProducts = () => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
+  const getURL = "/products";
   try {
-    const res = await instance.get(`/products?category=${categoryId}`);
-    console.log("gelen product", res.data);
-
-    dispatch(productListSetter(res.data.products));
-    dispatch(fetchStateSetter(fetchStates.FETCHED));
-    dispatch(productCountSetter(res.data.total));
-
-    // Sayfa sayısını hesapla
-
-    dispatch(productPerPageSetter(10));
-    const productPerPage = 10;
-    dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
-
-    dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
-  } catch (err) {
-    console.error("hata", err);
-    dispatch(fetchStateSetter(fetchStates.FAILED));
-  }
-};
-
-export const getProducts = (queryParams) => async (dispatch) => {
-  dispatch(fetchStateSetter(fetchStates.FETCHING));
-
-  try {
-    const res = await instance.get("/products", { params: queryParams });
+    const res = await instance.get(getURL);
     console.log("gelen product", res.data);
 
     dispatch(productListSetter(res.data.products));

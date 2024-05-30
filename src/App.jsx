@@ -99,6 +99,12 @@ function App() {
         <Route path="/shop/:gender/:categoryId">
           <ProductListPages />
         </Route>
+        <Route path="/shop/:filter">
+          <ProductListPages />
+        </Route>
+        <Route path="/shop/:sort">
+          <ProductListPages />
+        </Route>
       </Switch>
       <Footer />
     </div>

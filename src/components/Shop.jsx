@@ -15,7 +15,7 @@ import Breadcrumb from "./Breadcrumb";
 import { Pagination } from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../store/actions/globalAction";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useLocation } from "react-router-dom";
 import { activePageSetter, getProducts } from "../store/actions/productAction";
 import Loading from "./Loading";
 /* Responsive tasarım için bakman gereken yer product-container .*/
@@ -23,6 +23,7 @@ export const Shop = () => {
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const location = useLocation();
   const categoriesData = useSelector((store) => store.global.categories);
   const productData = useSelector((store) => store.product.productList);
   const productCount = useSelector((store) => store.product.totalProductCount);
@@ -48,7 +49,7 @@ export const Shop = () => {
     setLoading(true);
     const timeout = setTimeout(() => {
       dispatch(getCategories());
-      dispatch(getProducts());
+      //      dispatch(getProducts());
 
       setLoading(false);
     }, 1000);
