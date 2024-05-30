@@ -20,6 +20,7 @@ import {
   activePageSetter,
   getProducts,
   getProductsToCategory,
+  getProductsToFilter,
   getProductsToSort,
 } from "../store/actions/productAction";
 import Loading from "./Loading";
@@ -70,7 +71,6 @@ export const Shop = () => {
         if (selectedCategory) {
           dispatch(getProductsToCategory(selectedCategory));
         }
-
         setLoading(false);
       }, 2000);
       return () => clearTimeout(timeout);
@@ -79,6 +79,9 @@ export const Shop = () => {
 
   const handleSortChange = (sortParam) => {
     dispatch(getProductsToSort(sortParam));
+  };
+  const handleFilterChange = (filterParam) => {
+    dispatch(getProductsToFilter(filterParam));
   };
   /*
   if (loading) {
@@ -143,9 +146,7 @@ export const Shop = () => {
             className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm  text-gray"
             id="filter-container"
           >
-            <p className="sm:text-base">
-              Showing all {productData && productData.length} results
-            </p>
+            <p className="sm:text-base">Showing all {productCount} results</p>
             <span
               id="views"
               className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
@@ -182,6 +183,13 @@ export const Shop = () => {
                   <option value="rating:desc">Rating Descending</option>
                 </select>
               </label>
+              <input
+                type="text"
+                className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded"
+                defaultValue="Please enter the item you want to search for."
+                onChange={(e) => handleFilterChange(e.target.value)}
+                placeholder="Search"
+              />
               <button
                 className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
                 id="2"
