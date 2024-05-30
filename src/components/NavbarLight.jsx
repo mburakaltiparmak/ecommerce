@@ -27,7 +27,7 @@ const NavbarLight = (props) => {
   const userData = useSelector((store) => store.userRed);
   const gravatar = useGravatar(userData.email);
   const nameAtStorage = localStorage.getItem("userName");
-  console.log("local storage name", nameAtStorage);
+
   return (
     <div
       id="navbar-light"

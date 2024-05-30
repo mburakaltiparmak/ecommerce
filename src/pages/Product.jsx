@@ -68,8 +68,22 @@ const Product = () => {
           <RatingStars />
           <h3 className="h3-styles">{productDataObject.price}₺</h3>
           <span className="flex flex-row sm:w-full gap-2 p-styles sm:text-base">
-            <p>Availability :{productDataObject ? "Yes" : "No"}</p>
-            <p>In Stock : {productDataObject.stock} </p>
+            <p className="flex flex-row">
+              Availability :
+              <p className={productDataObject ? "text-green" : "text-red"}>
+                {productDataObject ? "Yes" : "No"}
+              </p>
+            </p>
+            <p className="flex flex-row">
+              In Stock :{" "}
+              <p
+                className={
+                  productDataObject.stock > 0 ? "text-green" : "text-red"
+                }
+              >
+                {productDataObject.stock}
+              </p>
+            </p>
           </span>
           <p className="p-styles w-4/5 sm:w-full sm:text-lg">
             {productDataObject.description}
