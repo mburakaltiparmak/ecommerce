@@ -28,6 +28,17 @@ export const ShopCards = () => {
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
   };
+  const handleProductClick = (productDataObject) => {
+    //console.log(`categoryId : ${categoryId}`, `productId : ${productId}`);
+    /*
+    const productDataObject = {
+      categoryId,
+      productId,
+    };
+    */
+    console.log("object", productDataObject);
+    dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
+  };
   return (
     <div
       className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full  "
