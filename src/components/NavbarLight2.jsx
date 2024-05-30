@@ -7,7 +7,6 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
-import Dropdown from "../components/Dropdown";
 import { useHistory, useLocation } from "react-router-dom";
 const NavbarLight2 = () => {
   const history = useHistory();

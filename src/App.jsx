@@ -96,7 +96,7 @@ function App() {
         <Route exact path="/signup">
           <Signup />
         </Route>
-        <Route path="/shop/:gender/:categoryId">
+        <Route path="/shop/category/:gender/:categoryId">
           <ProductListPages />
         </Route>
         <Route path="/shop/:filter">

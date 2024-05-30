@@ -7,8 +7,7 @@ import {
   faHeart,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import Dropdown from "../components/Dropdown";
-import ShopDropdown from "./ShopDropdown";
+
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGravatar } from "use-gravatar";
@@ -88,10 +87,7 @@ const NavbarLight = (props) => {
           <button className="" onClick={() => history.push("/home")}>
             Home
           </button>
-          {/*
-          <span className="">
-            <ShopDropdown />
-        </span>*/}
+
           <span>
             <TestDropdown />
           </span>
@@ -105,9 +101,6 @@ const NavbarLight = (props) => {
           <button className="" onClick={() => history.push("/contact")}>
             Contact
           </button>
-          <span>
-            <Dropdown />
-          </span>
           <button className="hidden" onClick={() => history.push("/pages")}>
             Pages
           </button>

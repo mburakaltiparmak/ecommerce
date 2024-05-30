@@ -27,7 +27,7 @@ const TestDropdown = () => {
   };
   const categoryHandleClick = (categoryId) => {
     console.log("category id", categoryId);
-    dispatch(getProductsToCategory(categoryId));
+    dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
   };
 
   return (
@@ -74,7 +74,7 @@ const TestDropdown = () => {
               <div className="flex flex-col px-2">
                 <Link
                   onClick={toggleMenu}
-                  to="/shop/kadin"
+                  to="/shop/category/kadin"
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabIndex="-1"
@@ -89,7 +89,7 @@ const TestDropdown = () => {
                       <Link
                         onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/kadin/${item.id}`}
+                        to={`/shop/category/kadin/${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"
@@ -103,7 +103,7 @@ const TestDropdown = () => {
               <div className="MEN flex flex-col">
                 <Link
                   onClick={toggleMenu}
-                  to="/shop/erkek"
+                  to="/shop/category/erkek"
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabIndex="-1"
@@ -118,7 +118,7 @@ const TestDropdown = () => {
                       <Link
                         onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/erkek/${item.id}`}
+                        to={`/shop/category/erkek/${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"

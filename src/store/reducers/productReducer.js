@@ -12,6 +12,7 @@ const initialState = {
     pageCount: 1,
     activePage: 1,
     fetchState: fetchStates.NOT_FETCHED,
+    selectedCategory: null,
   },
 };
 
@@ -26,6 +27,7 @@ export const productActions = {
   onNavigatePrevious: "ON_NAVIGATE_PREVIOUS",
   onChangeProductPerPage: "ON_CHANGE_PRODUCT_PER_PAGE",
   onClickCurrentPage: "ON_CLICK_CURRENT_PAGE",
+  setSelectedCategory: "SET_SELECTED_CATEGORY",
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -87,6 +89,11 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         activePage: action.payload,
+      };
+    case productActions.setSelectedCategory:
+      return {
+        ...state,
+        selectedCategory: action.payload,
       };
     default:
       return state;

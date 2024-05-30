@@ -49,9 +49,10 @@ const instance = axios.create({
   */
 export const getProductsToCategory = (categoryId) => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
+  dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
 
   try {
-    const res = await instance.get(`/products?categories=${categoryId}`);
+    const res = await instance.get(`/products?category=${categoryId}`);
     console.log("category query ile gelen product", res.data);
 
     dispatch(productListSetter(res.data.products));
@@ -118,9 +119,9 @@ export const getProductsToFilter = (filterParam) => async (dispatch) => {
 };
 export const getProducts = () => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
-  const getURL = "/products";
+
   try {
-    const res = await instance.get(getURL);
+    const res = await instance.get("/products");
     console.log("gelen product", res.data);
 
     dispatch(productListSetter(res.data.products));
