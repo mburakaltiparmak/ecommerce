@@ -18,18 +18,31 @@ import Breadcrumb from "../components/Breadcrumb";
 import MiniSlider from "../components/MiniSlider";
 import RatingStars from "../components/RatingStars";
 import descriptionImg from "../assets/product/productImg3.png";
-import { data } from "../data";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Pagination } from "../components/Pagination";
+import { activePageSetter } from "../store/actions/productAction";
 
 const Product = () => {
+  const dispatch = useDispatch();
   const productDataObject = useSelector(
     (store) => store.product.productDataObject
   );
+  const productData = useSelector((store) => store.product.productList);
   const sliderImages =
     productDataObject && productDataObject.images
       ? productDataObject.images
       : [];
-  const { miniSlider, dataHomePage } = data();
+  const productPerPage = useSelector((store) => store.product.productPerPage);
+  const totalPages = Math.ceil(productData?.length / productPerPage);
+  const activePage = useSelector((store) => store.product.activePage);
+
+  const indexOfFirstProduct = (activePage - 1) * productPerPage;
+  const indexOfLastProduct = indexOfFirstProduct + productPerPage;
+  const onPageChange = (page) => {
+    dispatch(activePageSetter(page));
+  };
 
   return (
     <div className="px-40 py-10 flex flex-col font-Montserrat font-bold gap-12 sm:px-10 sm:py-5">
@@ -185,42 +198,67 @@ const Product = () => {
           <h4 className="h4-styles sm:text-xl">BESTSELLER PRODUCTS</h4>
           <hr className="text-gray" />
         </span>
-
+        {/*"flex justify-between flex-row flex-wrap gap-24 sm:w-full sm:flex-col sm:px-0 sm:gap-32 sm:py-16"*/}
         <span
+          className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
-          className="flex w-full justify-between  flex-row flex-wrap gap-24 sm:w-full sm:flex-col sm:px-0 sm:gap-32 sm:py-16"
         >
-          {dataHomePage.map((id, index) => (
-            <div className="shop" key={index} id="product-content">
-              <span id="product-img-content" className="sm:w-full">
-                <img src={id.img} alt="" className="sm:w-full rounded-md" />
-              </span>
-
-              <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
-                {id.title}
-              </h4>
-              <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
-                {id.link}
-              </h5>
-              <span className="flex flex-row sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                <h5 className="text-[#737373]">{id.price1}</h5>
-                <h5 className="text-[#23856D]">{id.price2}</h5>
-              </span>
-              <span id="colors">
-                <div className="flex items-center justify-center space-x-2">
-                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                  <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
-                </div>
-              </span>
-              <span id="button-span" className="flex flex-row gap-4">
-                <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
-                  Add to Cart
-                </button>
-              </span>
-            </div>
-          ))}
+          {productData &&
+            productData
+              .slice(indexOfFirstProduct, indexOfLastProduct)
+              .map((id, index) => (
+                <Link
+                  className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+                  key={index}
+                  id="product-content"
+                  to={`/${id.category_id}/${id.id}/${id.name}`}
+                  onClick={() => handleProductClick(id)}
+                >
+                  <span id="product-img-content" className="sm:w-full">
+                    <img
+                      src={id.images[0].url}
+                      alt=""
+                      className="sm:w-full rounded-md"
+                    />
+                  </span>
+                  <span
+                    id="product-text"
+                    className="flex flex-col items-center gap-2 text-center "
+                  >
+                    <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                      {id.name}
+                    </h4>
+                    <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                      {id.description}
+                    </h5>
+                  </span>
+                  {/*span içini flex-row yap */}
+                  <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
+                    <h5 className="text-[#737373]">{id.price}</h5>
+                    <h5 className="text-[#23856D]">{id.rating}</h5>
+                  </span>
+                  <span id="colors">
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                    </div>
+                  </span>
+                  <span id="button-span" className="flex flex-row gap-4">
+                    <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                      Add to Cart
+                    </button>
+                  </span>
+                </Link>
+              ))}
+        </span>
+        <span id="pagination" className="sm:py-10">
+          <Pagination
+            totalPages={totalPages}
+            currentPage={activePage}
+            onPageChange={onPageChange}
+          />
         </span>
       </section>
       <section id="companies">
