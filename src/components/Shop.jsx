@@ -24,7 +24,7 @@ import {
   getProductsToSort,
 } from "../store/actions/productAction";
 import Loading from "./Loading";
-/* Responsive tasarım için bakman gereken yer product-container .*/
+
 export const Shop = () => {
   const { boxData, shopData } = data();
   const [loading, setLoading] = useState(true);
@@ -36,69 +36,47 @@ export const Shop = () => {
   const selectedCategory = useSelector(
     (store) => store.product.selectedCategory
   );
-  console.log("productData", productData);
   const sortByRating = categoriesData.sort((a, b) => b.rating - a.rating);
-  //
   const productPerPage = useSelector((store) => store.product.productPerPage);
   const totalPages = Math.ceil(productData?.length / productPerPage);
   const activePage = useSelector((store) => store.product.activePage);
-
   const indexOfFirstProduct = (activePage - 1) * productPerPage;
   const indexOfLastProduct = indexOfFirstProduct + productPerPage;
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
   };
-  console.log("index first", indexOfFirstProduct);
-  console.log("index last", indexOfLastProduct);
-  console.log("prod per page", productPerPage);
-  console.log("total page", totalPages);
-  //
-  if (location.pathname === "/shop") {
-    useEffect(() => {
-      setLoading(true);
-      const timeout = setTimeout(() => {
-        dispatch(getProducts());
 
-        setLoading(false);
-      }, 1000);
-      return () => clearTimeout(timeout);
-    }, [dispatch, location.pathname]);
-  }
-  if (location.pathname.includes("category")) {
-    useEffect(() => {
-      setLoading(true);
-      const timeout = setTimeout(() => {
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      if (location.pathname === "/shop") {
+        dispatch(getProducts());
+      } else if (location.pathname.includes("category")) {
         if (selectedCategory) {
           dispatch(getProductsToCategory(selectedCategory));
         }
-        setLoading(false);
-      }, 2000);
-      return () => clearTimeout(timeout);
-    }, [dispatch, location.pathname, selectedCategory]);
-  }
+      }
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [dispatch, location.pathname, selectedCategory]);
 
   const handleSortChange = (sortParam) => {
     dispatch(getProductsToSort(sortParam));
   };
+
   const handleFilterChange = (filterParam) => {
     dispatch(getProductsToFilter(filterParam));
   };
+
   const handleProductClick = (productDataObject) => {
-    //console.log(`categoryId : ${categoryId}`, `productId : ${productId}`);
-    /*
-    const productDataObject = {
-      categoryId,
-      productId,
-    };
-    */
-    console.log("object", productDataObject);
     dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
   };
-  /*
+
   if (loading) {
-    <Loading />;
+    return <Loading />;
   }
-*/
+
   return (
     <div className="font-Montserrat flex flex-col gap-8 " id="shop-container">
       <section
@@ -146,132 +124,126 @@ export const Shop = () => {
           ))}
         </span>
       </section>
-      {loading ? (
-        <Loading />
-      ) : (
-        <section
-          className="flex flex-col justify-between items-center gap-12 px-40 sm:px-0"
-          id="shop-section"
+      <section
+        className="flex flex-col justify-between items-center gap-12 px-40 sm:px-0"
+        id="shop-section"
+      >
+        <span
+          className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm  text-gray"
+          id="filter-container"
         >
+          <p className="sm:text-base">Showing all {productCount} results</p>
           <span
-            className="flex flex-row sm:flex-col sm:gap-4 justify-between items-center w-full font-bold text-sm  text-gray"
-            id="filter-container"
+            id="views"
+            className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
           >
-            <p className="sm:text-base">Showing all {productCount} results</p>
-            <span
-              id="views"
-              className="flex flex-row gap-2 sm:gap-4 text-gray sm:items-center"
+            <p className="flex items-center sm:text-base">Views:</p>
+            <button
+              className="border border-gray rounded-lg p-3 text-base"
+              id="1"
             >
-              <p className="flex items-center sm:text-base">Views:</p>
-              <button
-                className="border border-gray rounded-lg p-3 text-base"
-                id="1"
-              >
-                <img src={icon} className="w-4 h-4 object-cover" />
-              </button>
-              <button
-                className="border border-gray rounded-lg text-base px-3 py-2"
-                id="2"
-              >
-                <FontAwesomeIcon
-                  icon={faListUl}
-                  className="w-4 h-4 object-cover"
-                />
-              </button>
-            </span>
-            <span className="flex flex-row gap-2 sm:gap-4" id="filter-order">
-              <label className="flex items-center justify-center" id="1">
-                <select
-                  id="dropdown"
-                  defaultValue="Popularity"
-                  onChange={(e) => handleSortChange(e.target.value)}
-                  className="flex border border-gray rounded-lg py-4 px-4 w-full sm:text-base bg-lightgray"
-                >
-                  <option>Popularity</option>
-                  <option value="price:asc">Price Ascending</option>
-                  <option value="price:desc">Price Descending</option>
-                  <option value="rating:asc">Rating Ascending</option>
-                  <option value="rating:desc">Rating Descending</option>
-                </select>
-              </label>
-              <input
-                type="text"
-                className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded"
-                placeholder="Search"
-                onChange={(e) => handleFilterChange(e.target.value)}
+              <img src={icon} className="w-4 h-4 object-cover" />
+            </button>
+            <button
+              className="border border-gray rounded-lg text-base px-3 py-2"
+              id="2"
+            >
+              <FontAwesomeIcon
+                icon={faListUl}
+                className="w-4 h-4 object-cover"
               />
-              <button
-                className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
-                id="2"
+            </button>
+          </span>
+          <span className="flex flex-row gap-2 sm:gap-4" id="filter-order">
+            <label className="flex items-center justify-center" id="1">
+              <select
+                id="dropdown"
+                defaultValue="Popularity"
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="flex border border-gray rounded-lg py-4 px-4 w-full sm:text-base bg-lightgray"
               >
-                Filter
-              </button>
-            </span>
-          </span>
-          <span
-            className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
-            id="product-container"
-          >
-            {productData &&
-              productData
-                .slice(indexOfFirstProduct, indexOfLastProduct)
-                .map((id, index) => (
-                  <Link
-                    className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
-                    key={index}
-                    id="product-content"
-                    to={`/${id.category_id}/${id.id}/${id.name}`}
-                    onClick={() => handleProductClick(id)}
-                  >
-                    <span id="product-img-content" className="sm:w-full">
-                      <img
-                        src={id.images[0].url}
-                        alt=""
-                        className="sm:w-full rounded-md"
-                      />
-                    </span>
-                    <span
-                      id="product-text"
-                      className="flex flex-col items-center gap-2 text-center "
-                    >
-                      <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
-                        {id.name}
-                      </h4>
-                      <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
-                        {id.description}
-                      </h5>
-                    </span>
-                    {/*span içini flex-row yap */}
-                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                      <h5 className="text-[#737373]">{id.price}</h5>
-                      <h5 className="text-[#23856D]">{id.rating}</h5>
-                    </span>
-                    <span id="colors">
-                      <div className="flex items-center justify-center space-x-2">
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
-                      </div>
-                    </span>
-                    <span id="button-span" className="flex flex-row gap-4">
-                      <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
-                        Add to Cart
-                      </button>
-                    </span>
-                  </Link>
-                ))}
-          </span>
-          <span id="pagination" className="sm:py-10">
-            <Pagination
-              totalPages={totalPages}
-              currentPage={activePage}
-              onPageChange={onPageChange}
+                <option>Popularity</option>
+                <option value="price:asc">Price Ascending</option>
+                <option value="price:desc">Price Descending</option>
+                <option value="rating:asc">Rating Ascending</option>
+                <option value="rating:desc">Rating Descending</option>
+              </select>
+            </label>
+            <input
+              type="text"
+              className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded"
+              placeholder="Search"
+              onChange={(e) => handleFilterChange(e.target.value)}
             />
+            <button
+              className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
+              id="2"
+            >
+              Filter
+            </button>
           </span>
-        </section>
-      )}
-
+        </span>
+        <span
+          className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
+          id="product-container"
+        >
+          {productData &&
+            productData
+              .slice(indexOfFirstProduct, indexOfLastProduct)
+              .map((id, index) => (
+                <Link
+                  className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+                  key={index}
+                  id="product-content"
+                  to={`/${id.category_id}/${id.id}/${id.name}`}
+                  onClick={() => handleProductClick(id)}
+                >
+                  <span id="product-img-content" className="sm:w-full">
+                    <img
+                      src={id.images[0].url}
+                      alt=""
+                      className="sm:w-full rounded-md"
+                    />
+                  </span>
+                  <span
+                    id="product-text"
+                    className="flex flex-col items-center gap-2 text-center "
+                  >
+                    <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                      {id.name}
+                    </h4>
+                    <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                      {id.description}
+                    </h5>
+                  </span>
+                  <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
+                    <h5 className="text-[#737373]">{id.price}</h5>
+                    <h5 className="text-[#23856D]">{id.rating}</h5>
+                  </span>
+                  <span id="colors">
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
+                      <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                    </div>
+                  </span>
+                  <span id="button-span" className="flex flex-row gap-4">
+                    <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                      Add to Cart
+                    </button>
+                  </span>
+                </Link>
+              ))}
+        </span>
+        <span id="pagination" className="sm:py-10">
+          <Pagination
+            totalPages={totalPages}
+            currentPage={activePage}
+            onPageChange={onPageChange}
+          />
+        </span>
+      </section>
       <section
         className="px-40 sm:px-10 py-10 bg-lightgray flex flex-row sm:flex-col sm:gap-8 justify-between content-center text-7xl text-gray"
         id="logo-section"

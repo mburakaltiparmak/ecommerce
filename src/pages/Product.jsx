@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -20,16 +20,23 @@ import RatingStars from "../components/RatingStars";
 import descriptionImg from "../assets/product/productImg3.png";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Pagination } from "../components/Pagination";
 import { activePageSetter } from "../store/actions/productAction";
+import Loading from "../components/Loading";
 
 const Product = () => {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const productDataObject = useSelector(
     (store) => store.product.productDataObject
   );
   const productData = useSelector((store) => store.product.productList);
+  const selectedCategory = useSelector(
+    (store) => store.product.selectedCategory
+  );
   const sliderImages =
     productDataObject && productDataObject.images
       ? productDataObject.images
@@ -43,6 +50,21 @@ const Product = () => {
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
   };
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      if (location.pathname === "/:category") {
+        if (selectedCategory) {
+          dispatch(getProductsToCategory(selectedCategory));
+        }
+      }
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [dispatch, location.pathname, selectedCategory]);
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="px-40 py-10 flex flex-col font-Montserrat font-bold gap-12 sm:px-10 sm:py-5">

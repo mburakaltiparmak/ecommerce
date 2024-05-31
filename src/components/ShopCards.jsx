@@ -5,12 +5,15 @@ import accessoriesImg from "../assets/shopcards/accessories.png";
 import kidsImg from "../assets/shopcards/kids.png";
 import womenImg2 from "../assets/shopcards/women2.png";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Pagination } from "./Pagination";
+import { useState } from "react";
+import { activePageSetter } from "../store/actions/productAction";
 
 export const ShopCards = () => {
-  const { dataHomePage } = data();
+  //const { dataHomePage } = data();
   const dispatch = useDispatch();
+
   const productDataObject = useSelector(
     (store) => store.product.productDataObject
   );
@@ -25,6 +28,7 @@ export const ShopCards = () => {
 
   const indexOfFirstProduct = (activePage - 1) * productPerPage;
   const indexOfLastProduct = indexOfFirstProduct + productPerPage;
+
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
   };
