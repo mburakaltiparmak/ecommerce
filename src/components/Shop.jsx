@@ -24,6 +24,7 @@ import {
   getProductsToSort,
 } from "../store/actions/productAction";
 import Loading from "./Loading";
+import { AddCart } from "../store/actions/shoppingCartAction";
 
 export const Shop = () => {
   const { boxData, shopData } = data();
@@ -75,6 +76,9 @@ export const Shop = () => {
   const categoryHandleClick = (categoryId) => {
     console.log("category id", categoryId);
     dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
+  };
+  const addToCart = (product) => {
+    dispatch(AddCart(product));
   };
 
   if (loading) {
@@ -188,20 +192,16 @@ export const Shop = () => {
             </button>
           </span>
         </span>
-        <span
-          className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
-          id="product-container"
-        >
+        <span className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4">
           {productData &&
             productData
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
+                  key={index}
                   className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
-                  id="product-content"
                 >
                   <Link
-                    key={index}
                     to={`/${id.category_id}/${id.id}/${id.name}`}
                     onClick={() => handleProductClick(id)}
                   >
@@ -212,10 +212,7 @@ export const Shop = () => {
                         className="sm:w-full rounded-md"
                       />
                     </span>
-                    <span
-                      id="product-text"
-                      className="flex flex-col items-center gap-2 text-center "
-                    >
+                    <span className="flex flex-col items-center gap-2 text-center ">
                       <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
                         {id.name}
                       </h4>
@@ -236,8 +233,11 @@ export const Shop = () => {
                       </div>
                     </span>
                   </Link>
-                  <span id="button-span" className="flex flex-row gap-4">
-                    <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                  <span className="flex flex-row gap-4">
+                    <button
+                      onClick={() => addToCart(id)}
+                      className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal"
+                    >
                       Add to Cart
                     </button>
                   </span>

@@ -1,33 +1,28 @@
 const initialState = {
-  cart: [
-    {
-      count: 0,
-
-      product: {
-        id: null,
-      },
-    },
-  ],
+  cart: [],
   payment: {},
   address: {},
 };
+
 export const shoppingCartActions = {
   setAddCart: "SET_ADD_CART",
   setAddPayment: "SET_ADD_PAYMENT",
   setAddAddress: "SET_ADD_ADDRESS",
+  setCheck: "SET_CHECK",
 };
+
 export const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
     case shoppingCartActions.setAddCart:
       const isThatAddedCart = state.cart.find(
         (item) => item.product.id === action.payload.id
       );
-      if (isThatAddedCart !== -1) {
-        const newCart = [...state.cart];
-        newCart[isThatAddedCart] = {
-          ...newCart[isThatAddedCart],
-          count: newCart[isThatAddedCart].count + 1,
-        };
+      if (isThatAddedCart) {
+        const newCart = state.cart.map((item) =>
+          item.product.id === action.payload.id
+            ? { ...item, count: item.count + 1 }
+            : item
+        );
         return {
           ...state,
           cart: newCart,
@@ -47,6 +42,11 @@ export const shoppingCartReducer = (state = initialState, action) => {
       return {
         ...state,
         address: action.payload,
+      };
+    case shoppingCartActions.setCheck:
+      return {
+        ...state,
+        checked: action.payload,
       };
     default:
       return state;

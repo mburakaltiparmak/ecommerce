@@ -12,3 +12,7 @@ export const AddAddress = (address) => ({
   type: shoppingCartActions.setAddAddress,
   payload: address,
 });
+export const IsChecked = (checked) => ({
+  type: shoppingCartActions.setCheck,
+  payload: checked,
+});

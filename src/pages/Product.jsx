@@ -29,14 +29,27 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
+  const selectedCategory = useSelector(
+    (store) => store.product.selectedCategory
+  );
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      if (location.pathname === "/:category") {
+        if (selectedCategory) {
+          dispatch(getProductsToCategory(selectedCategory));
+        }
+      }
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [dispatch, location.pathname, selectedCategory]);
 
   const productDataObject = useSelector(
     (store) => store.product.productDataObject
   );
   const productData = useSelector((store) => store.product.productList);
-  const selectedCategory = useSelector(
-    (store) => store.product.selectedCategory
-  );
+
   const sliderImages =
     productDataObject && productDataObject.images
       ? productDataObject.images
@@ -50,18 +63,10 @@ const Product = () => {
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
   };
-  useEffect(() => {
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      if (location.pathname === "/:category") {
-        if (selectedCategory) {
-          dispatch(getProductsToCategory(selectedCategory));
-        }
-      }
-      setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, [dispatch, location.pathname, selectedCategory]);
+
+  const handleProductClick = (productDataObject) => {
+    dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
+  };
   if (loading) {
     return <Loading />;
   }
@@ -86,29 +91,29 @@ const Product = () => {
           id="explanation"
           className="flex flex-col gap-8 sm:gap-6 items-start"
         >
-          <h4 className="h4-styles sm:text-xl">{productDataObject.name}</h4>
+          <h4 className="h4-styles sm:text-xl">{productDataObject?.name}</h4>
           <RatingStars />
-          <h3 className="h3-styles">{productDataObject.price}₺</h3>
+          <h3 className="h3-styles">{productDataObject?.price}₺</h3>
           <span className="flex flex-row sm:w-full gap-2 p-styles sm:text-base">
             <p className="flex flex-row">
               Availability :
-              <p className={productDataObject ? "text-green" : "text-red"}>
+              <span className={productDataObject ? "text-green" : "text-red"}>
                 {productDataObject ? "Yes" : "No"}
-              </p>
+              </span>
             </p>
             <p className="flex flex-row">
-              In Stock :{" "}
-              <p
+              In Stock :
+              <span
                 className={
-                  productDataObject.stock > 0 ? "text-green" : "text-red"
+                  productDataObject?.stock > 0 ? "text-green" : "text-red"
                 }
               >
-                {productDataObject.stock}
-              </p>
+                {productDataObject?.stock}
+              </span>
             </p>
           </span>
           <p className="p-styles w-4/5 sm:w-full sm:text-lg">
-            {productDataObject.description}
+            {productDataObject?.description}
           </p>
           <hr className="w-4/5 sm:w-full" />
           <span id="colors">
