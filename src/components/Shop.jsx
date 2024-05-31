@@ -72,6 +72,10 @@ export const Shop = () => {
   const handleProductClick = (productDataObject) => {
     dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
   };
+  const categoryHandleClick = (categoryId) => {
+    console.log("category id", categoryId);
+    dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
+  };
 
   if (loading) {
     return <Loading />;
@@ -96,10 +100,11 @@ export const Shop = () => {
         >
           {sortByRating.slice(0, 5).map((box, index) => (
             <Link
+              onClick={() => categoryHandleClick(box.id)}
               key={index}
-              to={`/shop/${
-                box.gender === "e" ? "erkek" : "kadin"
-              }/${box.title.toLowerCase()}`}
+              to={`/shop/category/${box.gender === "e" ? "erkek" : "kadin"}/${
+                box.id
+              }`}
             >
               <div
                 id="container"

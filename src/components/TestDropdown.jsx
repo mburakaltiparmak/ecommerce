@@ -89,7 +89,9 @@ const TestDropdown = () => {
                       <Link
                         onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/category/kadin/${item.id}`}
+                        to={`/shop/category/${
+                          item.gender === "k" ? "kadin" : "erkek"
+                        }/${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"
