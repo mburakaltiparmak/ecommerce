@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGravatar } from "use-gravatar";
 import UserDdown from "./UserDdown";
 import TestDropdown from "./TestDropdown";
+import CartDropdown from "./CartDropdown";
 const NavbarLight = (props) => {
   const history = useHistory();
   const { pathname } = useLocation();
@@ -27,6 +28,7 @@ const NavbarLight = (props) => {
   const userData = useSelector((store) => store.userRed);
   const gravatar = useGravatar(userData.email);
   const nameAtStorage = localStorage.getItem("userName");
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
@@ -167,12 +169,9 @@ const NavbarLight = (props) => {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
               <p className="lg:hidden sm:flex">Search</p>
             </button>
-            <button
-              className="flex text-center gap-1 items-center sm:hidden"
-              id="navbar-nav-icons"
-            >
-              <FontAwesomeIcon icon={faCartShopping} />1
-            </button>
+            <span className="flex text-center gap-1 items-center sm:hidden">
+              <CartDropdown />
+            </span>
             <button
               className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"

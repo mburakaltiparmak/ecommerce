@@ -9,6 +9,9 @@ export const shoppingCartActions = {
   setAddPayment: "SET_ADD_PAYMENT",
   setAddAddress: "SET_ADD_ADDRESS",
   setCheck: "SET_CHECK",
+  setRemoveFromCart: "SET_REMOVE_FROM_CART",
+  setClearCart: "SET_CLEAR_CART",
+  setUpdateCart: "SET_UPDATE_CART",
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -48,6 +51,28 @@ export const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         checked: action.payload,
       };
+    case shoppingCartActions.setRemoveFromCart:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.product.id !== action.payload),
+      };
+    case shoppingCartActions.setClearCart:
+      return {
+        ...state,
+        cart: [],
+      };
+    case shoppingCartActions.setUpdateCart: {
+      const updatedCart = state.cart.map((item) =>
+        item.product.id === action.payload.id
+          ? { ...item, count: action.payload.newCount }
+          : item
+      );
+
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+    }
     default:
       return state;
   }
