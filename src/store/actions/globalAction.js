@@ -35,7 +35,7 @@ export const getRoles = () => (dispatch, getState) => {
     });
 };
 //CATEGORIES
-export const getCategories = () => (dispatch, getState) => {
+export const getCategories = () => (dispatch) => {
   instance
     .get("/categories")
     .then((res) => {

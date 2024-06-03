@@ -53,74 +53,94 @@ const Cart = () => {
           {`(${totalItemCount} Product${totalItemCount > 1 ? "s" : ""})`}
         </div>
       </div>
-      {cart.map((item, index) => (
-        <div
-          id="cart-product"
-          className="my-2 block border-b border-gray py-1 hover:text-black"
-          key={index}
-        >
-          <div className="flex flex-row">
-            <img
-              src={item.product.images[0].url}
-              alt={item.product.id}
-              className="w-[100px] h-[140px]"
-            />
-            <div className="flex flex-col justify-around ml-2">
-              <div className="font-semibold">{item.product.name}</div>
-              <div>
-                <span className="font-semibold text-green text-sm">{`$${
-                  item.product.price * item.count
-                }`}</span>
-              </div>
-              <div className="flex flex-row font-semibold items-center justify-start gap-4">
-                <div className="flex flex-row gap-2 font-semibold items-center justify-center">
-                  <button
-                    className="bg-blue1 p-2 rounded-lg text-white flex items-center"
-                    onClick={() => decrementProductCount(item)}
-                  >
-                    <p className="px-1">-</p>
-                  </button>
-                  <span>{item.count}</span>
-                  <button
-                    className="bg-blue1 p-2 rounded-lg text-white flex items-center"
-                    onClick={() => incrementProductCount(item)}
-                  >
-                    <p className="px-1">+</p>
+      {cart.length > 0 ? (
+        cart.map((item, index) => (
+          <div
+            id="cart-product"
+            className="my-2 block border-b border-gray py-1 hover:text-black"
+            key={index}
+          >
+            <div className="flex flex-row">
+              <img
+                src={item.product.images[0].url}
+                alt={item.product.id}
+                className="w-[150px] h-[200px]"
+              />
+              <div className="flex flex-col justify-around ml-2">
+                <div className="font-semibold text-lg">{item.product.name}</div>
+                <div>
+                  <span className="font-semibold text-green text-lg">{`$${
+                    item.product.price * item.count
+                  }`}</span>
+                </div>
+                <div className="flex flex-row font-semibold items-center justify-start gap-4">
+                  <div className="flex flex-row gap-2 font-semibold items-center justify-center">
+                    <button
+                      className="bg-blue1 p-2 rounded-lg text-white flex items-center"
+                      onClick={() => decrementProductCount(item)}
+                    >
+                      <p className="px-1">-</p>
+                    </button>
+                    <span>{item.count}</span>
+                    <button
+                      className="bg-blue1 p-2 rounded-lg text-white flex items-center"
+                      onClick={() => incrementProductCount(item)}
+                    >
+                      <p className="px-1">+</p>
+                    </button>
+                  </div>
+                  <button>
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => removeFromCartHandler(item)}
+                    />
                   </button>
                 </div>
-                <button>
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => removeFromCartHandler(item)}
-                  />
-                </button>
               </div>
             </div>
           </div>
+        ))
+      ) : (
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-red font-semibold text-lg">
+            {" "}
+            Your cart is empty. Please go to the Shopping page.{" "}
+          </p>
+          <Link
+            to="/shop"
+            className="bg-green px-2 py-2 rounded-md text-white font-semibold"
+          >
+            <button>Continue Shopping</button>
+          </Link>
         </div>
-      ))}
-
-      <div className="flex flex-row justify-between mx-auto mt-4">
-        <Link
-          className="bg-green px-6 py-2 rounded-md text-white font-semibold"
-          to="/order"
-        >
-          Confirm Order
-        </Link>
-        <button
-          className="flex items-center bg-red px-6 py-2 rounded-md text-white font-semibold gap-2"
-          onClick={clearCartHandler}
-        >
-          Clear Products
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
-      </div>
-      <div className="flex justify-end mt-4">
-        <div className="text-lg font-semibold">
-          Total Price:{" "}
-          <span className="text-green">{`$${totalPrice.toFixed(2)}`}</span>
+      )}
+      {cartLength > 0 ? (
+        <div>
+          <div className="flex flex-row justify-between mx-auto mt-4">
+            <Link
+              className="bg-green px-6 py-2 rounded-md text-white font-semibold"
+              to="/order"
+            >
+              Confirm Order
+            </Link>
+            <button
+              className="flex items-center bg-red px-6 py-2 rounded-md text-white font-semibold gap-2"
+              onClick={clearCartHandler}
+            >
+              Clear Products
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          </div>
+          <div className="flex justify-end mt-4">
+            <div className="text-lg font-semibold">
+              Total Price:{" "}
+              <span className="text-green">{`$${totalPrice.toFixed(2)}`}</span>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

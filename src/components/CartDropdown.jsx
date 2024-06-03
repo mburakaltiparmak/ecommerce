@@ -16,6 +16,10 @@ const CartDropdown = () => {
   const cartLength = cart.length;
 
   const totalItemCount = cart.reduce((total, item) => total + item.count, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.product.price * item.count,
+    0
+  );
 
   const decrementProductCount = (item) => {
     if (item.count <= 1) {
@@ -27,7 +31,7 @@ const CartDropdown = () => {
     dispatch(removeFromCart(item.product.id));
   };
 
-  const incerementProductCount = (item) => {
+  const incrementProductCount = (item) => {
     dispatch(updateCart(item.product.id, item.count + 1));
   };
   const clearCartHandler = () => {
@@ -39,10 +43,10 @@ const CartDropdown = () => {
   }, [cart]);
 
   return (
-    <div className="relative mx-auto flex items-center justify-center z-50 bg-gray">
-      <div className="group cursor-pointer bg-gray">
-        <div className="flex items-center justify-between  bg-white ">
-          <a className="menu-hover flex">
+    <div className="relative mx-auto flex items-center justify-center z-50  ">
+      <div className="group cursor-pointer bg-white">
+        <div className="flex items-center justify-between bg-white ">
+          <a className="menu-hover flex items-center">
             <FontAwesomeIcon icon={faCartShopping} />
             {cartLength > 0 && (
               <span className="ml-1 font-bold">{cartLength}</span>
@@ -65,7 +69,7 @@ const CartDropdown = () => {
             </svg>
           </span>
         </div>
-        <div className="invisible absolute flex w-[350px] max-h-[350px] flex-col bg-white py-1 px-2 text-gray shadow-xl group-hover:visible right-0 overflow-auto md:-right-20 pt-4">
+        <div className="invisible absolute flex w-[350px] max-h-[350px] flex-col bg-white py-1 px-2 text-gray shadow-xl group-hover:visible right-0 overflow-auto md:-right-20 pt-4 rounded-lg">
           <div className="flex flex-row font-bold justify-between items-center">
             <div>
               <span>My Cart </span>
@@ -73,6 +77,7 @@ const CartDropdown = () => {
             </div>
             <div>
               <FontAwesomeIcon
+                className="hover:text-red"
                 onClick={() => clearCartHandler()}
                 icon={faTrash}
               />
@@ -80,56 +85,67 @@ const CartDropdown = () => {
           </div>
           {cart.map((item, index) => (
             <div
-              className="my-2 block border-b border-gray-300 py-1  hover:text-black md:mx-2 "
+              id="cart-product"
+              className="my-2 block border-b border-gray py-1 hover:text-black"
               key={index}
             >
               <div className="flex flex-row">
                 <img
                   src={item.product.images[0].url}
                   alt={item.product.id}
-                  className="w-[100px] h-[140px] ml-2"
+                  className="w-[100px] h-[150px]"
                 />
-                <div className="flex flex-col justify-around ml-2">
-                  <div className="font-semibold">{item.product.name}</div>
+                <div className="flex flex-col justify-around items-start px-2">
+                  <div className="font-semibold text-lg ">
+                    {item.product.name}
+                  </div>
                   <div>
-                    <span className="font-semibold text-green text-sm">{`$${
+                    <span className="font-semibold text-green text-lg flex items-start">{`$${
                       item.product.price * item.count
                     }`}</span>
                   </div>
-                  <div className="flex flex-row font-semibold items-center justify-between">
-                    <div className="flex flex-row gap-2 font-semibold">
+                  <div className="flex flex-row font-semibold items-center justify-start gap-4">
+                    <div className="flex flex-row gap-2 font-semibold items-center justify-center">
                       <button
-                        className="bg-blue1 px-2 rounded-md text-white"
+                        className="bg-blue1 p-2 rounded-lg text-white flex items-center"
                         onClick={() => decrementProductCount(item)}
                       >
-                        -
+                        <p className="px-1">-</p>
                       </button>
                       <span>{item.count}</span>
                       <button
-                        className="bg-blue1 px-2 rounded-md text-white"
-                        onClick={() => incerementProductCount(item)}
+                        className="bg-blue1 p-2 rounded-lg text-white flex items-center"
+                        onClick={() => incrementProductCount(item)}
                       >
-                        +
+                        <p className="px-1">+</p>
                       </button>
                     </div>
-                    <div>
+                    <button>
                       <FontAwesomeIcon
                         icon={faTrash}
                         onClick={() => removeFromCartHandler(item)}
                       />
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-          <div className="flex flex-row justify-between mx-auto">
+          <div className="flex flex-row justify-between items-center">
             <Link
               className="bg-blue1 px-6 py-2 rounded-md text-white font-semibold"
               to="/cart"
             >
               Go to Cart
             </Link>
+            <div className="flex bg-white justify-end  items-center">
+              <div className="text-lg font-semibold bg-white">
+                Total Price:{" "}
+                <span className="text-green">{`$${totalPrice.toFixed(
+                  2
+                )}`}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

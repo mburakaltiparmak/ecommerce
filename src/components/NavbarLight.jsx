@@ -161,7 +161,7 @@ const NavbarLight = (props) => {
               </button>
             </span>
           )}
-          <span className="flex flex-row gap-2">
+          <span className="flex flex-row gap-2 items-center">
             <button
               className="flex text-center gap-1 sm:gap-2 items-center sm:hidden"
               id="navbar-nav-icons"
@@ -169,7 +169,7 @@ const NavbarLight = (props) => {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
               <p className="lg:hidden sm:flex">Search</p>
             </button>
-            <span className="flex text-center gap-1 items-center sm:hidden">
+            <span className="flex text-center gap-2 items-center sm:hidden">
               <CartDropdown />
             </span>
             <button
