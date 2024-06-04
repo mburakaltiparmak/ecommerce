@@ -8,6 +8,8 @@ import {
   removeFromCart,
   updateCart,
 } from "../store/actions/shoppingCartAction";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
@@ -24,18 +26,23 @@ const CartDropdown = () => {
   const decrementProductCount = (item) => {
     if (item.count <= 1) {
       dispatch(removeFromCart(item.product.id));
+      toast.info(`Product has been successfully removed from your cart!`);
     }
     dispatch(updateCart(item.product.id, item.count - 1));
+    toast.info(`Product count has been successfully updated in your cart!`);
   };
   const removeFromCartHandler = (item) => {
     dispatch(removeFromCart(item.product.id));
+    toast.info(`Product has been successfully removed from your cart!`);
   };
 
   const incrementProductCount = (item) => {
     dispatch(updateCart(item.product.id, item.count + 1));
+    toast.info(`Product count has been successfully updated in your cart!`);
   };
   const clearCartHandler = () => {
     dispatch(clearCart());
+    toast.info(`Your cart has been successfully cleared!`);
   };
 
   useEffect(() => {

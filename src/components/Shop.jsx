@@ -25,6 +25,8 @@ import {
 } from "../store/actions/productAction";
 import Loading from "./Loading";
 import { AddCart } from "../store/actions/shoppingCartAction";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Shop = () => {
   const { boxData, shopData } = data();
@@ -79,6 +81,7 @@ export const Shop = () => {
   };
   const addToCart = (product) => {
     dispatch(AddCart(product));
+    toast.success(`Product has been successfully added in your cart!`);
   };
 
   if (loading) {

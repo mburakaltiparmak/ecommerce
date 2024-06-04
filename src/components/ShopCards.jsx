@@ -10,6 +10,8 @@ import { Pagination } from "./Pagination";
 import { useState } from "react";
 import { activePageSetter } from "../store/actions/productAction";
 import { AddCart } from "../store/actions/shoppingCartAction";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ShopCards = () => {
   //const { dataHomePage } = data();
@@ -46,6 +48,7 @@ export const ShopCards = () => {
   };
   const addToCart = (product) => {
     dispatch(AddCart(product));
+    toast.success(`Product has been successfully added in your cart!`);
   };
   return (
     <div

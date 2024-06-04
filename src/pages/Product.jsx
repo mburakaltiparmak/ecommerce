@@ -25,6 +25,8 @@ import { Pagination } from "../components/Pagination";
 import { activePageSetter } from "../store/actions/productAction";
 import Loading from "../components/Loading";
 import { AddCart } from "../store/actions/shoppingCartAction";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   const [loading, setLoading] = useState(true);
@@ -70,6 +72,7 @@ const Product = () => {
   };
   const addToCart = (product) => {
     dispatch(AddCart(product));
+    toast.success(`Product has been successfully added in your cart!`);
   };
   if (loading) {
     return <Loading />;
