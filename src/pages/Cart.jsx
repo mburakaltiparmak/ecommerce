@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import {
   IsChecked,
   clearCart,
@@ -50,11 +50,13 @@ const Cart = () => {
     dispatch(clearCart());
     toast.info(`Your cart has been successfully cleared!`);
   };
+
   const submitButtonHandler = () => {
     const newState = !checkHandleState;
     setCheckHandleState(newState);
     dispatch(IsChecked(newState));
   };
+
   const calculateShipping = () => {
     if (totalPrice.toFixed(2) > 150) {
       return -29.99;
@@ -64,9 +66,11 @@ const Cart = () => {
       return 29.99;
     }
   };
+
   const calculateTotal = () => {
     return (totalPrice + calculateShipping()).toFixed(2);
   };
+
   const handlePromoCodeChange = (e) => {
     setPromoCode(e.target.value);
   };
@@ -79,7 +83,7 @@ const Cart = () => {
     <div id="cart-page" className="flex flex-row justify-around px-40">
       <div
         id="left"
-        className="flex flex-col font-bold justify-between items-start py-5 "
+        className="flex flex-col font-bold gap-2 items-start py-5 "
       >
         <div>
           <span>My Cart </span>
@@ -135,10 +139,9 @@ const Cart = () => {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center gap-4">
+          <div id="empty-cart" className="flex flex-col items-center gap-4">
             <p className="text-red font-semibold text-lg">
-              {" "}
-              Your cart is empty. Please go to the Shopping page.{" "}
+              Your cart is empty. Please go to the Shopping page.
             </p>
             <Link
               to="/shop"
@@ -148,7 +151,7 @@ const Cart = () => {
             </Link>
           </div>
         )}
-        {cartLength > 0 ? (
+        {cartLength > 0 && (
           <button
             className="flex items-center bg-red px-6 py-2 rounded-md text-white font-semibold gap-2"
             onClick={clearCartHandler}
@@ -156,21 +159,29 @@ const Cart = () => {
             Clear Products
             <FontAwesomeIcon icon={faTrash} />
           </button>
-        ) : (
-          ""
         )}
       </div>
       <div
         id="right"
         className="flex flex-col font-bold justify-between items-center mt-12 py-4 border rounded-lg gap-4 max-h-[450px]"
       >
-        <Link
-          className="bg-green px-6 py-2 rounded-md text-white font-semibold"
-          to="/order"
-          onClick={submitButtonHandler}
-        >
-          Confirm Order
-        </Link>
+        {cartLength > 0 ? (
+          <Link
+            className="bg-green px-6 py-2 rounded-md text-white font-semibold"
+            to="/order"
+            onClick={submitButtonHandler}
+          >
+            Confirm Order
+          </Link>
+        ) : (
+          <button
+            className="bg-red px-6 py-2 rounded-md text-white font-semibold cursor-not-allowed"
+            disabled
+          >
+            Confirm Order
+          </button>
+        )}
+
         <div id="summary" className="flex flex-col gap-4 px-4">
           <span className="flex flex-row justify-between px-4 font-medium gap-2">
             <p>Order Summary</p>
@@ -201,19 +212,28 @@ const Cart = () => {
           <p className="text-red">If you have Promo Code, enter here</p>
           <input
             type="text"
-            className=" text-center bg-[#F9F9F9] border-[#DDDDDD] border rounded-lg h-[50px]"
+            className=" text-center bg-[#F9F9F9] border-[#DDDDDD] border rounded-lg h-[50px] cursor-text "
             placeholder="Promo Code"
             value={promoCode}
             onChange={handlePromoCodeChange}
           />
         </div>
-        <Link
-          className="bg-green px-6 py-2 rounded-md text-white font-semibold"
-          to="/order"
-          onClick={submitButtonHandler}
-        >
-          Confirm Order
-        </Link>
+        {cartLength > 0 ? (
+          <Link
+            className="bg-green px-6 py-2 rounded-md text-white font-semibold"
+            to="/order"
+            onClick={submitButtonHandler}
+          >
+            Confirm Order
+          </Link>
+        ) : (
+          <button
+            className="bg-red px-6 py-2 rounded-md text-white font-semibold cursor-not-allowed"
+            disabled
+          >
+            Confirm Order
+          </button>
+        )}
       </div>
     </div>
   );

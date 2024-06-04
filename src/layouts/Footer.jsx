@@ -113,7 +113,6 @@ const Footer = () => {
           id="bottom-container"
         >
           <p>Made With By Burak Altıparmak</p>
-          <p>All Rights Reserved to Erhan Fırat & Gökhan Özdemir</p>
         </section>
       </div>
     </div>
