@@ -24,6 +24,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Pagination } from "../components/Pagination";
 import { activePageSetter } from "../store/actions/productAction";
 import Loading from "../components/Loading";
+import { AddCart } from "../store/actions/shoppingCartAction";
 
 const Product = () => {
   const [loading, setLoading] = useState(true);
@@ -66,6 +67,9 @@ const Product = () => {
 
   const handleProductClick = (productDataObject) => {
     dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
+  };
+  const addToCart = (product) => {
+    dispatch(AddCart(product));
   };
   if (loading) {
     return <Loading />;
@@ -128,13 +132,16 @@ const Product = () => {
             <button className="border border-blue1 rounded-lg bg-blue1 text-white p-2 text-sm">
               Select Options
             </button>
-            <button className="round-button">
+            <button className="round-button  hover:text-red hover:border-red">
               <FontAwesomeIcon icon={faHeart} />
             </button>
-            <button className="round-button">
+            <button
+              className="round-button hover:text-green hover:border-green"
+              onClick={() => addToCart(productDataObject)}
+            >
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
-            <button className="round-button">
+            <button className="round-button  hover:text-blue3 hover:border-blue3">
               <FontAwesomeIcon icon={faEye} />
             </button>
           </span>
@@ -290,7 +297,10 @@ const Product = () => {
                     </span>
                   </Link>
                   <span id="button-span" className="flex flex-row gap-4">
-                    <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                    <button
+                      className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal"
+                      onClick={() => addToCart(id)}
+                    >
                       Add to Cart
                     </button>
                   </span>

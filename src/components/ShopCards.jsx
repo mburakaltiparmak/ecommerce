@@ -9,6 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Pagination } from "./Pagination";
 import { useState } from "react";
 import { activePageSetter } from "../store/actions/productAction";
+import { AddCart } from "../store/actions/shoppingCartAction";
 
 export const ShopCards = () => {
   //const { dataHomePage } = data();
@@ -42,6 +43,9 @@ export const ShopCards = () => {
     */
     console.log("object", productDataObject);
     dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
+  };
+  const addToCart = (product) => {
+    dispatch(AddCart(product));
   };
   return (
     <div
@@ -209,7 +213,10 @@ export const ShopCards = () => {
                     </span>
                   </Link>
                   <span id="button-span" className="flex flex-row gap-4">
-                    <button className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal">
+                    <button
+                      className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal"
+                      onClick={() => addToCart(id)}
+                    >
                       Add to Cart
                     </button>
                   </span>
