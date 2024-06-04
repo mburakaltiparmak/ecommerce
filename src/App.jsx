@@ -21,6 +21,8 @@ import Signup from "./pages/Signup";
 import "./App.css";
 import Loading from "./components/Loading";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
+
 function App() {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
@@ -109,8 +111,11 @@ function App() {
         <Route path="/:category/:productId/:productNameSlug">
           <Product />
         </Route>
-        <Route>
-          <Cart path="/cart" />
+        <Route exact path="/cart">
+          <Cart />
+        </Route>
+        <Route exact path="/order">
+          <Order />
         </Route>
       </Switch>
       <Footer />
