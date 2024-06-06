@@ -27,7 +27,8 @@ const TestDropdown = () => {
   };
   const categoryHandleClick = (categoryId) => {
     console.log("category id", categoryId);
-    dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
+    dispatch(getProductsToCategory(categoryId));
+    //dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
   };
 
   return (
@@ -91,7 +92,7 @@ const TestDropdown = () => {
                         key={index}
                         to={`/shop/category/${
                           item.gender === "k" ? "kadin" : "erkek"
-                        }/${item.id}`}
+                        }/${item.title.toLowerCase()}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"

@@ -99,7 +99,7 @@ function App() {
         <Route exact path="/signup">
           <Signup />
         </Route>
-        <Route path="/shop/category/:gender/:categoryId">
+        <Route path="/shop/category/:gender/:title">
           <ProductListPages />
         </Route>
         <Route path="/shop/:filter">
