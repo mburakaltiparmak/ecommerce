@@ -19,7 +19,7 @@ import { Link, useLocation } from "react-router-dom";
 import {
   activePageSetter,
   getProducts,
-  getProductsToCategory,
+  getProductsByCategory,
   getProductsToFilter,
   getProductsToSort,
 } from "../store/actions/productAction";
@@ -56,7 +56,7 @@ export const Shop = () => {
         dispatch(getProducts());
       } else if (location.pathname.includes("category")) {
         if (selectedCategory) {
-          dispatch(getProductsToCategory(selectedCategory));
+          dispatch(getProductsByCategory(selectedCategory));
         }
       }
       setLoading(false);
@@ -109,9 +109,9 @@ export const Shop = () => {
             <Link
               onClick={() => categoryHandleClick(box.id)}
               key={index}
-              to={`/shop/category/${box.gender === "e" ? "erkek" : "kadin"}/${
-                box.id
-              }`}
+              to={`/shop/category/${
+                box.gender === "e" ? "erkek" : "kadin"
+              }/${box.title.toLowerCase()}`}
             >
               <div
                 id="container"

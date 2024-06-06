@@ -54,6 +54,10 @@ export default function Slider({
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
   }, []);
+  const shopNow = (trigger) => {
+    console.log("trigger", trigger);
+    history.push("/shop");
+  };
 
   return (
     <div className="overflow-hidden relative font-Montserrat bg-[#01B6DD]  ">
@@ -71,7 +75,7 @@ export default function Slider({
               alt={`Slide ${index}`}
               className="w-lvh object-cover sm:object-cover sm:w-fit  "
             />
-            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-items-start sm:justify-center sm:items-center pl-16 sm:pl-0 ">
+            <div className="top-0 left-0 w-full h-full flex items-center justify-items-start sm:justify-center sm:items-center pl-16 sm:pl-0 ">
               <div className="text-white sm:items-center  flex flex-col gap-8 sm:px-0 px-40">
                 <h2 className="font-bold text-xl">{slide.dateHero}</h2>
                 <h1 className="font-bold sm:text-center text-[58px]">
@@ -81,7 +85,7 @@ export default function Slider({
                   {slide.description}
                 </p>
                 <button
-                  onClick={() => history.push("/shop")}
+                  onClick={(e) => shopNow(e.target)}
                   className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal"
                 >
                   SHOP NOW
@@ -91,7 +95,7 @@ export default function Slider({
           </div>
         ))}
       </div>
-      <div className="absolute inset-0 flex items-center justify-between p-4">
+      <div className=" inset-0 flex items-center justify-between p-4">
         <button
           onClick={prev}
           className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"

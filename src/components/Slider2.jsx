@@ -71,6 +71,10 @@ export default function Slider2({
     return () => clearInterval(slideInterval);
   }, []);
 
+  const shopNow = (trigger) => {
+    console.log("trigger", trigger);
+    history.push("/shop");
+  };
   return (
     <div className="overflow-hidden relative sm:flex sm:flex-col bg-[#23856D] font-Montserrat w-full pt-10 sm:pt-0">
       <div
@@ -112,7 +116,10 @@ export default function Slider2({
                     </p>
                     <span className="flex flex-row gap-8 items-center sm:flex-col">
                       <p className="text-2xl font-bold">{slide.price}</p>
-                      <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal">
+                      <button
+                        className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal"
+                        onClick={(e) => shopNow(e.target)}
+                      >
                         ADD TO CART
                       </button>
                     </span>
