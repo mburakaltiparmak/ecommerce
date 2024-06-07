@@ -5,8 +5,8 @@ import {
   faChevronCircleRight,
   faChevronCircleLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import carouselimg from "../assets/header/carouselImg.jpg";
-import carouselimg2 from "../assets/header/carouselImg2.jpg";
+import carouselimg from "../assets/header/carouselImg.jpeg";
+import carouselimg2 from "../assets/header/carouselImg2.jpeg";
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
