@@ -60,7 +60,7 @@ const Slider2 = () => {
               className="min-w-1/2 min-h-1/2 object-contain resize-none pr-20"
             />
             <div className="flex max-h-[680px] w-full h-full items-center px-40 ">
-              <div className="flex flex-col gap-8 md:items-center md:mx-auto">
+              <div className="flex flex-col gap-8 md:items-center md:mx-auto drop-shadow-2xl">
                 <h5 className="font-bold text-white ">Summer 2020</h5>
                 <h1 className="flex font-bold text-6xl text-white md:max-w-80 md:text-[40px] md:flex-col md:text-center">
                   NEW COLLECTION
