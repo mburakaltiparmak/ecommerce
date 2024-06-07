@@ -27,6 +27,7 @@ import Loading from "./Loading";
 import { AddCart } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RatingStars from "./RatingStars";
 
 export const Shop = () => {
   const { boxData, shopData } = data();
@@ -223,9 +224,9 @@ export const Shop = () => {
                         {id.description}
                       </h5>
                     </span>
-                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                      <h5 className="text-[#737373]">{id.price}</h5>
-                      <h5 className="text-[#23856D]">{id.rating}</h5>
+                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-4 py-4 text-base font-bold">
+                      <h5 className="text-[#23856D]">{id.price} $</h5>
+                      <RatingStars rating={id.rating} />
                     </span>
                     <span id="colors">
                       <div className="flex items-center justify-center space-x-2">

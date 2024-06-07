@@ -105,7 +105,7 @@ const Product = () => {
           <h4 className="h4-styles sm:text-xl">{productDataObject?.name}</h4>
           <RatingStars />
           <h3 className="h3-styles">{productDataObject?.price}₺</h3>
-          <span className="flex flex-row sm:w-full gap-2 p-styles sm:text-base">
+          <span className="flex flex-row sm:w-full gap-2 p-styles2 sm:text-base">
             <p className="flex flex-row">
               Availability :
               <span className={productDataObject ? "text-green" : "text-red"}>
@@ -290,9 +290,9 @@ const Product = () => {
                       </h5>
                     </span>
                     {/*span içini flex-row yap */}
-                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-2 text-normal font-bold">
-                      <h5 className="text-[#737373]">{id.price}</h5>
-                      <h5 className="text-[#23856D]">{id.rating}</h5>
+                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-4 py-4 text-base font-bold">
+                      <h5 className="text-[#23856D]">{id.price} $</h5>
+                      <RatingStars rating={id.rating} />
                     </span>
                     <span id="colors">
                       <div className="flex items-center justify-center space-x-2">
