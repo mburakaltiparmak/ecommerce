@@ -41,7 +41,7 @@ const Slider2 = () => {
 
   return (
     <div>
-      <div className="flex w-full mt-4">
+      <div className="flex w-full mt-4 ">
         <div className="max-h-[716px] w-full h-screen mx-auto relative group ">
           <div
             style={
@@ -52,12 +52,12 @@ const Slider2 = () => {
             */
               }
             }
-            className="w-full h-full duration-500 bg-no-repeat flex items-end justify-center bg-[#23856D]  object-contain resize-none"
+            className="w-full h-full duration-500 bg-no-repeat flex flex-row-reverse items-end justify-center bg-[#23856D] object-contain resize-none "
           >
             <img
               src={slides[currentIndex].url}
               alt=""
-              className="min-w-1/2 min-h-1/2 object-contain resize-none"
+              className="min-w-1/2 min-h-1/2 object-contain resize-none pr-20"
             />
             <div className="flex max-h-[680px] w-full h-full items-center px-40 ">
               <div className="flex flex-col gap-8 md:items-center md:mx-auto">
