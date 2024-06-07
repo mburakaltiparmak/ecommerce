@@ -259,7 +259,7 @@ const Product = () => {
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
-                  className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+                  className="items-center justify-between flex flex-col gap-2   shadow-md shadow-gray pb-16 w-1/4 sm:w-full"
                   key={index}
                   id="product-content"
                 >
