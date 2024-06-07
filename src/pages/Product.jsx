@@ -271,7 +271,7 @@ const Product = () => {
                       <img
                         src={id.images[0].url}
                         alt=""
-                        className="sm:w-full rounded-md"
+                        className="sm:w-full"
                       />
                     </span>
                     <span

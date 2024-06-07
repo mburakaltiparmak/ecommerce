@@ -33,7 +33,7 @@ const NavbarLight = (props) => {
   return (
     <div
       id="navbar-light"
-      className={`flex font-bold justify-between items-center lg:px-32 md:px-10 pt-4 gap-10 lg:gap-6 bg-white px-40 ${
+      className={`flex font-bold justify-between items-center lg:px-32 md:px-10 py-4 gap-10 lg:gap-6 bg-white px-40 ${
         !collapse && !userCollapse && "sm:pb-0"
       }  sm:px-0 sm:pb-12 sm:flex-col`}
     >

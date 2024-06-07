@@ -26,10 +26,10 @@ const Slider = () => {
 
   const slides = [
     {
-      url: carouselimg,
+      url: "./assets/header/carouselImg.jpeg",
     },
     {
-      url: carouselimg2,
+      url: "./assets/header/carouselImg2.jpeg",
     },
   ];
   useEffect(() => {
@@ -42,7 +42,7 @@ const Slider = () => {
 
   return (
     <div>
-      <div className="flex w-full mt-4">
+      <div className="flex w-full ">
         <div className="max-h-[716px] w-full h-screen mx-auto relative group ">
           <div
             style={{

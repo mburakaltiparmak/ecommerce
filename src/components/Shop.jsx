@@ -202,7 +202,7 @@ export const Shop = () => {
               .map((id, index) => (
                 <div
                   key={index}
-                  className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+                  className="items-center justify-between flex flex-col gap-2 shadow-md shadow-gray pb-16 w-1/4 sm:w-full"
                 >
                   <Link
                     to={`/${id.category_id}/${id.id}/${id.name}`}
@@ -212,7 +212,7 @@ export const Shop = () => {
                       <img
                         src={id.images[0].url}
                         alt=""
-                        className="sm:w-full rounded-md"
+                        className="sm:w-full"
                       />
                     </span>
                     <span className="flex flex-col items-center gap-2 text-center ">

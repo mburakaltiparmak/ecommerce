@@ -188,7 +188,7 @@ export const ShopCards = () => {
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
-                  className="items-center justify-between flex flex-col gap-2 border rounded-md shadow-lg shadow-gray pb-16 w-1/4 sm:w-full"
+                  className="items-center justify-between flex flex-col gap-2 shadow-md shadow-gray pb-16 w-1/4 sm:w-full"
                   key={index}
                   id="product-content"
                 >
@@ -200,7 +200,7 @@ export const ShopCards = () => {
                       <img
                         src={id.images[0].url}
                         alt=""
-                        className="sm:w-full rounded-md"
+                        className="sm:w-full "
                       />
                     </span>
                     <span
