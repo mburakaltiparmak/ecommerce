@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../store/actions/productAction";
 import Loading from "../components/Loading";
+
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();

@@ -1,163 +1,118 @@
-import React, { useState, useEffect } from "react";
-import sliderImg from "../assets/shopcards/slider2.png";
-/*import "../styles/Slider.css";*/
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronCircleRight,
+  faChevronCircleLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import carouselImg from "../assets/shopcards/slider2.png";
+import carouselImg2 from "../assets/shopcards/slider2.png";
+const Slider2 = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+  const goToSlide = (slideIndex) => {
+    setCurrentIndex(slideIndex);
+  };
 
-const ChevronLeft = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15 19l-7-7 7-7"
-    />
-  </svg>
-);
-
-const ChevronRight = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M9 5l7 7-7 7"
-    />
-  </svg>
-);
-
-export default function Slider2({
-  autoSlide = false,
-  autoSlideInterval = 3000,
-}) {
-  const [curr, setCurr] = useState(0);
   const slides = [
     {
-      img: sliderImg,
-      dateHero: "SUMMER 2020",
-      title: "Vita Classic Product",
-      description:
-        "We know how large objects will act, We know how are objects will act, We know",
-      price: "$16.48",
+      url: carouselImg,
     },
     {
-      img: sliderImg,
-      dateHero: "SUMMER 2020",
-      title: "Vita Classic Product",
-      description:
-        "We know how large objects will act, We know how are objects will act, We know",
-      price: "$16.48",
+      url: carouselImg2,
     },
   ];
-
-  const prev = () =>
-    setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
-  const next = () =>
-    setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
-
   useEffect(() => {
-    if (!autoSlide) return;
-    const slideInterval = setInterval(next, autoSlideInterval);
-    return () => clearInterval(slideInterval);
-  }, []);
+    const timer = setTimeout(() => {
+      nextSlide();
+    }, 5000);
 
-  const shopNow = (trigger) => {
-    console.log("trigger", trigger);
-    history.push("/shop");
-  };
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
+
   return (
-    <div className="overflow-hidden relative sm:flex sm:flex-col bg-[#23856D] font-Montserrat w-full pt-10 sm:pt-0">
-      <div
-        className="flex transition-transform ease-out duration-500 w-full "
-        style={{ transform: `translateX(-${curr * 100}%)` }}
-      >
-        {slides.map((slide, index) => (
+    <div>
+      <div className="flex w-full mt-4">
+        <div className="max-h-[716px] w-full h-screen mx-auto relative group ">
           <div
-            key={index}
-            className="w-full flex-shrink-0 relative sm:flex sm:flex-col"
+            style={
+              {
+                /*backgroundImage: `url(${slides[currentIndex].url})`,
+              backgroundPosition: "top", // Resmi dikey ve yatay olarak ortala
+              backgroundSize: "cover", // Resmi ekran boyutuna sığacak şekilde boyutlandır
+            */
+              }
+            }
+            className="w-full h-full duration-500 bg-no-repeat flex items-end justify-center bg-[#23856D]  object-contain resize-none"
           >
-            <span
-              id="slider-container"
-              className="flex justify-around sm:justify-center flex-row-reverse items-center sm:flex-col-reverse"
-            >
-              <span
-                id="box-1"
-                className="px-40 sm:px-0 pb-0 flex items-end min-h-1/2 min-w-1/2 object-contain resize-none"
-              >
-                <img
-                  src={slide.img}
-                  alt={`Slide ${index}`}
-                  className="min-w-full min-h-full object-contain resize-none"
-                  id="slider-img"
-                />
-              </span>
-              <span
-                id="box-2"
-                className="flex items-center justify-items-start sm:justify-center sm:py-10"
-              >
-                <div className="sm:w-full">
-                  <div className="text-white font-Montserrat flex flex-col gap-8 px-40 sm:px-0  sm:text-center sm:items-center">
-                    <h2 className="font-bold text-xl">{slide.dateHero}</h2>
-                    <h1 className="font-bold text-3xl w-3/4 sm:text-5xl">
-                      {slide.title}
-                    </h1>
-                    <p className="font-normal text-lg w-4/6 sm:font-bold">
-                      {slide.description}
-                    </p>
-                    <span className="flex flex-row gap-8 items-center sm:flex-col">
-                      <p className="text-2xl font-bold">{slide.price}</p>
-                      <button
-                        className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green rounded-md w-40 justify-center text-lg font-bold tracking-normal"
-                        onClick={(e) => shopNow(e.target)}
-                      >
-                        ADD TO CART
-                      </button>
-                    </span>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button
-          onClick={prev}
-          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-        >
-          <ChevronLeft />
-        </button>
-        <button
-          onClick={next}
-          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-        >
-          <ChevronRight />
-        </button>
-      </div>
-
-      <div className="absolute bottom-4 right-0 left-0 sm:hidden">
-        <div className="flex items-center justify-center gap-2">
-          {slides.map((_, i) => (
-            <div
-              key={i}
-              className={`
-                transition-all w-20 h-3 bg-white 
-                ${curr === i ? "p-2" : "bg-opacity-50"}
-              `}
+            <img
+              src={slides[currentIndex].url}
+              alt=""
+              className="min-w-1/2 min-h-1/2 object-contain resize-none"
             />
-          ))}
+            <div className="flex max-h-[680px] w-full h-full items-center px-40 ">
+              <div className="flex flex-col gap-8 md:items-center md:mx-auto">
+                <h5 className="font-bold text-white ">Summer 2020</h5>
+                <h1 className="flex font-bold text-6xl text-white md:max-w-80 md:text-[40px] md:flex-col md:text-center">
+                  NEW COLLECTION
+                </h1>
+                <p className="flex flex-col text-white font-bold max-w-80 md:flex-col md:items-center">
+                  <span> We know how large objects will act,</span>
+                  but things on a small scale.
+                </p>
+                <div className="flex justify-start ">
+                  <Link
+                    to="/shop"
+                    className="text-white font-bold text-xl bg-[#2DC071] p-4 rounded-md"
+                  >
+                    SHOP NOW
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex gap-1 absolute top-[95%] left-[50%] md:left-[34.5%] translate-y-[-150%] justify-center ">
+                {slides.map((img, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        currentIndex === index
+                          ? "bg-white w-[62px] h-[10px] "
+                          : "w-[62px] h-[10px] bg-white opacity-[60%] cursor-pointer"
+                      }
+                      onClick={() => goToSlide(index)}
+                    />
+                  );
+                })}
+              </div>
+              <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2  text-white cursor-pointer md:left-0">
+                <FontAwesomeIcon
+                  icon={faChevronCircleLeft}
+                  size="2xl"
+                  onClick={prevSlide}
+                />
+              </div>
+              <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2  text-white cursor-pointer md:right-0">
+                <FontAwesomeIcon
+                  icon={faChevronCircleRight}
+                  size="2xl"
+                  onClick={nextSlide}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+export default Slider2;

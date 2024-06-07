@@ -183,7 +183,7 @@ export const Shop = () => {
             </label>
             <input
               type="text"
-              className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded"
+              className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded px-4"
               placeholder="Search"
               onChange={(e) => handleFilterChange(e.target.value)}
             />

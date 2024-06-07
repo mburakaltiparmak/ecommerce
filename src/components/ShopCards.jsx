@@ -50,6 +50,11 @@ export const ShopCards = () => {
     dispatch(AddCart(product));
     toast.success(`Product has been successfully added in your cart!`);
   };
+  /*
+  const handleGenderCategory = (genderParams) => {
+    dispatch(getProductsByGender(genderParams));
+  };
+  */
   return (
     <div
       className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full  "
@@ -77,7 +82,8 @@ export const ShopCards = () => {
           className="flex flex-row flex-wrap gap-3 content-center items-center font-Montserrat font-bold sm:px-10 "
           id="shop-img-container"
         >
-          <span
+          <Link
+            to="/shop"
             className="relative flex items-end justify-start"
             id="first-img-box"
           >
@@ -90,14 +96,15 @@ export const ShopCards = () => {
             <button className="absolute border border-gray w-40 py-2 mb-8 ml-8  text-center text-base sm:text-xl bg-lightgray">
               MEN
             </button>
-          </span>
+          </Link>
           <span
             className="flex flex-row gap-3 items-center sm:flex-col sm:w-full"
             id="second-img-box"
           >
-            <span
+            <Link
               id="second-img-box1"
               className="relative flex items-end justify-start sm:items-end  sm:object-cover sm:w-full"
+              to="/shop"
             >
               <img
                 className="w-auto h-auto object-cover sm:h-full sm:w-full "
@@ -108,12 +115,15 @@ export const ShopCards = () => {
               <button className="absolute border border-gray w-32 py-2 mb-8 ml-8  text-center text-base sm:text-xl bg-lightgray">
                 WOMEN
               </button>
-            </span>
+            </Link>
             <span
               className="flex flex-col gap-3 items-center sm:w-full"
               id="second-img-box2"
             >
-              <span className="relative flex items-end justify-start sm:w-full">
+              <Link
+                className="relative flex items-end justify-start sm:w-full"
+                to="/shop"
+              >
                 <img
                   className="w-full h-auto object-cover"
                   id="tiny-img"
@@ -123,8 +133,11 @@ export const ShopCards = () => {
                 <button className="absolute border border-gray w-36 sm:w-48 py-2 mb-8 ml-8  text-center text-base sm:text-xl bg-lightgray">
                   ACCESSORIES
                 </button>
-              </span>
-              <span className="relative flex items-end justify-start sm:w-full">
+              </Link>
+              <Link
+                className="relative flex items-end justify-start sm:w-full"
+                to="/shop"
+              >
                 <img
                   id="tiny-img"
                   src={kidsImg}
@@ -134,7 +147,7 @@ export const ShopCards = () => {
                 <button className="absolute border border-gray w-28 py-2 mb-8 ml-8  text-center text-base sm:text-xl bg-lightgray">
                   KIDS
                 </button>
-              </span>
+              </Link>
             </span>
           </span>
         </div>
