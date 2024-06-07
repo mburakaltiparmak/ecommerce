@@ -1,5 +1,6 @@
 import Slider2 from "./Slider2";
 import fluidImg from "../assets/shopcards/container-img.png";
+import { Link } from "react-router-dom";
 
 export const ShopCards2 = () => {
   return (
@@ -31,9 +32,11 @@ export const ShopCards2 = () => {
             We know how large objects will act, but things on a small scale.
           </h4>
           <span className="flex flex-row gap-2 items-center sm:flex-col">
-            <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green sm:bg-blue1 rounded-md w-40 justify-center  text-lg text-white font-bold tracking-normal">
-              BUY NOW
-            </button>
+            <Link to="/shop">
+              <button className="py-[15px] px-[10px] flex border-solid border-[1px] bg-green sm:bg-blue1 rounded-md w-40 justify-center  text-lg text-white font-bold tracking-normal">
+                BUY NOW
+              </button>
+            </Link>
             <button className="py-[15px] px-[10px] flex border-solid border-[1px] border-green sm:border-blue1 bg-white rounded-md w-40 justify-center text-lg text-green sm:text-blue1 font-bold tracking-normal">
               READ MORE
             </button>

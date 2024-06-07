@@ -40,7 +40,7 @@ export const Blog = () => {
               id="img-content"
             >
               <img
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover hover:cursor-pointer"
                 src={blogItem.img}
                 alt=""
               />
