@@ -89,7 +89,11 @@ const Product = () => {
           <span className="flex flex-row items-start gap-4">
             {sliderImages.map((img, index) => (
               <button className="shadow-lg shadow-gray" key={index}>
-                <img className="w-[96px] h-[96px]" src={img.url} alt="" />
+                <img
+                  className="w-[96px] h-[96px] object-contain"
+                  src={img.url}
+                  alt=""
+                />
               </button>
             ))}
           </span>
@@ -259,7 +263,7 @@ const Product = () => {
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
-                  className="items-center justify-between flex flex-col gap-2   shadow-md shadow-gray pb-16 w-1/4 sm:w-full"
+                  className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
                   key={index}
                   id="product-content"
                 >

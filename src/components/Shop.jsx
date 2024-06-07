@@ -202,7 +202,7 @@ export const Shop = () => {
               .map((id, index) => (
                 <div
                   key={index}
-                  className="items-center justify-between flex flex-col gap-2 shadow-md shadow-gray pb-16 w-1/4 sm:w-full"
+                  className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
                 >
                   <Link
                     to={`/${id.category_id}/${id.id}/${id.name}`}

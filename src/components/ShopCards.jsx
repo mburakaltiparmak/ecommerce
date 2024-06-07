@@ -188,7 +188,7 @@ export const ShopCards = () => {
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
-                  className="items-center justify-between flex flex-col gap-2 shadow-md shadow-gray pb-16 w-1/4 sm:w-full"
+                  className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
                   key={index}
                   id="product-content"
                 >

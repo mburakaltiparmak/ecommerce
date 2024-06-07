@@ -21,8 +21,8 @@ export const getProductsByCategory = (categoryId) => async (dispatch) => {
 
     // Sayfa sayısını hesapla
 
-    dispatch(productPerPageSetter(10));
-    const productPerPage = 10;
+    dispatch(productPerPageSetter(15));
+    const productPerPage = 15;
     dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
 
     dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
@@ -44,8 +44,8 @@ export const getProductsToSort = (sortParam) => async (dispatch) => {
 
     // Sayfa sayısını hesapla
 
-    dispatch(productPerPageSetter(10));
-    const productPerPage = 10;
+    dispatch(productPerPageSetter(20));
+    const productPerPage = 20;
     dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
 
     dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
@@ -67,8 +67,8 @@ export const getProductsToFilter = (filterParam) => async (dispatch) => {
 
     // Sayfa sayısını hesapla
 
-    dispatch(productPerPageSetter(10));
-    const productPerPage = 10;
+    dispatch(productPerPageSetter(20));
+    const productPerPage = 20;
     dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
 
     dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
@@ -90,8 +90,8 @@ export const getProducts = () => async (dispatch) => {
 
     // Sayfa sayısını hesapla
 
-    dispatch(productPerPageSetter(10));
-    const productPerPage = 10;
+    dispatch(productPerPageSetter(20));
+    const productPerPage = 20;
     dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
 
     dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
