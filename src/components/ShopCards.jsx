@@ -62,7 +62,7 @@ export const ShopCards = () => {
       id="shop-container"
     >
       <div
-        className="w-full flex flex-col gap-10 py-20  items-center content-center"
+        className="w-full flex flex-col gap-10 py-20 px-40 justify-center items-center "
         id="shop-main-container"
       >
         <div
