@@ -48,13 +48,13 @@ const Order = () => {
       <div>
         <div id="stepper" className="border rounded-lg bg-darkblue1">
           <div className="flex flex-col gap-4">
-            <div className="flex flex-row ">
+            <div className="flex flex-row">
               {stepKeys.map((key, i) => {
                 const step = steps[key];
                 return (
                   <div
                     key={i}
-                    className={`flex flex-row items-start border rounded-lg w-96 bg-white py-4  ${
+                    className={`flex flex-row items-center border rounded-lg w-96 bg-white py-4 ${
                       currentStep === i + 1 ? "active" : ""
                     } ${i + 1 < currentStep || complete ? "complete" : ""}`}
                   >
