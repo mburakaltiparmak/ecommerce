@@ -54,7 +54,7 @@ const Order = () => {
                 return (
                   <div
                     key={i}
-                    className={`flex flex-row items-start border rounded-lg w-96 h-40 bg-white py-4  ${
+                    className={`flex flex-row items-start border rounded-lg w-96 bg-white py-4  ${
                       currentStep === i + 1 ? "active" : ""
                     } ${i + 1 < currentStep || complete ? "complete" : ""}`}
                   >
@@ -71,10 +71,6 @@ const Order = () => {
                       <h4 className="text-2xl font-semibold text-darkblue1">
                         {step.title}
                       </h4>
-                      <hr />
-                      <p className="text-sm font-medium text-gray">
-                        {step.description}
-                      </p>
                     </div>
                   </div>
                 );
