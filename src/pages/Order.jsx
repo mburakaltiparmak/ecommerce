@@ -56,7 +56,7 @@ const Order = () => {
                       currentStep === i + 1 ? "active" : ""
                     } ${i + 1 < currentStep || complete ? "complete" : ""}`}
                   >
-                    <div className="border rounded-md p-6 max-h-12 flex items-center justify-center bg-blue1 text-white">
+                    <div className="border rounded-md p-6 max-h-12 flex items-center justify-center bg-blue1 hover:bg-green hover:cursor-pointer text-white">
                       <span className="text-3xl font-bold">
                         {i + 1 < currentStep || complete ? (
                           <FontAwesomeIcon icon={faCircleCheck} size="lg" />
@@ -76,7 +76,9 @@ const Order = () => {
             </div>
           </div>
         </div>
-        <div>FORM HERE</div>
+        <div id="forms">
+          <form action="">FORM HERE</form>
+        </div>
         <div className="flex items-end justify-end">
           {!complete && (
             <button
