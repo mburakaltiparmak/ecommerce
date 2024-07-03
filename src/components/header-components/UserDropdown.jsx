@@ -10,7 +10,7 @@ import {
   userEmailSetter,
   userIdSetter,
   userNameSetter,
-} from "../store/actions/userAction";
+} from "../../store/actions/userAction";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }

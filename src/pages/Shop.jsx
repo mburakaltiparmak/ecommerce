@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "../assets/icon.png";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
-import Breadcrumb from "./Breadcrumb";
-import { Pagination } from "./Pagination";
+import Breadcrumb from "../components/Breadcrumb";
+import { Pagination } from "../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { activePageSetter, getProducts } from "../store/actions/productAction";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 import { AddCart } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RatingStars from "./RatingStars";
+import RatingStars from "../components/RatingStars";
 
-export const Shop = () => {
+const Shop = () => {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ export const Shop = () => {
   const activePage = useSelector((store) => store.product.activePage);
   const indexOfFirstProduct = (activePage - 1) * productPerPage;
   const indexOfLastProduct = indexOfFirstProduct + productPerPage;
+
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
     updateQuery({ page });
@@ -268,3 +269,4 @@ export const Shop = () => {
     </div>
   );
 };
+export default Shop;

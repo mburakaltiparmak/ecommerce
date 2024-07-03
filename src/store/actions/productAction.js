@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { fetchStates, productActions } from "../reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
@@ -10,126 +12,26 @@ export const getProducts =
   (category = "", filter = "", sort = "") =>
   async (dispatch) => {
     dispatch(fetchStateSetter(fetchStates.FETCHING));
-
     try {
       const res = await instance.get("/products", {
         params: { category, filter, sort },
       });
-      console.log("gelen product", res.data);
-
+      console.log("FETCHED PRODUCTS", res.data);
       dispatch(productListSetter(res.data.products));
       dispatch(fetchStateSetter(fetchStates.FETCHED));
       dispatch(productCountSetter(res.data.total));
-
       // Sayfa sayısını hesapla
-
       dispatch(productPerPageSetter(20));
       const productPerPage = 20;
       dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
-
       dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
     } catch (err) {
-      console.error("ürün fetch hata", err);
+      toast.error("An error occured when fetching products!");
+      console.error("AN ERROR OCCURED WHEN FETCHING PRODUCTS", err);
       dispatch(fetchStateSetter(fetchStates.FAILED));
     }
   };
-/*
-export const getProductsByCategory = (categoryId) => async (dispatch) => {
-  dispatch(fetchStateSetter(fetchStates.FETCHING));
-  //dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
 
-  try {
-    const res = await instance.get(`/products?category=${categoryId}`);
-    console.log("category query ile gelen product", res.data);
-
-    dispatch(productListSetter(res.data.products));
-    dispatch(fetchStateSetter(fetchStates.FETCHED));
-    dispatch(productCountSetter(res.data.total));
-
-    // Sayfa sayısını hesapla
-
-    dispatch(productPerPageSetter(15));
-    const productPerPage = 15;
-    dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
-
-    dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
-  } catch (err) {
-    console.error("hata", err);
-    dispatch(fetchStateSetter(fetchStates.FAILED));
-  }
-};
-*/
-/*
-export const getProductsToSort = (sortParam) => async (dispatch) => {
-  dispatch(fetchStateSetter(fetchStates.FETCHING));
-
-  try {
-    const res = await instance.get(`/products?sort=${sortParam}`);
-    console.log("sort query ile gelen product", res.data);
-
-    dispatch(productListSetter(res.data.products));
-    dispatch(fetchStateSetter(fetchStates.FETCHED));
-    dispatch(productCountSetter(res.data.total));
-
-    // Sayfa sayısını hesapla
-
-    dispatch(productPerPageSetter(20));
-    const productPerPage = 20;
-    dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
-
-    dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
-  } catch (err) {
-    console.error("hata", err);
-    dispatch(fetchStateSetter(fetchStates.FAILED));
-  }
-};
-export const getProductsToFilter = (filterParam) => async (dispatch) => {
-  dispatch(fetchStateSetter(fetchStates.FETCHING));
-
-  try {
-    const res = await instance.get(`/products?filter=${filterParam}`);
-    console.log("filter query ile gelen product", res.data);
-
-    dispatch(productListSetter(res.data.products));
-    dispatch(fetchStateSetter(fetchStates.FETCHED));
-    dispatch(productCountSetter(res.data.total));
-
-    // Sayfa sayısını hesapla
-
-    dispatch(productPerPageSetter(20));
-    const productPerPage = 20;
-    dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
-
-    dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
-  } catch (err) {
-    console.error("hata", err);
-    dispatch(fetchStateSetter(fetchStates.FAILED));
-  }
-};
-export const getProducts = () => async (dispatch) => {
-  dispatch(fetchStateSetter(fetchStates.FETCHING));
-
-  try {
-    const res = await instance.get("/products");
-    console.log("gelen product", res.data);
-
-    dispatch(productListSetter(res.data.products));
-    dispatch(fetchStateSetter(fetchStates.FETCHED));
-    dispatch(productCountSetter(res.data.total));
-
-    // Sayfa sayısını hesapla
-
-    dispatch(productPerPageSetter(20));
-    const productPerPage = 20;
-    dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
-
-    dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
-  } catch (err) {
-    console.error("hata", err);
-    dispatch(fetchStateSetter(fetchStates.FAILED));
-  }
-};
-*/
 export const productListSetter = (products) => ({
   type: productActions.setProductList,
   payload: products,

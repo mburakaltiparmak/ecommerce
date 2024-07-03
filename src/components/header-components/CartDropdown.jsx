@@ -7,7 +7,7 @@ import {
   clearCart,
   removeFromCart,
   updateCart,
-} from "../store/actions/shoppingCartAction";
+} from "../../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

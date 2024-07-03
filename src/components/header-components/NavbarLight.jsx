@@ -11,24 +11,20 @@ import {
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGravatar } from "use-gravatar";
-import UserDdown from "./UserDdown";
-import TestDropdown from "./TestDropdown";
+import UserDdown from "./UserDropdown";
+import Dropdown from "./Dropdown";
 import CartDropdown from "./CartDropdown";
 const NavbarLight = (props) => {
   const history = useHistory();
-  const { pathname } = useLocation();
-  /* const { collapse, setCollapse, userCollapse, setUserCollapse } = props;*/
   const [collapse, setCollapse] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
   const [userCollapse, setUserCollapse] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
-
   const userData = useSelector((store) => store.userRed);
   const gravatar = useGravatar(userData.email);
   const nameAtStorage = localStorage.getItem("userName");
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
@@ -91,7 +87,7 @@ const NavbarLight = (props) => {
           </button>
 
           <span>
-            <TestDropdown />
+            <Dropdown />
           </span>
 
           <button className="" onClick={() => history.push("/about")}>

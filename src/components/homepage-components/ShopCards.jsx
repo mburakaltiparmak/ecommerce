@@ -1,21 +1,20 @@
-import { data } from "../data";
-import menImg from "../assets/shopcards/men.png";
-import womenImg from "../assets/shopcards/women.png";
-import accessoriesImg from "../assets/shopcards/accessories.png";
-import kidsImg from "../assets/shopcards/kids.png";
-import womenImg2 from "../assets/shopcards/women2.png";
+import { data } from "../../data";
+import menImg from "../../assets/shopcards/men.png";
+import womenImg from "../../assets/shopcards/women.png";
+import accessoriesImg from "../../assets/shopcards/accessories.png";
+import kidsImg from "../../assets/shopcards/kids.png";
+import womenImg2 from "../../assets/shopcards/women2.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { Pagination } from "./Pagination";
+import { Pagination } from "../Pagination";
 import { useState } from "react";
-import { activePageSetter } from "../store/actions/productAction";
-import { AddCart } from "../store/actions/shoppingCartAction";
+import { activePageSetter } from "../../store/actions/productAction";
+import { AddCart } from "../../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RatingStars from "./RatingStars";
+import RatingStars from "../RatingStars";
 
 export const ShopCards = () => {
-  //const { dataHomePage } = data();
   const dispatch = useDispatch();
 
   const productDataObject = useSelector(
@@ -37,25 +36,12 @@ export const ShopCards = () => {
     dispatch(activePageSetter(page));
   };
   const handleProductClick = (productDataObject) => {
-    //console.log(`categoryId : ${categoryId}`, `productId : ${productId}`);
-    /*
-    const productDataObject = {
-      categoryId,
-      productId,
-    };
-    */
-    console.log("object", productDataObject);
     dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
   };
   const addToCart = (product) => {
     dispatch(AddCart(product));
     toast.success(`Product has been successfully added in your cart!`);
   };
-  /*
-  const handleGenderCategory = (genderParams) => {
-    dispatch(getProductsByGender(genderParams));
-  };
-  */
   return (
     <div
       className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full  "
