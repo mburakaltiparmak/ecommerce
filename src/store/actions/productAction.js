@@ -6,7 +6,34 @@ import { useLocation } from "react-router-dom";
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
+export const getProducts =
+  (category = "", filter = "", sort = "") =>
+  async (dispatch) => {
+    dispatch(fetchStateSetter(fetchStates.FETCHING));
 
+    try {
+      const res = await instance.get("/products", {
+        params: { category, filter, sort },
+      });
+      console.log("gelen product", res.data);
+
+      dispatch(productListSetter(res.data.products));
+      dispatch(fetchStateSetter(fetchStates.FETCHED));
+      dispatch(productCountSetter(res.data.total));
+
+      // Sayfa sayısını hesapla
+
+      dispatch(productPerPageSetter(20));
+      const productPerPage = 20;
+      dispatch(pageCountSetter(Math.ceil(res.data.total / productPerPage)));
+
+      dispatch(activePageSetter(1)); // Aktif sayfayı 1 olarak ayarla
+    } catch (err) {
+      console.error("ürün fetch hata", err);
+      dispatch(fetchStateSetter(fetchStates.FAILED));
+    }
+  };
+/*
 export const getProductsByCategory = (categoryId) => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
   //dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
@@ -31,6 +58,8 @@ export const getProductsByCategory = (categoryId) => async (dispatch) => {
     dispatch(fetchStateSetter(fetchStates.FAILED));
   }
 };
+*/
+/*
 export const getProductsToSort = (sortParam) => async (dispatch) => {
   dispatch(fetchStateSetter(fetchStates.FETCHING));
 
@@ -100,7 +129,7 @@ export const getProducts = () => async (dispatch) => {
     dispatch(fetchStateSetter(fetchStates.FAILED));
   }
 };
-
+*/
 export const productListSetter = (products) => ({
   type: productActions.setProductList,
   payload: products,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCategories } from "../store/actions/globalAction";
-import { getProductsByCategory } from "../store/actions/productAction";
+import { getProducts } from "../store/actions/productAction";
 
 const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +27,8 @@ const TestDropdown = () => {
   };
   const categoryHandleClick = (categoryId) => {
     console.log("category id", categoryId);
-    dispatch(getProductsByCategory(categoryId));
-    //dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
+    //dispatch(getProducts(categoryId));
+    dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
   };
 
   return (
@@ -73,7 +73,7 @@ const TestDropdown = () => {
               <div className="flex flex-col px-2">
                 <Link
                   onClick={toggleMenu}
-                  to="/shop/category/kadin"
+                  to="/shop/kadin?category"
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabIndex="-1"
@@ -88,9 +88,7 @@ const TestDropdown = () => {
                       <Link
                         onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/category/${
-                          item.gender === "k" ? "kadin" : "erkek"
-                        }/${item.title.toLowerCase()}`}
+                        to={`/shop/kadin?category=${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"
@@ -104,7 +102,7 @@ const TestDropdown = () => {
               <div className="MEN flex flex-col">
                 <Link
                   onClick={toggleMenu}
-                  to="/shop/category/erkek"
+                  to="/shop/erkek?category"
                   className="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabIndex="-1"
@@ -119,7 +117,7 @@ const TestDropdown = () => {
                       <Link
                         onClick={() => categoryHandleClick(item.id)}
                         key={index}
-                        to={`/shop/category/erkek/${item.id}`}
+                        to={`/shop/erkek?category=${item.id}`}
                         className="text-gray-400 block px-4 py-2 text-sm hover:text-[#00A1C1]"
                         role="menuitem"
                         tabIndex="-1"

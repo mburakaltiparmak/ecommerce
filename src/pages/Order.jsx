@@ -44,9 +44,12 @@ const Order = () => {
   );
 
   return (
-    <div className="flex flex-row px-40 gap-4">
+    <div className="flex flex-row justify-between items-start px-40 gap-4 pt-4">
       <div>
-        <div id="stepper" className="border rounded-lg bg-darkblue1">
+        <div
+          id="stepper"
+          className="border rounded-lg bg-darkblue1 drop-shadow-lg"
+        >
           <div className="flex flex-col gap-4">
             <div className="flex flex-row">
               {stepKeys.map((key, i) => {
@@ -54,11 +57,11 @@ const Order = () => {
                 return (
                   <div
                     key={i}
-                    className={`flex flex-row items-center border rounded-lg w-96 bg-white py-4 ${
+                    className={`flex flex-row items-center border rounded-lg  w-96 bg-white py-4 ${
                       currentStep === i + 1 ? "active" : ""
                     } ${i + 1 < currentStep || complete ? "complete" : ""}`}
                   >
-                    <div className="p-6 max-h-12 flex items-center justify-center  hover:cursor-pointer text-blue1">
+                    <div className="p-6 max-h-12 flex items-center justify-center drop-shadow-lg  hover:cursor-pointer text-blue1">
                       <span className="text-3xl font-bold">
                         {i + 1 < currentStep || complete ? (
                           <FontAwesomeIcon icon={faCircleCheck} size="lg" />
@@ -67,7 +70,7 @@ const Order = () => {
                         )}
                       </span>
                     </div>
-                    <div className="flex flex-col gap-2 px-4">
+                    <div className="flex flex-col gap-2 px-4 drop-shadow-lg">
                       <h4 className="text-2xl font-semibold text-darkblue1">
                         {step.title}
                       </h4>
@@ -98,7 +101,7 @@ const Order = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-4 items-center">
+      <div className="flex flex-col gap-4 items-center drop-shadow-lg ">
         <Summary />
       </div>
     </div>
