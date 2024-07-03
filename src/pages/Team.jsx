@@ -6,7 +6,7 @@ import {
   faTwitter,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { Breadcrumb3 } from "../components/Breadcrumb3";
+import { Breadcrumb } from "../components/TeamPageBreadcrumb.jsx";
 import mainImg from "../assets/team/box/1.png";
 import { data } from "../data.js";
 
@@ -19,7 +19,7 @@ const Team = () => {
         <h2 className="h2-styles sm:w-full sm:flex sm:items-center sm:text-4xl">
           Innovation tailored for you
         </h2>
-        <Breadcrumb3 />
+        <Breadcrumb />
       </section>
       <section
         id="box-section"
