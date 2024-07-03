@@ -126,9 +126,9 @@ const Shop = () => {
             <Link
               onClick={() => categoryHandleClick(box.id)}
               key={index}
-              to={`/shop/category/${
-                box.gender === "e" ? "erkek" : "kadin"
-              }/${box.title.toLowerCase()}`}
+              to={`/shop/${box.gender === "e" ? "erkek" : "kadin"}?category=${
+                box.id
+              }`}
             >
               <div
                 id="container"
