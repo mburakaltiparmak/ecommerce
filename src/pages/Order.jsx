@@ -7,6 +7,7 @@ import {
   faCircleCheck,
   faCirclePlus,
   faPlus,
+  faSquarePen,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   IsChecked,
@@ -26,6 +27,7 @@ const Order = () => {
   const handleAddAddress = () => {
     setAddressFormIsOpen(!addressFormIsOpen);
   };
+  const handleUpdateAddress = () => {};
   return (
     <div className="flex flex-col px-40 gap-4">
       <Stepper2 />
@@ -39,16 +41,33 @@ const Order = () => {
               />
             </div>
           ) : (
-            <button
-              onClick={handleAddAddress}
-              className="border p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 "
-            >
-              <FontAwesomeIcon
-                className="text-5xl text-blue1"
-                icon={faCirclePlus}
-              />
-              <p className="text-white">Add Address</p>
-            </button>
+            <div className="flex flex-row gap-14 justify-between">
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={handleAddAddress}
+                  className="border p-6 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 "
+                >
+                  <FontAwesomeIcon
+                    className="text-4xl text-blue1"
+                    icon={faCirclePlus}
+                  />
+                  <p className="text-white">Add Address</p>
+                </button>
+                <button
+                  onClick={handleUpdateAddress}
+                  className="border p-6 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 "
+                >
+                  <FontAwesomeIcon
+                    className="text-4xl text-blue1"
+                    icon={faSquarePen}
+                  />
+                  <p className="text-white">Update Address</p>
+                </button>
+              </div>
+              <div className="border rounded-xl flex items-center px-24 py-40 bg-darkblue1 text-white font-bold ">
+                SAVED ADDRESSES WILL BE HERE
+              </div>
+            </div>
           )}
         </div>
         <Summary />
