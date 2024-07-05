@@ -53,6 +53,20 @@
 .shop {
   @apply border rounded-md shadow-lg shadow-gray pb-16 gap-8 sm:w-full items-center  flex flex-col;
 }
+.order-form {
+  @apply flex flex-col font-bold text-darkblue1 py-2;
+}
+/* App.css */
+
+/* App.css */
+
+.popup {
+  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg z-50 max-w-sm w-full;
+}
+
+.overlay {
+  @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
 
 /* Ana stil dosyası */
 

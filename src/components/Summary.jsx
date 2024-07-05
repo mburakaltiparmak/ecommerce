@@ -74,31 +74,31 @@ const Summary = () => {
     console.log("cart :", cart);
   }, [cart]);
   return (
-    <div className="flex flex-col font-bold justify-between items-center py-4 border border-x-2 border-y-2 border-darkblue1 rounded-lg gap-4 max-h-[450px]">
+    <div className="flex flex-col font-bold justify-between items-center py-4 border border-x-2 border-y-2 border-darkblue1 drop-shadow-xl rounded-lg gap-4 max-h-[450px] bg-darkblue1 text-white">
       {cartLength > 0 ? (
         <Link
-          className="bg-green px-6 py-2 rounded-md text-white font-semibold"
+          className="bg-blue3 px-6 py-2 rounded-md text-white font-semibold"
           to="/order"
           onClick={submitButtonHandler}
         >
-          Confirm Order
+          <p className="drop-shadow-xl ">Confirm Order</p>
         </Link>
       ) : (
         <button
           className="bg-red px-6 py-2 rounded-md text-white font-semibold cursor-not-allowed"
           disabled
         >
-          Confirm Order
+          <p className="drop-shadow-xl">Confirm Order</p>
         </button>
       )}
 
-      <div id="summary" className="flex flex-col gap-4 px-4">
+      <div id="summary" className="flex flex-col gap-4 px-4 drop-shadow-xl">
         <span className="flex flex-row justify-between px-4 font-medium gap-2">
-          <p>Order Summary</p>
+          <p className="drop-shadow-xl ">Order Summary</p>
           <p>{`${totalPrice.toFixed(2)}$`}</p>
         </span>
         <span className="flex flex-row justify-between px-4 font-medium gap-2">
-          <p>Shipping Total :</p>
+          <p className="drop-shadow-xl">Shipping Total :</p>
           {totalPrice.toFixed(2) == 0 ? <p>0.00$</p> : <p>29.99$</p>}
         </span>
         <span className="flex flex-row justify-between px-4 font-medium gap-2">
@@ -117,9 +117,11 @@ const Summary = () => {
       </div>
       <div
         id="promo-code-area"
-        className="text-base font-medium flex flex-col items-center gap-2"
+        className="text-base font-medium flex flex-col items-center gap-2 drop-shadow-xl"
       >
-        <p className="text-red">If you have Promo Code, enter here</p>
+        <p className="text-white font-bold text-sm ">
+          If you have Promo Code, enter here
+        </p>
         <input
           type="text"
           className=" text-center bg-[#F9F9F9] border-[#DDDDDD] border rounded-lg h-[50px] cursor-text "
@@ -130,11 +132,11 @@ const Summary = () => {
       </div>
       {cartLength > 0 ? (
         <Link
-          className="bg-green px-6 py-2 rounded-md text-white font-semibold"
+          className="bg-blue3 px-6 py-2 rounded-md text-white font-semibold"
           to="/order"
           onClick={submitButtonHandler}
         >
-          Confirm Order
+          <p className="drop-shadow-xl ">Confirm Order</p>
         </Link>
       ) : (
         <button

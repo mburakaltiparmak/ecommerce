@@ -225,7 +225,7 @@ const Shop = () => {
                   className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
                 >
                   <Link
-                    to={`/${id.category_id}/${id.id}/${id.name}`}
+                    to={`/${id.category_id}/${id.id}/${id.name.toLowerCase()}`}
                     onClick={() => handleProductClick(id)}
                   >
                     <span id="product-img-content" className="sm:w-full">
