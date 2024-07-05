@@ -45,7 +45,7 @@ const Order = () => {
               <div className="flex flex-col gap-4">
                 <button
                   onClick={handleAddAddress}
-                  className="border p-6 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 "
+                  className="border p-6 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1  hover:bg-green"
                 >
                   <FontAwesomeIcon
                     className="text-4xl text-blue1"
@@ -55,7 +55,7 @@ const Order = () => {
                 </button>
                 <button
                   onClick={handleUpdateAddress}
-                  className="border p-6 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 "
+                  className="border p-6 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 hover:bg-green "
                 >
                   <FontAwesomeIcon
                     className="text-4xl text-blue1"
