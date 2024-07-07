@@ -54,7 +54,7 @@
   @apply border rounded-md shadow-lg shadow-gray pb-16 gap-8 sm:w-full items-center  flex flex-col;
 }
 .order-form {
-  @apply flex flex-col font-bold text-darkblue1 py-2;
+  @apply flex flex-col font-bold text-darkblue1 py-4 px-8;
 }
 /* App.css */
 
@@ -66,6 +66,12 @@
 
 .overlay {
   @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+.address-box {
+  @apply flex flex-row justify-between gap-4 text-right;
+}
+.address-box-light {
+  @apply font-semibold;
 }
 
 /* Ana stil dosyası */

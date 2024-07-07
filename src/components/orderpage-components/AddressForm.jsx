@@ -9,28 +9,53 @@ import {
 } from "turkey-neighbourhoods";
 import Loading from "../Loading";
 
-const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
+const OrderForm = ({
+  addressFormIsOpen,
+  setAddressFormIsOpen,
+  addressData,
+  updateAddressForm,
+  setUpdateAddressForm,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
     control,
+    setValue, // To set default values
   } = useForm({ mode: "onChange" });
+  const baseURL = "https://workintech-fe-ecommerce.onrender.com";
+  const instance = axios.create({ baseURL });
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const [cityData, setCityData] = useState([]);
   const [districtData, setDistrictData] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const token = localStorage.getItem("token");
   const handleCancelButton = () => {
     setAddressFormIsOpen(!addressFormIsOpen);
+    setUpdateAddressForm(!updateAddressForm);
   };
 
   useEffect(() => {
     // Şehir verilerini al
     const cities = getCities();
     setCityData(cities);
-  }, []);
+
+    // Update form için gerekli verileri set et
+    if (updateAddressForm && addressData) {
+      setValue("title", addressData.title);
+      setValue("name", addressData.name);
+      setValue("surname", addressData.surname);
+      setValue("phone", addressData.phone);
+      setValue("city", addressData.city);
+      setValue("district", addressData.district);
+      setValue("neighborhood", addressData.neighborhood);
+      setValue("address", addressData.address);
+      onCityChange({ target: { value: addressData.city } });
+      onDistrictChange({ target: { value: addressData.district } });
+    }
+  }, [updateAddressForm, addressData, setValue]);
 
   const onCityChange = (e) => {
     const selectedCityCode = e.target.value;
@@ -50,14 +75,49 @@ const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
 
   const onSubmit = (formData) => {
     setLoading(true);
-    axios
-      .post("/user/address", formData)
+    if (token) {
+      instance
+        .post("/user/address", formData, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          setLoading(false);
+          console.log("address form response", res.data);
+          toast.success(`Your address successfully saved!`);
+          setAddressFormIsOpen(false);
+          history.push("/order");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.error("Form post edilirken hata oluştu", err);
+          setLoading(false);
+          toast.error("Form posting has been failed.");
+        });
+    } else {
+      toast.info("Please login for this process!");
+      history.push("/login");
+    }
+  };
+
+  const updateAddress = (formData) => {
+    setLoading(true);
+    console.log("update form", formData);
+    console.log("id", addressData.id);
+    instance
+      .put(`/user/address/${addressData.id}`, formData, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         setLoading(false);
-        console.log("address form response", res.data);
-        toast.success(
-          `You need to click link in email to activate your account!`
-        );
+        console.log("updated address form response", res.data);
+        toast.success(`Your address successfully updated!`);
+        setUpdateDataAddressForm(!updateAddressForm);
+        history.push("/order");
+        window.location.reload();
       })
       .catch((err) => {
         console.error("Form post edilirken hata oluştu", err);
@@ -71,9 +131,14 @@ const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pb-4">
           <h2 className="font-bold text-2xl py-8">Fill The Address Form</h2>
-          <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="flex flex-col"
+            onSubmit={handleSubmit(
+              updateAddressForm ? updateAddress : onSubmit
+            )}
+          >
             <div className="order-form">
               <label>Address Title</label>
               <input
@@ -187,7 +252,6 @@ const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
                 })}
                 onChange={onDistrictChange}
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring focus:border-blue-400 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700"
-                disabled={!selectedCity}
               >
                 <option value="">Select a district</option>
                 {districtData.map((district, index) => (
@@ -210,7 +274,6 @@ const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
                   required: "You must select a neighborhood",
                 })}
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring focus:border-blue-400 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700"
-                disabled={!selectedDistrict}
               >
                 <option value="">Select a neighborhood</option>
                 {selectedDistrict &&
@@ -228,13 +291,13 @@ const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
                 </p>
               )}
             </div>
+
             <div className="order-form">
               <label>Address</label>
-              <input
-                type="text"
-                placeholder="Bergen St. Sean Price Ave. 15/01"
+              <textarea
+                placeholder="My address"
                 {...register("address", {
-                  required: "You must enter address",
+                  required: "You must enter your address",
                   minLength: {
                     value: 3,
                     message: "Min 3 characters",
@@ -243,37 +306,31 @@ const OrderForm = ({ addressFormIsOpen, setAddressFormIsOpen }) => {
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring focus:border-blue-400 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700"
               />
               {errors.address && (
-                <p className="text-red" id="name-error">
+                <p className="text-red" id="address-error">
                   {errors.address.message}
                 </p>
               )}
             </div>
 
-            <div className="flex flex-row gap-2 font-bold py-2">
+            <div className="flex justify-around mt-4">
               <button
-                type="submit"
-                disabled={!isValid}
+                className=" bg-red hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
+                type="button"
+                onClick={handleCancelButton}
+              >
+                Cancel
+              </button>
+              <button
                 className={`${
                   isValid
                     ? "bg-blue-500 hover:bg-blue-400 focus:ring-blue-300"
                     : "bg-gray hover:bg-red focus:ring-orange-300 cursor-not-allowed"
                 } flex items-center justify-center w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50`}
+                type="submit"
               >
-                <span>Save Address</span>
-              </button>
-              <button
-                onClick={handleCancelButton}
-                className=" bg-red hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
-              >
-                <span>Cancel</span>
+                {updateAddressForm ? "Update Address" : "Save Address"}
               </button>
             </div>
-
-            {!isValid && (
-              <p className="text-red mt-2 text-center font-bold">
-                Fill the form correctly
-              </p>
-            )}
           </form>
         </div>
       )}

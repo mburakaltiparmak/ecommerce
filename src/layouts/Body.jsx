@@ -17,6 +17,7 @@ import Signup from "../pages/Signup";
 import Loading from "../components/Loading";
 import Cart from "../pages/Cart";
 import Order from "../pages/Order";
+import { userNameSetter } from "../store/actions/userAction";
 const Body = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
