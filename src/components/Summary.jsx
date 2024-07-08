@@ -74,7 +74,7 @@ const Summary = () => {
     console.log("cart :", cart);
   }, [cart]);
   return (
-    <div className="flex flex-col font-bold justify-between items-center py-4 border border-x-2 border-y-2 border-darkblue1 drop-shadow-xl rounded-lg gap-4 max-h-[450px] bg-darkblue1 text-white">
+    <div className="flex flex-col font-bold justify-between items-center py-4 border border-x-2 border-y-2 border-darkblue1 drop-shadow-xl shadow-darkblue1 shadow-xl rounded-lg gap-4 max-h-[450px] bg-darkblue1 text-white">
       {cartLength > 0 ? (
         <Link
           className="bg-blue3 px-6 py-2 rounded-md text-white font-semibold"

@@ -21,7 +21,7 @@ const OrderForm = ({
     handleSubmit,
     formState: { errors, isValid },
     control,
-    setValue, // To set default values
+    setValue,
   } = useForm({ mode: "onChange" });
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
@@ -312,7 +312,7 @@ const OrderForm = ({
               )}
             </div>
 
-            <div className="flex justify-around mt-4">
+            <div className="flex justify-around mt-4 text-white">
               <button
                 className=" bg-red hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
                 type="button"
