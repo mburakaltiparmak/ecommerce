@@ -8,7 +8,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { deleteAddress } from "../../store/actions/shoppingCartAction";
-const Addresses = ({ addressData }) => {
+const Addresses = ({
+  addressData,
+  step1,
+  setStep1,
+  step2,
+  currentStep,
+  setCurrentStep,
+}) => {
   const dispatch = useDispatch();
   const handleUpdateAddress = (id) => {
     const addressToUpdate = addressData.find((address) => address.id === id);

@@ -35,6 +35,11 @@ const Order = () => {
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      if (currentStep === 2) {
+        setStep2(false);
+      } else if (currentStep === 3) {
+        setStep3(false);
+      }
     } else {
       toast.info("You can't step back any further!");
     }
@@ -74,15 +79,21 @@ const Order = () => {
 
   return (
     <div className="flex flex-col px-40 justify-around gap-1">
-      <Stepper2 step1={step1} step2={step2} step3={step3} />
+      <Stepper2
+        step1={step1}
+        step2={step2}
+        step3={step3}
+        currentStep={currentStep}
+      />
       <div className="flex justify-between my-1">
         <button
           onClick={handleBack}
+          disabled={currentStep === 1}
           className={`${
             currentStep === 1
-              ? `bg-red cursor-not-allowed`
-              : `bg-darkblue1 cursor-pointer hover:bg-green`
-          }  shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold cursor-pointer border-2 border-darkblue1 hover:bg-blue1 hover:border-blue1 hover:text-white transition duration-200 ease-in-out`}
+              ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
+              : `bg-darkblue1 cursor-pointer hover:bg-green hover:border-blue1`
+          }  shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold  border-2 border-darkblue1   hover:text-white transition duration-200 ease-in-out`}
         >
           Back
         </button>
@@ -123,7 +134,14 @@ const Order = () => {
                 <div className="rounded-xl flex items-center p-2 bg-darkblue1 text-white font-bold shadow-xl drop-shadow-xl shadow-darkblue1">
                   <section className="px-1 w-full">
                     {Array.isArray(addressData) && addressData.length > 0 ? (
-                      <Addresses addressData={addressData} />
+                      <Addresses
+                        addressData={addressData}
+                        step1={step1}
+                        setStep1={setStep1}
+                        step2={step2}
+                        currentStep={currentStep}
+                        setCurrentStep={setCurrentStep}
+                      />
                     ) : (
                       <p>No addresses found.</p>
                     )}
