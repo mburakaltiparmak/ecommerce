@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleCheck,
-  faCirclePlus,
-  faSquarePen,
-  faTrashCan,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faCirclePlus, faSquarePen, faTrashCan, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Stepper2 from "../components/orderpage-components/Stepper2";
@@ -27,6 +21,7 @@ const Order = () => {
   const [step2, setStep2] = useState(false);
   const [step3, setStep3] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [selectedAddress, setSelectedAddress] = useState(null); // Initialize selectedAddress state
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const token = localStorage.getItem("token");
   const instance = axios.create({ baseURL });
@@ -67,6 +62,9 @@ const Order = () => {
       .then((res) => {
         console.log("gelen adres", res.data);
         setAddressData(res.data);
+        if (res.data.length === 0) {
+          setSelectedAddress(null); // Set selectedAddress to null if no addresses found
+        }
       })
       .catch((err) => {
         console.error("adres gelmedi", err);
@@ -77,14 +75,16 @@ const Order = () => {
     getAddress();
   }, []);
 
+  const isNextDisabled = () => {
+    if (currentStep === 1 && !step1) return true;
+    if (currentStep === 2 && (!step1 || !step2)) return true;
+    if (currentStep === 3 && (!step1 || !step2 || !step3)) return true;
+    return false;
+  };
+
   return (
     <div className="flex flex-col px-40 justify-around gap-1">
-      <Stepper2
-        step1={step1}
-        step2={step2}
-        step3={step3}
-        currentStep={currentStep}
-      />
+      <Stepper2 step1={step1} step2={step2} step3={step3} currentStep={currentStep} />
       <div className="flex justify-between my-1">
         <button
           onClick={handleBack}
@@ -93,13 +93,18 @@ const Order = () => {
             currentStep === 1
               ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
               : `bg-darkblue1 cursor-pointer hover:bg-green hover:border-blue1`
-          }  shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold  border-2 border-darkblue1   hover:text-white transition duration-200 ease-in-out`}
+          } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold  border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
         >
           Back
         </button>
         <button
           onClick={handleNext}
-          className="bg-darkblue1 shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold cursor-pointer border-2 border-darkblue1 hover:bg-blue1 hover:border-blue1 hover:text-white transition duration-200 ease-in-out"
+          disabled={isNextDisabled()}
+          className={`${
+            isNextDisabled()
+              ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
+              : `bg-darkblue1 cursor-pointer hover:bg-green hover:border-blue1`
+          } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
         >
           Next
         </button>
@@ -108,8 +113,8 @@ const Order = () => {
         {currentStep === 1 && (
           <>
             {addressFormIsOpen || updateAddressForm ? (
-              <span className="flex flex-row justify-between">
-                <div className="block border rounded-lg px-32">
+              <span className="flex flex-row justify-between gap-2">
+                <div className="block border rounded-lg px-32 w-full">
                   <AddressForm
                     addressData={updatingAddressData}
                     addressFormIsOpen={addressFormIsOpen}
@@ -122,28 +127,31 @@ const Order = () => {
               </span>
             ) : (
               <div className="flex flex-row justify-between gap-2">
-                <div className="flex flex-col">
-                  <button
-                    onClick={handleAddAddress}
-                    className="border border-darkblue1 p-4 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1"
-                  >
-                    <FontAwesomeIcon className="text-4xl" icon={faCirclePlus} />
-                    <p className="text-white">Add Address</p>
-                  </button>
-                </div>
-                <div className="rounded-xl flex items-center p-2 bg-darkblue1 text-white font-bold shadow-xl drop-shadow-xl shadow-darkblue1">
+                <div className="rounded-xl w-full flex items-center p-2 bg-darkblue1 text-white font-bold shadow-xl drop-shadow-xl shadow-darkblue1">
                   <section className="px-1 w-full">
                     {Array.isArray(addressData) && addressData.length > 0 ? (
                       <Addresses
-                        addressData={addressData}
+                        addressData={addressData} 
+                        setAddressData={setAddressData}// Pass addressData to Addresses component
                         step1={step1}
                         setStep1={setStep1}
                         step2={step2}
                         currentStep={currentStep}
                         setCurrentStep={setCurrentStep}
+                        selectedAddress={selectedAddress} // Pass selectedAddress state
+                        setSelectedAddress={setSelectedAddress} // Pass setSelectedAddress function
                       />
                     ) : (
-                      <p>No addresses found.</p>
+                      <div className="w-full text-center flex flex-col items-center gap-4">
+                        <p>No addresses found.</p>
+                        <button
+                          onClick={handleAddAddress}
+                          className="border border-white p-4 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1"
+                        >
+                          <FontAwesomeIcon className="text-4xl" icon={faCirclePlus} />
+                          <p className="text-white">Add Address</p>
+                        </button>
+                      </div>
                     )}
                   </section>
                 </div>
@@ -154,13 +162,14 @@ const Order = () => {
         )}
         {currentStep === 2 && (
           <div className="flex flex-row gap-2 justify-between">
-            <Shipment /> <Summary />
+            <Shipment step2={step2} setStep2={setStep2} />
+            <Summary />
           </div>
         )}
         {currentStep === 3 && (
           <div className="flex flex-row gap-2 justify-between">
-            {" "}
-            <Payment /> <Summary />{" "}
+            <Payment />
+            <Summary />
           </div>
         )}
       </div>

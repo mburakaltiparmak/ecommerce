@@ -34,7 +34,7 @@ const OrderForm = ({
   const token = localStorage.getItem("token");
   const handleCancelButton = () => {
     setAddressFormIsOpen(!addressFormIsOpen);
-    setUpdateAddressForm(!updateAddressForm);
+    
   };
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const OrderForm = ({
         <div className="flex flex-col items-center pb-4">
           <h2 className="font-bold text-2xl py-8">Fill The Address Form</h2>
           <form
-            className="flex flex-col"
+            className="flex flex-col w-[450px]"
             onSubmit={handleSubmit(
               updateAddressForm ? updateAddress : onSubmit
             )}

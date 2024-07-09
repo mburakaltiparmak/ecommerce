@@ -1,3 +1,5 @@
+import { act } from "react";
+
 const initialState = {
   roles: [""],
   categories: [],
@@ -9,6 +11,7 @@ export const globalActions = {
   setCategories: "SET_CATEGORIES",
   setTheme: "SET_THEME",
   setLanguage: "SET_LANGUAGE",
+  
 };
 
 const globalReducer = (state = initialState, action) => {
@@ -33,6 +36,7 @@ const globalReducer = (state = initialState, action) => {
         ...state,
         language: action.payload,
       };
+   
     default:
       return state;
   }

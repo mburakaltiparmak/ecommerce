@@ -30,22 +30,9 @@ export const updateCart = (id, newCount) => ({
   type: shoppingCartActions.setUpdateCart,
   payload: { id, newCount },
 });
+export const selectShipment = (shipment) => ({
+  type: shoppingCartActions.setShipment,
+  payload: shipment,
+});
 
-export const deleteAddress = (id) => {
-  instance
-    .delete(`/user/address/${id}`, {
-      headers: {
-        Authorization: token,
-      },
-    })
-    .then((res) => {
-      console.log("adres silindi", res.data);
-      setAddressData((prevAddressData) =>
-        prevAddressData.filter((address) => address.id !== id)
-      );
-      window.location.reload();
-    })
-    .catch((err) => {
-      console.error("adres silinemedi", err);
-    });
-};
+

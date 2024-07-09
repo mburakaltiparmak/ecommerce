@@ -34,6 +34,7 @@ export const getRoles = () => (dispatch, getState) => {
       console.log("hata", err);
     });
 };
+
 //CATEGORIES
 export const getCategories = () => (dispatch) => {
   instance

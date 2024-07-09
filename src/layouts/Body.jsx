@@ -18,6 +18,7 @@ import Loading from "../components/Loading";
 import Cart from "../pages/Cart";
 import Order from "../pages/Order";
 import { userNameSetter } from "../store/actions/userAction";
+import { getCategories } from "../store/actions/globalAction";
 const Body = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
@@ -27,6 +28,7 @@ const Body = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const token = localStorage.getItem("token");
+    dispatch(getCategories());
     if (token) {
       instance
         .get("/verify", {
@@ -50,7 +52,7 @@ const Body = () => {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [dispatch]);
   if (loading) {
     <Loading />;
   }

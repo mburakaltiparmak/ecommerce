@@ -32,10 +32,10 @@ const Stepper2 = ({ step1, step2, step3, currentStep }) => {
   ];
 
   const displaySteps = (
-    <div className="w-full flex justify-between items-center shadow-lg shadow-darkblue1">
+    <div className="w-full flex justify-between items-center shadow-lg shadow-darkblue1 px-2">
       {steps.map((step, index) => (
         <div
-          className="flex flex-auto items-center justify-between"
+          className="flex flex-auto items-center justify-between py-2"
           key={index}
         >
           <div
@@ -43,7 +43,7 @@ const Stepper2 = ({ step1, step2, step3, currentStep }) => {
               currentStep >= index + 1
                 ? "border-green bg-green transition duration-500 ease-in-out"
                 : "border-white bg-blue1 transition duration-500 ease-in-out"
-            } relative flex flex-col items-center px-2 justify-between text-white border-2 rounded-xl py-1 shadow-sm shadow-blue1 h-28 w-28`}
+            } relative flex flex-col items-center px-2 justify-between text-white border-4 rounded-xl py-1 shadow-sm shadow-blue1 h-28 w-28`}
           >
             <div className="rounded-full text-white bg-blue1 transition duration-500 ease-in-out border-2 border-darkblue1 h-10 w-10 flex items-center justify-center shadow-md shadow-black">
               <FontAwesomeIcon
@@ -73,7 +73,7 @@ const Stepper2 = ({ step1, step2, step3, currentStep }) => {
             <div
               className={`${
                 currentStep - 1 >= index + 1 ? "text-green" : "text-white"
-              } flex-auto border-t-2 transition duration-500 ease-in-out`}
+              } flex-auto border-t-4 transition duration-500 ease-in-out`}
             />
           ) : (
             <div className="rounded-full text-white bg-blue1 transition duration-500 ease-in-out border-2 border-white h-16 w-16 flex items-center justify-center shadow-md shadow-black mx-[25%]">

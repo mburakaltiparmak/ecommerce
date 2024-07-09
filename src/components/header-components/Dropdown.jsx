@@ -8,10 +8,11 @@ const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-
+/*
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+  */
 
   const handleMouseOver = () => {
     setIsOpen(!isOpen);
