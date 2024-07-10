@@ -91,7 +91,7 @@ const Payment = () => {
                       </span>
                       <Cards
                         number={card.card_no}
-                        expiry={`${card.expire_month}${card.expire_year}`}
+                        expiry=""
                         cvc=""
                         name={card.name_on_card}
                         focused=""
