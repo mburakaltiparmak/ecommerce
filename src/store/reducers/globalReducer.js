@@ -5,13 +5,14 @@ const initialState = {
   categories: [],
   theme: "",
   language: "",
+  loading: true,
 };
 export const globalActions = {
   setRoles: "SET_ROLES",
   setCategories: "SET_CATEGORIES",
   setTheme: "SET_THEME",
   setLanguage: "SET_LANGUAGE",
-  
+  setLoading: "SET_LOADING",
 };
 
 const globalReducer = (state = initialState, action) => {
@@ -36,7 +37,12 @@ const globalReducer = (state = initialState, action) => {
         ...state,
         language: action.payload,
       };
-   
+    case globalActions.setLoading:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
     default:
       return state;
   }

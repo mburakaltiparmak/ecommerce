@@ -12,13 +12,14 @@ import { AddCart } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RatingStars from "../components/RatingStars";
+import { loadingSetter } from "../store/actions/globalAction";
 
 const Shop = () => {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((store) => store.global.loading);
   const [sort, setSort] = useState("");
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
@@ -62,9 +63,9 @@ const Shop = () => {
     if (sortParam) setSort(sortParam);
     if (filterParam) setFilter(filterParam);
 
-    setLoading(true);
+    dispatch(loadingSetter(true));
     const timeout = setTimeout(() => {
-      setLoading(false);
+      dispatch(loadingSetter(false));
       dispatch(getProducts(categoryParam, filterParam, sortParam));
     }, 1000);
     return () => clearTimeout(timeout);

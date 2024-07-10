@@ -22,13 +22,14 @@ import { getCategories } from "../store/actions/globalAction";
 const Body = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
-  const history = useHistory();
   const dispatch = useDispatch();
-  const userReducerData = useSelector((store) => store.userRed);
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((store) => store.product.fetchState);
+  const category = useSelector((store) => store.global.categories);
+  console.log("category data", category);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     dispatch(getCategories());
+    const token = localStorage.getItem("token");
     if (token) {
       instance
         .get("/verify", {
@@ -45,15 +46,10 @@ const Body = () => {
         .catch((err) => {
           console.error("login hata", err);
           localStorage.removeItem("token");
-        })
-        .finally(() => {
-          setLoading(false);
         });
-    } else {
-      setLoading(false);
     }
   }, [dispatch]);
-  if (loading) {
+  if (loading == "FETCHING") {
     <Loading />;
   }
   return (

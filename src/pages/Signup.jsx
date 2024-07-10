@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getRoles } from "../store/actions/globalAction";
+import { getRoles, loadingSetter } from "../store/actions/globalAction";
 import Loading from "../components/Loading";
 const Signup = () => {
   const {
@@ -17,7 +17,7 @@ const Signup = () => {
   //stateler
 
   /*const [roles, setRoles] = useState([]);*/
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((store) => store.global.loading);
   const [selectedRole, setSelectedRole] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
@@ -34,13 +34,13 @@ const Signup = () => {
   const onSubmit = (formData) => {
     const formDataToSend = formData;
     console.log("giden data", formDataToSend);
-    setLoading(true);
+    dispatch(loadingSetter(true));
     instance
       .post("/signup", formDataToSend)
       .then((res) => {
         console.log("response", res.data);
 
-        setLoading(false);
+        dispatch(loadingSetter(false));
         history.push("/login");
         toast.success(
           `You need to click link in email to activate your account!`
@@ -48,7 +48,7 @@ const Signup = () => {
       })
       .catch((err) => {
         console.log("hata", err);
-        setLoading(false);
+        dispatch(loadingSetter(false));
         toast.error("Form posting has been failed.");
       });
   };
@@ -65,11 +65,11 @@ const Signup = () => {
         .then((res) => {
           setRoles(res.data);
           console.log("roles", roles);
-          setLoading(false);
+          dispatch(loadingSetter(false));
         })
         .catch((err) => {
           console.error("hata", err);
-          setLoading(false);
+          dispatch(loadingSetter(false));
         });
     }, 1000);
     return () => clearTimeout(timeout);
@@ -78,7 +78,7 @@ const Signup = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       dispatch(getRoles());
-      setLoading(false);
+      dispatch(loadingSetter(false));
     }, 500);
     return () => clearTimeout(timeout);
   }, []);

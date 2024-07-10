@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const instance = axios.create({
   baseURL: "https://workintech-fe-ecommerce.onrender.com",
 });
@@ -17,6 +18,7 @@ export const getProducts =
         params: { category, filter, sort },
       });
       console.log("FETCHED PRODUCTS", res.data);
+
       dispatch(productListSetter(res.data.products));
       dispatch(fetchStateSetter(fetchStates.FETCHED));
       dispatch(productCountSetter(res.data.total));

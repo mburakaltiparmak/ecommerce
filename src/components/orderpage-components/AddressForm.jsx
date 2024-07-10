@@ -8,6 +8,8 @@ import {
   getDistrictsAndNeighbourhoodsByCityCode,
 } from "turkey-neighbourhoods";
 import Loading from "../Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { loadingSetter } from "../../store/actions/globalAction";
 
 const OrderForm = ({
   addressFormIsOpen,
@@ -25,7 +27,8 @@ const OrderForm = ({
   } = useForm({ mode: "onChange" });
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((store) => store.global.loading);
+  const dispatch = useDispatch();
   const history = useHistory();
   const [cityData, setCityData] = useState([]);
   const [districtData, setDistrictData] = useState([]);
@@ -34,7 +37,6 @@ const OrderForm = ({
   const token = localStorage.getItem("token");
   const handleCancelButton = () => {
     setAddressFormIsOpen(!addressFormIsOpen);
-    
   };
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const OrderForm = ({
   };
 
   const onSubmit = (formData) => {
-    setLoading(true);
+    dispatch(loadingSetter(true));
     if (token) {
       instance
         .post("/user/address", formData, {
@@ -83,7 +85,7 @@ const OrderForm = ({
           },
         })
         .then((res) => {
-          setLoading(false);
+          dispatch(loadingSetter(false));
           console.log("address form response", res.data);
           toast.success(`Your address successfully saved!`);
           setAddressFormIsOpen(false);
@@ -92,7 +94,7 @@ const OrderForm = ({
         })
         .catch((err) => {
           console.error("Form post edilirken hata oluştu", err);
-          setLoading(false);
+          dispatch(loadingSetter(false));
           toast.error("Form posting has been failed.");
         });
     } else {
@@ -102,7 +104,7 @@ const OrderForm = ({
   };
 
   const updateAddress = (formData) => {
-    setLoading(true);
+    dispatch(loadingSetter(true));
     console.log("update form", formData);
     console.log("id", addressData.id);
     instance
@@ -112,7 +114,7 @@ const OrderForm = ({
         },
       })
       .then((res) => {
-        setLoading(false);
+        dispatch(loadingSetter(false));
         console.log("updated address form response", res.data);
         toast.success(`Your address successfully updated!`);
         setUpdateDataAddressForm(!updateAddressForm);
@@ -121,7 +123,7 @@ const OrderForm = ({
       })
       .catch((err) => {
         console.error("Form post edilirken hata oluştu", err);
-        setLoading(false);
+        dispatch(loadingSetter(false));
         toast.error("Form posting has been failed.");
       });
   };

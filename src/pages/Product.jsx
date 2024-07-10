@@ -27,23 +27,24 @@ import Loading from "../components/Loading";
 import { AddCart } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loadingSetter } from "../store/actions/globalAction";
 
 const Product = () => {
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((store) => store.global.loading);
   const dispatch = useDispatch();
   const location = useLocation();
   const selectedCategory = useSelector(
     (store) => store.product.selectedCategory
   );
   useEffect(() => {
-    setLoading(true);
+    dispatch(loadingSetter(true));
     const timeout = setTimeout(() => {
       if (location.pathname === "/:category") {
         if (selectedCategory) {
           dispatch(getProductsToCategory(selectedCategory));
         }
       }
-      setLoading(false);
+      dispatch(loadingSetter(false));
     }, 1000);
     return () => clearTimeout(timeout);
   }, [dispatch, location.pathname, selectedCategory]);
