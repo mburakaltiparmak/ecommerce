@@ -1,39 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { data } from "../data";
 import icon from "../assets/icon.png";
-import {
-  faHooli,
-  faLyft,
-  faPiedPiperHat,
-  faStripe,
-  faAws,
-  faRedditAlien,
-} from "@fortawesome/free-brands-svg-icons";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
-import Breadcrumb from "./Breadcrumb";
-import { Pagination } from "./Pagination";
+import Breadcrumb from "../components/Breadcrumb";
+import { Pagination } from "../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../store/actions/globalAction";
-import { Link, useLocation } from "react-router-dom";
-import {
-  activePageSetter,
-  getProducts,
-  getProductsByCategory,
-  getProductsToFilter,
-  getProductsToSort,
-} from "../store/actions/productAction";
-import Loading from "./Loading";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import { activePageSetter, getProducts } from "../store/actions/productAction";
+import Loading from "../components/Loading";
 import { AddCart } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RatingStars from "./RatingStars";
+import RatingStars from "../components/RatingStars";
+import { loadingSetter } from "../store/actions/globalAction";
 
-export const Shop = () => {
-  const { boxData, shopData } = data();
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
+const Shop = () => {
   const location = useLocation();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const loading = useSelector((store) => store.global.loading);
+  const [sort, setSort] = useState("");
+  const [filter, setFilter] = useState("");
+  const [category, setCategory] = useState("");
+
   const categoriesData = useSelector((store) => store.global.categories);
   const productData = useSelector((store) => store.product.productList);
   const productCount = useSelector((store) => store.product.totalProductCount);
@@ -46,40 +36,67 @@ export const Shop = () => {
   const activePage = useSelector((store) => store.product.activePage);
   const indexOfFirstProduct = (activePage - 1) * productPerPage;
   const indexOfLastProduct = indexOfFirstProduct + productPerPage;
+
   const onPageChange = (page) => {
     dispatch(activePageSetter(page));
+    updateQuery({ page });
+  };
+
+  const updateQuery = (params = {}) => {
+    const query = new URLSearchParams(location.search);
+    if (params.category !== undefined) query.set("category", params.category);
+    if (params.sort !== undefined) query.set("sort", params.sort);
+    if (params.filter !== undefined) query.set("filter", params.filter);
+    if (params.page !== undefined) query.set("page", params.page);
+    history.push({ pathname: location.pathname, search: query.toString() });
   };
 
   useEffect(() => {
-    setLoading(true);
+    const params = new URLSearchParams(location.search);
+    const pageParam = params.get("page");
+    const categoryParam = params.get("category");
+    const sortParam = params.get("sort");
+    const filterParam = params.get("filter");
+
+    if (pageParam) dispatch(activePageSetter(parseInt(pageParam, 10)));
+    if (categoryParam) setCategory(categoryParam);
+    if (sortParam) setSort(sortParam);
+    if (filterParam) setFilter(filterParam);
+
+    dispatch(loadingSetter(true));
     const timeout = setTimeout(() => {
-      if (location.pathname === "/shop") {
-        dispatch(getProducts());
-      } else if (location.pathname.includes("category")) {
-        if (selectedCategory) {
-          dispatch(getProductsByCategory(selectedCategory));
-        }
-      }
-      setLoading(false);
+      dispatch(loadingSetter(false));
+      dispatch(getProducts(categoryParam, filterParam, sortParam));
     }, 1000);
     return () => clearTimeout(timeout);
-  }, [dispatch, location.pathname, selectedCategory]);
+  }, [location.search, dispatch]);
 
   const handleSortChange = (sortParam) => {
-    dispatch(getProductsToSort(sortParam));
+    setSort(sortParam);
+    updateQuery({ sort: sortParam });
   };
 
-  const handleFilterChange = (filterParam) => {
-    dispatch(getProductsToFilter(filterParam));
+  const handleFilterChange = (event) => {
+    event.stopPropagation();
+    setFilter(event.target.value);
+  };
+
+  const handleFilterClick = () => {
+    updateQuery({ filter });
+    dispatch(getProducts(category, filter, sort));
   };
 
   const handleProductClick = (productDataObject) => {
     dispatch({ type: "SET_PRODUCT_DATA_OBJECT", payload: productDataObject });
   };
+
   const categoryHandleClick = (categoryId) => {
-    console.log("category id", categoryId);
     dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
+    setCategory(categoryId);
+    updateQuery({ category: categoryId });
+    dispatch(getProducts(categoryId, filter, sort));
   };
+
   const addToCart = (product) => {
     dispatch(AddCart(product));
     toast.success(`Product has been successfully added in your cart!`);
@@ -90,9 +107,9 @@ export const Shop = () => {
   }
 
   return (
-    <div className="font-Montserrat flex flex-col gap-8 " id="shop-container">
+    <div className="font-Montserrat flex flex-col gap-8" id="shop-container">
       <section
-        className="flex flex-col gap-12 bg-lightgray px-40 py-10 sm:py-10 sm:px-10 sm:w-full content-center "
+        className="flex flex-col gap-12 bg-lightgray px-40 py-10 sm:py-10 sm:px-10 sm:w-full content-center"
         id="top-level"
       >
         <span className="flex flex-row justify-between items-center sm:flex-col sm:gap-8">
@@ -110,13 +127,13 @@ export const Shop = () => {
             <Link
               onClick={() => categoryHandleClick(box.id)}
               key={index}
-              to={`/shop/category/${
-                box.gender === "e" ? "erkek" : "kadin"
-              }/${box.title.toLowerCase()}`}
+              to={`/shop/${box.gender === "e" ? "erkek" : "kadin"}?category=${
+                box.id
+              }`}
             >
               <div
                 id="container"
-                className="relative shadow-lg sm:justify-center shadow-gray flex items-center sm:flex-col sm:w-fit  "
+                className="relative shadow-lg sm:justify-center shadow-gray flex items-center sm:flex-col sm:w-fit"
               >
                 <img
                   className="object-cover w-[250px] h-[250px]"
@@ -137,6 +154,7 @@ export const Shop = () => {
           ))}
         </span>
       </section>
+
       <section
         className="flex flex-col justify-between items-center gap-12 px-40 sm:px-0"
         id="shop-section"
@@ -186,9 +204,10 @@ export const Shop = () => {
               type="text"
               className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded px-4"
               placeholder="Search"
-              onChange={(e) => handleFilterChange(e.target.value)}
+              onChange={handleFilterChange}
             />
             <button
+              onClick={handleFilterClick}
               className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
               id="2"
             >
@@ -196,6 +215,7 @@ export const Shop = () => {
             </button>
           </span>
         </span>
+
         <span className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4">
           {productData &&
             productData
@@ -206,7 +226,7 @@ export const Shop = () => {
                   className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
                 >
                   <Link
-                    to={`/${id.category_id}/${id.id}/${id.name}`}
+                    to={`/${id.category_id}/${id.id}/${id.name.toLowerCase()}`}
                     onClick={() => handleProductClick(id)}
                   >
                     <span id="product-img-content" className="sm:w-full">
@@ -216,57 +236,38 @@ export const Shop = () => {
                         className="sm:w-full"
                       />
                     </span>
-                    <span className="flex flex-col items-center gap-2 text-center ">
+                    <span className="flex flex-col items-center gap-2 text-center">
                       <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
                         {id.name}
                       </h4>
                       <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
                         {id.description}
                       </h5>
-                    </span>
-                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-4 py-4 text-base font-bold">
-                      <h5 className="text-[#23856D]">{id.price} $</h5>
                       <RatingStars rating={id.rating} />
-                    </span>
-                    <span id="colors">
-                      <div className="flex items-center justify-center space-x-2">
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
-                      </div>
+                      <span className="flex flex-col gap-1">
+                        <span className="font-bold text-base">
+                          {id.price} ₺
+                        </span>
+                      </span>
                     </span>
                   </Link>
-                  <span className="flex flex-row gap-4">
-                    <button
-                      onClick={() => addToCart(id)}
-                      className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal"
-                    >
-                      Add to Cart
-                    </button>
-                  </span>
+                  <button
+                    className="border border-gray rounded-lg py-2 px-4 bg-blue1 sm:text-base text-white"
+                    onClick={() => addToCart(id)}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               ))}
         </span>
-        <span id="pagination" className="sm:py-10">
-          <Pagination
-            totalPages={totalPages}
-            currentPage={activePage}
-            onPageChange={onPageChange}
-          />
-        </span>
-      </section>
-      <section
-        className="px-40 sm:px-10 py-10 bg-lightgray flex flex-row sm:flex-col sm:gap-8 justify-between content-center text-7xl text-gray"
-        id="logo-section"
-      >
-        <FontAwesomeIcon icon={faHooli} />
-        <FontAwesomeIcon icon={faLyft} />
-        <FontAwesomeIcon icon={faPiedPiperHat} />
-        <FontAwesomeIcon icon={faStripe} />
-        <FontAwesomeIcon icon={faAws} />
-        <FontAwesomeIcon icon={faRedditAlien} />
+
+        <Pagination
+          currentPage={activePage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
       </section>
     </div>
   );
 };
+export default Shop;

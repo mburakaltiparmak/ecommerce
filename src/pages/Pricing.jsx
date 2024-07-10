@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Breadcrumb2 } from "../components/Breadcrumb2";
-import SwitchButton from "../components/SwitchButton";
+import { PricingPageBreadcrumb } from "../components/PricingPageBreadcrumb";
+import SwitchButton from "../components/PricingPageSwitchButton";
 import { faCircleCheck, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import {
   faInstagram,
@@ -22,7 +22,7 @@ const Pricing = () => {
       <section id="title" className="section-class flex-col gap-8 sm:w-full">
         <h5 className="h5-styles sm:text-2xl">PRICING</h5>
         <h2 className="h2-styles sm:text-5xl">Simple Pricing</h2>
-        <Breadcrumb2 />
+        <PricingPageBreadcrumb />
       </section>
       <section
         id="pricing-type"

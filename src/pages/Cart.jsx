@@ -11,6 +11,7 @@ import {
 } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Summary from "../components/Summary";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -75,15 +76,14 @@ const Cart = () => {
     setPromoCode(e.target.value);
   };
 
-  useEffect(() => {
-    console.log("cart :", cart);
-  }, [cart]);
-
   return (
-    <div id="cart-page" className="flex flex-row justify-around px-40">
+    <div
+      id="cart-page"
+      className="flex flex-row justify-between items-start px-40"
+    >
       <div
         id="left"
-        className="flex flex-col font-bold gap-2 items-start py-5 "
+        className="flex flex-col font-bold gap-2 items-start pb-5 "
       >
         <div>
           <span>My Cart </span>
@@ -93,18 +93,21 @@ const Cart = () => {
           cart.map((item, index) => (
             <div
               id="cart-product"
-              className="my-2 block border border-black rounded-lg drop-shadow-lg w-[400px] py-1 hover:text-black"
+              className="my-2 block drop-shadow-lg w-[400px] py-1 hover:text-black "
               key={index}
             >
-              <div className="flex flex-row ">
+              <div className="flex flex-row border border-gray rounded-lg">
                 <img
                   src={item.product.images[0].url}
                   alt={item.product.id}
-                  className="w-[150px] h-[200px] "
+                  className="max-w-[150px] h-[200px] rounded-lg"
                 />
-                <div className="flex flex-col justify-around ml-2">
+                <div className="flex flex-col justify-around ml-2 ">
                   <div className="font-semibold text-lg">
                     {item.product.name}
+                  </div>
+                  <div className="font-light text-sm">
+                    {item.product.description}
                   </div>
                   <div>
                     <span className="font-semibold text-green text-lg">{`$${
@@ -161,79 +164,8 @@ const Cart = () => {
           </button>
         )}
       </div>
-      <div
-        id="right"
-        className="flex flex-col font-bold justify-between items-center mt-12 py-4 border rounded-lg gap-4 max-h-[450px]"
-      >
-        {cartLength > 0 ? (
-          <Link
-            className="bg-green px-6 py-2 rounded-md text-white font-semibold"
-            to="/order"
-            onClick={submitButtonHandler}
-          >
-            Confirm Order
-          </Link>
-        ) : (
-          <button
-            className="bg-red px-6 py-2 rounded-md text-white font-semibold cursor-not-allowed"
-            disabled
-          >
-            Confirm Order
-          </button>
-        )}
-
-        <div id="summary" className="flex flex-col gap-4 px-4">
-          <span className="flex flex-row justify-between px-4 font-medium gap-2">
-            <p>Order Summary</p>
-            <p>{`${totalPrice.toFixed(2)}$`}</p>
-          </span>
-          <span className="flex flex-row justify-between px-4 font-medium gap-2">
-            <p>Shipping Total :</p>
-            {totalPrice.toFixed(2) == 0 ? <p>0.00$</p> : <p>29.99$</p>}
-          </span>
-          <span className="flex flex-row justify-between px-4 font-medium gap-2">
-            <p>Shipping is free above 150$ :</p>
-            {calculateShipping() == 0 ? (
-              <p>0.00$</p>
-            ) : (
-              <p>{calculateShipping()}$</p>
-            )}
-          </span>
-          <hr />
-          <span className="flex flex-row justify-between px-4 font-medium gap-2">
-            <p>Total</p>
-            <p>{calculateTotal()}$</p>
-          </span>
-        </div>
-        <div
-          id="promo-code-area"
-          className="text-base font-medium flex flex-col items-center gap-2"
-        >
-          <p className="text-red">If you have Promo Code, enter here</p>
-          <input
-            type="text"
-            className=" text-center bg-[#F9F9F9] border-[#DDDDDD] border rounded-lg h-[50px] cursor-text "
-            placeholder="Promo Code"
-            value={promoCode}
-            onChange={handlePromoCodeChange}
-          />
-        </div>
-        {cartLength > 0 ? (
-          <Link
-            className="bg-green px-6 py-2 rounded-md text-white font-semibold"
-            to="/order"
-            onClick={submitButtonHandler}
-          >
-            Confirm Order
-          </Link>
-        ) : (
-          <button
-            className="bg-red px-6 py-2 rounded-md text-white font-semibold cursor-not-allowed"
-            disabled
-          >
-            Confirm Order
-          </button>
-        )}
+      <div className="pt-4 drop-shadow-lg">
+        <Summary />
       </div>
     </div>
   );

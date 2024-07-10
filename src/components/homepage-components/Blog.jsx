@@ -5,7 +5,7 @@ import {
   faClock,
   faChartArea,
 } from "@fortawesome/free-solid-svg-icons";
-import { data } from "../data";
+import { data } from "../../data";
 export const Blog = () => {
   const { blogData } = data();
   return (

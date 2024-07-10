@@ -1,11 +1,11 @@
 const Loading = () => {
   return (
-    <div className="relative py-32 ">
+    <div className="relative py-32 font-Montserrat font-bold ">
       <div className="absolute bg-white bg-opacity-60 z-10 h-full w-full top-24 flex items-center justify-center">
-        <div className="flex items-center">
-          <span className="text-3xl mr-4 ">Loading</span>
+        <div className="flex flex-col-reverse justify center items-center gap-12">
+          <span className="text-3xl text-darkblue1">Process is Loading</span>
           <svg
-            className="animate-spin h-8 w-8 text-gray-800"
+            className="animate-spin h-32 w-32 text-blue2"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

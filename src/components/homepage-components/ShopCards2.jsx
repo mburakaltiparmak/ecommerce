@@ -1,5 +1,5 @@
 import Slider2 from "./Slider2";
-import fluidImg from "../assets/shopcards/container-img.png";
+import fluidImg from "../../assets/shopcards/container-img.png";
 import { Link } from "react-router-dom";
 
 export const ShopCards2 = () => {

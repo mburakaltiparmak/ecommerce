@@ -5,10 +5,9 @@ import {
   faChevronCircleRight,
   faChevronCircleLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import carouselimg from "../assets/header/carouselImg.jpeg";
-import carouselimg2 from "../assets/header/carouselImg2.jpeg";
-
-const Slider = () => {
+import carouselImg from "../../assets/shopcards/slider2.png";
+import carouselImg2 from "../../assets/shopcards/slider2.png";
+const Slider2 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const nextSlide = () => {
     const isLastSlide = currentIndex === slides.length - 1;
@@ -26,10 +25,10 @@ const Slider = () => {
 
   const slides = [
     {
-      url: "./assets/header/carouselImg.jpeg",
+      url: carouselImg,
     },
     {
-      url: "./assets/header/carouselImg2.jpeg",
+      url: carouselImg2,
     },
   ];
   useEffect(() => {
@@ -42,17 +41,24 @@ const Slider = () => {
 
   return (
     <div>
-      <div className="flex w-full ">
+      <div className="flex w-full mt-4 ">
         <div className="max-h-[716px] w-full h-screen mx-auto relative group ">
           <div
-            style={{
-              backgroundImage: `url(${slides[currentIndex].url})`,
+            style={
+              {
+                /*backgroundImage: `url(${slides[currentIndex].url})`,
               backgroundPosition: "top", // Resmi dikey ve yatay olarak ortala
               backgroundSize: "cover", // Resmi ekran boyutuna sığacak şekilde boyutlandır
-              backgroundRepeat: "no-repeat", // Resmin tekrarlanmasını engelle
-            }}
-            className="w-full h-full bg-cover bg-no-repeat duration-500 flex items-center justify-center"
+            */
+              }
+            }
+            className="w-full h-full duration-500 bg-no-repeat flex flex-row-reverse items-end justify-center bg-[#23856D] object-contain resize-none "
           >
+            <img
+              src={slides[currentIndex].url}
+              alt=""
+              className="min-w-1/2 min-h-1/2 object-contain resize-none pr-20"
+            />
             <div className="flex max-h-[680px] w-full h-full items-center px-40 ">
               <div className="flex flex-col gap-8 md:items-center md:mx-auto drop-shadow-2xl">
                 <h5 className="font-bold text-white ">Summer 2020</h5>
@@ -109,4 +115,4 @@ const Slider = () => {
     </div>
   );
 };
-export default Slider;
+export default Slider2;

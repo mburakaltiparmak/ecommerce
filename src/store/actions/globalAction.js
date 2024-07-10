@@ -1,5 +1,7 @@
 import axios from "axios";
 import { globalActions } from "../reducers/globalReducer";
+import { fetchStateSetter } from "./productAction";
+import { fetchStates } from "../reducers/productReducer";
 
 export const rolesSetter = (roles) => ({
   type: globalActions.setRoles,
@@ -16,6 +18,10 @@ export const themeSetter = (theme) => ({
 export const languageSetter = (language) => ({
   type: globalActions.setLanguage,
   payload: language,
+});
+export const loadingSetter = (loading) => ({
+  type: globalActions.setLoading,
+  payload: loading,
 });
 
 //THUNKS
@@ -34,12 +40,15 @@ export const getRoles = () => (dispatch, getState) => {
       console.log("hata", err);
     });
 };
+
 //CATEGORIES
 export const getCategories = () => (dispatch) => {
+  dispatch(fetchStateSetter(fetchStates.FETCHING));
   instance
     .get("/categories")
     .then((res) => {
       dispatch(categoriesSetter(res.data));
+      dispatch(fetchStateSetter(fetchStates.FETCHED));
     })
     .catch((err) => {
       console.log("categories hata", err);

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loadingSetter } from "../store/actions/globalAction";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 export const METHODS = {
   POST: "post",
@@ -15,8 +18,9 @@ export default function useAxios({
   const realBaseURL = "https://workintech-fe-ecommerce.onrender.com";
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((store) => store.global.loading);
   const history = useHistory();
+  const dispatch = useDispatch();
   const instance = axios.create({
     baseURL,
     timeout: 5000,
@@ -29,7 +33,7 @@ export default function useAxios({
     callbackSuccess = null,
     callbackError = null,
   }) => {
-    setLoading(true);
+    dispatch(loadingSetter(true));
     console.log(
       "sendRequest starts : ",
       "url : ",
@@ -44,7 +48,7 @@ export default function useAxios({
     instance[method](url, data === null ? null : data)
       .then(function (response) {
         setData(response.data);
-        setLoading(false);
+        dispatch(loadingSetter(false));
         setError(null);
         callbackSuccess && callbackSuccess();
         redirect && history.push(redirect);
@@ -54,7 +58,7 @@ export default function useAxios({
         console.log("sendRequest error: ", error);
         callbackError && callbackError();
         setError(error.message);
-        setLoading(false);
+        dispatch(loadingSetter(false));
       });
   };
 

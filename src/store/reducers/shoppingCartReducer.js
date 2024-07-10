@@ -2,6 +2,7 @@ const initialState = {
   cart: [],
   payment: {},
   address: {},
+  shipment:null,
 };
 
 export const shoppingCartActions = {
@@ -12,6 +13,7 @@ export const shoppingCartActions = {
   setRemoveFromCart: "SET_REMOVE_FROM_CART",
   setClearCart: "SET_CLEAR_CART",
   setUpdateCart: "SET_UPDATE_CART",
+  setShipment: "SET_SHIPMENT"
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -67,12 +69,16 @@ export const shoppingCartReducer = (state = initialState, action) => {
           ? { ...item, count: action.payload.newCount }
           : item
       );
-
       return {
         ...state,
         cart: updatedCart,
       };
     }
+    case shoppingCartActions.setShipment: 
+    return {
+      ...state,
+      shipment : action.payload,
+    };
     default:
       return state;
   }

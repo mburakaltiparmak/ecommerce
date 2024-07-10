@@ -7,7 +7,7 @@ import {
   clearCart,
   removeFromCart,
   updateCart,
-} from "../store/actions/shoppingCartAction";
+} from "../../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -44,10 +44,6 @@ const CartDropdown = () => {
     dispatch(clearCart());
     toast.info(`Your cart has been successfully cleared!`);
   };
-
-  useEffect(() => {
-    console.log("cart :", cart);
-  }, [cart]);
 
   return (
     <div className="relative mx-auto flex items-center justify-center z-50  ">

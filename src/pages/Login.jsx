@@ -20,7 +20,7 @@ const Login = () => {
       rememberMe: false,
     },
   });
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((store) => store.global.loading);
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const history = useHistory();
@@ -29,7 +29,7 @@ const Login = () => {
   const userData = useSelector((store) => store.userRed);
 
   const onSubmit = (formData) => {
-    dispatch(postLoginData(formData, history, setLoading));
+    dispatch(postLoginData(formData, history));
   };
   //SPINNER
   if (loading) {

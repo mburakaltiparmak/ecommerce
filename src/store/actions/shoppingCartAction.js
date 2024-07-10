@@ -1,5 +1,8 @@
+import axios from "axios";
 import { shoppingCartActions } from "../reducers/shoppingCartReducer";
-
+const baseURL = "https://workintech-fe-ecommerce.onrender.com";
+const token = localStorage.getItem("token");
+const instance = axios.create({ baseURL });
 export const AddCart = (cart) => ({
   type: shoppingCartActions.setAddCart,
   payload: cart,
@@ -27,3 +30,9 @@ export const updateCart = (id, newCount) => ({
   type: shoppingCartActions.setUpdateCart,
   payload: { id, newCount },
 });
+export const selectShipment = (shipment) => ({
+  type: shoppingCartActions.setShipment,
+  payload: shipment,
+});
+
+
