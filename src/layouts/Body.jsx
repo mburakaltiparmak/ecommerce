@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Homepage from "../pages/Homepage";
+import Homepage from "../pages/HomePage";
 import Shop from "../pages/Shop";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
