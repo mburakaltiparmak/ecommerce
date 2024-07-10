@@ -25,7 +25,6 @@ const Body = () => {
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.product.fetchState);
   const category = useSelector((store) => store.global.categories);
-  console.log("category data", category);
 
   useEffect(() => {
     dispatch(getCategories());

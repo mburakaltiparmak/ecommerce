@@ -45,10 +45,6 @@ const CartDropdown = () => {
     toast.info(`Your cart has been successfully cleared!`);
   };
 
-  useEffect(() => {
-    console.log("cart :", cart);
-  }, [cart]);
-
   return (
     <div className="relative mx-auto flex items-center justify-center z-50  ">
       <div className="group cursor-pointer bg-white">

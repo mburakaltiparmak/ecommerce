@@ -54,27 +54,7 @@ const Signup = () => {
   };
   const handleRoleChange = (e) => {
     setSelectedRole(e.target.value);
-    console.log("handle change", selectedRole);
   };
-  /*
-  //axios
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      instance
-        .get("/roles")
-        .then((res) => {
-          setRoles(res.data);
-          console.log("roles", roles);
-          dispatch(loadingSetter(false));
-        })
-        .catch((err) => {
-          console.error("hata", err);
-          dispatch(loadingSetter(false));
-        });
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, []);
-*/
   useEffect(() => {
     const timeout = setTimeout(() => {
       dispatch(getRoles());

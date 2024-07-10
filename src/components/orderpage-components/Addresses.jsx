@@ -1,5 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faCirclePlus, faSquarePen, faTrashCan, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleCheck,
+  faCirclePlus,
+  faSquarePen,
+  faTrashCan,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useState } from "react";
@@ -13,7 +19,7 @@ const Addresses = ({
   currentStep,
   setCurrentStep,
   selectedAddress,
-  setSelectedAddress, 
+  setSelectedAddress,
 }) => {
   const dispatch = useDispatch();
   const [addressFormIsOpen, setAddressFormIsOpen] = useState(false);
@@ -62,7 +68,7 @@ const Addresses = ({
   const handleSelectAddress = (address) => {
     console.log("selected address", address);
     setStep1(true);
-    setSelectedAddress(address); // Set the selected address
+    setSelectedAddress(address);
     if (!step2) setCurrentStep(2);
   };
 

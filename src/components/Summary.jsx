@@ -19,13 +19,13 @@ const Summary = () => {
     if (shipmentMethod === "standart") {
       return 29.99;
     } else if (shipmentMethod === "urgent") {
-      return 50.00;
+      return 50.0;
     } else if (shipmentMethod === "special") {
-      return 75.00;
+      return 75.0;
     } else {
       return 0;
     }
-  }
+  };
 
   const cart = useSelector((store) => store.shoppingCart.cart);
   const cartLength = cart.length;
@@ -88,10 +88,6 @@ const Summary = () => {
     setPromoCode(e.target.value);
   };
 
-  useEffect(() => {
-    console.log("cart :", cart);
-  }, [cart]);
-
   return (
     <div className="flex flex-col font-bold justify-between items-center py-4 border border-x-2 border-y-2 border-darkblue1 drop-shadow-xl shadow-darkblue1 shadow-xl rounded-lg gap-4 h-[400px] w-[400px] bg-darkblue1 text-white">
       <div id="summary" className="flex flex-col gap-4 px-4 drop-shadow-xl">
@@ -103,9 +99,11 @@ const Summary = () => {
           <p className="drop-shadow-xl">Shipping Total :</p>
           {shipmentCost().toFixed(2)}$
         </span>
-        {shipmentCost() > 29.99 ? (<span className="flex flex-row justify-between text-center px-4 font-bold px-2">
-          <p>Only Standart Shipping is free above 150$</p>
-          </span>) : (
+        {shipmentCost() > 29.99 ? (
+          <span className="flex flex-row justify-between text-center px-4 font-bold px-2">
+            <p>Only Standart Shipping is free above 150$</p>
+          </span>
+        ) : (
           <span className="flex flex-row justify-between px-4 font-medium gap-2">
             <p>Shipping is free above 150$ :</p>
             {calculateShipping(shipmentCost()) === 0 ? (

@@ -8,7 +8,7 @@ const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-/*
+  /*
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -27,8 +27,6 @@ const TestDropdown = () => {
     setIsOpen(!isOpen);
   };
   const categoryHandleClick = (categoryId) => {
-    console.log("category id", categoryId);
-    //dispatch(getProducts(categoryId));
     dispatch({ type: "SET_SELECTED_CATEGORY", payload: categoryId });
   };
 

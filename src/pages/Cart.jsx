@@ -76,10 +76,6 @@ const Cart = () => {
     setPromoCode(e.target.value);
   };
 
-  useEffect(() => {
-    console.log("cart :", cart);
-  }, [cart]);
-
   return (
     <div
       id="cart-page"

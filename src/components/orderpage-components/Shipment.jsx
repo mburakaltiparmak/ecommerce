@@ -1,13 +1,12 @@
 import { useDispatch } from "react-redux";
 import { selectShipment } from "../../store/actions/shoppingCartAction";
 
-const Shipment = ({step2,setStep2}) => {
+const Shipment = ({ step2, setStep2 }) => {
   const dispatch = useDispatch();
   const handleShipmentSelect = (shipment) => {
-    console.log("shipment",shipment);
     dispatch(selectShipment(shipment));
     setStep2(true);
-  }
+  };
   return (
     <div className="bg-darkblue1 border rounded-xl text-white px-8 flex flex-col py-4 w-full font-montserrat h-fit">
       <select
