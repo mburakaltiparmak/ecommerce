@@ -9,7 +9,7 @@ import {
   faTruckArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Stepper2 = ({ step1, step2, step3, currentStep }) => {
+const Stepper = ({ step1, step2, step3, currentStep }) => {
   const steps = [
     {
       title: "Address Information",
@@ -96,4 +96,4 @@ const Stepper2 = ({ step1, step2, step3, currentStep }) => {
   );
 };
 
-export default Stepper2;
+export default Stepper;

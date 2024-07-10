@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faCirclePlus, faSquarePen, faTrashCan, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleCheck,
+  faCirclePlus,
+  faSquarePen,
+  faTrashCan,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Stepper2 from "../components/orderpage-components/Stepper2";
+import Stepper from "../components/orderpage-components/Stepper";
 import AddressForm from "../components/orderpage-components/AddressForm";
 import Summary from "../components/Summary";
 import "../App.css";
@@ -48,8 +54,8 @@ const Order = () => {
 
   const handleAddAddress = () => {
     setAddressFormIsOpen(!addressFormIsOpen);
-    setUpdateAddressForm(false); // Reset update form state
-    setUpdatingAddressData(null); // Reset updating address data
+    setUpdateAddressForm(false);
+    setUpdatingAddressData(null);
   };
 
   const getAddress = () => {
@@ -84,7 +90,12 @@ const Order = () => {
 
   return (
     <div className="flex flex-col px-40 justify-around gap-1">
-      <Stepper2 step1={step1} step2={step2} step3={step3} currentStep={currentStep} />
+      <Stepper
+        step1={step1}
+        step2={step2}
+        step3={step3}
+        currentStep={currentStep}
+      />
       <div className="flex justify-between my-1">
         <button
           onClick={handleBack}
@@ -131,8 +142,8 @@ const Order = () => {
                   <section className="px-1 w-full">
                     {Array.isArray(addressData) && addressData.length > 0 ? (
                       <Addresses
-                        addressData={addressData} 
-                        setAddressData={setAddressData}// Pass addressData to Addresses component
+                        addressData={addressData}
+                        setAddressData={setAddressData} // Pass addressData to Addresses component
                         step1={step1}
                         setStep1={setStep1}
                         step2={step2}
@@ -148,7 +159,10 @@ const Order = () => {
                           onClick={handleAddAddress}
                           className="border border-white p-4 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1"
                         >
-                          <FontAwesomeIcon className="text-4xl" icon={faCirclePlus} />
+                          <FontAwesomeIcon
+                            className="text-4xl"
+                            icon={faCirclePlus}
+                          />
                           <p className="text-white">Add Address</p>
                         </button>
                       </div>

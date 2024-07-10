@@ -1,220 +1,151 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import axios from "axios";
-import Loading from "../Loading";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import Cards from "react-credit-cards-2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleCheck,
+  faCirclePlus,
+  faSquarePen,
+  faTrashCan,
+  faSpinner,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { loadingSetter } from "../../store/actions/globalAction";
+import "react-credit-cards-2/dist/es/styles-compiled.css";
+import PaymentForm from "./PaymentForm";
 
 const Payment = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const token = localStorage.getItem("token");
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
   const loading = useSelector((store) => store.global.loading);
-  const onSubmit = (formData) => {
-    dispatch(loadingSetter(true));
-    const { security_code, ...dataWithoutSecurityCode } = formData;
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [cardPage, setCardPage] = useState(false);
+  const openAddCardPage = () => {
+    setCardPage(!cardPage);
+  };
+  const handleDeleteCard = (id) => {
+    deletePaymentMethod(id);
+  };
 
+  const getPaymentMethod = () => {
     if (token) {
       instance
-        .post("/user/card", dataWithoutSecurityCode, {
+        .get("/user/card", {
           headers: {
             Authorization: token,
           },
         })
         .then((res) => {
           dispatch(loadingSetter(false));
-          console.log("payment form response", res.data);
-          toast.success("Your payment method successfully saved!");
+          setPaymentMethods(res.data);
         })
         .catch((err) => {
-          console.error("Form post edilirken hata oluştu", err);
+          console.error("payment methods fetch error", err);
           dispatch(loadingSetter(false));
-          toast.error("Form posting has been failed.");
         });
-    } else {
-      toast.info("Please login for this process!");
-      history.push("/login");
     }
   };
 
-  if (loading) {
-    return <Loading />;
-  } else {
-    return (
-      <div className="bg-darkblue1 border rounded-xl text-white px-8 flex flex-col py-4 w-full">
-        <style>
-          {`@import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);`}
-        </style>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
-            <div
-              className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-black"
-              style={{ maxWidth: "600px" }}
-            >
-              <div className="w-full pt-1 pb-5">
-                <div className="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
-                  <i className="mdi mdi-credit-card-outline text-3xl"></i>
-                </div>
-              </div>
-              <div className="mb-10">
-                <h1 className="text-center font-bold text-xl uppercase">
-                  Secure payment info
-                </h1>
-              </div>
-              <div className="mb-3 flex -mx-2">
-                <div className="px-2">
-                  <label
-                    htmlFor="type1"
-                    className="flex items-center cursor-pointer"
+  const deletePaymentMethod = (id) => {
+    instance
+      .delete(`/user/card/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log("kart silindi", res.data);
+        // Update payment methods list after deletion
+        setPaymentMethods(paymentMethods.filter((card) => card.id !== id));
+      })
+      .catch((err) => {
+        console.error("kart silinemedi", err);
+      });
+  };
+
+  useEffect(() => {
+    getPaymentMethod();
+  }, []);
+
+  return (
+    <div className="bg-darkblue1 border rounded-xl flex flex-row items-center justify-center font-Montserrat font-bold text-2xl w-full">
+      {cardPage ? (
+        <PaymentForm openAddCardPage={openAddCardPage} />
+      ) : (
+        <div className="w-full">
+          {paymentMethods.length > 0 ? (
+            <div className="flex flex-col items-center flex-wrap gap-4">
+              <h2 className="text-white">Your Cards</h2>
+              {paymentMethods.map((card, index) => {
+                return (
+                  <span
+                    className="flex flex-row justify-between gap-2 border-2 border-white rounded-xl p-2"
+                    key={index}
                   >
-                    <input
-                      type="radio"
-                      className="form-radio h-5 w-5 text-indigo-500"
-                      name="type"
-                      id="type1"
-                      defaultChecked
-                    />
-                    <img
-                      src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
-                      className="h-8 ml-3"
-                      alt="Visa"
-                    />
-                  </label>
-                </div>
-                <div className="px-2">
-                  <label
-                    htmlFor="type2"
-                    className="flex items-center cursor-pointer"
-                  >
-                    <input
-                      type="radio"
-                      className="form-radio h-5 w-5 text-indigo-500"
-                      name="type"
-                      id="type2"
-                    />
-                    <img
-                      src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png"
-                      className="h-8 ml-3"
-                      alt="PayPal"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div className="mb-3">
-                <label className="font-bold text-sm mb-2 ml-1">
-                  Name on card
-                </label>
-                <div>
-                  <input
-                    {...register("name_on_card", { required: true })}
-                    className="w-full px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                    placeholder="John Smith"
-                    type="text"
-                  />
-                  {errors.name_on_card && (
-                    <span className="text-red-500">This field is required</span>
-                  )}
-                </div>
-              </div>
-              <div className="mb-3">
-                <label className="font-bold text-sm mb-2 ml-1">
-                  Card number
-                </label>
-                <div>
-                  <input
-                    {...register("card_no", {
-                      required: true,
-                      pattern: /^[0-9]{16}$/,
-                    })}
-                    className="w-full px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                    placeholder="0000 0000 0000 0000"
-                    type="text"
-                  />
-                  {errors.card_no && (
-                    <span className="text-red-500">
-                      This field is required and must be 16 digits
+                    <span className="flex flex-col items-center justify-between">
+                      <span className="text-white py-2">
+                        Card Id : {card.id}
+                      </span>
+                      <Cards
+                        number={card.card_no}
+                        expiry={`${card.expire_month}${card.expire_year}`}
+                        cvc=""
+                        name={card.name_on_card}
+                        focused=""
+                      />
                     </span>
-                  )}
-                </div>
-              </div>
-              <div className="mb-3 -mx-2 flex items-end">
-                <div className="px-2 w-1/2">
-                  <label className="font-bold text-sm mb-2 ml-1">
-                    Expiration date
-                  </label>
-                  <div>
-                    <select
-                      {...register("expire_month", { required: true })}
-                      className="form-select w-full px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                    >
-                      <option value="01">01</option>
-                      <option value="02">02</option>
-                      <option value="03">03</option>
-                      <option value="04">04</option>
-                      <option value="05">05</option>
-                      <option value="06">06</option>
-                      <option value="07">07</option>
-                      <option value="08">08</option>
-                      <option value="09">09</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="px-2 w-1/2">
-                  <select
-                    {...register("expire_year", { required: true })}
-                    className="form-select w-full px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                  >
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                  </select>
-                </div>
-              </div>
-              <div className="mb-10">
-                <label className="font-bold text-sm mb-2 ml-1">
-                  Security code
-                </label>
-                <div>
-                  <input
-                    {...register("security_code", {
-                      required: true,
-                      pattern: /^[0-9]{3,4}$/,
-                    })}
-                    className="w-32 px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                    placeholder="000"
-                    type="text"
-                  />
-                  {errors.security_code && (
-                    <span className="text-red-500">
-                      This field is required and must be 3-4 digits
+
+                    <span className="flex flex-col justify-center gap-4">
+                      <button className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1">
+                        <FontAwesomeIcon
+                          className="text-4xl text-white"
+                          icon={faCircleCheck}
+                        />
+                        <p className="text-white">Select Card</p>
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCard(card.id)}
+                        className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1"
+                      >
+                        <FontAwesomeIcon
+                          className="text-4xl text-white"
+                          icon={faTrashCan}
+                        />
+                        <p className="text-white">Delete Card</p>
+                      </button>
+                      <button className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1">
+                        <FontAwesomeIcon
+                          className="text-4xl text-white"
+                          icon={faCirclePlus}
+                        />
+                        <p onClick={openAddCardPage} className="text-white">
+                          Add Another Card
+                        </p>
+                      </button>
                     </span>
-                  )}
-                </div>
-              </div>
-              <div>
-                <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
-                  <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
-                </button>
-              </div>
+                  </span>
+                );
+              })}
             </div>
-          </div>
-        </form>
-      </div>
-    );
-  }
+          ) : (
+            <div className="w-full text-center flex flex-col items-center gap-4 text-white">
+              <p className="text-xl">No card found.</p>
+              <button
+                onClick={openAddCardPage}
+                className="border border-white p-4 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1"
+              >
+                <FontAwesomeIcon className="text-4xl" icon={faCirclePlus} />
+                <p className="text-white">Add Card</p>
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Payment;

@@ -100,7 +100,7 @@ const Summary = () => {
           {shipmentCost().toFixed(2)}$
         </span>
         {shipmentCost() > 29.99 ? (
-          <span className="flex flex-row justify-between text-center px-4 font-bold px-2">
+          <span className="flex flex-row justify-between text-center px-4 font-bold">
             <p>Only Standart Shipping is free above 150$</p>
           </span>
         ) : (

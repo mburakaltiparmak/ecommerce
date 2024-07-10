@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCategories } from "../../store/actions/globalAction";
-import { getProducts } from "../../store/actions/productAction";
 
 const TestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const categoriesData = useSelector((store) => store.global.categories);
-  /*
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
-  */
-
   const handleMouseOver = () => {
     setIsOpen(!isOpen);
   };

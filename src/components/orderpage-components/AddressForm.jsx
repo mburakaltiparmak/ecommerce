@@ -35,6 +35,7 @@ const OrderForm = ({
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const token = localStorage.getItem("token");
+  dispatch(loadingSetter(false));
   const handleCancelButton = () => {
     setAddressFormIsOpen(!addressFormIsOpen);
   };
@@ -314,9 +315,9 @@ const OrderForm = ({
               )}
             </div>
 
-            <div className="flex justify-around mt-4 text-white">
+            <div className="flex justify-around mt-4 text-white gap-2 ">
               <button
-                className=" bg-red hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
+                className=" bg-red  hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
                 type="button"
                 onClick={handleCancelButton}
               >
@@ -327,7 +328,7 @@ const OrderForm = ({
                   isValid
                     ? "bg-blue-500 hover:bg-blue-400 focus:ring-blue-300"
                     : "bg-gray hover:bg-red focus:ring-orange-300 cursor-not-allowed"
-                } flex items-center justify-center w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50`}
+                } flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50`}
                 type="submit"
               >
                 {updateAddressForm ? "Update Address" : "Save Address"}
