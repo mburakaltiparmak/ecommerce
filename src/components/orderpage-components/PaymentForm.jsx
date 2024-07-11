@@ -7,7 +7,11 @@ import { useForm } from "react-hook-form";
 import Loading from "../Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingSetter } from "../../store/actions/globalAction";
-import { AddPayment, getCurrentPayment, getPaymentMethod } from "../../store/actions/shoppingCartAction";
+import {
+  AddPayment,
+  getCurrentPayment,
+  getPaymentMethod,
+} from "../../store/actions/shoppingCartAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleCheck,
@@ -36,6 +40,7 @@ const PaymentForm = ({ openAddCardPage }) => {
   } = useForm();
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.global.loading);
+  dispatch(loadingSetter(false));
 
   const onSubmit = (formData) => {
     const expiry = formData.expire_month + formData.expire_year;
