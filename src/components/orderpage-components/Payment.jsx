@@ -14,6 +14,7 @@ import {
 import { loadingSetter } from "../../store/actions/globalAction";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import PaymentForm from "./PaymentForm";
+import { getCurrentPayment, getPaymentMethod, removePayment } from "../../store/actions/shoppingCartAction";
 
 const Payment = () => {
   const token = localStorage.getItem("token");
@@ -21,8 +22,9 @@ const Payment = () => {
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.global.loading);
-  const [paymentMethods, setPaymentMethods] = useState([]);
+  //const [paymentMethods, setPaymentMethods] = useState([]);
   const [cardPage, setCardPage] = useState(false);
+  const paymentMethods = useSelector((store)=>store.shoppingCart.currentPayment);
   const openAddCardPage = () => {
     setCardPage(!cardPage);
   };
@@ -30,24 +32,7 @@ const Payment = () => {
     deletePaymentMethod(id);
   };
 
-  const getPaymentMethod = () => {
-    if (token) {
-      instance
-        .get("/user/card", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          dispatch(loadingSetter(false));
-          setPaymentMethods(res.data);
-        })
-        .catch((err) => {
-          console.error("payment methods fetch error", err);
-          dispatch(loadingSetter(false));
-        });
-    }
-  };
+ 
 
   const deletePaymentMethod = (id) => {
     instance
@@ -59,7 +44,7 @@ const Payment = () => {
       .then((res) => {
         console.log("kart silindi", res.data);
         // Update payment methods list after deletion
-        setPaymentMethods(paymentMethods.filter((card) => card.id !== id));
+        dispatch(removePayment(id));
       })
       .catch((err) => {
         console.error("kart silinemedi", err);
@@ -67,8 +52,8 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    getPaymentMethod();
-  }, []);
+   dispatch(getPaymentMethod());
+  }, [dispatch]);
 
   return (
     <div className="bg-darkblue1 border rounded-xl flex flex-row items-center justify-center font-Montserrat font-bold text-2xl w-full">
@@ -82,13 +67,14 @@ const Payment = () => {
               {paymentMethods.map((card, index) => {
                 return (
                   <span
-                    className="flex flex-row justify-between gap-2 border-2 border-white rounded-xl p-2"
+                    className="flex flex-col justify-between items-center gap-2 border-2 border-white rounded-xl p-2"
                     key={index}
                   >
-                    <span className="flex flex-col items-center justify-between">
-                      <span className="text-white py-2">
+                    <span className="text-white py-2">
                         Card Id : {card.id}
                       </span>
+                    <span className="flex flex-row items-center justify-between gap-2 ">
+                      
                       <Cards
                         number={card.card_no}
                         expiry=""
@@ -96,9 +82,7 @@ const Payment = () => {
                         name={card.name_on_card}
                         focused=""
                       />
-                    </span>
-
-                    <span className="flex flex-col justify-center gap-4">
+                        <span className="flex flex-col justify-center items-center gap-4">
                       <button className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1">
                         <FontAwesomeIcon
                           className="text-4xl text-white"
@@ -116,7 +100,16 @@ const Payment = () => {
                         />
                         <p className="text-white">Delete Card</p>
                       </button>
-                      <button className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1">
+                     
+                    </span>
+                    </span>
+
+                  
+                    
+                  </span>
+                );
+              })}
+               <button className="border p-4 my-2 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1">
                         <FontAwesomeIcon
                           className="text-4xl text-white"
                           icon={faCirclePlus}
@@ -125,10 +118,6 @@ const Payment = () => {
                           Add Another Card
                         </p>
                       </button>
-                    </span>
-                  </span>
-                );
-              })}
             </div>
           ) : (
             <div className="w-full text-center flex flex-col items-center gap-4 text-white">

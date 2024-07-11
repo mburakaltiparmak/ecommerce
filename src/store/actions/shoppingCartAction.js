@@ -1,5 +1,7 @@
 import axios from "axios";
 import { shoppingCartActions } from "../reducers/shoppingCartReducer";
+import { fetchStateSetter } from "./productAction";
+import { loadingSetter } from "./globalAction";
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";
 const token = localStorage.getItem("token");
 const instance = axios.create({ baseURL });
@@ -34,5 +36,32 @@ export const selectShipment = (shipment) => ({
   type: shoppingCartActions.setShipment,
   payload: shipment,
 });
-
+export const getCurrentPayment = (currentPayment) => ({
+  type: shoppingCartActions.setCurrentPayment,
+  payload : currentPayment,
+});
+export const removePayment = (id) => {
+  return {
+    type: "SET_REMOVE_PAYMENT",
+    payload: id,
+  };
+};
+export const getPaymentMethod = () => async(dispatch) => {
+  dispatch(loadingSetter(true));
+  if (token) {
+    try {
+      const res = await instance.get("/user/card",{
+        headers: {
+          Authorization: token,
+        }
+      });
+      dispatch(getCurrentPayment(res.data));
+      dispatch(loadingSetter(false));
+    }
+    catch {
+      toast.error("An error occured when fetching payment methods");
+      dispatch(loadingSetter(false));
+    }
+  }
+};
 

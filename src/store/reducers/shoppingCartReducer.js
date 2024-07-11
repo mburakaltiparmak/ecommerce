@@ -3,6 +3,7 @@ const initialState = {
   payment: {},
   address: {},
   shipment:null,
+  currentPayment: {},
 };
 
 export const shoppingCartActions = {
@@ -13,7 +14,9 @@ export const shoppingCartActions = {
   setRemoveFromCart: "SET_REMOVE_FROM_CART",
   setClearCart: "SET_CLEAR_CART",
   setUpdateCart: "SET_UPDATE_CART",
-  setShipment: "SET_SHIPMENT"
+  setShipment: "SET_SHIPMENT",
+  setCurrentPayment: "SET_CURRENT_PAYMENT",
+  setRemovePayment : "SET_REMOVE_PAYMENT",
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -78,7 +81,19 @@ export const shoppingCartReducer = (state = initialState, action) => {
     return {
       ...state,
       shipment : action.payload,
-    };
+    }
+    case shoppingCartActions.setCurrentPayment:
+      return {
+        ...state,
+        currentPayment : action.payload,
+      };
+    case shoppingCartActions.setRemovePayment:
+      return {
+        ...state,
+        currentPayment: state.currentPayment.filter(
+          (card) => card.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

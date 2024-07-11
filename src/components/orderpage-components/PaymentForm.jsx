@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import Loading from "../Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingSetter } from "../../store/actions/globalAction";
-import { AddPayment } from "../../store/actions/shoppingCartAction";
+import { AddPayment, getCurrentPayment, getPaymentMethod } from "../../store/actions/shoppingCartAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleCheck,
@@ -56,6 +56,8 @@ const PaymentForm = ({ openAddCardPage }) => {
         .then((res) => {
           dispatch(loadingSetter(false));
           dispatch(AddPayment(res.data));
+          dispatch(getPaymentMethod());
+          openAddCardPage();
           console.log("payment form response", res.data);
           toast.success("Your payment method successfully saved!");
         })
@@ -262,7 +264,7 @@ const PaymentForm = ({ openAddCardPage }) => {
               </div>
               <div>
                 <button
-                  onClick={openAddCardPage}
+                  type="submit"
                   className="block w-full max-w-xs mx-auto bg-darkblue1 hover:bg-blue1 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                 >
                   <i className="mdi mdi-lock-outline mr-1"></i> Save Card
