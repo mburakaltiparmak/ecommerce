@@ -19,12 +19,15 @@ import Cart from "../pages/Cart";
 import Order from "../pages/Order";
 import { userNameSetter } from "../store/actions/userAction";
 import { getCategories } from "../store/actions/globalAction";
+import ProtectedRoute from "../components/ProtectedRoute";
+import { isLogin } from "../store/actions/loginAction";
 const Body = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.product.fetchState);
   const category = useSelector((store) => store.global.categories);
+  const isAuth = useSelector((store) => store.login.isLogged);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -41,10 +44,12 @@ const Body = () => {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("userName", res.data.name);
           dispatch(userNameSetter(res.data.name));
+          dispatch(isLogin(true));
         })
         .catch((err) => {
           console.error("login hata", err);
           localStorage.removeItem("token");
+          dispatch(isLogin(false));
         });
     }
   }, [dispatch]);
@@ -99,9 +104,7 @@ const Body = () => {
         <Route exact path="/cart">
           <Cart />
         </Route>
-        <Route exact path="/order">
-          <Order />
-        </Route>
+        <ProtectedRoute exact path="/order" component={Order} isAuth={isAuth} />
       </Switch>
     </div>
   );

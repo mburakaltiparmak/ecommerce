@@ -11,6 +11,7 @@ import {
   userIdSetter,
   userNameSetter,
 } from "../../store/actions/userAction";
+import { isLogin } from "../../store/actions/loginAction";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -27,6 +28,7 @@ export default function UserDdown() {
     localStorage.removeItem("userName");
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    dispatch(isLogin(false));
     toast.info("You have been successfully logged out!");
     history.push("/home");
   };

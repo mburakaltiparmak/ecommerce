@@ -1,12 +1,16 @@
+import { act } from "react";
+
 const initialState = {
   email: "",
   password: "",
   rememberMe: false,
+  isLogged: false,
 };
 
 export const loginActions = {
   postEmail: "POST_EMAIL",
   postRememberMe: "POST_REMEMBER_ME",
+  setIsLogin: "SET_IS_LOGIN",
 };
 
 export const loginReducer = (state = initialState, action) => {
@@ -20,6 +24,11 @@ export const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         rememberMe: action.payload,
+      };
+    case loginActions.setIsLogin:
+      return {
+        ...state,
+        isLogged: action.payload,
       };
     default:
       return state;

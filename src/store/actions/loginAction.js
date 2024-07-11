@@ -15,6 +15,10 @@ export const rememberMePoster = (rememberMe) => ({
   type: loginActions.postRememberMe,
   payload: rememberMe,
 });
+export const isLogin = (isLogged) => ({
+  type: loginActions.setIsLogin,
+  payload: isLogged,
+});
 
 //THUNK
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";
@@ -29,6 +33,7 @@ export const postLoginData = (formData, history) => (dispatch, getState) => {
 
       if (formData.rememberMe) {
         localStorage.setItem("token", res.data.token);
+        dispatch(isLogin(true));
         // localStorage.setItem("email", res.data.email);
       }
       dispatch(emailPoster(res.data.email));
@@ -37,12 +42,14 @@ export const postLoginData = (formData, history) => (dispatch, getState) => {
       dispatch(userEmailSetter(res.data.email));
       dispatch(userIdSetter(res.data.role_id));
       dispatch(loadingSetter(false));
+      dispatch(isLogin(true));
       history.push("/home");
       toast.success(`${res.data.name} you have been successfully logged in!`);
     })
     .catch((err) => {
       console.log("hata", err);
       dispatch(loadingSetter(false));
+      dispatch(isLogin(false));
       toast.error("Login process has been failed!");
     });
 };
