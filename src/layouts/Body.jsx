@@ -18,7 +18,7 @@ import Loading from "../components/Loading";
 import Cart from "../pages/Cart";
 import Order from "../pages/Order";
 import { userNameSetter } from "../store/actions/userAction";
-import { getCategories } from "../store/actions/globalAction";
+import { getCategories, loadingSetter } from "../store/actions/globalAction";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { isLogin } from "../store/actions/loginAction";
 const Body = () => {
@@ -30,6 +30,7 @@ const Body = () => {
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(loadingSetter(true));
     const token = localStorage.getItem("token");
     if (token) {
       instance
@@ -44,11 +45,13 @@ const Body = () => {
           localStorage.setItem("userName", res.data.name);
           dispatch(userNameSetter(res.data.name));
           dispatch(isLogin(true));
+          dispatch(loadingSetter(false));
         })
         .catch((err) => {
           console.error("login hata", err);
           localStorage.removeItem("token");
           dispatch(isLogin(false));
+          dispatch(loadingSetter(false));
         });
     }
   }, [dispatch]);
@@ -103,7 +106,7 @@ const Body = () => {
         <Route exact path="/cart">
           <Cart />
         </Route>
-        <ProtectedRoute exact path="/order" component={Order} />
+        <ProtectedRoute path="/order" component={Order} />
       </Switch>
     </div>
   );

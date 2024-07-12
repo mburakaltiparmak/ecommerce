@@ -12,6 +12,7 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Summary from "../components/Summary";
+import { setProducts } from "../store/actions/orderAction";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Cart = () => {
 
   const cart = useSelector((store) => store.shoppingCart.cart);
   const cartLength = cart.length;
+  console.log("cart", cart);
 
   const totalItemCount = cart.reduce((total, item) => total + item.count, 0);
 

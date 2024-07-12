@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const isAuth = useSelector((store) => store.login.isLogged);
-
+  console.log("isAuth", isAuth);
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (isAuth) {
+        if (isAuth === true) {
           return <Component {...props} />;
         } else {
           toast.error("You must login first!");

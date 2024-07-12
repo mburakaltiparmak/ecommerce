@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { userEmailSetter, userIdSetter, userNameSetter } from "./userAction";
 import { loadingSetter } from "./globalAction";
+import { useSelector } from "react-redux";
 
 export const emailPoster = (email) => ({
   type: loginActions.postEmail,
@@ -22,7 +23,6 @@ export const isLogin = (isLogged) => ({
 
 //THUNK
 const baseURL = "https://workintech-fe-ecommerce.onrender.com";
-
 const instance = axios.create({ baseURL });
 export const postLoginData = (formData, history) => (dispatch, getState) => {
   dispatch(loadingSetter(true));
@@ -34,6 +34,7 @@ export const postLoginData = (formData, history) => (dispatch, getState) => {
       if (formData.rememberMe) {
         localStorage.setItem("token", res.data.token);
         dispatch(isLogin(true));
+
         // localStorage.setItem("email", res.data.email);
       }
       dispatch(emailPoster(res.data.email));

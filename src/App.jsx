@@ -4,7 +4,9 @@ import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Body from "./layouts/Body";
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { isLogin } from "./store/actions/loginAction";
 
 function App() {
   return (
