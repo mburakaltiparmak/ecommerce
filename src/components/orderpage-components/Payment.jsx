@@ -19,6 +19,7 @@ import {
   getPaymentMethod,
   removePayment,
 } from "../../store/actions/shoppingCartAction";
+import { setCardCCV, setCardExpireMonth, setCardExpireYear, setCardName, setCardNo } from "../../store/actions/orderAction";
 
 const Payment = () => {
   const token = localStorage.getItem("token");
@@ -39,6 +40,11 @@ const Payment = () => {
   };
   const handleSelectCard = (card) => {
     console.log("seçili kart", card);
+    dispatch(setCardNo(card.card_no));
+    dispatch(setCardName(card.name_on_card));
+    dispatch(setCardExpireMonth(card.expire_month));
+    dispatch(setCardExpireYear(card.expire_year));
+    dispatch(setCardCCV(card.security_code));
   };
 
   const deletePaymentMethod = (id) => {

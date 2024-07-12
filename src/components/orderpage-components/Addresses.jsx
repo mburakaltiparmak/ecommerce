@@ -69,6 +69,8 @@ const Addresses = ({
     console.log("selected address", address);
     setStep1(true);
     setSelectedAddress(address);
+    dispatch(setAddressId(address.id));
+
     if (!step2) setCurrentStep(2);
   };
 
