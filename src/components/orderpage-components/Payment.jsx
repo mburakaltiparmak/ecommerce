@@ -37,6 +37,9 @@ const Payment = () => {
   const handleDeleteCard = (id) => {
     deletePaymentMethod(id);
   };
+  const handleSelectCard = (card) => {
+    console.log("seçili kart", card);
+  };
 
   const deletePaymentMethod = (id) => {
     instance
@@ -47,7 +50,6 @@ const Payment = () => {
       })
       .then((res) => {
         console.log("kart silindi", res.data);
-        // Update payment methods list after deletion
         dispatch(removePayment(id));
       })
       .catch((err) => {
@@ -84,7 +86,10 @@ const Payment = () => {
                         focused=""
                       />
                       <span className="flex flex-col justify-center items-center gap-4">
-                        <button className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1">
+                        <button
+                          onClick={() => handleSelectCard(card)}
+                          className="border  p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1"
+                        >
                           <FontAwesomeIcon
                             className="text-4xl text-white"
                             icon={faCircleCheck}

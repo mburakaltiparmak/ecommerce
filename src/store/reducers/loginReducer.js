@@ -1,5 +1,3 @@
-import { act } from "react";
-
 const initialState = {
   email: "",
   password: "",

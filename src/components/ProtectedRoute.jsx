@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const ProtectedRoute = ({ isAuth, component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const isAuth = useSelector((store) => store.login.isLogged);
+
   return (
     <Route
       {...rest}

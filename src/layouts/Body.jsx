@@ -27,7 +27,6 @@ const Body = () => {
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.product.fetchState);
   const category = useSelector((store) => store.global.categories);
-  const isAuth = useSelector((store) => store.login.isLogged);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -104,7 +103,7 @@ const Body = () => {
         <Route exact path="/cart">
           <Cart />
         </Route>
-        <ProtectedRoute exact path="/order" component={Order} isAuth={isAuth} />
+        <ProtectedRoute exact path="/order" component={Order} />
       </Switch>
     </div>
   );
