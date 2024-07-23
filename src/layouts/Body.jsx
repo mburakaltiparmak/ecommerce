@@ -21,6 +21,7 @@ import { userNameSetter } from "../store/actions/userAction";
 import { getCategories, loadingSetter } from "../store/actions/globalAction";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { isLogin } from "../store/actions/loginAction";
+import PreviousOrders from "../pages/PreviousOrders";
 const Body = () => {
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
@@ -111,7 +112,8 @@ const Body = () => {
         <Route exact path="/cart">
           <Cart />
         </Route>
-        <ProtectedRoute path="/order" component={Order} />
+        <ProtectedRoute exact path="/order" component={Order} />
+        <ProtectedRoute exact path="/orders" component={PreviousOrders} />
       </Switch>
     </div>
   );

@@ -24,6 +24,7 @@ import {
   setCardCCV,
   setCardNo,
 } from "../../store/actions/orderAction";
+import { clearCart } from "../../store/actions/shoppingCartAction";
 
 const CCVForm = ({
   setModalOpen,
@@ -73,6 +74,8 @@ const CCVForm = ({
     };
     console.log("order data", orderData);
     dispatch(createOrder(orderData));
+    dispatch(clearCart());
+    setStep4(true);
   };
 
   const handleCancelOrder = () => {

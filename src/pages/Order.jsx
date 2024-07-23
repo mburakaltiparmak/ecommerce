@@ -6,6 +6,7 @@ import {
   faSquarePen,
   faTrashCan,
   faSpinner,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -14,10 +15,11 @@ import AddressForm from "../components/orderpage-components/AddressForm";
 import Summary from "../components/Summary";
 import "../App.css";
 import Addresses from "../components/orderpage-components/Addresses";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Shipment from "../components/orderpage-components/Shipment";
 import Payment from "../components/orderpage-components/Payment";
 import CCVForm from "../components/orderpage-components/CCVForm";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Order = () => {
   const [addressFormIsOpen, setAddressFormIsOpen] = useState(false);
@@ -31,11 +33,16 @@ const Order = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [orders, setOrders] = useState(null);
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const token = localStorage.getItem("token");
   const instance = axios.create({ baseURL });
   const dispatch = useDispatch();
-
+  const address_id = useSelector((store) => store.order.address_id);
+  const price = useSelector((store) => store.order.price);
+  const products = useSelector((store) => store.order.products);
+  const order_date = new Date().toISOString();
+  console.log("products", products);
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
@@ -95,37 +102,43 @@ const Order = () => {
   };
 
   return (
-    <div className="flex flex-col px-40 justify-around gap-1">
+    <div className="flex flex-col px-40 justify-around gap-1 font-Montserrat font-bold">
       <Stepper
         step1={step1}
         step2={step2}
         step3={step3}
+        step4={step4}
         currentStep={currentStep}
       />
-      <div className="flex justify-between my-1">
-        <button
-          onClick={handleBack}
-          disabled={currentStep === 1}
-          className={`${
-            currentStep === 1
-              ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
-              : `bg-darkblue1 cursor-pointer hover:bg-green hover:border-blue1`
-          } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold  border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
-        >
-          Back
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={isNextDisabled()}
-          className={`${
-            isNextDisabled()
-              ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
-              : `bg-darkblue1 border-blue1 cursor-pointer hover:bg-green hover:border-white`
-          } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
-        >
-          Next
-        </button>
-      </div>
+      {!step4 ? (
+        <div className="flex justify-between my-1">
+          <button
+            onClick={handleBack}
+            disabled={currentStep === 1}
+            className={`${
+              currentStep === 1
+                ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
+                : `bg-darkblue1 cursor-pointer hover:bg-green hover:border-blue1`
+            } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold  border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
+          >
+            Back
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={isNextDisabled()}
+            className={`${
+              isNextDisabled()
+                ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
+                : `bg-darkblue1 border-blue1 cursor-pointer hover:bg-green hover:border-white`
+            } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
+          >
+            Next
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div>
         {currentStep === 1 && (
           <>
@@ -203,19 +216,75 @@ const Order = () => {
             <Summary />
           </div>
         )}
-        {currentStep === 4 && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            <CCVForm
-              modalOpen={modalOpen}
-              setModalOpen={setModalOpen}
-              setStep1={setStep1}
-              setStep2={setStep2}
-              setStep3={setStep3}
-              setStep4={setStep4}
-              setCurrentStep={setCurrentStep}
-            />
-          </div>
-        )}
+        {currentStep === 4 &&
+          (step4 ? (
+            <div className="flex flex-col items-center justify-between gap-4 py-4">
+              <div className="flex flex-row items-center gap-4 text-2xl animate-pulse bg-green text-white p-4 border-2 border-darkblue1 rounded-lg">
+                <p>ORDER WAS SUCCESSFULLY COMPLETED</p>
+                <span className="bg-green rounded-full h-14 w-14 flex items-center justify-center">
+                  <FontAwesomeIcon
+                    className="text-white text-4xl"
+                    icon={faCheck}
+                  />
+                </span>
+              </div>
+              <div className="flex flex-col items-center gap-4 bg-darkblue1 text-white border-2 border-darkblue1 rounded-lg p-4">
+                <span className="text-2xl">Order Details</span>
+                <span className="flex flex-row gap-2 font-semibold">
+                  <p>Order Date : </p>
+                  <p className="font-semibold">{order_date}</p>
+                </span>
+
+                <div className="flex flex-col gap-2 items-start">
+                  <div>
+                    {products
+                      ? products.map((product, index) => (
+                          <div className="flex flex-col text-lg" key={index}>
+                            <span>
+                              <span className="flex flex-row gap-2">
+                                <p>Product Name :</p>
+                                <p className="font-semibold text-lg">
+                                  {product.detail}
+                                </p>
+                              </span>
+                              <hr />
+                              <span className="flex flex-row gap-2">
+                                <p>Product Count :</p>
+                                <p className="font-semibold text-lg">
+                                  {product.count}
+                                </p>
+                              </span>
+                              <hr />
+                            </span>
+                          </div>
+                        ))
+                      : ""}
+                    <span className="flex flex-row gap-2 text-xl justify-end">
+                      <p>Total :</p>{" "}
+                      <p className="font-semibold text-lg">{price} $</p>
+                    </span>
+                  </div>
+                </div>
+                <Link to="/shop">
+                  <button className="p-4 border border-white rounded-lg bg-blue1">
+                    Continue Shopping
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+              <CCVForm
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                setStep1={setStep1}
+                setStep2={setStep2}
+                setStep3={setStep3}
+                setStep4={setStep4}
+                setCurrentStep={setCurrentStep}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );

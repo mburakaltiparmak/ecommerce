@@ -61,7 +61,7 @@ export const setPrice = (price) => ({
 });
 
 export const setProducts = (products) => ({
-  type: orderActions.products,
+  type: orderActions.setProducts,
   payload: products,
 });
 
@@ -73,6 +73,7 @@ export const getOrders = () => async (dispatch) => {
       },
     });
     console.log("get orders response", res.data);
+    const orders = res.data;
   } catch {
     console.log("get orders hata");
   }

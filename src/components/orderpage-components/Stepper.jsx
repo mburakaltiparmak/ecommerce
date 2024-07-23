@@ -7,7 +7,7 @@ import {
   faTruckArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Stepper = ({ step1, step2, step3, currentStep }) => {
+const Stepper = ({ step1, step2, step3,step4, currentStep }) => {
   const steps = [
     {
       title: "Address Information",
@@ -27,6 +27,12 @@ const Stepper = ({ step1, step2, step3, currentStep }) => {
       success: faCheck,
       step: step3,
     },
+    {
+      title: "Successfull Order",
+      logo: faCheck,
+      success: faCheck,
+      step: step4,
+    }
   ];
 
   const displaySteps = (
