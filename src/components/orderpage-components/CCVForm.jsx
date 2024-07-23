@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Cards from "react-credit-cards-2";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -7,11 +6,6 @@ import { useForm } from "react-hook-form";
 import Loading from "../Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingSetter } from "../../store/actions/globalAction";
-import {
-  AddPayment,
-  getCurrentPayment,
-  getPaymentMethod,
-} from "../../store/actions/shoppingCartAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleCheck,
@@ -25,7 +19,11 @@ import {
   faCancel,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { setCardCCV, setCardNo } from "../../store/actions/orderAction";
+import {
+  createOrder,
+  setCardCCV,
+  setCardNo,
+} from "../../store/actions/orderAction";
 
 const CCVForm = ({
   setModalOpen,
@@ -55,11 +53,28 @@ const CCVForm = ({
   const cardName = useSelector((store) => store.order.card_name);
   const cardExpireMonth = useSelector((store) => store.order.card_expire_month);
   const cardExpireYear = useSelector((store) => store.order.card_expire_year);
+  const address_id = useSelector((store) => store.order.address_id);
+  const price = useSelector((store) => store.order.price);
+  const products = useSelector((store) => store.order.products);
 
   const onSubmit = (formData) => {
     console.log("formData", formData);
     dispatch(setCardCCV(formData.security_code));
+    const orderData = {
+      address_id,
+      order_date: new Date().toISOString(),
+      card_no: Number(cardNo),
+      card_name: cardName,
+      card_expire_month: cardExpireMonth,
+      card_expire_year: cardExpireYear,
+      card_ccv: Number(formData.security_code),
+      price,
+      products,
+    };
+    console.log("order data", orderData);
+    dispatch(createOrder(orderData));
   };
+
   const handleCancelOrder = () => {
     setStep2(false);
     setStep3(false);
@@ -76,9 +91,9 @@ const CCVForm = ({
   const handleInputFocus = (evt) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
+
   const expiry = `${cardExpireMonth} ${cardExpireYear}`;
-  console.log("expiry", expiry);
-  console.log("card expire month", cardExpireMonth);
+
   return (
     <div className="bg-darkblue1 border-2 border-darkblue1 drop-shadow-2xl shadow-2xl text-white font-Montserrat p-4 rounded-lg">
       {loading ? (
@@ -148,7 +163,7 @@ const CCVForm = ({
                           })}
                           className="p-2 w-full border-2 border-blue2 text-darkblue1 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                           placeholder="123"
-                          type="text"
+                          type="number"
                           onChange={handleInputChange}
                           onFocus={handleInputFocus}
                         />

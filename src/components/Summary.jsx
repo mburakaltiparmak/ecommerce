@@ -67,7 +67,9 @@ const Summary = () => {
     const newState = !checkHandleState;
     setCheckHandleState(newState);
     dispatch(IsChecked(newState));
-    dispatch(setPrice(calculateTotal));
+    const total = calculateTotal();
+    console.log("total", total);
+    dispatch(setPrice(Number(total.toFixed())));
   };
 
   const calculateShipping = (shipmentCost) => {

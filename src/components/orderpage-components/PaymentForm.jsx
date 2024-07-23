@@ -198,7 +198,7 @@ const PaymentForm = ({ openAddCardPage }) => {
                     })}
                     className="w-full px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="0000 0000 0000 0000"
-                    type="text"
+                    type="number"
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                   />
