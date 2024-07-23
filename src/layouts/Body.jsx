@@ -57,6 +57,11 @@ const Body = () => {
   }, [dispatch]);
   if (loading == "FETCHING") {
     <Loading />;
+  } else if (loading == "FAILED") {
+    <div>
+      <Loading />
+      REFRESH THE PAGE
+    </div>;
   }
   return (
     <div>

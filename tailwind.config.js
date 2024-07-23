@@ -1,24 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-import daisyui from "daisyui";
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
       "2xl": { max: "1535px" },
-      // => @media (max-width: 1535px) { ... }
-
       xl: { max: "1279px" },
-      // => @media (max-width: 1279px) { ... }
-
       lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
-
       md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
-
       sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
     },
 
     extend: {
@@ -46,9 +36,16 @@ export default {
           "0 45px 65px rgba(0, 0, 0, 0.15)",
         ],
       },
+      keyframes: {
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        blink: "blink 1s infinite",
+      },
     },
   },
-  plugins: [
-    /* [daisyui]*/
-  ],
+  plugins: [],
 };

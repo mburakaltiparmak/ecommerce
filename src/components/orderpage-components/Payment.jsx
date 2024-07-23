@@ -19,9 +19,22 @@ import {
   getPaymentMethod,
   removePayment,
 } from "../../store/actions/shoppingCartAction";
-import { setCardCCV, setCardExpireMonth, setCardExpireYear, setCardName, setCardNo } from "../../store/actions/orderAction";
+import {
+  setCardCCV,
+  setCardExpireMonth,
+  setCardExpireYear,
+  setCardName,
+  setCardNo,
+} from "../../store/actions/orderAction";
 
-const Payment = () => {
+const Payment = ({
+  step3,
+  setStep3,
+  setCurrentStep,
+  setModalOpen,
+  modalOpen,
+  currentStep,
+}) => {
   const token = localStorage.getItem("token");
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const instance = axios.create({ baseURL });
@@ -44,7 +57,12 @@ const Payment = () => {
     dispatch(setCardName(card.name_on_card));
     dispatch(setCardExpireMonth(card.expire_month));
     dispatch(setCardExpireYear(card.expire_year));
-    dispatch(setCardCCV(card.security_code));
+
+    setStep3(true);
+    setModalOpen(!modalOpen);
+    setCurrentStep(4);
+    console.log("modal open", modalOpen);
+    console.log("current step", currentStep);
   };
 
   const deletePaymentMethod = (id) => {

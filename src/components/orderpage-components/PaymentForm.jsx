@@ -44,18 +44,17 @@ const PaymentForm = ({ openAddCardPage }) => {
   dispatch(loadingSetter(false));
 
   const onSubmit = (formData) => {
-    console.log("formData",formData);
+    console.log("formData", formData);
     const saveCardData = {
-      card_no : formData.card_no,
-      expire_month : formData.expire_month,
-      expire_year : formData.expire_year,
-      name_on_card : formData.name_on_card,
+      card_no: formData.card_no,
+      expire_month: formData.expire_month,
+      expire_year: formData.expire_year,
+      name_on_card: formData.name_on_card,
     };
-    
 
     const expiry = formData.expire_month + formData.expire_year;
     formData.expiry = expiry;
-    
+
     dispatch(loadingSetter(true));
     const token = localStorage.getItem("token");
     const baseURL = "https://workintech-fe-ecommerce.onrender.com";
@@ -255,9 +254,10 @@ const PaymentForm = ({ openAddCardPage }) => {
               </div>
               <div className="mb-10">
                 <label className="font-bold text-sm mb-2 ml-1">
-                  Security code
+                  The security code will only be required during payment.
                 </label>
-                <div>
+                {/*
+                 <div>
                   <input
                     {...register("security_code", {
                       required: true,
@@ -274,7 +274,7 @@ const PaymentForm = ({ openAddCardPage }) => {
                       This field is required and must be 3-4 digits
                     </span>
                   )}
-                </div>
+                </div>*/}
               </div>
               <div>
                 <button

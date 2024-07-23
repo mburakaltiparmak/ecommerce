@@ -17,6 +17,7 @@ import Addresses from "../components/orderpage-components/Addresses";
 import { useDispatch } from "react-redux";
 import Shipment from "../components/orderpage-components/Shipment";
 import Payment from "../components/orderpage-components/Payment";
+import CCVForm from "../components/orderpage-components/CCVForm";
 
 const Order = () => {
   const [addressFormIsOpen, setAddressFormIsOpen] = useState(false);
@@ -26,8 +27,10 @@ const Order = () => {
   const [step1, setStep1] = useState(false);
   const [step2, setStep2] = useState(false);
   const [step3, setStep3] = useState(false);
+  const [step4, setStep4] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedAddress, setSelectedAddress] = useState(null); // Initialize selectedAddress state
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   const baseURL = "https://workintech-fe-ecommerce.onrender.com";
   const token = localStorage.getItem("token");
   const instance = axios.create({ baseURL });
@@ -40,6 +43,8 @@ const Order = () => {
         setStep2(false);
       } else if (currentStep === 3) {
         setStep3(false);
+      } else if (currentStep === 4) {
+        setStep4(false);
       }
     } else {
       toast.info("You can't step back any further!");
@@ -47,7 +52,7 @@ const Order = () => {
   };
 
   const handleNext = () => {
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -84,7 +89,8 @@ const Order = () => {
   const isNextDisabled = () => {
     if (currentStep === 1 && !step1) return true;
     if (currentStep === 2 && (!step1 || !step2)) return true;
-    if (currentStep === 3 && (!step1 || !step2 || !step3)) return true;
+    if (currentStep === 3 && (!step1 || !step2 || !step3 || !step4))
+      return true;
     return false;
   };
 
@@ -114,7 +120,7 @@ const Order = () => {
           className={`${
             isNextDisabled()
               ? `bg-gray cursor-not-allowed hover:bg-red hover:border-gray`
-              : `bg-darkblue1 cursor-pointer hover:bg-green hover:border-blue1`
+              : `bg-darkblue1 border-blue1 cursor-pointer hover:bg-green hover:border-white`
           } shadow-md shadow-darkblue1 text-white uppercase py-2 px-4 rounded-xl font-bold border-2 border-darkblue1 hover:text-white transition duration-200 ease-in-out`}
         >
           Next
@@ -176,14 +182,38 @@ const Order = () => {
         )}
         {currentStep === 2 && (
           <div className="flex flex-row gap-2 justify-between">
-            <Shipment step2={step2} setStep2={setStep2} />
+            <Shipment
+              step2={step2}
+              setStep2={setStep2}
+              setCurrentStep={setCurrentStep}
+            />
             <Summary />
           </div>
         )}
         {currentStep === 3 && (
           <div className="flex flex-row gap-2 justify-between">
-            <Payment />
+            <Payment
+              step3={step3}
+              setStep3={setStep3}
+              setCurrentStep={setCurrentStep}
+              setModalOpen={setModalOpen}
+              modalOpen={modalOpen}
+              currentStep={currentStep}
+            />
             <Summary />
+          </div>
+        )}
+        {currentStep === 4 && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <CCVForm
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              setStep1={setStep1}
+              setStep2={setStep2}
+              setStep3={setStep3}
+              setStep4={setStep4}
+              setCurrentStep={setCurrentStep}
+            />
           </div>
         )}
       </div>
