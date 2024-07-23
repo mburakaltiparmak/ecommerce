@@ -2,7 +2,7 @@ const initialState = {
   cart: [],
   payment: {},
   address: {},
-  shipment:null,
+  shipment: null,
   currentPayment: {},
 };
 
@@ -16,7 +16,7 @@ export const shoppingCartActions = {
   setUpdateCart: "SET_UPDATE_CART",
   setShipment: "SET_SHIPMENT",
   setCurrentPayment: "SET_CURRENT_PAYMENT",
-  setRemovePayment : "SET_REMOVE_PAYMENT",
+  setRemovePayment: "SET_REMOVE_PAYMENT",
 };
 
 export const shoppingCartReducer = (state = initialState, action) => {
@@ -77,15 +77,15 @@ export const shoppingCartReducer = (state = initialState, action) => {
         cart: updatedCart,
       };
     }
-    case shoppingCartActions.setShipment: 
-    return {
-      ...state,
-      shipment : action.payload,
-    }
+    case shoppingCartActions.setShipment:
+      return {
+        ...state,
+        shipment: action.payload,
+      };
     case shoppingCartActions.setCurrentPayment:
       return {
         ...state,
-        currentPayment : action.payload,
+        currentPayment: action.payload,
       };
     case shoppingCartActions.setRemovePayment:
       return {

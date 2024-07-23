@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +12,7 @@ import {
   userNameSetter,
 } from "../../store/actions/userAction";
 import { isLogin } from "../../store/actions/loginAction";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -56,6 +57,20 @@ export default function UserDdown() {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
+            <Link to="/orders">
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={classNames(
+                      active ? " bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm sm:text-lg sm:hidden"
+                    )}
+                  >
+                    Previous Orders
+                  </button>
+                )}
+              </Menu.Item>
+            </Link>
             <Menu.Item>
               {({ active }) => (
                 <button
@@ -69,19 +84,7 @@ export default function UserDdown() {
                 </button>
               )}
             </Menu.Item>
-            <Menu.Item className="hidden">
-              {({ active }) => (
-                <a
-                  href="/product"
-                  className={classNames(
-                    active ? " bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm sm:text-lg sm:hidden"
-                  )}
-                >
-                  Product
-                </a>
-              )}
-            </Menu.Item>
+
             <Menu.Item className="hidden">
               {({ active }) => (
                 <a

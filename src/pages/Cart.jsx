@@ -12,6 +12,8 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Summary from "../components/Summary";
+import { setProducts } from "../store/actions/orderAction";
+
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,17 @@ const Cart = () => {
 
   const cart = useSelector((store) => store.shoppingCart.cart);
   const cartLength = cart.length;
+  console.log("cart", cart);
+
+  useEffect(() => {
+    const productsOnCart = cart.map(item => ({
+      product_id: item.product.id,
+      count: item.count,
+      detail: item.product.name,
+    }));
+    console.log("productsOnCart", productsOnCart);
+    dispatch(setProducts(productsOnCart));
+  }, [cart, dispatch]);
 
   const totalItemCount = cart.reduce((total, item) => total + item.count, 0);
 
@@ -32,9 +45,10 @@ const Cart = () => {
     if (item.count <= 1) {
       dispatch(removeFromCart(item.product.id));
       toast.info(`Product has been successfully removed from your cart!`);
+    } else {
+      dispatch(updateCart(item.product.id, item.count - 1));
+      toast.info(`Product count has been successfully updated in your cart!`);
     }
-    dispatch(updateCart(item.product.id, item.count - 1));
-    toast.info(`Product count has been successfully updated in your cart!`);
   };
 
   const removeFromCartHandler = (item) => {
@@ -61,7 +75,7 @@ const Cart = () => {
   const calculateShipping = () => {
     if (totalPrice.toFixed(2) > 150) {
       return -29.99;
-    } else if (totalPrice.toFixed(2) == 0) {
+    } else if (totalPrice.toFixed(2) === 0) {
       return 0;
     } else {
       return 29.99;

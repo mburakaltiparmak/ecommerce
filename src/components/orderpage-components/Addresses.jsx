@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useState } from "react";
+import { setAddressId } from "../../store/actions/orderAction";
 
 const Addresses = ({
   addressData,
@@ -69,6 +70,8 @@ const Addresses = ({
     console.log("selected address", address);
     setStep1(true);
     setSelectedAddress(address);
+    dispatch(setAddressId(address.id));
+
     if (!step2) setCurrentStep(2);
   };
 

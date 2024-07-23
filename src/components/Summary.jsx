@@ -8,6 +8,7 @@ import {
   updateCart,
 } from "../store/actions/shoppingCartAction";
 import { toast } from "react-toastify";
+import { setPrice } from "../store/actions/orderAction";
 
 const Summary = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,9 @@ const Summary = () => {
     const newState = !checkHandleState;
     setCheckHandleState(newState);
     dispatch(IsChecked(newState));
+    const total = calculateTotal();
+    console.log("total", total);
+    dispatch(setPrice(Number(total.toFixed())));
   };
 
   const calculateShipping = (shipmentCost) => {

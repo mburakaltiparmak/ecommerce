@@ -24,6 +24,7 @@ import {
   faCross,
   faCancel,
 } from "@fortawesome/free-solid-svg-icons";
+import { setCardNo } from "../../store/actions/orderAction";
 
 const PaymentForm = ({ openAddCardPage }) => {
   const [state, setState] = useState({
@@ -43,17 +44,24 @@ const PaymentForm = ({ openAddCardPage }) => {
   dispatch(loadingSetter(false));
 
   const onSubmit = (formData) => {
+    console.log("formData", formData);
+    const saveCardData = {
+      card_no: formData.card_no,
+      expire_month: formData.expire_month,
+      expire_year: formData.expire_year,
+      name_on_card: formData.name_on_card,
+    };
+
     const expiry = formData.expire_month + formData.expire_year;
     formData.expiry = expiry;
-    delete formData.security_code;
-    delete formData.expiry;
+
     dispatch(loadingSetter(true));
     const token = localStorage.getItem("token");
     const baseURL = "https://workintech-fe-ecommerce.onrender.com";
     const instance = axios.create({ baseURL });
     if (token) {
       instance
-        .post("/user/card", formData, {
+        .post("/user/card", saveCardData, {
           headers: {
             Authorization: token,
           },
@@ -190,7 +198,7 @@ const PaymentForm = ({ openAddCardPage }) => {
                     })}
                     className="w-full px-3 py-2 mb-1 border-2 border-blue2 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="0000 0000 0000 0000"
-                    type="text"
+                    type="number"
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                   />
@@ -246,9 +254,10 @@ const PaymentForm = ({ openAddCardPage }) => {
               </div>
               <div className="mb-10">
                 <label className="font-bold text-sm mb-2 ml-1">
-                  Security code
+                  The security code will only be required during payment.
                 </label>
-                <div>
+                {/*
+                 <div>
                   <input
                     {...register("security_code", {
                       required: true,
@@ -265,7 +274,7 @@ const PaymentForm = ({ openAddCardPage }) => {
                       This field is required and must be 3-4 digits
                     </span>
                   )}
-                </div>
+                </div>*/}
               </div>
               <div>
                 <button
