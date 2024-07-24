@@ -10,7 +10,7 @@ export const Blog = () => {
   const { blogData } = data();
   return (
     <div
-      className="flex flex-col font-Montserrat gap-8 py-28 items-center tracking-[0.2px] sm:px-10 "
+      className="flex flex-col font-Montserrat gap-8 items-center tracking-[0.2px] sm:px-10 "
       id="blog-container"
     >
       <section

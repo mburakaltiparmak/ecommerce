@@ -40,9 +40,9 @@ const Slider2 = () => {
   }, [currentIndex]);
 
   return (
-    <div>
-      <div className="flex w-full mt-4 ">
-        <div className="max-h-[716px] w-full h-screen mx-auto relative group ">
+    <div className="bg-[#23856D]">
+      <div>
+        <div className="relative group ">
           <div
             style={
               {
@@ -52,20 +52,20 @@ const Slider2 = () => {
             */
               }
             }
-            className="w-full h-full duration-500 bg-no-repeat flex flex-row-reverse items-end justify-center bg-[#23856D] object-contain resize-none "
+            className="duration-500 bg-no-repeat flex flex-row-reverse items-center justify-center object-contain resize-none "
           >
             <img
               src={slides[currentIndex].url}
               alt=""
-              className="min-w-1/2 min-h-1/2 object-contain resize-none pr-20"
+              className=" object-cover resize-none"
             />
-            <div className="flex max-h-[680px] w-full h-full items-center px-40 ">
+            <div className="flex items-center">
               <div className="flex flex-col gap-8 md:items-center md:mx-auto drop-shadow-2xl">
                 <h5 className="font-bold text-white ">Summer 2020</h5>
-                <h1 className="flex font-bold text-6xl text-white md:max-w-80 md:text-[40px] md:flex-col md:text-center">
+                <h1 className="flex font-bold text-6xl text-white">
                   NEW COLLECTION
                 </h1>
-                <p className="flex flex-col text-white font-bold max-w-80 md:flex-col md:items-center">
+                <p className="flex flex-col text-white font-bold">
                   <span> We know how large objects will act,</span>
                   but things on a small scale.
                 </p>

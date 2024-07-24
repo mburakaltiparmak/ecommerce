@@ -43,39 +43,24 @@ export const ShopCards = () => {
     toast.success(`Product has been successfully added in your cart!`);
   };
   return (
-    <div
-      className="flex flex-col justify-center items-center gap-4 font-Montserrat w-full  "
-      id="shop-container"
-    >
-      <div
-        className="w-full flex flex-col gap-10 py-20 px-40 justify-center items-center "
-        id="shop-main-container"
-      >
-        <div
-          className="flex flex-col justify-center items-center text-center gap-2 px-10 sm:w-full "
-          id="shop-text-container"
-        >
-          <h2
-            className="text-darkblue1  font-bold text-2xl sm:text-3xl  tracking-tighter "
-            id="h2-title"
-          >
+    <div className="flex flex-col justify-center items-center gap-8 font-Montserrat ">
+      <div className="flex flex-col justify-center items-center gap-4 ">
+        <div className="flex flex-col justify-center items-center gap-4 ">
+          <h2 className="text-darkblue1  font-bold text-2xl sm:text-3xl">
             EDITOR'S PICK
           </h2>
-          <p className="text-gray text-xl font-bold text-center" id="paragraph">
+          <p className="text-gray text-xl font-bold">
             Problems trying to resolve the conflict between
           </p>
         </div>
-        <div
-          className="flex flex-row flex-wrap gap-3 content-center items-center font-Montserrat font-bold sm:px-10 "
-          id="shop-img-container"
-        >
+        <div className="flex flex-row flex-wrap gap-4 content-center items-center font-Montserrat font-bold sm:px-10 ">
           <Link
             to="/shop"
             className="relative flex items-end justify-start"
             id="first-img-box"
           >
             <img
-              className="w-full h-auto object-cover"
+              className="w-fit h-fit object-cover"
               id="men-img"
               src={menImg}
               alt=""
@@ -85,16 +70,16 @@ export const ShopCards = () => {
             </button>
           </Link>
           <span
-            className="flex flex-row gap-3 items-center sm:flex-col sm:w-full"
+            className="flex flex-row gap-4 items-center sm:flex-col "
             id="second-img-box"
           >
             <Link
               id="second-img-box1"
-              className="relative flex items-end justify-start sm:items-end  sm:object-cover sm:w-full"
+              className="relative flex items-end justify-start sm:items-end  sm:object-cover "
               to="/shop"
             >
               <img
-                className="w-auto h-auto object-cover sm:h-full sm:w-full "
+                className="w-fit h-fit object-cover  "
                 id="women-img"
                 src={womenImg2}
                 alt=""
@@ -104,15 +89,15 @@ export const ShopCards = () => {
               </button>
             </Link>
             <span
-              className="flex flex-col gap-3 items-center sm:w-full"
+              className="flex flex-col gap-4 items-center "
               id="second-img-box2"
             >
               <Link
-                className="relative flex items-end justify-start sm:w-full"
+                className="relative flex items-end justify-start "
                 to="/shop"
               >
                 <img
-                  className="w-full h-auto object-cover"
+                  className="w-fit h-fit object-cover"
                   id="tiny-img"
                   src={accessoriesImg}
                   alt=""
@@ -122,14 +107,14 @@ export const ShopCards = () => {
                 </button>
               </Link>
               <Link
-                className="relative flex items-end justify-start sm:w-full"
+                className="relative flex items-end justify-start "
                 to="/shop"
               >
                 <img
                   id="tiny-img"
                   src={kidsImg}
                   alt=""
-                  className="sm:w-full object-cover"
+                  className="w-fit h-fit object-cover"
                 />
                 <button className="absolute border border-gray w-28 py-2 mb-8 ml-8  text-center text-base sm:text-xl bg-lightgray">
                   KIDS
@@ -140,11 +125,11 @@ export const ShopCards = () => {
         </div>
       </div>
       <div
-        className="flex flex-col sm:w-full justify-center items-center w-full px-40 sm:px-10 "
+        className="flex flex-col justify-center items-center gap-8"
         id="main-content"
       >
         <div
-          className="flex flex-col justify-center items-center text-center gap-4 pb-12 px-10"
+          className="flex flex-col justify-center items-center text-center gap-4"
           id="shop-text-container"
         >
           <h2
@@ -167,7 +152,7 @@ export const ShopCards = () => {
           </h3>
         </div>
         <div
-          className="flex flex-row flex-wrap gap-16 justify-center py-4 sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
+          className="flex flex-row flex-wrap gap-8 justify-center py-4 sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
           id="product-container"
         >
           {productData &&
@@ -175,33 +160,29 @@ export const ShopCards = () => {
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
-                  className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
+                  className="flex flex-col items-center justify-between gap-4 shadow-md shadow-gray py-4"
                   key={index}
-                  id="product-content"
                 >
                   <Link
                     to={`/${id.category_id}/${id.id}/${id.name}`}
                     onClick={() => handleProductClick(id)}
+                    className="flex flex-col items-center gap-4"
                   >
-                    <span id="product-img-content" className="sm:w-full">
+                    <span className="flex items-center justify-center">
                       <img
                         src={id.images[0].url}
-                        alt=""
-                        className="sm:w-full "
+                        className="h-64 w-fit object-cover"
                       />
                     </span>
-                    <span
-                      id="product-text"
-                      className="flex flex-col items-center gap-2 text-center "
-                    >
-                      <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                    <span className="flex flex-col items-center gap-4 px-4">
+                      <h4 className="text-base sm:text-2xl font-bold">
                         {id.name}
                       </h4>
-                      <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                      <h5 className="text-sm sm:text-xl font-bold text-[#737373]  w-64">
                         {id.description}
                       </h5>
                     </span>
-                    {/*span içini flex-row yap */}
+
                     <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-4 py-4 text-base font-bold">
                       <h5 className="text-[#23856D]">{id.price} $</h5>
                       <RatingStars rating={id.rating} />
@@ -215,9 +196,10 @@ export const ShopCards = () => {
                       </div>
                     </span>
                   </Link>
+
                   <span id="button-span" className="flex flex-row gap-4">
                     <button
-                      className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal"
+                      className="p-4 sm:py-8 flex border-2 text-lightgray bg-darkblue1 rounded-lg justify-center text-base sm:text-xl font-bold hover:bg-green"
                       onClick={() => addToCart(id)}
                     >
                       Add to Cart
@@ -226,7 +208,7 @@ export const ShopCards = () => {
                 </div>
               ))}
         </div>
-        <div id="pagination" className="py-10 sm:py-10">
+        <div id="pagination">
           <Pagination
             totalPages={totalPages}
             currentPage={activePage}

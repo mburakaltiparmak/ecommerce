@@ -5,10 +5,10 @@ import {
   faChevronCircleRight,
   faChevronCircleLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import carouselimg from "../../assets/header/carouselImg.jpeg";
-import carouselimg2 from "../../assets/header/carouselImg2.jpeg";
+import carouselImg from "../../assets/shopcards/slider2.png";
+import carouselImg2 from "../../assets/shopcards/slider2.png";
 
-const Slider = () => {
+const Slider3 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const nextSlide = () => {
     const isLastSlide = currentIndex === slides.length - 1;
@@ -26,10 +26,10 @@ const Slider = () => {
 
   const slides = [
     {
-      url: "./assets/header/carouselImg.jpeg",
+      url: "./assets/shopcards/slider2.png",
     },
     {
-      url: "./assets/header/carouselImg2.jpeg",
+      url: "./assets/shopcards/slider2.png",
     },
   ];
   useEffect(() => {
@@ -42,8 +42,8 @@ const Slider = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center w-full ">
-        <div className="max-h-[716px] w-full h-screen relative group ">
+      <div className="flex w-full bg-green2">
+        <div className="max-h-[716px] w-full h-screen mx-auto relative group ">
           <div
             style={{
               backgroundImage: `url(${slides[currentIndex].url})`,
@@ -51,24 +51,22 @@ const Slider = () => {
               backgroundSize: "cover", // Resmi ekran boyutuna sığacak şekilde boyutlandır
               backgroundRepeat: "no-repeat", // Resmin tekrarlanmasını engelle
             }}
-            className="w-full h-full bg-cover bg-no-repeat duration-500 flex items-center justify-center "
+            className="w-full h-full bg-cover bg-no-repeat duration-500 flex items-center justify-center"
           >
-            <div className="flex max-h-[680px] w-full h-full items-center px-40 md:px-0">
+            <div className="flex max-h-[680px] w-full h-full items-center px-40 ">
               <div className="flex flex-col gap-8 md:items-center md:mx-auto drop-shadow-2xl">
-                <h5 className="font-bold text-white md:text-3xl uppercase">
-                  Summer 2020
-                </h5>
-                <h1 className="flex font-bold text-6xl text-white md:max-w-80 md:text-5xl md:flex-col md:text-center">
+                <h5 className="font-bold text-white ">Summer 2020</h5>
+                <h1 className="flex font-bold text-6xl text-white md:max-w-80 md:text-[40px] md:flex-col md:text-center">
                   NEW COLLECTION
                 </h1>
-                <p className="flex flex-col text-white font-bold md:flex-col md:items-center md:text-xl">
+                <p className="flex flex-col text-white font-bold max-w-80 md:flex-col md:items-center">
                   <span> We know how large objects will act,</span>
                   but things on a small scale.
                 </p>
                 <div className="flex justify-start ">
                   <Link
                     to="/shop"
-                    className="text-white font-bold text-xl bg-[#2DC071] p-4 md:p-6 md:text-3xl rounded-md"
+                    className="text-white font-bold text-xl bg-[#2DC071] p-4 rounded-md"
                   >
                     SHOP NOW
                   </Link>
@@ -111,4 +109,4 @@ const Slider = () => {
     </div>
   );
 };
-export default Slider;
+export default Slider3;
