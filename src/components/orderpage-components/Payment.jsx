@@ -74,7 +74,7 @@ const Payment = ({
   };
 
   return (
-    <div className="bg-darkblue1 md:bg-blue1 border rounded-xl md:rounded-none flex flex-row items-center justify-center font-Montserrat font-bold text-2xl ">
+    <div className="bg-darkblue1 md:bg-blue1 border rounded-xl md:rounded-none flex flex-row items-center justify-center font-Montserrat font-bold text-2xl w-full ">
       {cardPage ? (
         <span className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <PaymentForm openAddCardPage={openAddCardPage} />
@@ -141,7 +141,10 @@ const Payment = ({
                 onClick={openAddCardPage}
                 className="border border-white p-4 md:p-2 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 md:hover:bg-green text-white shadow-md shadow-darkblue1"
               >
-                <FontAwesomeIcon className="text-4xl md:text-2xl" icon={faCirclePlus} />
+                <FontAwesomeIcon
+                  className="text-4xl md:text-2xl"
+                  icon={faCirclePlus}
+                />
                 <p className="text-white md:text-xl">Add Card</p>
               </button>
             </div>

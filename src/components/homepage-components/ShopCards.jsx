@@ -125,7 +125,7 @@ export const ShopCards = () => {
         </div>
       </div>
       <div
-        className="flex flex-col justify-center items-center gap-8"
+        className="flex flex-col justify-between items-center gap-12 px-40 sm:px-0"
         id="main-content"
       >
         <div
@@ -151,10 +151,7 @@ export const ShopCards = () => {
             Problems trying to resolve the conflict between{" "}
           </h3>
         </div>
-        <div
-          className="flex flex-row flex-wrap gap-8 justify-center py-4 sm:flex-col sm:px-10 sm:gap-12 sm:py-4"
-          id="product-container"
-        >
+        <span className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4">
           {productData &&
             productData
               .slice(indexOfFirstProduct, indexOfLastProduct)
@@ -207,7 +204,7 @@ export const ShopCards = () => {
                   </span>
                 </div>
               ))}
-        </div>
+        </span>
         <div id="pagination">
           <Pagination
             totalPages={totalPages}
