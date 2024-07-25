@@ -74,21 +74,23 @@ const Payment = ({
   };
 
   return (
-    <div className="bg-darkblue1 border rounded-xl flex flex-row items-center justify-center font-Montserrat font-bold text-2xl w-full">
+    <div className="bg-darkblue1 md:bg-blue1 border rounded-xl md:rounded-none flex flex-row items-center justify-center font-Montserrat font-bold text-2xl ">
       {cardPage ? (
-        <PaymentForm openAddCardPage={openAddCardPage} />
+        <span className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <PaymentForm openAddCardPage={openAddCardPage} />
+        </span>
       ) : (
-        <div className="w-full">
+        <div>
           {paymentMethods.length > 0 ? (
             <div className="flex flex-col items-center flex-wrap gap-4 py-4">
               <h2 className="text-white">Your Cards</h2>
               {paymentMethods.map((card, index) => (
                 <span
-                  className="flex flex-col justify-between items-center gap-2 border-2 border-white rounded-xl p-2"
+                  className="flex flex-col justify-between bg-darkblue1 items-center gap-2 border-2 border-white rounded-xl p-2"
                   key={index}
                 >
                   <span className="text-white py-2">Card Id : {card.id}</span>
-                  <span className="flex flex-row items-center justify-between gap-2">
+                  <span className="flex flex-row md:flex-col items-center justify-between gap-2 md:gap-4">
                     <Cards
                       number={card.card_no}
                       expiry=""
@@ -96,26 +98,26 @@ const Payment = ({
                       name={card.name_on_card}
                       focused=""
                     />
-                    <span className="flex flex-col justify-center items-center gap-4">
+                    <span className="flex flex-col md:flex-row justify-center items-center gap-4">
                       <button
                         onClick={() => handleSelectCard(card)}
-                        className="border p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1"
+                        className="border p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1  hover:bg-green shadow-md shadow-darkblue1"
                       >
                         <FontAwesomeIcon
                           className="text-4xl text-white"
                           icon={faCircleCheck}
                         />
-                        <p className="text-white">Select Card</p>
+                        <p className="text-white">Select</p>
                       </button>
                       <button
                         onClick={() => handleDeleteCard(card.id)}
-                        className="border p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1"
+                        className="border p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 md:bg-red hover:bg-green shadow-md shadow-darkblue1"
                       >
                         <FontAwesomeIcon
                           className="text-4xl text-white"
                           icon={faTrashCan}
                         />
-                        <p className="text-white">Delete Card</p>
+                        <p className="text-white">Delete</p>
                       </button>
                     </span>
                   </span>
@@ -123,7 +125,7 @@ const Payment = ({
               ))}
               <button
                 onClick={openAddCardPage}
-                className="border p-4 my-2 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 hover:bg-green shadow-md shadow-darkblue1"
+                className="border p-4 my-2 rounded-xl flex flex-row items-center gap-4 font-bold bg-blue1 md:bg-darkblue1  hover:bg-green shadow-md shadow-darkblue1"
               >
                 <FontAwesomeIcon
                   className="text-4xl text-white"
@@ -133,14 +135,14 @@ const Payment = ({
               </button>
             </div>
           ) : (
-            <div className="w-full text-center flex flex-col items-center gap-4 text-white">
+            <div className="text-center flex flex-col items-center gap-4 text-white md:py-8 md:justify-center">
               <p className="text-xl">No card found.</p>
               <button
                 onClick={openAddCardPage}
-                className="border border-white p-4 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1"
+                className="border border-white p-4 md:p-2 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 md:hover:bg-green text-white shadow-md shadow-darkblue1"
               >
-                <FontAwesomeIcon className="text-4xl" icon={faCirclePlus} />
-                <p className="text-white">Add Card</p>
+                <FontAwesomeIcon className="text-4xl md:text-2xl" icon={faCirclePlus} />
+                <p className="text-white md:text-xl">Add Card</p>
               </button>
             </div>
           )}

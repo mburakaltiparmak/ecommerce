@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -8,17 +8,20 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useGravatar } from "use-gravatar";
 import UserDdown from "./UserDropdown";
 import Dropdown from "./Dropdown";
 import CartDropdown from "./CartDropdown";
+import MobileSidebar from "./MobileSidebar";
+
 const NavbarLight = (props) => {
   const history = useHistory();
   const [collapse, setCollapse] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [userCollapse, setUserCollapse] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
@@ -29,15 +32,13 @@ const NavbarLight = (props) => {
   return (
     <div
       id="navbar-light"
-      className={`flex font-bold justify-between items-center lg:px-32 md:px-10 py-4 gap-10 lg:gap-6 bg-white px-40 ${
-        !collapse && !userCollapse && "sm:pb-0"
-      }  sm:px-0 sm:pb-12 sm:flex-col`}
+      className={`flex font-bold justify-between items-center md:px-10 py-4 gap-10 md:gap-6 bg-white px-40 md:flex-col`}
     >
       <span
         id="main-1"
-        className="flex sm:flex-col gap-14 sm:justify-between sm:px-10 sm:py-5 sm:w-full"
+        className="flex md:flex-col gap-14 md:justify-between md:px-10"
       >
-        <span className="sm:flex sm:flex-row" id="top-bar">
+        <span className="md:flex md:flex-row" id="top-bar">
           <button
             onClick={() => history.push("/home")}
             className="font-bold text-lg sm:text-xl pr-4 md:pr-8 text-[#252b42]"
@@ -55,32 +56,38 @@ const NavbarLight = (props) => {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
             <button
+              onClick={() => history.push("/cart")}
               className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"
             >
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
-            <button onClick={() => setUserCollapse(!userCollapse)}>
+            <button
+              className="md:hidden"
+              onClick={() => setUserCollapse(!userCollapse)}
+            >
               <FontAwesomeIcon icon={faUser} />
             </button>
             <button
               className="flex text-center gap-1 items-center"
               id="navbar-nav-icons"
               onClick={() => {
-                setCollapse(!collapse);
+                setOpenSidebar(true);
               }}
             >
               <FontAwesomeIcon icon={faBars} />
-              <p className={`${collapse && "hidden"}`}>Menu</p>
             </button>
           </span>
         </span>
+        {collapse && openSidebar && (
+          <MobileSidebar setOpenSidebar={setOpenSidebar} />
+        )}
 
         <label
           id=""
-          className={`font-bold items-start  text-sm gap-5 flex leading-6 px-[50px] text-[#252b42] ${
+          className={`font-bold items-start text-sm gap-5 flex leading-6 px-[50px] text-[#252b42] ${
             !collapse && "sm:hidden"
-          } sm:flex-col sm:items-center sm:text-2xl sm:text-gray`}
+          } sm:flex-col sm:items-center sm:text-2xl sm:text-gray md:hidden`}
         >
           <button className="" onClick={() => history.push("/home")}>
             Home
@@ -117,14 +124,14 @@ const NavbarLight = (props) => {
         id="main-2"
         className={`${
           !collapse && !userCollapse && "sm:hidden"
-        } flex flex-row w-full px-1 justify-end sm:justify-center`}
+        } flex flex-row w-full px-1 justify-end sm:justify-center md:hidden`}
       >
         <label
           id="navbar-nav"
           htmlFor=""
           className={`${
             !userCollapse && "sm:hidden"
-          } flex flex-row items-center justify-between text-center gap-8  md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl`}
+          } flex flex-row items-center justify-between text-center gap-8  md:gap-8 text-[#23a6f0] sm:flex sm:flex-col sm:text-xl md:hidden`}
         >
           {userData.name || nameAtStorage ? (
             <span
@@ -180,4 +187,5 @@ const NavbarLight = (props) => {
     </div>
   );
 };
+
 export default NavbarLight;

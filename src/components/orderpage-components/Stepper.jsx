@@ -47,15 +47,15 @@ const Stepper = ({ step1, step2, step3,step4, currentStep }) => {
               currentStep >= index + 1
                 ? "border-green bg-green transition duration-500 ease-in-out"
                 : "border-white bg-blue1 transition duration-500 ease-in-out"
-            } relative flex flex-col items-center px-2 justify-between text-white border-4 rounded-xl py-1 shadow-sm shadow-blue1 h-32 w-32`}
+            } relative flex flex-col items-center px-2 justify-between md:justify-center text-white border-4 md:border-2 rounded-xl py-1 shadow-sm shadow-blue1 h-32 w-32 md:w-16 md:h-16`}
           >
-            <div className="rounded-full text-white bg-blue1 transition duration-500 ease-in-out border-2 border-darkblue1 h-14 w-14 flex items-center justify-center shadow-md shadow-black">
+            <div className="rounded-full text-white bg-blue1 transition duration-500 ease-in-out border-2 md:border-1 border-darkblue1 h-14 w-14 md:w-8 md:h-8 flex items-center justify-center shadow-md shadow-black">
               <FontAwesomeIcon
-                className="text-2xl"
+                className="text-2xl md:text-base"
                 icon={currentStep >= index + 1 ? step.success : step.logo}
               />
             </div>
-            <div className="flex flex-col items-center text-center drop-shadow-md">
+            <div className="flex flex-col items-center text-center drop-shadow-md md:hidden">
               {step.title}
             </div>
           </div>
@@ -65,7 +65,7 @@ const Stepper = ({ step1, step2, step3,step4, currentStep }) => {
   );
 
   return (
-    <div className="bg-darkblue1 text-white font-bold flex justify-between rounded-xl flex-col p-1">
+    <div className="bg-darkblue1 text-white font-bold flex justify-between rounded-xl md:rounded-none flex-col p-1">
       {displaySteps}
     </div>
   );

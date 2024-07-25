@@ -126,31 +126,31 @@ const Addresses = ({
         <div className="flex flex-row gap-4 py-4 text-white">
           <button
             onClick={handleAddAddress}
-            className="border border-darkblue1 p-4 rounded-xl flex flex-row gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1"
+            className="address-button"
           >
-            <FontAwesomeIcon className="text-4xl" icon={faCirclePlus} />
-            <p className="text-white">Add Address</p>
+            <FontAwesomeIcon className="text-4xl md:text-2xl" icon={faCirclePlus} />
+            <p className="text-white md:text-sm ">Add</p>
           </button>
           <button
             onClick={() => handleSelectAddress(address)}
-            className="border border-darkblue1 p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 hover:bg-blue1 shadow-md shadow-darkblue1"
+            className="address-button"
           >
-            <FontAwesomeIcon className="text-4xl" icon={faCircleCheck} />
-            <p className="text-white">Select Address</p>
+            <FontAwesomeIcon className="text-4xl md:text-2xl" icon={faCircleCheck} />
+            <p className="text-white md:text-sm">Select</p>
           </button>
           <button
             onClick={() => handleUpdateAddress(address.id)}
-            className="border border-darkblue1 p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 hover:bg-blue1 shadow-md shadow-darkblue1"
+            className="address-button"
           >
-            <FontAwesomeIcon className="text-4xl" icon={faSquarePen} />
-            <p className="text-white">Update Address</p>
+            <FontAwesomeIcon className="text-4xl md:text-2xl" icon={faSquarePen} />
+            <p className="text-white md:text-sm">Update</p>
           </button>
           <button
             onClick={() => handleDeleteAddress(address.id)}
-            className="border border-darkblue1 p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-darkblue1 hover:bg-blue1 shadow-md shadow-darkblue1"
+            className="address-button"
           >
-            <FontAwesomeIcon className="text-4xl" icon={faTrashCan} />
-            <p className="text-white">Delete Address</p>
+            <FontAwesomeIcon className="text-4xl md:text-2xl" icon={faTrashCan} />
+            <p className="text-white md:text-sm">Delete</p>
           </button>
         </div>
       </div>

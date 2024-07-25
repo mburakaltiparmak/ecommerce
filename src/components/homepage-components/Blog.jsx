@@ -10,7 +10,7 @@ export const Blog = () => {
   const { blogData } = data();
   return (
     <div
-      className="flex flex-col font-Montserrat gap-8 items-center tracking-[0.2px] sm:px-10 "
+      className="flex flex-col font-Montserrat gap-8 items-center md:px-10 px-32  "
       id="blog-container"
     >
       <section
@@ -19,20 +19,19 @@ export const Blog = () => {
       >
         <h6 className="text-blue1 text-lg font-bold">Practice Advice</h6>
         <h3 className="text-darkblue1 text-4xl font-bold ">Featured Posts</h3>
-        <p id="paragraph" className="text-gray text-lg">
+        <p  className="text-gray text-lg">
           Problems trying to resolve the conflict between the two major realms
           of Classical physics: Newtonian mechanics
         </p>
       </section>
-      <label
-        className="flex flex-row gap-2 sm:gap-8 w-4/5 sm:w-full sm:flex-col justify-between items-center"
-        htmlFor="blog"
-        id="blog-content"
+      <section
+        className="flex flex-row gap-2 sm:gap-8  sm:flex-col justify-between items-center"
+      
       >
         {blogData.map((blogItem, index) => (
           <section
             key={index}
-            className="flex flex-col gap-4 justify-between shadow-lg shadow-gray border border-gray rounded-md "
+            className="flex flex-col gap-4 justify-between shadow-lg shadow-gray border border-gray rounded-md pb-4 "
             id="content-card"
           >
             <span
@@ -89,13 +88,13 @@ export const Blog = () => {
                 </p>
               </span>
               <span
-                className="flex flex-row text-base font-semibold text-gray pb-8"
+                className="flex flex-row items-center text-base font-semibold text-gray "
                 id="button-content"
               >
-                <button className="flex items-center gap-2">
+                <button className="flex flex-row items-center gap-1">
                   Learn More{" "}
                   <FontAwesomeIcon
-                    className="w-[12px] h-[24px] text-blue1"
+                    className="text-blue1"
                     icon={faAngleRight}
                   />
                 </button>
@@ -103,7 +102,7 @@ export const Blog = () => {
             </span>
           </section>
         ))}
-      </label>
+      </section>
     </div>
   );
 };

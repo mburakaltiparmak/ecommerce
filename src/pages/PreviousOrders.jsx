@@ -26,7 +26,7 @@ const PreviousOrders = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 px-32 font-Montserrat">
+    <div className="flex flex-col gap-4 px-32 md:px-0 font-Montserrat">
       <span className="text-center font-bold text-2xl text-darkblue1">
         ORDER HISTORY
       </span>
@@ -35,7 +35,7 @@ const PreviousOrders = () => {
           orderHistory.map((order, index) => (
             <div
               key={index}
-              className="flex flex-col gap-2 border-2 border-darkblue1 rounded-lg p-4"
+              className="my-2 block drop-shadow-lg  py-1  text-darkblue1 border-y w-[500px] md:w-full "
             >
               <div className="flex flex-row gap-2 font-bold">
                 Order ID: <span className="font-semibold">{order.id}</span>
@@ -49,23 +49,19 @@ const PreviousOrders = () => {
                 order.products.map((product, productIndex) => (
                   <div
                     key={productIndex}
-                    className="flex flex-row gap-4 border-2 border-darkblue1 rounded-lg"
+                    className="flex flex-row gap-4 md:w-fit md:items-start my-2 rounded-lg"
                   >
                     <img
-                      className="w-32 h-fit rounded-lg object-cover shadow-lg shadow-darkblue1"
+                      className="max-w-[150px] h-[200px] md:h-[200px] object-cover rounded-lg border border-darkblue1"
                       src={product.images[0].url}
                       alt={product.name || "Product Image"}
                     />
-                    <div className="flex flex-col gap-2 py-2">
+                    <div className="flex flex-col gap-2 ml-2 md:ml-0 md:items-start">
                       <div className="flex flex-row gap-2 font-bold">
-                        Product Name:
-                        <span className="font-semibold">{product.name}</span>
+                        {product.name}
                       </div>
-                      <div className="flex flex-row gap-2 font-bold">
-                        Description:
-                        <span className="font-semibold">
+                      <div className="font-normal text-sm">
                           {product.description}
-                        </span>
                       </div>
                       <div className="flex flex-row gap-2 font-bold">
                         Product Count:
@@ -83,7 +79,7 @@ const PreviousOrders = () => {
               )}
 
               <div>
-                <span className="flex flex-row gap-2 font-bold">
+                <span className="flex flex-row justify-end gap-2 font-bold px-4">
                   Order Total :<p className="font-semibold">{order.price} $</p>
                 </span>
               </div>

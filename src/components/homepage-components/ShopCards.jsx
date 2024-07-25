@@ -45,22 +45,22 @@ export const ShopCards = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-8 font-Montserrat ">
       <div className="flex flex-col justify-center items-center gap-4 ">
-        <div className="flex flex-col justify-center items-center gap-4 ">
+        <div className="flex flex-col justify-center items-center text-center gap-4 ">
           <h2 className="text-darkblue1  font-bold text-2xl sm:text-3xl">
             EDITOR'S PICK
           </h2>
-          <p className="text-gray text-xl font-bold">
+          <p className="text-gray text-xl font-bold md:px-4">
             Problems trying to resolve the conflict between
           </p>
         </div>
-        <div className="flex flex-row flex-wrap gap-4 content-center items-center font-Montserrat font-bold sm:px-10 ">
+        <div className="flex flex-row md:flex-col flex-wrap gap-4 content-center items-center font-Montserrat font-bold sm:px-10 ">
           <Link
             to="/shop"
             className="relative flex items-end justify-start"
             id="first-img-box"
           >
             <img
-              className="w-fit h-fit object-cover"
+              className="w-fit h-fit md:w-screen object-cover"
               id="men-img"
               src={menImg}
               alt=""
@@ -79,7 +79,7 @@ export const ShopCards = () => {
               to="/shop"
             >
               <img
-                className="w-fit h-fit object-cover  "
+                className="w-fit h-fit md:w-screen object-cover  "
                 id="women-img"
                 src={womenImg2}
                 alt=""
@@ -97,7 +97,7 @@ export const ShopCards = () => {
                 to="/shop"
               >
                 <img
-                  className="w-fit h-fit object-cover"
+                  className="w-fit h-fit md:w-screen object-cover"
                   id="tiny-img"
                   src={accessoriesImg}
                   alt=""
@@ -114,7 +114,7 @@ export const ShopCards = () => {
                   id="tiny-img"
                   src={kidsImg}
                   alt=""
-                  className="w-fit h-fit object-cover"
+                  className="w-fit h-fit md:w-screen object-cover"
                 />
                 <button className="absolute border border-gray w-28 py-2 mb-8 ml-8  text-center text-base sm:text-xl bg-lightgray">
                   KIDS
@@ -152,7 +152,7 @@ export const ShopCards = () => {
           </h3>
         </div>
         <div
-          className="flex flex-row flex-wrap gap-8 justify-center py-4 sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
+          className="flex flex-row flex-wrap gap-8 justify-center py-4 sm:flex-col sm:px-10 sm:gap-12 sm:py-4"
           id="product-container"
         >
           {productData &&
@@ -171,35 +171,35 @@ export const ShopCards = () => {
                     <span className="flex items-center justify-center">
                       <img
                         src={id.images[0].url}
-                        className="h-64 w-fit object-cover"
+                        className="h-64 w-fit  object-cover"
                       />
                     </span>
-                    <span className="flex flex-col items-center gap-4 px-4">
-                      <h4 className="text-base sm:text-2xl font-bold">
+                    <span className="flex flex-col items-center gap-4 px-4 md:text-center">
+                      <h4 className="text-base md:text-2xl font-bold">
                         {id.name}
                       </h4>
-                      <h5 className="text-sm sm:text-xl font-bold text-[#737373]  w-64">
+                      <h5 className="text-sm md:text-lg font-bold text-[#737373]  w-64">
                         {id.description}
                       </h5>
                     </span>
 
-                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-4 py-4 text-base font-bold">
+                    <span className="flex flex-col md:text-lg items-center text-center justify-center gap-4 py-4 text-base font-bold">
                       <h5 className="text-[#23856D]">{id.price} $</h5>
                       <RatingStars rating={id.rating} />
                     </span>
                     <span id="colors">
                       <div className="flex items-center justify-center space-x-2">
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                        <div className="w-4 h-4 rounded-full bg-red"></div>
+                        <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                        <div className="w-4 h-4 rounded-full bg-green"></div>
+                        <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
                       </div>
                     </span>
                   </Link>
 
                   <span id="button-span" className="flex flex-row gap-4">
                     <button
-                      className="p-4 sm:py-8 flex border-2 text-lightgray bg-darkblue1 rounded-lg justify-center text-base sm:text-xl font-bold hover:bg-green"
+                      className="p-4 flex border-2 text-lightgray bg-darkblue1 rounded-lg justify-center text-base sm:text-xl font-bold hover:bg-green"
                       onClick={() => addToCart(id)}
                     >
                       Add to Cart

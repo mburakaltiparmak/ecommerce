@@ -95,34 +95,24 @@ const PaymentForm = ({ openAddCardPage }) => {
   };
 
   return (
-    <div className="flex flex-row items-start justify-between gap-4 font-Montserrat py-4">
-      <span className="flex flex-col gap-2">
-        <Cards
+    <div className="flex flex-row items-start justify-between gap-4 font-Montserrat">
+      {loading ? (
+        <FontAwesomeIcon icon={faSpinner} spinPulse />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          
+          <div className="w-fit h-fit flex items-center justify-center ">
+            <div
+              className=" rounded-lg bg-blue2 border-4 border-darkblue1 shadow-lg p-4 text-darkblue1 font-semibold "
+              
+            >
+              <Cards
           number={state.card_no}
           expiry={state.expiry}
           cvc={state.security_code}
           name={state.name_on_card}
           focused={state.focus}
         />
-        <button
-          onClick={openAddCardPage}
-          className="border border-red text-white
- hover:text-red hover:border-red p-4 rounded-xl flex flex-row items-center gap-4 font-bold bg-red hover:bg-white shadow-md shadow-darkblue1"
-        >
-          <FontAwesomeIcon className="text-4xl " icon={faCancel} />
-          <p className="">Cancel</p>
-        </button>
-      </span>
-
-      {loading ? (
-        <FontAwesomeIcon icon={faSpinner} spinPulse />
-      ) : (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="w-fit h-fit flex items-center justify-center ">
-            <div
-              className="w-full mx-auto rounded-lg bg-blue2 border-4 border-white shadow-lg p-4 text-darkblue1 font-semibold "
-              style={{ maxWidth: "600px" }}
-            >
               <div className="w-full pt-1 pb-5"></div>
               <div className="mb-10">
                 <h1 className="text-center font-bold text-xl uppercase">
@@ -276,13 +266,21 @@ const PaymentForm = ({ openAddCardPage }) => {
                   )}
                 </div>*/}
               </div>
-              <div>
+              <div className="flex flex-row items-center gap-2 justify-center">
                 <button
                   type="submit"
-                  className="block w-full max-w-xs mx-auto bg-darkblue1 hover:bg-blue1 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                  className="bg-darkblue1 hover:bg-blue1 w-32 h-16 text-white rounded-lg  font-semibold"
                 >
-                  <i className="mdi mdi-lock-outline mr-1"></i> Save Card
+                 Save Card
                 </button>
+                <button
+          onClick={openAddCardPage}
+          className="border border-red text-white
+ hover:text-red hover:border-red w-32 h-16 rounded-lg flex flex-row items-center justify-center gap-4 font-bold bg-red hover:bg-white shadow-md shadow-darkblue1"
+        >
+
+          Cancel
+        </button>
               </div>
             </div>
           </div>

@@ -102,7 +102,7 @@ const Order = () => {
   };
 
   return (
-    <div className="flex flex-col px-40 justify-around gap-1 font-Montserrat font-bold">
+    <div className="flex flex-col px-40 md:px-0 justify-around gap-4 font-Montserrat font-bold">
       <Stepper
         step1={step1}
         step2={step2}
@@ -111,7 +111,7 @@ const Order = () => {
         currentStep={currentStep}
       />
       {!step4 ? (
-        <div className="flex justify-between my-1">
+        <div className="flex justify-between my-1 px-2">
           <button
             onClick={handleBack}
             disabled={currentStep === 1}
@@ -143,8 +143,8 @@ const Order = () => {
         {currentStep === 1 && (
           <>
             {addressFormIsOpen || updateAddressForm ? (
-              <span className="flex flex-row justify-between gap-2">
-                <div className="block border rounded-lg px-32 w-full">
+              <span className="flex flex-row md:justify-center justify-between gap-2">
+                <div className="block border rounded-lg px-32 md:px-0 md:flex md:items-center md:justify-center">
                   <AddressForm
                     addressData={updatingAddressData}
                     addressFormIsOpen={addressFormIsOpen}
@@ -153,11 +153,13 @@ const Order = () => {
                     setUpdateAddressForm={setUpdateAddressForm}
                   />
                 </div>
+                <span className="md:hidden">
                 <Summary />
+                </span>
               </span>
             ) : (
-              <div className="flex flex-row justify-between gap-2">
-                <div className="rounded-xl w-full flex items-center p-2 bg-darkblue1 text-white font-bold shadow-xl drop-shadow-xl shadow-darkblue1">
+              <div className="flex flex-row md:flex-col justify-between gap-2">
+                <div className="rounded-xl md:rounded-none w-full flex items-center p-2 bg-darkblue1 text-white font-bold shadow-xl drop-shadow-xl shadow-darkblue1">
                   <section className="px-1 w-full">
                     {Array.isArray(addressData) && addressData.length > 0 ? (
                       <Addresses
@@ -188,13 +190,15 @@ const Order = () => {
                     )}
                   </section>
                 </div>
+                <span className="md:hidden">
                 <Summary />
+                </span>
               </div>
             )}
           </>
         )}
         {currentStep === 2 && (
-          <div className="flex flex-row gap-2 justify-between">
+          <div className="flex flex-row md:flex-col gap-2 md:items-center justify-between">
             <Shipment
               step2={step2}
               setStep2={setStep2}
@@ -204,7 +208,7 @@ const Order = () => {
           </div>
         )}
         {currentStep === 3 && (
-          <div className="flex flex-row gap-2 justify-between">
+          <div className="flex flex-row md:flex-col gap-2 justify-between">
             <Payment
               step3={step3}
               setStep3={setStep3}
@@ -219,7 +223,7 @@ const Order = () => {
         {currentStep === 4 &&
           (step4 ? (
             <div className="flex flex-col items-center justify-between gap-4 py-4">
-              <div className="flex flex-row items-center gap-4 text-2xl animate-pulse bg-green text-white p-4 border-2 border-darkblue1 rounded-lg">
+              <div className="flex flex-row items-center gap-4 text-2xl md:text-lg md:text-center animate-pulse bg-green text-white p-4 border-2 border-darkblue1 rounded-lg md:rounded-none">
                 <p>ORDER WAS SUCCESSFULLY COMPLETED</p>
                 <span className="bg-green rounded-full h-14 w-14 flex items-center justify-center">
                   <FontAwesomeIcon

@@ -43,7 +43,7 @@ const Slider = () => {
   return (
     <div>
       <div className="flex items-center justify-center w-full ">
-        <div className="max-h-[716px] w-full h-screen relative group ">
+        <div className="max-h-[716px]  w-full h-screen relative group ">
           <div
             style={{
               backgroundImage: `url(${slides[currentIndex].url})`,
@@ -68,7 +68,7 @@ const Slider = () => {
                 <div className="flex justify-start ">
                   <Link
                     to="/shop"
-                    className="text-white font-bold text-xl bg-[#2DC071] p-4 md:p-6 md:text-3xl rounded-md"
+                    className="text-white font-bold text-xl bg-[#2DC071] p-4  md:text-2xl rounded-md"
                   >
                     SHOP NOW
                   </Link>

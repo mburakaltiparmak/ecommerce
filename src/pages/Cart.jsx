@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import {
   IsChecked,
   clearCart,
@@ -93,11 +93,11 @@ const Cart = () => {
   return (
     <div
       id="cart-page"
-      className="flex flex-row justify-between items-start px-40"
+      className="flex flex-row md:flex-col md:items-center gap-4 justify-between md:justify-around items-start px-40 md:px-0"
     >
       <div
         id="left"
-        className="flex flex-col font-bold gap-2 items-start pb-5 "
+        className="flex flex-col font-bold gap-2 items-start pb-5 md:px-4 "
       >
         <div>
           <span>My Cart </span>
@@ -107,20 +107,21 @@ const Cart = () => {
           cart.map((item, index) => (
             <div
               id="cart-product"
-              className="my-2 block drop-shadow-lg w-[400px] py-1 hover:text-black "
+              className="my-2 block drop-shadow-lg  py-1  text-darkblue1 border-y w-[500px] md:w-full "
               key={index}
             >
-              <div className="flex flex-row border border-gray rounded-lg">
+              
+              <div className="flex flex-row gap-4 md:w-fit md:items-start my-2 rounded-lg">
                 <img
                   src={item.product.images[0].url}
                   alt={item.product.id}
-                  className="max-w-[150px] h-[200px] rounded-lg"
+                  className="max-w-[150px] h-[200px] md:h-[200px] object-cover rounded-lg border border-darkblue1"
                 />
-                <div className="flex flex-col justify-around ml-2 ">
-                  <div className="font-semibold text-lg">
+                <div className="flex flex-col gap-2 ml-2 md:ml-0 md:items-start">
+                  <div className="font-bold text-lg">
                     {item.product.name}
                   </div>
-                  <div className="font-light text-sm">
+                  <div className="font-normal text-sm">
                     {item.product.description}
                   </div>
                   <div>
@@ -129,19 +130,19 @@ const Cart = () => {
                     }`}</span>
                   </div>
                   <div className="flex flex-row font-semibold items-center justify-start gap-4">
-                    <div className="flex flex-row gap-2 font-semibold items-center justify-center">
+                    <div className="flex flex-row font-semibold justify-between items-center rounded-lg">
                       <button
-                        className="bg-blue1 p-2 rounded-lg text-white flex items-center"
+                        className="bg-blue1 border border-blue1 h-8 w-8   rounded-s-lg text-white flex justify-center items-center"
                         onClick={() => decrementProductCount(item)}
                       >
-                        <p className="px-1">-</p>
+                        <FontAwesomeIcon icon={faPlus} />
                       </button>
-                      <span>{item.count}</span>
+                      <span className="border border-blue1 w-8 h-8 flex items-center justify-center">{item.count}</span>
                       <button
-                        className="bg-blue1 p-2 rounded-lg text-white flex items-center"
+                        className="bg-blue1 h-8 w-8 border-blue1 rounded-e-lg text-white flex justify-center items-center"
                         onClick={() => incrementProductCount(item)}
                       >
-                        <p className="px-1">+</p>
+                        <FontAwesomeIcon icon={faMinus} />
                       </button>
                     </div>
                     <button>
@@ -178,7 +179,7 @@ const Cart = () => {
           </button>
         )}
       </div>
-      <div className="pt-4 drop-shadow-lg">
+      <div className="pt-4 drop-shadow-lg sm:pt-0 md:w-full">
         <Summary />
       </div>
     </div>

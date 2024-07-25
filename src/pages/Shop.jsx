@@ -141,13 +141,12 @@ const Shop = () => {
                 />
                 <button
                   id="center"
-                  className="absolute t-1/2 w-full text-center text-lg sm:text-xl text-white font-bold"
+                  className="absolute top-1 inset-0 text-center text-lg sm:text-xl text-white font-bold"
                 >
-                  <p className="drop-shadow-4xl">{box.title}</p>
-                  <p className="drop-shadow-4xl">Rating : {box.rating}</p>
-                  <p className="drop-shadow-4xl">
+                  <p className="drop-shadow-3xl">
                     {box.gender === "e" ? "Erkek" : "Kadın"}
                   </p>
+                  <p className="drop-shadow-3xl">{box.title}</p>
                 </button>
               </div>
             </Link>
@@ -185,13 +184,13 @@ const Shop = () => {
               />
             </button>
           </span>
-          <span className="flex flex-row gap-2 sm:gap-4" id="filter-order">
-            <label className="flex items-center justify-center" id="1">
+          <span className="flex flex-row md:flex-col gap-2 sm:gap-4" id="filter-order">
+            <span className="flex items-center justify-center font-semibold" id="1">
               <select
                 id="dropdown"
                 defaultValue="Popularity"
                 onChange={(e) => handleSortChange(e.target.value)}
-                className="flex border border-gray rounded-lg py-4 px-4 w-full sm:text-base bg-lightgray"
+                className="flex border border-gray rounded-lg py-4 px-4 w-full text-sm bg-lightgray"
               >
                 <option>Popularity</option>
                 <option value="price:asc">Price Ascending</option>
@@ -199,64 +198,77 @@ const Shop = () => {
                 <option value="rating:asc">Rating Ascending</option>
                 <option value="rating:desc">Rating Descending</option>
               </select>
-            </label>
+            </span>
+            <span className="flex flex-row justify-between border font-semibold border-gray rounded-lg items-center">
             <input
               type="text"
-              className="max-w-[170px] bg-[#F9F9F9] border-[#DDDDDD] border rounded px-4"
+              className="placeholder:text-gray md:placeholder:text-center placeholder:text-start placeholder:px-4 placeholder:text-sm  bg-transparent  text-sm text-black"
               placeholder="Search"
               onChange={handleFilterChange}
             />
             <button
               onClick={handleFilterClick}
-              className="border border-gray rounded-lg py-3 px-5 bg-blue1 sm:text-base text-white"
-              id="2"
+              className="bg-blue1 h-full w-16 text-sm text-white rounded-r-lg border border-blue1"
+              type="button"
             >
               Filter
             </button>
+            </span>
+            
           </span>
         </span>
 
         <span className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4">
-          {productData &&
+        {productData &&
             productData
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
+                  className="flex flex-col items-center justify-between gap-4 shadow-md shadow-gray py-4"
                   key={index}
-                  className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
                 >
                   <Link
-                    to={`/${id.category_id}/${id.id}/${id.name.toLowerCase()}`}
+                    to={`/${id.category_id}/${id.id}/${id.name}`}
                     onClick={() => handleProductClick(id)}
+                    className="flex flex-col items-center gap-4"
                   >
-                    <span id="product-img-content" className="sm:w-full">
+                    <span className="flex items-center justify-center">
                       <img
                         src={id.images[0].url}
-                        alt=""
-                        className="sm:w-full"
+                        className="h-64 w-fit  object-cover"
                       />
                     </span>
-                    <span className="flex flex-col items-center gap-2 text-center">
-                      <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                    <span className="flex flex-col items-center gap-4 px-4 md:text-center">
+                      <h4 className="text-base md:text-2xl font-bold">
                         {id.name}
                       </h4>
-                      <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                      <h5 className="text-sm md:text-lg font-bold text-[#737373]  w-64">
                         {id.description}
                       </h5>
+                    </span>
+
+                    <span className="flex flex-col md:text-lg items-center text-center justify-center gap-4 py-4 text-base font-bold">
+                      <h5 className="text-[#23856D]">{id.price} $</h5>
                       <RatingStars rating={id.rating} />
-                      <span className="flex flex-col gap-1">
-                        <span className="font-bold text-base">
-                          {id.price} ₺
-                        </span>
-                      </span>
+                    </span>
+                    <span id="colors">
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-4 h-4 rounded-full bg-red"></div>
+                        <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                        <div className="w-4 h-4 rounded-full bg-green"></div>
+                        <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                      </div>
                     </span>
                   </Link>
-                  <button
-                    className="border border-gray rounded-lg py-2 px-4 bg-blue1 sm:text-base text-white"
-                    onClick={() => addToCart(id)}
-                  >
-                    Add to cart
-                  </button>
+
+                  <span id="button-span" className="flex flex-row gap-4">
+                    <button
+                      className="p-4 flex border-2 text-lightgray bg-darkblue1 rounded-lg justify-center text-base sm:text-xl font-bold hover:bg-green"
+                      onClick={() => addToCart(id)}
+                    >
+                      Add to Cart
+                    </button>
+                  </span>
                 </div>
               ))}
         </span>

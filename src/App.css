@@ -45,7 +45,7 @@
   @apply flex flex-col items-center w-[35%] gap-5;
 }
 .round-button {
-  @apply border border-gray rounded-full text-gray text-sm p-2;
+  @apply border border-gray rounded-full text-gray text-sm w-8 h-8;
 }
 .hide {
   @apply sm:hidden;
@@ -54,7 +54,7 @@
   @apply border rounded-md shadow-lg shadow-gray pb-16 gap-8 sm:w-full items-center  flex flex-col;
 }
 .order-form {
-  @apply flex flex-col font-bold text-darkblue1 py-4 px-8;
+  @apply flex flex-col md:items-center font-bold text-darkblue1 py-4 px-8;
 }
 /* App.css */
 
@@ -72,6 +72,9 @@
 }
 .address-box-light {
   @apply font-semibold;
+}
+.address-button {
+  @apply border border-darkblue1 w-32 h-16 justify-center px-2 rounded-xl flex flex-row md:flex-col gap-2 items-center font-bold bg-darkblue1 hover:bg-blue1 text-white shadow-md shadow-darkblue1;
 }
 
 /* Ana stil dosyası */

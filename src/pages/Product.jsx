@@ -128,6 +128,7 @@ const Product = () => {
             {productDataObject?.description}
           </p>
           <hr className="w-4/5 sm:w-full" />
+          
           <span id="colors">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-red"></div>
@@ -136,11 +137,11 @@ const Product = () => {
               <div className="w-8 h-8 rounded-full bg-yellow-500"></div>
             </div>
           </span>
-          <span id="buttons" className="flex flex-row gap-2">
-            <button className="border border-blue1 rounded-lg bg-blue1 text-white p-2 text-sm">
+          <span id="buttons" className="flex flex-row items-center gap-2">
+            <button className="border border-blue1 rounded-lg bg-blue1 text-white p-4 text-sm">
               Select Options
             </button>
-            <button className="round-button  hover:text-red hover:border-red">
+            <button className="round-button hover:text-red hover:border-red">
               <FontAwesomeIcon icon={faHeart} />
             </button>
             <button
@@ -247,8 +248,8 @@ const Product = () => {
         </span>
       </section>
       <section
-        id="product-list"
-        className="flex flex-col gap-8 pb-12 items-center"
+       
+        className="flex flex-col gap-8 items-center "
       >
         <span className="flex flex-col gap-4 w-full">
           <h4 className="h4-styles sm:text-xl">BESTSELLER PRODUCTS</h4>
@@ -256,7 +257,7 @@ const Product = () => {
         </span>
         {/*"flex justify-between flex-row flex-wrap gap-24 sm:w-full sm:flex-col sm:px-0 sm:gap-32 sm:py-16"*/}
         <span
-          className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4"
+          className="flex flex-row flex-wrap gap-8 justify-between md:flex-col md:items-center "
           id="product-container"
         >
           {productData &&
@@ -264,49 +265,46 @@ const Product = () => {
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
                 <div
-                  className="items-center justify-between flex flex-col gap-2 shadow-sm shadow-gray pb-16 w-1/4 sm:w-full max-w-[240px]"
+                  className="flex flex-col items-center justify-between gap-4 shadow-md shadow-gray py-4"
                   key={index}
-                  id="product-content"
                 >
                   <Link
                     to={`/${id.category_id}/${id.id}/${id.name}`}
                     onClick={() => handleProductClick(id)}
+                    className="flex flex-col items-center gap-4"
                   >
-                    <span id="product-img-content" className="sm:w-full">
+                    <span className="flex items-center justify-center">
                       <img
                         src={id.images[0].url}
-                        alt=""
-                        className="sm:w-full"
+                        className="h-64 w-fit  object-cover"
                       />
                     </span>
-                    <span
-                      id="product-text"
-                      className="flex flex-col items-center gap-2 text-center "
-                    >
-                      <h4 className="text-base sm:text-2xl font-bold leading-7 tracking-normal">
+                    <span className="flex flex-col items-center gap-4 px-4 md:text-center">
+                      <h4 className="text-base md:text-2xl font-bold">
                         {id.name}
                       </h4>
-                      <h5 className="text-sm sm:text-xl font-bold leading-7 tracking-wide text-[#737373]">
+                      <h5 className="text-sm md:text-lg font-bold text-[#737373]  w-64">
                         {id.description}
                       </h5>
                     </span>
-                    {/*span içini flex-row yap */}
-                    <span className="flex flex-col sm:text-xl items-center text-center justify-center gap-4 py-4 text-base font-bold">
+
+                    <span className="flex flex-col md:text-lg items-center text-center justify-center gap-4 py-4 text-base font-bold">
                       <h5 className="text-[#23856D]">{id.price} $</h5>
                       <RatingStars rating={id.rating} />
                     </span>
                     <span id="colors">
                       <div className="flex items-center justify-center space-x-2">
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-red"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-blue-500"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-green"></div>
-                        <div className="w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-yellow-500"></div>
+                        <div className="w-4 h-4 rounded-full bg-red"></div>
+                        <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                        <div className="w-4 h-4 rounded-full bg-green"></div>
+                        <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
                       </div>
                     </span>
                   </Link>
+
                   <span id="button-span" className="flex flex-row gap-4">
                     <button
-                      className="py-4 px-4 sm:py-8  sm:px-8  flex border-solid border-[1px] text-lightgray bg-darkblue1 rounded-md w-32 sm:w-48 justify-center text-base sm:text-xl font-bold  tracking-normal"
+                      className="p-4 flex border-2 text-lightgray bg-darkblue1 rounded-lg justify-center text-base sm:text-xl font-bold hover:bg-green"
                       onClick={() => addToCart(id)}
                     >
                       Add to Cart
@@ -315,13 +313,14 @@ const Product = () => {
                 </div>
               ))}
         </span>
-        <span id="pagination" className="sm:py-10">
-          <Pagination
+       <span>
+       <Pagination
             totalPages={totalPages}
             currentPage={activePage}
             onPageChange={onPageChange}
           />
-        </span>
+       </span>
+        
       </section>
       <section id="companies">
         <span

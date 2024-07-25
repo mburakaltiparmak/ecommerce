@@ -9,9 +9,9 @@ const Shipment = ({ step2, setStep2, setCurrentStep }) => {
     setCurrentStep(3);
   };
   return (
-    <div className="bg-darkblue1 border rounded-xl text-white px-8 flex flex-col py-4 w-full font-montserrat h-fit">
+    <div className="bg-darkblue1 md:bg-blue1 border rounded-xl md:rounded-none text-white px-8 flex flex-col py-4 w-full font-montserrat h-fit">
       <select
-        className="text-darkblue1 font-bold h-10 w-full border border-blue1 rounded-md"
+        className="text-darkblue1 font-bold h-10 w-full border border-blue1 md:border-darkblue1 rounded-md"
         id="shipment-dropdown"
         onChange={(e) => handleShipmentSelect(e.target.value)}
         defaultValue="null" // Set default value

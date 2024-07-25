@@ -135,9 +135,9 @@ const OrderForm = ({
         <Loading />
       ) : (
         <div className="flex flex-col items-center pb-4">
-          <h2 className="font-bold text-2xl py-8">Fill The Address Form</h2>
+          <h2 className="font-bold text-2xl md:text-lg md:text-center py-8 ">Fill The Address Form</h2>
           <form
-            className="flex flex-col w-[450px]"
+            className="flex flex-col w-[450px] md:w-fit"
             onSubmit={handleSubmit(
               updateAddressForm ? updateAddress : onSubmit
             )}
@@ -315,9 +315,9 @@ const OrderForm = ({
               )}
             </div>
 
-            <div className="flex justify-around mt-4 text-white gap-2 ">
+            <div className="flex justify-around mt-4 text-white gap-2 md:px-2 ">
               <button
-                className=" bg-red  hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
+                className=" bg-red  hover:bg-orange-500 focus:ring-orange-300 flex items-center justify-center w-full px-6 py-3 md:px-2 mt-4 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
                 type="button"
                 onClick={handleCancelButton}
               >
@@ -328,7 +328,7 @@ const OrderForm = ({
                   isValid
                     ? "bg-blue-500 hover:bg-blue-400 focus:ring-blue-300"
                     : "bg-gray hover:bg-red focus:ring-orange-300 cursor-not-allowed"
-                } flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50`}
+                } flex items-center justify-center w-full px-6 py-3 md:px-2  mt-4 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-opacity-50`}
                 type="submit"
               >
                 {updateAddressForm ? "Update Address" : "Save Address"}

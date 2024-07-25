@@ -93,7 +93,7 @@ const Summary = () => {
   };
 
   return (
-    <div className="flex flex-col font-bold justify-between items-center py-4 border border-x-2 border-y-2 border-darkblue1 drop-shadow-xl shadow-darkblue1 shadow-xl rounded-lg gap-4 h-[400px] w-[400px] bg-darkblue1 text-white">
+    <div className="flex flex-col font-bold justify-between md:justify-center  items-center py-4 border border-x-2 border-y-2 border-darkblue1 drop-shadow-xl shadow-darkblue1 shadow-xl  rounded-lg md:rounded-none gap-4 h-[400px] w-[400px] md:w-full bg-darkblue1 text-white">
       <div id="summary" className="flex flex-col gap-4 px-4 drop-shadow-xl">
         <span className="flex flex-row justify-between px-4 font-medium gap-2">
           <p className="drop-shadow-xl">Order Summary</p>
@@ -125,14 +125,12 @@ const Summary = () => {
       </div>
       <div
         id="promo-code-area"
-        className="text-base font-medium flex flex-col items-center gap-2 drop-shadow-xl"
+        className="text-base font-medium flex flex-col items-center gap-2 drop-shadow-xl "
       >
-        <p className="text-white font-bold text-sm text-center">
-          If you have Promo Code, enter here
-        </p>
+    
         <input
           type="text"
-          className="text-center bg-[#F9F9F9] border-[#DDDDDD] border rounded-lg h-[50px] cursor-text"
+          className="text-center placeholder:text-sm bg-[#F9F9F9] border-[#DDDDDD] border rounded-lg h-[50px] w-[250px]  cursor-text"
           placeholder="Promo Code"
           value={promoCode}
           onChange={handlePromoCodeChange}
