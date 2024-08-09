@@ -128,7 +128,7 @@ const Product = () => {
             {productDataObject?.description}
           </p>
           <hr className="w-4/5 sm:w-full" />
-          
+
           <span id="colors">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-red"></div>
@@ -247,10 +247,7 @@ const Product = () => {
           </span>
         </span>
       </section>
-      <section
-       
-        className="flex flex-col gap-8 items-center "
-      >
+      <section className="flex flex-col gap-8 items-center ">
         <span className="flex flex-col gap-4 w-full">
           <h4 className="h4-styles sm:text-xl">BESTSELLER PRODUCTS</h4>
           <hr className="text-gray" />
@@ -279,7 +276,7 @@ const Product = () => {
                         className="h-64 w-fit  object-cover"
                       />
                     </span>
-                    <span className="flex flex-col items-center gap-4 px-4 md:text-center">
+                    <span className="flex flex-col items-center gap-4 px-4 text-center">
                       <h4 className="text-base md:text-2xl font-bold">
                         {id.name}
                       </h4>
@@ -313,14 +310,13 @@ const Product = () => {
                 </div>
               ))}
         </span>
-       <span>
-       <Pagination
+        <span>
+          <Pagination
             totalPages={totalPages}
             currentPage={activePage}
             onPageChange={onPageChange}
           />
-       </span>
-        
+        </span>
       </section>
       <section id="companies">
         <span

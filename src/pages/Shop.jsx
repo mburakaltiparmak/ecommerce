@@ -184,8 +184,14 @@ const Shop = () => {
               />
             </button>
           </span>
-          <span className="flex flex-row md:flex-col gap-2 sm:gap-4" id="filter-order">
-            <span className="flex items-center justify-center font-semibold" id="1">
+          <span
+            className="flex flex-row md:flex-col gap-2 sm:gap-4"
+            id="filter-order"
+          >
+            <span
+              className="flex items-center justify-center font-semibold"
+              id="1"
+            >
               <select
                 id="dropdown"
                 defaultValue="Popularity"
@@ -200,26 +206,25 @@ const Shop = () => {
               </select>
             </span>
             <span className="flex flex-row justify-between border font-semibold border-gray rounded-lg items-center">
-            <input
-              type="text"
-              className="placeholder:text-gray md:placeholder:text-center placeholder:text-start placeholder:px-4 placeholder:text-sm  bg-transparent  text-sm text-black"
-              placeholder="Search"
-              onChange={handleFilterChange}
-            />
-            <button
-              onClick={handleFilterClick}
-              className="bg-blue1 h-full w-16 text-sm text-white rounded-r-lg border border-blue1"
-              type="button"
-            >
-              Filter
-            </button>
+              <input
+                type="text"
+                className="placeholder:text-gray md:placeholder:text-center placeholder:text-start placeholder:px-4 placeholder:text-sm  bg-transparent  text-sm text-black"
+                placeholder="Search"
+                onChange={handleFilterChange}
+              />
+              <button
+                onClick={handleFilterClick}
+                className="bg-blue1 h-full w-16 text-sm text-white rounded-r-lg border border-blue1"
+                type="button"
+              >
+                Filter
+              </button>
             </span>
-            
           </span>
         </span>
 
         <span className="flex flex-row flex-wrap gap-16 justify-between sm:w-full sm:flex-col sm:px-10 sm:gap-32 sm:py-4">
-        {productData &&
+          {productData &&
             productData
               .slice(indexOfFirstProduct, indexOfLastProduct)
               .map((id, index) => (
@@ -238,7 +243,7 @@ const Shop = () => {
                         className="h-64 w-fit  object-cover"
                       />
                     </span>
-                    <span className="flex flex-col items-center gap-4 px-4 md:text-center">
+                    <span className="flex flex-col items-center gap-4 px-4 text-center">
                       <h4 className="text-base md:text-2xl font-bold">
                         {id.name}
                       </h4>

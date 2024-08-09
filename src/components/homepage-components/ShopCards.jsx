@@ -171,7 +171,7 @@ export const ShopCards = () => {
                         className="h-64 w-fit  object-cover"
                       />
                     </span>
-                    <span className="flex flex-col items-center gap-4 px-4 md:text-center">
+                    <span className="flex flex-col items-center gap-4 px-4 text-center">
                       <h4 className="text-base md:text-2xl font-bold">
                         {id.name}
                       </h4>
